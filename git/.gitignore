@@ -1,0 +1,15 @@
+.DS_Store
+.sass-cache
+*~
+#*
+.#*
+TAGS
+emacs.d/projects.el
+.classpath
+.project
+.projectile
+.settings
+*.iml
+.idea
+.clover
+private
