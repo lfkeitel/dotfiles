@@ -1,7 +1,6 @@
 (setq lfk/default-font "Inconsolata")
-(setq lfk/default-font-size 12)
+(setq lfk/default-font-size 14)
 (setq lfk/current-font-size lfk/default-font-size)
-
 (setq lfk/font-change-increment 1.1)
 
 (defun lfk/font-code ()

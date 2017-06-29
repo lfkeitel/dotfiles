@@ -32,3 +32,15 @@
   "Kill the current buffer without prompting."
   (interactive)
   (kill-buffer (current-buffer)))
+
+(defun lfk/new-empty-buffer ()
+  "Create a new empty buffer.
+New buffer will be named “untitled” or “untitled<2>”, “untitled<3>”, etc.
+
+URL `http://ergoemacs.org/emacs/emacs_new_empty_buffer.html'
+Version 2016-12-27"
+  (interactive)
+  (let ((-buf (generate-new-buffer "untitled")))
+    (switch-to-buffer -buf)
+    (text-mode)
+    (setq buffer-offer-save t)))

@@ -1,5 +1,4 @@
-(use-package org
-    :ensure t)
+(use-package org)
 
 (use-package org-bullets
   :ensure t)
@@ -58,9 +57,11 @@
   (interactive)
   (lfk/copy-tasks-from-inbox)
   (find-file org-index-file)
-  ;; (flycheck-mode -1)
   (end-of-buffer))
 
 (global-set-key (kbd "C-c i") 'open-index-file)
 
 (setq org-html-postamble nil)
+
+(setq org-todo-keywords
+       '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))

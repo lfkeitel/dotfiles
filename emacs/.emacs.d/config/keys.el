@@ -22,3 +22,6 @@
 
 ;; Set keymap for terminal
 (global-set-key (kbd "C-S-t") 'ansi-term)
+
+;; Set keymap for new empty buffer
+(global-set-key (kbd "<f3>") 'lfk/new-empty-buffer)

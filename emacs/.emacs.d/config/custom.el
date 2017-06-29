@@ -1,4 +1,4 @@
-(setq custom-file "~/.emacs.d/custom.el")
+(setq custom-file "~/.emacs.d/config/custom.el")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
