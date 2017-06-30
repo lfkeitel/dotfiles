@@ -28,6 +28,7 @@
   template = ~/.gitmessage
 [core]
   excludesfile = ~/.gitignore
+  editor = vim
 [fetch]
   prune = true
 [grep]

@@ -29,8 +29,7 @@ export GOBIN="$GOPATH/bin"
 export GOSRC="$GOPATH/src"
 
 alias fix-mounts='sudo umount -a -t cifs -l -f'
-SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
-export SSH_AUTH_SOCK
+export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
 
 alias digrep="docker image ls | grep"
 
