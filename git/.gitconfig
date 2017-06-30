@@ -33,8 +33,6 @@
   prune = true
 [grep]
   linenumber = true
-[merge]
-  ff = only
 [push]
   default = current
 [rebase]

@@ -9,3 +9,6 @@
 
 ;; Always indent with spaces
 (setq-default indent-tabs-mode nil)
+
+;; Auto close bracket insertion
+(electric-pair-mode 1)
