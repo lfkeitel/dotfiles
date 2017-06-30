@@ -44,3 +44,13 @@ Version 2016-12-27"
     (switch-to-buffer -buf)
     (text-mode)
     (setq buffer-offer-save t)))
+
+(defun lfk/sharp ()
+  "Insert #' unless in a string or comment."
+  (interactive)
+  (call-interactively #'self-insert-command)
+  (let ((ppss (syntax-ppss)))
+    (unless (or (elt ppss 3)
+                (elt ppss 4)
+                (eq (char-after) ?'))
+      (insert "'"))))
