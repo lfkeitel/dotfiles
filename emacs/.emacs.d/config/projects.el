@@ -7,6 +7,8 @@
   :config
   (helm-projectile-on))
 
+(setq neo-show-hidden-files t)
+
 (use-package neotree
   :ensure t)
 
