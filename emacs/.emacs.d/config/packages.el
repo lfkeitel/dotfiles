@@ -24,5 +24,7 @@
 (use-package rainbow-mode
   :ensure t)
 
-(use-package flycheck-mode
+(use-package flycheck-mode)
+
+(use-package request
   :ensure t)

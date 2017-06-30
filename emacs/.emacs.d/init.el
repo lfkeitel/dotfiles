@@ -44,6 +44,7 @@
 (load-config-file "golang.el")
 (load-config-file "docker.el")
 (load-config-file "terminal.el")
+(load-config-file "dandelion.el")
 
 (require 'buffer-move)
 (global-set-key (kbd "<C-S-up>")     'buf-move-up)
