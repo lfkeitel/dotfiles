@@ -8,6 +8,9 @@
 (use-package go-autocomplete
   :ensure t)
 
+(use-package go-guru
+  :ensure t)
+
 (defun set-go-mode-stuff ()
   (setq gofmt-command "goimports")
 
@@ -19,6 +22,9 @@
 
   (local-set-key (kbd "M-]") 'godef-jump-other-window)
   (local-set-key (kbd "M-,") 'godef-jump)
-  (local-set-key (kbd "M-*") 'pop-tag-mark))
+  (local-set-key (kbd "M-*") 'pop-tag-mark)
 
+  (go-guru-hl-identifier-mode))
+
+(setq go-guru-command "/home/lfkeitel/go/bin/guru")
 (add-hook 'go-mode-hook 'set-go-mode-stuff)
