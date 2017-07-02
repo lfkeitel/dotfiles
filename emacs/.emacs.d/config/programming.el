@@ -12,3 +12,8 @@
 
 ;; Auto close bracket insertion
 (electric-pair-mode 1)
+
+(defun lfk/inhibit-electric-pair-mode (char)
+  (minibufferp))
+
+(setq electric-pair-inhibit-predicate #'lfk/inhibit-electric-pair-mode)

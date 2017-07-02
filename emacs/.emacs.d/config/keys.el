@@ -28,3 +28,12 @@
 
 ;; Add #' in elisp code
 (define-key emacs-lisp-mode-map "#" #'lfk/sharp)
+
+;; Bind window resize functions
+(global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "S-C-<down>") 'shrink-window)
+(global-set-key (kbd "S-C-<up>") 'enlarge-window)
+
+;; Surround text with something
+(global-set-key (kbd "C-\"") 'lfk/surround)

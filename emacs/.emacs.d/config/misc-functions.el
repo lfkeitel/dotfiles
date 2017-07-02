@@ -54,3 +54,15 @@ Version 2016-12-27"
                 (elt ppss 4)
                 (eq (char-after) ?'))
       (insert "'"))))
+
+(defun lfk/surround (begin end open close)
+  "Put OPEN at START and CLOSE at END of the region.
+If you omit CLOSE, it will reuse OPEN."
+  (interactive  "r\nsStart: \nsEnd: ")
+  (when (string= close "")
+    (setq close open))
+  (save-excursion
+    (goto-char end)
+    (insert close)
+    (goto-char begin)
+    (insert open)))
