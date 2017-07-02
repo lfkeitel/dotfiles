@@ -20,15 +20,11 @@ else
     export EDITOR='emacs'
 fi
 
-alias gpg='gpg2'
-
 # Go paths
 export GOROOT="/usr/local/go"
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 export GOSRC="$GOPATH/src"
-
-alias fix-mounts='sudo umount -a -t cifs -l -f'
 
 # Start gpg-agent if it's not running
 if ! pidof gpg-agent > /dev/null; then
@@ -36,8 +32,8 @@ if ! pidof gpg-agent > /dev/null; then
 fi
 source $HOME/.gnupg/env
 
-alias digrep="docker image ls | grep"
-
+# Force better docker commands
 export DOCKER_HIDE_LEGACY_COMMANDS=1
 
-alias pwdu='du --max-depth=1 -h .'
+# Import aliases
+source $HOME/.zsh_aliases

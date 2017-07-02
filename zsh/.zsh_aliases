@@ -1,0 +1,4 @@
+alias gpg='gpg2'
+alias fix-mounts='sudo umount -a -t cifs -l -f'
+alias digrep="docker image ls | grep"
+alias pwdu='du --max-depth=1 -h .'
