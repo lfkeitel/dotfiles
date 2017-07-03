@@ -82,6 +82,11 @@ link_zsh_config() {
     if [ ! -d "$HOME/.oh-my-zsh" ]; then
         "$DIR/install-oh-my-zsh.sh"
     fi
+
+    ZSH_CUSTOM="${ZSH_CUSTOM:-"$HOME/.oh-my-zsh/custom"}"
+    if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
+        git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+    fi
 }
 
 install_golang() {
