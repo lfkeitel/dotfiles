@@ -87,6 +87,10 @@ link_zsh_config() {
     if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
         git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
     fi
+
+    if [ ! -d "$ZSH_CUSTOM/plugins/project" ]; then
+        git clone https://github.com/lfkeitel/project-list.git $ZSH_CUSTOM/plugins/project
+    fi
 }
 
 install_golang() {
