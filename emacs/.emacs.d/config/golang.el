@@ -1,5 +1,6 @@
 (setenv "GOPATH" "/home/lfkeitel/go")
 (add-to-list 'exec-path "/home/lfkeitel/go/bin")
+(add-to-list 'exec-path "/usr/local/go/bin")
 
 (use-package go-mode
   :ensure t
@@ -9,6 +10,9 @@
   :ensure t)
 
 (use-package go-guru
+  :ensure t)
+
+(use-package go-rename
   :ensure t)
 
 (defun set-go-mode-stuff ()
