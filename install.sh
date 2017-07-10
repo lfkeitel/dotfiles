@@ -1,7 +1,9 @@
 #!/bin/bash
+set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 install_packages() {
+    echo "Installing packages"
     PACKAGES=( vim emacs curl zsh vlc git )
     INSTALLED_PACKAGES="$(apt list --installed 2>/dev/null)"
     declare -a PACKAGES_NEEDED
@@ -16,12 +18,18 @@ install_packages() {
     if [ ${#PACKAGES_NEEDED} -gt 0 ]; then
         printf "Installing: %s\n" "${PACKAGES_NEEDED[@]}"
         sudo apt install "${PACKAGES_NEEDED[@]}"
+    else
+        echo "No packages need to be installed"
     fi
 }
 
 setup_gpg_agent() {
+    echo "Setting up GPG agent"
     INSTALLED_FILE="$HOME/.gnupg/.dotfile-installed.1"
-    if [ -f "$INSTALLED_FILE" ]; then return; fi
+    if [ -f "$INSTALLED_FILE" ]; then
+        echo "GPG already setup"
+        return
+    fi
 
     # Install packages for gpg-agent and smartcards
     sudo apt install gnupg-agent gnupg2 pinentry-gtk2 scdaemon libccid pcscd libpcsclite1 gpgsm
@@ -40,6 +48,7 @@ setup_gpg_agent() {
 }
 
 install_code_fonts() {
+    echo "Install Inconsolata font"
     RELOAD_FONT=0
     if [ ! -f /usr/local/share/fonts/Inconsolata-Regular.ttf ]; then
         wget https://github.com/google/fonts/raw/master/ofl/inconsolata/Inconsolata-Regular.ttf
@@ -59,6 +68,7 @@ install_code_fonts() {
 }
 
 link_emacs_config() {
+    echo "Setting up Emacs"
     mkdir -p "$HOME/.emacs.d"
     ln -sfn "$DIR/emacs/.emacs.d/config" "$HOME/.emacs.d/config"
     ln -sfn "$DIR/emacs/.emacs.d/lisp" "$HOME/.emacs.d/lisp"
@@ -71,16 +81,19 @@ link_emacs_config() {
 }
 
 link_git_config() {
+    echo "Setting up Git"
     ln -sfn "$DIR/git/.gitconfig" "$HOME/.gitconfig"
     ln -sfn "$DIR/git/.gitignore" "$HOME/.gitignore"
     ln -sfn "$DIR/git/.gitmessage" "$HOME/.gitmessage"
 }
 
 link_zsh_config() {
+    echo "Setting up ZSH"
     ln -sfn "$DIR/zsh/.zshrc" "$HOME/.zshrc"
     ln -sfn "$DIR/zsh/.zsh_aliases" "$HOME/.zsh_aliases"
 
     if [ ! -d "$HOME/.oh-my-zsh" ]; then
+        echo "Installing oh-my-zsh"
         "$DIR/install-oh-my-zsh.sh"
     fi
 
@@ -95,17 +108,27 @@ link_zsh_config() {
 }
 
 install_golang() {
-    # Permanent GOPATH is defined in .zshrc
+    echo "Installing Go"
     GO_VERSION="1.8.3"
     GO_INSTALLED="$(go version | cut -d' ' -f3)"
+    GOROOT="/usr/local/go"
 
-    if [ "go$GO_VERSION" == $GO_INSTALLED ]; then return; fi
+    if [ "go$GO_VERSION" == $GO_INSTALLED ]; then
+        echo "Go is at requested version $GO_VERSION"
+        return
+    fi
+
     wget https://storage.googleapis.com/golang/go$GO_VERSION.linux-amd64.tar.gz
+
+    if [ -d "$GOROOT" ]; then
+        sudo rm -rf "$GOROOT"
+    fi
+
     sudo tar -C /usr/local -xzf go$GO_VERSION.linux-amd64.tar.gz
     rm -f go$GO_VERSION.linux-amd64.tar.gz
 
     GOPATH="$HOME/go"
-    go="/usr/local/go/bin/go"
+    go="$GOROOT/bin/go"
 
     $go get -u github.com/kardianos/govendor
     $go get -u github.com/nsf/gocode
