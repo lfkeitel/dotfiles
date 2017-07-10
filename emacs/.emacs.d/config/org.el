@@ -65,3 +65,29 @@
 
 (setq org-todo-keywords
        '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
+
+;; org-capture
+(global-set-key (kbd "C-c c") 'org-capture)
+(setq org-export-coding-system 'utf-8)
+
+(setq org-templates-dir (file-name-as-directory (concat user-init-dir "org-templates")))
+(defun org-template (temp)
+  (concat org-templates-dir temp ".tmpl"))
+
+(setq org-capture-templates
+      `(("t" "Todo list item"
+         entry
+         (file+headline org-index-file "Tasks")
+         "* TODO %?\n")
+
+        ("j" "Journal entry"
+         entry
+         (file+datetree (org-file-path "journal.org"))
+         (file (org-template "journal")))
+
+        ("g" "Groceries"
+         checkitem
+         (file (org-file-path "groceries.org")))
+        ))
+
+(add-hook 'org-capture-mode-hook 'evil-insert-state)
