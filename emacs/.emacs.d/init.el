@@ -20,13 +20,7 @@
 (add-to-list 'load-path (concat user-init-dir "lisp"))
 
 (load-config-file "package.el")
-
-; https://github.com/hrs/sensible-defaults.el
-(require 'sensible-defaults)
-(sensible-defaults/use-all-settings)
-(sensible-defaults/use-all-keybindings)
-(sensible-defaults/backup-to-temp-directory)
-
+(load-config-file "sensible-defaults.el")
 (load-config-file "custom.el")
 (load-config-file "packages.el")
 (load-config-file "projects.el")
@@ -47,10 +41,7 @@
 (load-config-file "docker.el")
 (load-config-file "terminal.el")
 (load-config-file "dandelion.el")
+(load-config-file "search.el")
+(load-config-file "windows.el")
 
-(require 'buffer-move)
-(global-set-key (kbd "<C-S-up>")     'buf-move-up)
-(global-set-key (kbd "<C-S-down>")   'buf-move-down)
-(global-set-key (kbd "<C-S-left>")   'buf-move-left)
-(global-set-key (kbd "<C-S-right>")  'buf-move-right)
 (put 'erase-buffer 'disabled nil)
