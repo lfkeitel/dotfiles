@@ -17,7 +17,7 @@
   "Load a lisp 'module' from the user's emacs directory"
   (load-file (expand-file-name file user-init-dir)))
 
-(add-to-list 'load-path (concat user-init-dir "lisp"))
+(add-to-list 'load-path (expand-file-name "lisp" user-init-dir))
 
 (load-config-file "package.el")
 (load-config-file "sensible-defaults.el")
@@ -40,8 +40,11 @@
 (load-config-file "golang.el")
 (load-config-file "docker.el")
 (load-config-file "terminal.el")
-(load-config-file "dandelion.el")
 (load-config-file "search.el")
 (load-config-file "windows.el")
 
 (put 'erase-buffer 'disabled nil)
+
+;; Load a system specific, private elisp scripts
+(when (file-exists-p (expand-file-name "private" user-init-dir))
+    (lfk/load-directory (expand-file-name "private" user-init-dir)))
