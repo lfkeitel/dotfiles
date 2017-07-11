@@ -102,10 +102,17 @@
          "* %^{Project Name}\n"
          :immediate-finish t)
 
-         ("p" "Project Item"
+        ("p" "Add a Project item")
+
+        ("pt" "Project Todo Item"
          entry
          (file+headline (org-file-path "projects.org") "Refile")
          "** TODO %?\n")
+
+        ("pn" "Project Note Item"
+         entry
+         (file+headline (org-file-path "projects.org") "Refile")
+         "** %?\n")
         ))
 
 (add-hook 'org-capture-mode-hook 'evil-insert-state)
