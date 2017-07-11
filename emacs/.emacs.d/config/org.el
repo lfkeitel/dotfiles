@@ -99,7 +99,8 @@
         ("np" "New Project"
          entry
          (file (org-file-path "projects.org"))
-         "* %?\n")
+         "* %^{Project Name}\n"
+         :immediate-finish t)
 
          ("p" "Project Item"
          entry
