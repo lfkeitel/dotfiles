@@ -4,7 +4,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 install_packages() {
     echo "Installing packages"
-    PACKAGES=( vim emacs curl zsh vlc git )
+    PACKAGES=( vim emacs curl zsh vlc git texlive-base texlive-bibtex-extra texlive-fonts-recommended texlive-latex-base texlive-latex-extra texlive-latex-recommended )
     INSTALLED_PACKAGES="$(apt list --installed 2>/dev/null)"
     declare -a PACKAGES_NEEDED
 
