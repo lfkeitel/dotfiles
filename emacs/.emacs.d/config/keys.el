@@ -30,10 +30,17 @@
 (define-key emacs-lisp-mode-map "#" #'lfk/sharp)
 
 ;; Bind window resize functions
-(global-set-key (kbd "S-M-<left>") 'shrink-window-horizontally)
-(global-set-key (kbd "S-M-<right>") 'enlarge-window-horizontally)
-(global-set-key (kbd "S-M-<down>") 'shrink-window)
-(global-set-key (kbd "S-M-<up>") 'enlarge-window)
+(global-set-key (kbd "S-M-<left>") #'shrink-window-horizontally)
+(global-set-key (kbd "S-M-<right>") #'enlarge-window-horizontally)
+(global-set-key (kbd "S-M-<down>") #'shrink-window)
+(global-set-key (kbd "S-M-<up>") #'enlarge-window)
 
 ;; Surround text with something
-(global-set-key (kbd "C-\"") 'lfk/surround)
+(global-set-key (kbd "C-\"") #'lfk/surround)
+
+;; Comment/Uncomment lines/regions
+(global-set-key (kbd "C-;") #'comment-line)
+
+;; Set home to return to beginning of usable line, not col 0
+(global-set-key (kbd "<home>") #'back-to-indentation)
+(global-set-key (kbd "s-h") #'move-beginning-of-line)

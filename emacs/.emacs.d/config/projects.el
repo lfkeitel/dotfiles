@@ -26,6 +26,7 @@
         (message "Could not find git project root."))))
 
 (global-set-key [f8] 'neotree-project-dir)
+(global-set-key (kbd "S-<f8>") #'neotree-toggle)
 
 (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
 (evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-quick-look)
