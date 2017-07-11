@@ -40,7 +40,7 @@
       (insert-file-contents org-inbox-file)
       (delete-file org-inbox-file))))
 
-(setq org-agenda-files (list org-index-file))
+(setq org-agenda-files (list org-directory))
 
 (defun lfk/mark-done-and-archive ()
   "Mark the state of an org-mode item as DONE and archive it."
@@ -60,6 +60,10 @@
   (end-of-buffer))
 
 (global-set-key (kbd "C-c i") 'open-index-file)
+(global-set-key (kbd "C-c r") (lambda ()
+                                "Open the projects org file"
+                                (interactive)
+                                (find-file (org-file-path "projects.org"))))
 
 (setq org-html-postamble nil)
 
@@ -69,6 +73,7 @@
 ;; org-capture
 (global-set-key (kbd "C-c c") 'org-capture)
 (setq org-export-coding-system 'utf-8)
+(setq org-link-frame-setup 'find-file-other-window)
 
 (setq org-templates-dir (file-name-as-directory (concat user-init-dir "org-templates")))
 (defun org-template (temp)
@@ -88,6 +93,18 @@
         ("g" "Groceries"
          checkitem
          (file (org-file-path "groceries.org")))
+
+        ("n" "Create something new")
+
+        ("np" "New Project"
+         entry
+         (file (org-file-path "projects.org"))
+         "* %?\n")
+
+         ("p" "Project Item"
+         entry
+         (file+headline (org-file-path "projects.org") "Refile")
+         "** TODO %?\n")
         ))
 
 (add-hook 'org-capture-mode-hook 'evil-insert-state)
