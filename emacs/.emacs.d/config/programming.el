@@ -1,6 +1,9 @@
 ;; Use 4 spaces for tabns
 (setq-default tab-width 4)
 
+;; Set c-mode indent
+(setq-default c-basic-offset 4)
+
 ;; Treat camelCase as separate words
 (global-subword-mode 1)
 
