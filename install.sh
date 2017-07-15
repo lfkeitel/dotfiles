@@ -118,12 +118,14 @@ install_golang() {
         return
     fi
 
-    wget https://storage.googleapis.com/golang/go$GO_VERSION.linux-amd64.tar.gz
+    if [ ! -f "go$GO_VERSION.linux-amd64.tar.gz" ]; then
+        wget https://storage.googleapis.com/golang/go$GO_VERSION.linux-amd64.tar.gz
+    fi
 
     if [ -d "$GOROOT" ]; then
         sudo rm -rf "$GOROOT"
     fi
-
+    
     sudo tar -C /usr/local -xzf go$GO_VERSION.linux-amd64.tar.gz
     rm -f go$GO_VERSION.linux-amd64.tar.gz
 
