@@ -36,10 +36,11 @@ setup_gpg_agent() {
     mkdir -p "$HOME/.gnupg"
     echo "use-agent" > "$HOME/.gnupg/gpg.conf"
     echo "keyserver keys.fedoraproject.org" >> "$HOME/.gnupg/gpg.conf"
+    chmod -R og-rwx "$HOME/.gnupg"
 
     # Import my public key and trust it ultimately
     gpg2 --recv-keys E638625F
-    trust_str="$(gpg --list-keys --fingerprint | grep 'E638 625F' | tr -d '[:space:]' | awk '{ print $1 ":6:"}')"
+    trust_str="$(gpg2 --list-keys --fingerprint | grep 'E638 625F' | tr -d '[:space:]' | awk '{ print $1 ":6:"}')"
     echo "$trust_str" | gpg2 --import-ownertrust
 
     # Idempotency
