@@ -110,10 +110,10 @@ link_zsh_config() {
 install_golang() {
     echo "Installing Go"
     GO_VERSION="1.8.3"
-    GO_INSTALLED="$(go version | cut -d' ' -f3)"
+    GO_INSTALLED="$(go version 2> /dev/null | cut -d' ' -f3)"
     GOROOT="/usr/local/go"
 
-    if [ "go$GO_VERSION" == $GO_INSTALLED ]; then
+    if [ "go$GO_VERSION" == "$GO_INSTALLED" ]; then
         echo "Go is at requested version $GO_VERSION"
         return
     fi
