@@ -4,7 +4,7 @@ export WATER_TIME=1800
 
 ZSH_THEME="gnzh"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-plugins=(git common-aliases zsh-autosuggestions command-not-found docker sudo wd vi-mode project)
+plugins=(git common-aliases zsh-autosuggestions command-not-found docker sudo wd project)
 
 # User configuration
 export PATH="$HOME/bin:$HOME/go/bin:/usr/local/go/bin:$PATH"
