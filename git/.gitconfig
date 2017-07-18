@@ -41,3 +41,5 @@
   name = Lee Keitel
   email = lee@keitel.xyz
   signingkey = E638625F
+[gpg]
+  program = /usr/bin/gpg2
