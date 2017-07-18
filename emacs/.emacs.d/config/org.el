@@ -3,6 +3,9 @@
 (use-package org-bullets
   :ensure t)
 
+(use-package ox-mediawiki)
+(use-package ox-md)
+
 (add-hook 'org-mode-hook (lambda() (org-bullets-mode 1)))
 (setq org-ellipsis "⤵")
 (setq org-src-fontify-natively t)
