@@ -1,13 +1,18 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-export WATER_TIME=1800
 
 ZSH_THEME="gnzh"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(git common-aliases zsh-autosuggestions command-not-found docker sudo wd project)
 
+# Go paths
+export GOROOT="/usr/local/go"
+export GOPATH="$HOME/go"
+export GOBIN="$GOPATH/bin"
+export GOSRC="$GOPATH/src"
+
 # User configuration
-export PATH="$HOME/bin:$HOME/go/bin:/usr/local/go/bin:$PATH"
+export PATH="$HOME/bin:$GOBIN:$GOROOT/bin:$HOME/.cargo/bin:$PATH"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -19,12 +24,6 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
     export EDITOR='emacs'
 fi
-
-# Go paths
-export GOROOT="/usr/local/go"
-export GOPATH="$HOME/go"
-export GOBIN="$GOPATH/bin"
-export GOSRC="$GOPATH/src"
 
 # Start gpg-agent if it's not running
 if ! pidof gpg-agent > /dev/null; then
