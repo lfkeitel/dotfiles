@@ -4,7 +4,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 install_packages() {
     echo "Installing packages"
-    PACKAGES=( vim emacs curl zsh vlc git texlive-base texlive-bibtex-extra texlive-fonts-recommended texlive-latex-base texlive-latex-extra texlive-latex-recommended htop mousepad )
+    PACKAGES=( vim emacs curl zsh vlc git texlive-base texlive-bibtex-extra texlive-fonts-recommended texlive-latex-base texlive-latex-extra texlive-latex-recommended htop mousepad tmux xclip )
     INSTALLED_PACKAGES="$(apt list --installed 2>/dev/null)"
     declare -a PACKAGES_NEEDED
 
@@ -88,6 +88,11 @@ link_git_config() {
     ln -sfn "$DIR/git/.gitmessage" "$HOME/.gitmessage"
 }
 
+link_tmux_config() {
+    echo "Setting up tmux"
+    ln -sfn "$DIR/tmux/.tmux.conf" "$HOME/.tmux.conf"
+}
+
 link_zsh_config() {
     echo "Setting up ZSH"
     ln -sfn "$DIR/zsh/.zshrc" "$HOME/.zshrc"
@@ -149,5 +154,6 @@ install_code_fonts
 link_emacs_config
 link_git_config
 link_zsh_config
+link_tmux_config
 install_golang
 setup_gpg_agent
