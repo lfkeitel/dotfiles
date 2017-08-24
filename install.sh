@@ -106,6 +106,9 @@ link_zsh_config() {
     if [ ! -d "$ZSH_CUSTOM/plugins/project" ]; then
         git clone https://github.com/lfkeitel/project-list.git $ZSH_CUSTOM/plugins/project
     fi
+
+    mkdir -p "$ZSH_CUSTOM/themes"
+    ln -sfn "$DIR/zsh/gnzh.zsh-theme" "$ZSH_CUSTOM/themes/gnzh.zsh-theme"
 }
 
 install_golang() {
@@ -126,7 +129,7 @@ install_golang() {
     if [ -d "$GOROOT" ]; then
         sudo rm -rf "$GOROOT"
     fi
-    
+
     sudo tar -C /usr/local -xzf go$GO_VERSION.linux-amd64.tar.gz
     rm -f go$GO_VERSION.linux-amd64.tar.gz
 
