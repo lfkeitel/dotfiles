@@ -118,7 +118,7 @@ link_zsh_config() {
 
 install_golang() {
     echo "Installing Go"
-    GO_VERSION="1.8.3"
+    GO_VERSION="1.9"
     GO_INSTALLED="$(go version 2> /dev/null | cut -d' ' -f3)"
     GOROOT="/usr/local/go"
 
@@ -140,6 +140,13 @@ install_golang() {
 
     GOPATH="$HOME/go"
     go="$GOROOT/bin/go"
+
+    mkdir -p "$GOPATH/src"
+    mkdir -p "$GOPATH/pkg"
+    mkdir -p "$GOPATH/bin"
+
+    # Remove any archive packages from older version of Go
+    rm -rf "$GOPATH/pkg/*"
 
     $go get -u github.com/kardianos/govendor
     $go get -u github.com/nsf/gocode
