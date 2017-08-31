@@ -2,6 +2,14 @@
 set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+pushd () {
+    command pushd "$@" > /dev/null
+}
+
+popd () {
+    command popd "$@" > /dev/null
+}
+
 install_packages() {
     echo "Installing packages"
     PACKAGES=( vim emacs curl zsh vlc git texlive-base texlive-bibtex-extra texlive-fonts-recommended texlive-latex-base texlive-latex-extra texlive-latex-recommended htop mousepad tmux xclip )
@@ -105,15 +113,26 @@ link_zsh_config() {
 
     ZSH_CUSTOM="${ZSH_CUSTOM:-"$HOME/.oh-my-zsh/custom"}"
     if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
-        git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+        git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
     fi
+
+    pushd "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
+    git pull
+    popd
 
     if [ ! -d "$ZSH_CUSTOM/plugins/project" ]; then
-        git clone https://github.com/lfkeitel/project-list.git $ZSH_CUSTOM/plugins/project
+        git clone https://github.com/lfkeitel/project-list.git "$ZSH_CUSTOM/plugins/project"
     fi
 
+    pushd "$ZSH_CUSTOM/plugins/project"
+    git pull
+    popd
+
     mkdir -p "$ZSH_CUSTOM/themes"
-    ln -sfn "$DIR/zsh/gnzh.zsh-theme" "$ZSH_CUSTOM/themes/gnzh.zsh-theme"
+    if [ -h "$ZSH_CUSTOM/themes/gnzh.zsh-theme" ]; then # Remove this if once all machines have been updated
+        rm "$ZSH_CUSTOM/themes/gnzh.zsh-theme"
+    fi
+    ln -sfn "$DIR/zsh/lfk.zsh-theme" "$ZSH_CUSTOM/themes/lfk.zsh-theme"
 }
 
 install_golang() {
