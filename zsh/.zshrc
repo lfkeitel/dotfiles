@@ -3,7 +3,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="lfk"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-plugins=(git common-aliases zsh-autosuggestions command-not-found docker sudo wd project)
+plugins=(git common-aliases zsh-autosuggestions command-not-found docker sudo wd project docker-host)
 
 # Go paths
 export GOROOT="/usr/local/go"

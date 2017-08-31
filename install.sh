@@ -106,12 +106,15 @@ link_zsh_config() {
     ln -sfn "$DIR/zsh/.zshrc" "$HOME/.zshrc"
     ln -sfn "$DIR/zsh/.zsh_aliases" "$HOME/.zsh_aliases"
 
+    # oh-my-zsh
     if [ ! -d "$HOME/.oh-my-zsh" ]; then
         echo "Installing oh-my-zsh"
         "$DIR/install-oh-my-zsh.sh"
     fi
 
     ZSH_CUSTOM="${ZSH_CUSTOM:-"$HOME/.oh-my-zsh/custom"}"
+
+    # Plugins
     if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
         git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
     fi
@@ -128,6 +131,10 @@ link_zsh_config() {
     git pull
     popd
 
+    mkdir -p "$ZSH_CUSTOM/plugins/docker-host"
+    ln -sfn "$DIR/zsh/docker-host.sh" "$ZSH_CUSTOM/plugins/docker-host/docker-host.plugin.zsh"
+
+    # Theme
     mkdir -p "$ZSH_CUSTOM/themes"
     if [ -h "$ZSH_CUSTOM/themes/gnzh.zsh-theme" ]; then # Remove this if once all machines have been updated
         rm "$ZSH_CUSTOM/themes/gnzh.zsh-theme"
