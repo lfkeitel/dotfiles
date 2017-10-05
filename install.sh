@@ -144,7 +144,7 @@ link_zsh_config() {
 
 install_golang() {
     echo "Installing Go"
-    GO_VERSION="1.9"
+    GO_VERSION="1.9.1"
     GO_INSTALLED="$(go version 2> /dev/null | cut -d' ' -f3)"
     GOROOT="/usr/local/go"
 
