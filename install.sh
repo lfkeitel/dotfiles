@@ -40,7 +40,9 @@ setup_gpg_agent() {
     fi
 
     # Install packages for gpg-agent and smartcards
-    sudo apt install gnupg-agent gnupg2 pinentry-gtk2 scdaemon libccid pcscd libpcsclite1 gpgsm
+    if [ "$(uname)" != "Darwin" ]; then
+        sudo apt install gnupg-agent gnupg2 pinentry-gtk2 scdaemon libccid pcscd libpcsclite1 gpgsm
+    fi
     mkdir -p "$HOME/.gnupg"
     echo "use-agent" > "$HOME/.gnupg/gpg.conf"
     echo "keyserver keys.fedoraproject.org" >> "$HOME/.gnupg/gpg.conf"
@@ -59,20 +61,45 @@ setup_gpg_agent() {
 install_code_fonts() {
     echo "Install Inconsolata font"
     RELOAD_FONT=0
-    if [ ! -f /usr/local/share/fonts/Inconsolata-Regular.ttf ]; then
-        wget https://github.com/google/fonts/raw/master/ofl/inconsolata/Inconsolata-Regular.ttf
-        sudo mv Inconsolata-Regular.ttf /usr/local/share/fonts/
+
+    library="/usr/local/share/fonts"
+    regular_font_out="$library/Inconsolata-Regular.ttf"
+    bold_font_out="$library/Inconsolata-Bold.ttf"
+
+    regular_font="https://github.com/google/fonts/raw/master/ofl/inconsolata/Inconsolata-Regular.ttf"
+    bold_font="https://github.com/google/fonts/raw/master/ofl/inconsolata/Inconsolata-Bold.ttf"
+
+    if [ ! -f $regular_font_out ]; then
+        sudo wget -O $regular_font_out $regular_font
         RELOAD_FONT=1
     fi
 
-    if [ ! -f /usr/local/share/fonts/Inconsolata-Bold.ttf ]; then
-        wget https://github.com/google/fonts/raw/master/ofl/inconsolata/Inconsolata-Bold.ttf
-        sudo mv Inconsolata-Bold.ttf /usr/local/share/fonts/
+    if [ ! -f $bold_font_out ]; then
+        sudo wget -O $bold_font_out $bold_font
         RELOAD_FONT=1
     fi
 
     if [ $RELOAD_FONT -eq 1 ]; then
         fc-cache -f
+    fi
+}
+
+install_code_fonts_mac() {
+    echo "Install Inconsolata font"
+
+    library="$HOME/Library/Fonts"
+    regular_font_out="$library/Inconsolata-Regular.ttf"
+    bold_font_out="$library/Inconsolata-Bold.ttf"
+
+    regular_font="https://github.com/google/fonts/raw/master/ofl/inconsolata/Inconsolata-Regular.ttf"
+    bold_font="https://github.com/google/fonts/raw/master/ofl/inconsolata/Inconsolata-Bold.ttf"
+
+    if [ ! -f $regular_font_out ]; then
+        wget -O $regular_font_out $regular_font
+    fi
+
+    if [ ! -f $bold_font_out ]; then
+        wget -O $bold_font_out $bold_font
     fi
 }
 
@@ -110,6 +137,11 @@ link_zsh_config() {
     if [ ! -d "$HOME/.oh-my-zsh" ]; then
         echo "Installing oh-my-zsh"
         "$DIR/install-oh-my-zsh.sh"
+
+        # On Mac, set zsh as default
+        if [ "$(uname)" = "Darwin" ]; then
+            sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
+        fi
     fi
 
     ZSH_CUSTOM="${ZSH_CUSTOM:-"$HOME/.oh-my-zsh/custom"}"
@@ -165,7 +197,6 @@ install_golang() {
     rm -f go$GO_VERSION.linux-amd64.tar.gz
 
     GOPATH="$HOME/go"
-    go="$GOROOT/bin/go"
 
     mkdir -p "$GOPATH/src"
     mkdir -p "$GOPATH/pkg"
@@ -174,19 +205,55 @@ install_golang() {
     # Remove any archive packages from older version of Go
     rm -rf "$GOPATH/pkg/*"
 
-    $go get -u github.com/kardianos/govendor
-    $go get -u github.com/nsf/gocode
-    $go get -u golang.org/x/tools/cmd/goimports
-    $go get -u github.com/tools/godep
-    $go get -u github.com/golang/dep/cmd/dep
-    $go get -u golang.org/x/tools/cmd/guru
+    install_base_go_pkgs
 }
 
-install_packages
-install_code_fonts
-link_emacs_config
+install_base_go_pkgs() {
+    echo "Installing Go packages"
+
+    go get -u github.com/kardianos/govendor
+    go get -u github.com/nsf/gocode
+    go get -u golang.org/x/tools/cmd/goimports
+    go get -u github.com/tools/godep
+    go get -u github.com/golang/dep/cmd/dep
+    go get -u golang.org/x/tools/cmd/guru
+}
+
+install_homebrew() {
+    echo "Installing Homebrew"
+
+    if [ -n "$(which brew 2>/dev/null)" ]; then
+        echo "Homebrew already installed"
+        return
+    fi
+
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+}
+
+install_brew_packages() {
+    echo "Installing brew packages"
+
+    brew install zsh zsh-completions tmux gpg-agent gpg2 pidof wget
+}
+
+system_type="$(uname)"
+
+case "$system_type" in
+Darwin)
+    install_homebrew
+    install_brew_packages
+    install_base_go_pkgs
+    install_code_fonts_mac
+    ;;
+*)
+    install_packages
+    install_code_fonts
+    install_golang
+    ;;
+esac
+
 link_git_config
-link_zsh_config
 link_tmux_config
-install_golang
+link_zsh_config
+link_emacs_config
 setup_gpg_agent

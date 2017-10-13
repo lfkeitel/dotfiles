@@ -14,20 +14,24 @@ export GOSRC="$GOPATH/src"
 # User configuration
 export PATH="$HOME/bin:$GOBIN:$GOROOT/bin:$HOME/.cargo/bin:$PATH"
 
+if [ "$(uname)" = "Darwin" ]; then
+    export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
+fi
+
 source $ZSH/oh-my-zsh.sh
 
 export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
+#if [[ -n $SSH_CONNECTION ]]; then
     export EDITOR='vim'
-else
-    export EDITOR='emacs'
-fi
+# else
+#     export EDITOR='emacs'
+# fi
 
 # Start gpg-agent if it's not running
 if ! pidof gpg-agent > /dev/null; then
-    gpg-agent --homedir /home/lfkeitel/.gnupg --daemon --sh --enable-ssh-support > $HOME/.gnupg/env
+    gpg-agent --homedir $HOME/.gnupg --daemon --sh --enable-ssh-support > $HOME/.gnupg/env
 fi
 source $HOME/.gnupg/env
 
