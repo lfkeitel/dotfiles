@@ -10,6 +10,7 @@
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   loc = !git diff --stat `git hash-object -t tree /dev/null` | tail -1 | cut -d' ' -f5
   pr = pull-request
+  sig = log --show-signature
   st = status -sb
   sum = log --oneline --no-merges
   unstage = reset HEAD
@@ -42,4 +43,4 @@
   email = lee@keitel.xyz
   signingkey = E638625F
 [gpg]
-  program = /usr/bin/gpg2
+  program = /usr/local/bin/gpg2

@@ -53,6 +53,10 @@ setup_gpg_agent() {
     trust_str="$(gpg2 --list-keys --fingerprint | grep 'E638 625F' | tr -d '[:space:]' | awk '{ print $1 ":6:"}')"
     echo "$trust_str" | gpg2 --import-ownertrust
 
+    if [ ! -e /usr/local/bin/gpg2 ]; then
+        ln -s /usr/bin/gpg2 /usr/local/bin/gpg2
+    fi
+
     # Idempotency
     rm -f "$HOME/.gnupg/.dotfile-installed.*"
     touch "$INSTALLED_FILE"
