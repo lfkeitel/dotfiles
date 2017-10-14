@@ -1,9 +1,12 @@
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export LANG=en_US.UTF-8
+export EDITOR='vim'
 
+# Bring in Oh My ZSH!
+export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="lfk"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(git common-aliases zsh-autosuggestions command-not-found docker sudo wd project docker-host)
+source $ZSH/oh-my-zsh.sh
 
 # Go paths
 export GOROOT="/usr/local/go"
@@ -11,23 +14,12 @@ export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 export GOSRC="$GOPATH/src"
 
-# User configuration
-export PATH="$HOME/bin:$GOBIN:$GOROOT/bin:$HOME/.cargo/bin:$PATH"
+# Add custom folders to PATH
+export PATH="$HOME/bin:$GOBIN:$GOROOT/bin:$PATH"
 
 if [ "$(uname)" = "Darwin" ]; then
     export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
 fi
-
-source $ZSH/oh-my-zsh.sh
-
-export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-#if [[ -n $SSH_CONNECTION ]]; then
-    export EDITOR='vim'
-# else
-#     export EDITOR='emacs'
-# fi
 
 # Start gpg-agent if it's not running
 if ! pidof gpg-agent > /dev/null; then
