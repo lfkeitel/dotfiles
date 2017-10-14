@@ -46,6 +46,9 @@ setup_gpg_agent() {
     mkdir -p "$HOME/.gnupg"
     echo "use-agent" > "$HOME/.gnupg/gpg.conf"
     echo "keyserver keys.fedoraproject.org" >> "$HOME/.gnupg/gpg.conf"
+    if [ "$(uname)" != "Darwin" ]; then
+        cp "$DIR/gpg/gpg-agent.conf" "$HOME/.gnupg/gpg-agent.conf"
+    fi
     chmod -R og-rwx "$HOME/.gnupg"
 
     # Import my public key and trust it ultimately
@@ -237,7 +240,7 @@ install_homebrew() {
 install_brew_packages() {
     echo "Installing brew packages"
 
-    brew install zsh zsh-completions tmux gpg-agent gpg2 pidof wget
+    brew install zsh zsh-completions tmux gpg-agent gpg2 pidof wget pinentry-mac
 }
 
 system_type="$(uname)"

@@ -35,6 +35,10 @@ if ! pidof gpg-agent > /dev/null; then
 fi
 source $HOME/.gnupg/env
 
+if [ "$(uname)" = "Darwin" ]; then
+    export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
+fi
+
 # Force better docker commands
 export DOCKER_HIDE_LEGACY_COMMANDS=1
 
