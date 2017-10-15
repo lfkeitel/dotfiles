@@ -18,7 +18,8 @@ export GOSRC="$GOPATH/src"
 export PATH="$HOME/bin:$GOBIN:$GOROOT/bin:$PATH"
 
 if [ "$(uname)" = "Darwin" ]; then
-    export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
+    export PATH="/usr/local/opt/gpg-agent/bin:$PATH" # gpg-agent
+    export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin" # VS Code
 fi
 
 # Start gpg-agent if it's not running

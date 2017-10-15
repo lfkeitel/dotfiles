@@ -1,0 +1,24 @@
+{
+    "explorer.openEditors.visible": 0,
+    "files.exclude": {
+        "**/.git": false,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true
+    },
+    "go.gopath": "/home/lfkeitel/go",
+    "window.zoomLevel": 0,
+    "workbench.startupEditor": "newUntitledFile",
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+    "extensions.ignoreRecommendations": false,
+    "java.errors.incompleteClasspath.severity": "ignore",
+
+    "editor.fontFamily": "Inconsolata, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 17,
+    "window.newWindowDimensions": "fullscreen",
+    "files.trimTrailingWhitespace": true,
+    "docker.showExplorer": false,
+    "workbench.colorTheme": "Cobalt2"
+}

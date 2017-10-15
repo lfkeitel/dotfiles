@@ -1,0 +1,20 @@
+Settings locations:
+
+Mac   $HOME/Library/Application Support/Code/User/settings.json
+Linux $HOME/.config/Code/User/settings.json
+
+Extension List:
+
+Better TOML
+Docker
+Go
+lonide-fsharp
+Language Support of Java(TM) by Red Hat
+Nitrogen Language Support
+Cobolt2 Theme Official
+Color Hightlight
+Color Picker
+ESLint
+open in browser
+Python
+SpellChecker

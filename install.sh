@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+system_type="$(uname)"
 
 pushd () {
     command pushd "$@" > /dev/null
@@ -12,6 +13,28 @@ popd () {
 
 install_packages() {
     echo "Installing packages"
+    case "$system_type" in
+    Darwin)
+        install_packages_mac
+        ;;
+    *)
+        install_packages_linux
+        ;;
+    esac
+}
+
+install_packages_mac() {
+    echo "Installing Homebrew"
+
+    if [ -z "$(which brew 2>/dev/null)" ]; then
+        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    fi
+
+    echo "Installing brew packages"
+    brew install zsh zsh-completions tmux gpg-agent gpg2 pidof wget
+}
+
+install_packages_linux() {
     PACKAGES=( vim emacs curl zsh vlc git texlive-base texlive-bibtex-extra texlive-fonts-recommended texlive-latex-base texlive-latex-extra texlive-latex-recommended htop mousepad tmux xclip )
     INSTALLED_PACKAGES="$(apt list --installed 2>/dev/null)"
     declare -a PACKAGES_NEEDED
@@ -40,7 +63,7 @@ setup_gpg_agent() {
     fi
 
     # Install packages for gpg-agent and smartcards
-    if [ "$(uname)" != "Darwin" ]; then
+    if [ "$system_type" != "Darwin" ]; then
         sudo apt install gnupg-agent gnupg2 pinentry-gtk2 scdaemon libccid pcscd libpcsclite1 gpgsm
     fi
     mkdir -p "$HOME/.gnupg"
@@ -66,6 +89,17 @@ setup_gpg_agent() {
 }
 
 install_code_fonts() {
+    case "$system_type" in
+    Darwin)
+        install_code_fonts_mac
+        ;;
+    *)
+        install_code_fonts_linux
+        ;;
+    esac
+}
+
+install_code_fonts_linux() {
     echo "Install Inconsolata font"
     RELOAD_FONT=0
 
@@ -146,7 +180,7 @@ link_zsh_config() {
         "$DIR/install-oh-my-zsh.sh"
 
         # On Mac, set zsh as default
-        if [ "$(uname)" = "Darwin" ]; then
+        if [ "$system_type" = "Darwin" ]; then
             sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
         fi
     fi
@@ -189,6 +223,12 @@ install_golang() {
 
     if [ "go$GO_VERSION" == "$GO_INSTALLED" ]; then
         echo "Go is at requested version $GO_VERSION"
+        install_go_packages
+        return
+    fi
+
+    if [ "$system_type" = "Darwin" ]; then
+        echo "macOS detected, please install/upgrade Go"
         return
     fi
 
@@ -212,10 +252,10 @@ install_golang() {
     # Remove any archive packages from older version of Go
     rm -rf "$GOPATH/pkg/*"
 
-    install_base_go_pkgs
+    install_go_packages
 }
 
-install_base_go_pkgs() {
+install_go_packages() {
     echo "Installing Go packages"
 
     go get -u github.com/kardianos/govendor
@@ -226,41 +266,41 @@ install_base_go_pkgs() {
     go get -u golang.org/x/tools/cmd/guru
 }
 
-install_homebrew() {
-    echo "Installing Homebrew"
+setup_mac_finder() {
+    defaults write com.apple.finder AppleShowAllFiles YES
+    killall Finder /System/Library/CoreServices/Finder.app
+}
 
-    if [ -n "$(which brew 2>/dev/null)" ]; then
-        echo "Homebrew already installed"
+setup_vscode() {
+    # Install VSCode: http://commandlinemac.blogspot.com/2008/12/installing-dmg-application-from-command.html
+
+    if [ -z "$(which code 2>/dev/null)" ]; then
+        echo "Please install VS Code first"
         return
     fi
 
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    settingsPath="$HOME/.config/Code/User"
+    if [ "$system_type" = "Darwin" ]; then
+        settingsPath="$HOME/Library/Application Support/Code/User"
+    fi
+
+    ln -sfn "$DIR/vscode/settings.json" "$settingsPath/settings.json"
+    ln -sfn "$DIR/vscode/keybindings.json" "$settingsPath/keybindings.json"
+
+    # Install extensions
+    echo "Please consult the extensions list"
 }
 
-install_brew_packages() {
-    echo "Installing brew packages"
-
-    brew install zsh zsh-completions tmux gpg-agent gpg2 pidof wget pinentry-mac
-}
-
-system_type="$(uname)"
-
-case "$system_type" in
-Darwin)
-    install_homebrew
-    install_brew_packages
-    install_base_go_pkgs
-    install_code_fonts_mac
-    ;;
-*)
-    install_packages
-    install_code_fonts
-    install_golang
-    ;;
-esac
-
+install_packages
+install_golang
+install_code_fonts
 link_git_config
 link_tmux_config
 link_zsh_config
 link_emacs_config
 setup_gpg_agent
+setup_vscode
+
+if [ "$system_type" = "Darwin" ]; then
+    setup_mac_finder
+fi
