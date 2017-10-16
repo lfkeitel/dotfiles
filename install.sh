@@ -35,7 +35,24 @@ install_packages_mac() {
 }
 
 install_packages_linux() {
-    PACKAGES=( vim emacs curl zsh vlc git texlive-base texlive-bibtex-extra texlive-fonts-recommended texlive-latex-base texlive-latex-extra texlive-latex-recommended htop mousepad tmux xclip )
+    PACKAGES=(
+        vim
+        emacs
+        curl
+        zsh
+        vlc
+        git
+        texlive-base
+        texlive-bibtex-extra
+        texlive-fonts-recommended
+        texlive-latex-base
+        texlive-latex-extra
+        texlive-latex-recommended
+        htop
+        mousepad
+        tmux
+        xclip
+    )
     INSTALLED_PACKAGES="$(apt list --installed 2>/dev/null)"
     declare -a PACKAGES_NEEDED
 
@@ -274,11 +291,17 @@ setup_mac_finder() {
 
 setup_vscode() {
     echo "Setting up Visual Studio Code"
-    # Install VSCode: http://commandlinemac.blogspot.com/2008/12/installing-dmg-application-from-command.html
 
     if [ -z "$(which code 2>/dev/null)" ]; then
-        echo "Please install VS Code first"
-        return
+        if [ "$system_type" = "Darwin" ]; then
+            # TODO: Install VSCode: http://commandlinemac.blogspot.com/2008/12/installing-dmg-application-from-command.html
+            echo "Please install VS Code first"
+            return
+        else
+            wget -O vscode.deb https://go.microsoft.com/fwlink/?LinkID=760868
+            sudo dpkg -i vscode.deb
+            sudo apt install -f
+        fi
     fi
 
     settingsPath="$HOME/.config/Code/User"
@@ -288,9 +311,49 @@ setup_vscode() {
 
     ln -sfn "$DIR/vscode/settings.json" "$settingsPath/settings.json"
     ln -sfn "$DIR/vscode/keybindings.json" "$settingsPath/keybindings.json"
+    # TODO: Link snippets folder
 
     # Install extensions
-    echo "Please consult the extensions list"
+    vscode_exts=(
+        bungcip.better-toml
+        ms-vscode.cpptools
+        ms-vscode.csharp
+        akamud.vscode-caniuse
+        wesbos.theme-cobalt2
+        naumovs.color-highlight
+        anseki.vscode-color
+        msjsdiag.debugger-for-chrome
+        PeterJausovec.vscode-docker
+        EditorConfig.editorconfig
+        dbaeumer.vscode-eslint
+        donjayamanne.githistory
+        eamodio.gitlens
+        felipecaputo.git-project-manager
+        HookyQR.githubissues
+        lukehoban.go
+        casualjim.gotemplate
+        oderwat.indent-rainbow
+        wholroyd.jinja
+        redhat.java
+        Ionide.ionide-fsharp
+        lfkeitel.language-nitrogen
+        techer.open-in-browser
+        christian-kohler.path-intellisense
+        felixfbecker.php-intellisense
+        alefragnani.project-manager
+        donjayamanne.python
+        2gua.rainbow-brackets
+        kalitaalexey.vscode-rust
+        swyphcosmo.spellchecker
+        rashwell.tcl
+        eg2.tslint
+        robertohuertasm.vscode-icons
+        MattiasPernhult.vscode-todo
+    )
+
+    for ext in "${vscode_exts[@]}"; do
+        code --install-extension "$ext"
+    done
 }
 
 install_packages

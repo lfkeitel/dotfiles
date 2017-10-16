@@ -27,5 +27,6 @@
             80,
             130
         ]
-    }
+    },
+    "workbench.iconTheme": "vscode-icons"
 }

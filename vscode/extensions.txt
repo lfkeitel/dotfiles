@@ -3,18 +3,39 @@ Settings locations:
 Mac   $HOME/Library/Application Support/Code/User/settings.json
 Linux $HOME/.config/Code/User/settings.json
 
-Extension List:
+Extension List: `code --install-extension <extension-id>`
 
-Better TOML
-Docker
-Go
-lonide-fsharp
-Language Support of Java(TM) by Red Hat
-Nitrogen Language Support
-Cobolt2 Theme Official
-Color Hightlight
-Color Picker
-ESLint
-open in browser
-Python
-SpellChecker
+Better TOML: bungcip.better-toml
+C/C++: ms-vscode.cpptools
+C#: ms-vscode.csharp
+Can I Use: akamud.vscode-caniuse
+Cobolt2 Theme Official: wesbos.theme-cobalt2
+Color Hightlight: naumovs.color-highlight
+Color Picker: nseki.vscode-color
+Debugger for Chrome: msjsdiag.debugger-for-chrome
+Docker: PeterJausovec.vscode-docker
+EditorConfig for VS Code: EditorConfig.editorconfig
+ESLint: dbaeumer.vscode-eslint
+Git History(git log): donjayamanne.githistory
+Git Lens: eamodio.gitlens
+Git Project Manager: felipecaputo.git-project-manager
+GitHub Issues: HookyQR.githubissues
+Go Language Support: lukehoban.go
+gotemplate-syntax: casualjim.gotemplate
+indent-rainbow: oderwat.indent-rainbow
+Jinja: wholroyd.jinja
+Language Support of Java(TM) by Red Hat: redhat.java
+lonide-fsharp: Ionide.ionide-fsharp
+Nitrogen Language Support: lfkeitel.language-nitrogen
+open in browser: techer.open-in-browser
+Path Intellisense: christian-kohler.path-intellisense
+PHP: felixfbecker.php-intellisense
+Project Manager: alefragnani.project-manager
+Python: donjayamanne.python
+Rainbow Brackets: 2gua.rainbow-brackets
+Rust: kalitaalexey.vscode-rust
+SpellChecker: swyphcosmo.spellchecker
+TCL: rashwell.tcl
+TSLint: eg2.tslint
+vscode-icons: robertohuertasm.vscode-icons
+vscode-todo: MattiasPernhult.vscode-todo
