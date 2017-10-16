@@ -57,6 +57,11 @@ install_packages_linux() {
 setup_gpg_agent() {
     echo "Setting up GPG agent"
     INSTALLED_FILE="$HOME/.gnupg/.dotfile-installed.1"
+
+    if [ ! -e /usr/local/bin/gpg2 ]; then
+        sudo ln -s /usr/bin/gpg2 /usr/local/bin/gpg2
+    fi
+
     if [ -f "$INSTALLED_FILE" ]; then
         echo "GPG already setup"
         return
@@ -78,10 +83,6 @@ setup_gpg_agent() {
     gpg2 --recv-keys E638625F
     trust_str="$(gpg2 --list-keys --fingerprint | grep 'E638 625F' | tr -d '[:space:]' | awk '{ print $1 ":6:"}')"
     echo "$trust_str" | gpg2 --import-ownertrust
-
-    if [ ! -e /usr/local/bin/gpg2 ]; then
-        ln -s /usr/bin/gpg2 /usr/local/bin/gpg2
-    fi
 
     # Idempotency
     rm -f "$HOME/.gnupg/.dotfile-installed.*"
@@ -272,6 +273,7 @@ setup_mac_finder() {
 }
 
 setup_vscode() {
+    echo "Setting up Visual Studio Code"
     # Install VSCode: http://commandlinemac.blogspot.com/2008/12/installing-dmg-application-from-command.html
 
     if [ -z "$(which code 2>/dev/null)" ]; then

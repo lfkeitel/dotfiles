@@ -7,3 +7,4 @@ alias v2ssh='ssh -t alice ssh '
 
 alias kill-tmux-sessions='tmux list-sessions | grep -v attached | cut -d: -f1 |  xargs -t -n1 tmux kill-session -t'
 alias update-blog='docker build -t lfkeitel/blog-site . && docker push lfkeitel/blog-site:latest && ssh -4 root@blog.keitel.xyz /root/update-blog.sh'
+alias please='sudo !!'
