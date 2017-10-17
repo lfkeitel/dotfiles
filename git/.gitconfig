@@ -44,3 +44,5 @@
   signingkey = E638625F
 [gpg]
   program = /usr/local/bin/gpg2
+[log]
+  decorate = auto
