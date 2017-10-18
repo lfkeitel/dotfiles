@@ -16,7 +16,6 @@
 
     "editor.fontFamily": "Inconsolata, Menlo, Monaco, 'Courier New', monospace",
     "editor.fontSize": 17,
-    "window.newWindowDimensions": "fullscreen",
     "files.trimTrailingWhitespace": true,
     "docker.showExplorer": false,
     "workbench.colorTheme": "Cobalt2",
@@ -29,5 +28,8 @@
     },
     "workbench.iconTheme": "vscode-icons",
     "vsicons.dontShowNewVersionMessage": true,
-    "insertDateString.format": "YYYY-MM-DDThh:mm:ssZZZ"
+    "insertDateString.format": "YYYY-MM-DDThh:mm:ssZZZ",
+    "files.associations": {
+        "*.tmpl": "gohtml"
+    }
 }
