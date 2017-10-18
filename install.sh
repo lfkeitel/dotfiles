@@ -291,8 +291,15 @@ setup_mac_finder() {
 
 setup_vscode() {
     echo "Setting up Visual Studio Code"
+    runInstall="no"
+    runLinks="no"
+    runExtInstall="no"
 
-    if [ -z "$(which code 2>/dev/null)" ]; then
+    [[ "$1" = "all" || "$1" = "install" ]] && runInstall="yes"
+    [[ "$1" = "all" || "$1" = "link" ]] && runLinks="yes"
+    [[ "$1" = "all" || "$1" = "ext" ]] && runExtInstall="yes"
+
+    if [[ $runInstall = "yes" && -z "$(which code 2>/dev/null)" ]]; then
         if [ "$system_type" = "Darwin" ]; then
             # TODO: Install VSCode: http://commandlinemac.blogspot.com/2008/12/installing-dmg-application-from-command.html
             echo "Please install VS Code first"
@@ -304,14 +311,20 @@ setup_vscode() {
         fi
     fi
 
-    settingsPath="$HOME/.config/Code/User"
-    if [ "$system_type" = "Darwin" ]; then
-        settingsPath="$HOME/Library/Application Support/Code/User"
-    fi
+    if [[ $runLinks = "yes" ]]; then
+        settingsPath="$HOME/.config/Code/User"
+        if [ "$system_type" = "Darwin" ]; then
+            settingsPath="$HOME/Library/Application Support/Code/User"
+        fi
 
-    ln -sfn "$DIR/vscode/settings.json" "$settingsPath/settings.json"
-    ln -sfn "$DIR/vscode/keybindings.json" "$settingsPath/keybindings.json"
-    # TODO: Link snippets folder
+        ln -sfn "$DIR/vscode/settings.json" "$settingsPath/settings.json"
+        ln -sfn "$DIR/vscode/keybindings.json" "$settingsPath/keybindings.json"
+
+        if [[ -e "$settingsPath/snippets" ]]; then
+            rm -rf "$settingsPath/snippets"
+        fi
+        ln -sfn "$DIR/vscode/snippets" "$settingsPath"
+    fi
 
     # Install extensions
     vscode_exts=(
@@ -351,21 +364,54 @@ setup_vscode() {
         MattiasPernhult.vscode-todo
     )
 
-    for ext in "${vscode_exts[@]}"; do
-        code --install-extension "$ext"
-    done
+    if [[ $runExtInstall = "yes" ]]; then
+        for ext in "${vscode_exts[@]}"; do
+            code --install-extension "$ext"
+        done
+    fi
 }
 
-install_packages
-install_golang
-install_code_fonts
-link_git_config
-link_tmux_config
-link_zsh_config
-link_emacs_config
-setup_gpg_agent
-setup_vscode
+run_all() {
+    install_packages
+    install_golang
+    install_code_fonts
+    link_git_config
+    link_tmux_config
+    link_zsh_config
+    link_emacs_config
+    setup_gpg_agent
+    setup_vscode all
 
-if [ "$system_type" = "Darwin" ]; then
-    setup_mac_finder
+    if [ "$system_type" = "Darwin" ]; then
+        setup_mac_finder
+    fi
+}
+
+if [[ -z "$1" || "$1" = "all" ]]; then
+    run_all
+    exit 0
 fi
+
+case "$1" in
+    packages)
+        install_packages;;
+    golang)
+        install_golang;;
+    fonts)
+        install_code_fonts;;
+    git)
+        link_git_config;;
+    tmux)
+        link_tmux_config;;
+    zsh)
+        link_zsh_config;;
+    emacs)
+        link_emacs_config;;
+    gpg)
+        setup_gpg_agent;;
+    vscode)
+        shift
+        setup_vscode ${@};;
+    mac)
+        setup_mac_finder;;
+esac
