@@ -11,7 +11,7 @@
     "workbench.startupEditor": "newUntitledFile",
     "telemetry.enableTelemetry": false,
     "telemetry.enableCrashReporter": false,
-    "extensions.ignoreRecommendations": false,
+    "extensions.ignoreRecommendations": true,
     "java.errors.incompleteClasspath.severity": "ignore",
 
     "editor.fontFamily": "Inconsolata, Menlo, Monaco, 'Courier New', monospace",
@@ -28,5 +28,6 @@
         ]
     },
     "workbench.iconTheme": "vscode-icons",
-    "vsicons.dontShowNewVersionMessage": true
+    "vsicons.dontShowNewVersionMessage": true,
+    "insertDateString.format": "YYYY-MM-DDThh:mm:ssZZZ"
 }

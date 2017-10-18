@@ -362,6 +362,7 @@ setup_vscode() {
         eg2.tslint
         robertohuertasm.vscode-icons
         MattiasPernhult.vscode-todo
+        jsynowiec.vscode-insertdatestring
     )
 
     if [[ $runExtInstall = "yes" ]]; then
