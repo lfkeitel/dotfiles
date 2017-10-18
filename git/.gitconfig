@@ -11,6 +11,7 @@
   loc = !git diff --stat `git hash-object -t tree /dev/null` | tail -1 | cut -d' ' -f5
   pr = pull-request
   sig = log --show-signature
+  s = status
   st = status -sb
   sum = log --oneline --no-merges
   unstage = reset HEAD
