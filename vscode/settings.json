@@ -30,6 +30,8 @@
     "vsicons.dontShowNewVersionMessage": true,
     "insertDateString.format": "YYYY-MM-DDThh:mm:ssZZZ",
     "files.associations": {
-        "*.tmpl": "gohtml"
+        "*.tmpl": "gohtml",
+        ".zsh_aliases": "shellscript",
+        ".zsh_functions": "shellscript"
     }
 }

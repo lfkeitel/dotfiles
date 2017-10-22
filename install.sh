@@ -191,6 +191,7 @@ link_zsh_config() {
     echo "Setting up ZSH"
     ln -sfn "$DIR/zsh/.zshrc" "$HOME/.zshrc"
     ln -sfn "$DIR/zsh/.zsh_aliases" "$HOME/.zsh_aliases"
+    ln -sfn "$DIR/zsh/.zsh_functions" "$HOME/.zsh_functions"
 
     # oh-my-zsh
     if [ ! -d "$HOME/.oh-my-zsh" ]; then
@@ -404,7 +405,7 @@ case "$1" in
         link_git_config;;
     tmux)
         link_tmux_config;;
-    zsh)
+    zsh|shell)
         link_zsh_config;;
     emacs)
         link_emacs_config;;
