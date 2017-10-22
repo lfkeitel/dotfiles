@@ -1,0 +1,28 @@
+{
+	"Print to console": {
+		"prefix": "log",
+		"body": [
+			"console.log('$1');",
+			"$2"
+		],
+		"description": "Log output to console"
+	},
+
+	"Document query selector": {
+		"prefix": "dqs",
+		"body": [
+			"const ${1:element} = document.querySelector('$2');",
+			"$3"
+		],
+		"description": "Query select a single element"
+	},
+
+	"Document query selector All": {
+		"prefix": "dqsa",
+		"body": [
+			"const ${1:elements} = document.querySelectorAll('$2');",
+			"$3"
+		],
+		"description": "Query select multiple elements"
+	}
+}
