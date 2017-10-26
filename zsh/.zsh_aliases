@@ -1,12 +1,21 @@
+# Application aliases
 alias gpg='gpg2'
-alias fix-mounts='sudo umount -a -t cifs -l -f'
-alias digrep="docker image ls | grep"
-alias pwdu='du --max-depth=1 -h .'
-alias sys-upgrade='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y'
-alias v2ssh='ssh -t alice ssh '
+
+# Project aliases
 alias pjls='project ls'
 alias pjcd='project cd'
 
-alias kill-tmux-sessions='tmux list-sessions | grep -v attached | cut -d: -f1 |  xargs -t -n1 tmux kill-session -t'
+# Deploy shortcuts
 alias update-blog='docker build -t lfkeitel/blog-site . && docker push lfkeitel/blog-site:latest && ssh -4 root@blog.keitel.xyz /root/update-blog.sh'
+
+# Docker
+alias digrep='docker image ls | grep'
+alias docker-rm-dangle='docker image rm $(docker image ls -f dangling=true -q)'
+
+# Misc
 alias please='sudo !!'
+alias fix-mounts='sudo umount -a -t cifs -l -f'
+alias pwdu='du --max-depth=1 -h .'
+alias sys-upgrade='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y'
+alias v2ssh='ssh -t alice ssh '
+alias kill-tmux-sessions='tmux list-sessions | grep -v attached | cut -d: -f1 |  xargs -t -n1 tmux kill-session -t'
