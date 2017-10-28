@@ -364,6 +364,9 @@ setup_vscode() {
         robertohuertasm.vscode-icons
         MattiasPernhult.vscode-todo
         jsynowiec.vscode-insertdatestring
+        bibhasdn.unique-lines
+        formulahendry.auto-close-tag
+        sysoev.language-stylus
     )
 
     if [[ $runExtInstall = "yes" ]]; then
