@@ -24,5 +24,32 @@
 			"$3"
 		],
 		"description": "Query select multiple elements"
+	},
+
+	"Import React": {
+		"prefix": "ir",
+		"body": "import React from 'react';\n",
+		"description": "Import React"
+	},
+
+	"React Component": {
+		"prefix": "rc",
+		"body": [
+			"class ${1:Component} extends React.Component {",
+			"  render() {",
+			"    return (",
+			"      $2",
+			"    );",
+			"  }",
+			"}\n",
+			"export default ${1};\n"
+		],
+		"description": "description"
+	},
+
+	"React method bind": {
+		"prefix": "rb",
+		"body": "this.${1:method} = this.${1}.bind(this);",
+		"description": "Import React"
 	}
 }
