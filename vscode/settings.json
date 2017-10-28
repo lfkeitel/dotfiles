@@ -33,5 +33,13 @@
         "*.tmpl": "gohtml",
         ".zsh_aliases": "shellscript",
         ".zsh_functions": "shellscript"
-    }
+    },
+    "[javascript]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2
+    },
+    "html.format.endWithNewline": true,
+    "html.autoClosingTags": true,
+    "auto-close-tag.SublimeText3Mode": true,
+    "auto-close-tag.fullMode": true
 }
