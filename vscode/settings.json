@@ -32,7 +32,8 @@
     "files.associations": {
         "*.tmpl": "gohtml",
         ".zsh_aliases": "shellscript",
-        ".zsh_functions": "shellscript"
+        ".zsh_functions": "shellscript",
+        "*.exp": "tcl"
     },
     "[javascript]": {
         "editor.insertSpaces": true,

@@ -27,7 +27,9 @@ fi
 if ! pidof gpg-agent > /dev/null; then
     gpg-agent --homedir $HOME/.gnupg --daemon --sh --enable-ssh-support > $HOME/.gnupg/env
 fi
-source $HOME/.gnupg/env
+if [ -f "$HOME/.gnupg/env" ]; then
+    source $HOME/.gnupg/env
+fi
 
 if [ "$(uname)" = "Darwin" ]; then
     export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
