@@ -49,5 +49,6 @@
         "php",
         "javascript",
         "javascriptreact"
-    ]
+    ],
+    "window.restoreWindows": "none"
 }

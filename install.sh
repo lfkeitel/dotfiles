@@ -367,7 +367,7 @@ setup_vscode() {
         bibhasdn.unique-lines
         formulahendry.auto-close-tag
         sysoev.language-stylus
-        formulahendry.auto-close-tag
+        formulahendry.auto-rename-tag
     )
 
     if [[ $runExtInstall = "yes" ]]; then
