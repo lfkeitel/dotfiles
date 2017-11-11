@@ -39,6 +39,10 @@
         "editor.insertSpaces": true,
         "editor.tabSize": 2
     },
+    "[yaml]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2
+    },
     "html.format.endWithNewline": true,
     "html.autoClosingTags": true,
     "auto-close-tag.SublimeText3Mode": true,
@@ -50,5 +54,7 @@
         "javascript",
         "javascriptreact"
     ],
-    "window.restoreWindows": "none"
+    "window.restoreWindows": "none",
+    "explorer.confirmDragAndDrop": false,
+    "python.pythonPath": "python3"
 }
