@@ -41,3 +41,7 @@ export DOCKER_HIDE_LEGACY_COMMANDS=1
 # Import aliases
 source $HOME/.zsh_aliases
 source $HOME/.zsh_functions
+
+if [ -f "$HOME/.local.zsh" ]; then
+    source $HOME/.local.zsh
+fi
