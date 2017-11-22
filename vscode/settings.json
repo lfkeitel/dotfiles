@@ -56,5 +56,6 @@
     ],
     "window.restoreWindows": "none",
     "explorer.confirmDragAndDrop": false,
-    "python.pythonPath": "python3"
+    "python.pythonPath": "python3",
+    "explorer.confirmDelete": false
 }
