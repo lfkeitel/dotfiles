@@ -57,5 +57,18 @@
     "window.restoreWindows": "none",
     "explorer.confirmDragAndDrop": false,
     "python.pythonPath": "python3",
-    "explorer.confirmDelete": false
+    "explorer.confirmDelete": false,
+    "python.disablePromptForFeatures": [
+        "pylint"
+    ],
+    "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": false,
+        "suppressCommitNotFoundWarning": false,
+        "suppressFileNotUnderSourceControlWarning": true,
+        "suppressGitVersionWarning": false,
+        "suppressLineUncommittedWarning": false,
+        "suppressNoRepositoryWarning": false,
+        "suppressUpdateNotice": true,
+        "suppressWelcomeNotice": true
+    }
 }
