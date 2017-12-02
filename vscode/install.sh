@@ -81,6 +81,7 @@ vscode_exts=(
     formulahendry.auto-close-tag
     sysoev.language-stylus
     formulahendry.auto-rename-tag
+    webfreak.code-d
 )
 
 if [[ $runExtInstall = "yes" ]]; then
