@@ -28,6 +28,10 @@ fi
 
 ZSH_CUSTOM="${ZSH_CUSTOM:-"$HOME/.oh-my-zsh/custom"}"
 
+pushd "$HOME/.oh-my-zsh"
+git pull
+popd
+
 # Plugins
 if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_CUSTOM/plugins/zsh-autosuggestions"

@@ -82,6 +82,8 @@ vscode_exts=(
     sysoev.language-stylus
     formulahendry.auto-rename-tag
     webfreak.code-d
+    Asuka.insertnumbers
+    nmsmith89.incrementor
 )
 
 if [[ $runExtInstall = "yes" ]]; then
