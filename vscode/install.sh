@@ -84,6 +84,7 @@ vscode_exts=(
     webfreak.code-d
     Asuka.insertnumbers
     nmsmith89.incrementor
+    wix.vscode-import-cost
 )
 
 if [[ $runExtInstall = "yes" ]]; then
