@@ -1,5 +1,9 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+system_type="$(uname)"
+tmux_config="$DIR/.tmux-$system_type.conf"
 
-echo "Setting up tmux"
-ln -sfn "$DIR/.tmux.conf" "$HOME/.tmux.conf"
+if [ -f "$tmux_config" ]; then
+    echo "Setting up tmux"
+    ln -sfn "$tmux_config" "$HOME/.tmux.conf"
+fi
