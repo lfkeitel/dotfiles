@@ -15,7 +15,7 @@ nls() {
     _make_notes_dir
 
     echo "Notes:"
-    ls -c "$NOTES_DIR" | grep "$*" | awk -e '{print "- "$1}'
+    ls -c "$NOTES_DIR" | grep "$*" | awk '{print "- "$1}'
 }
 
 _n_complete() {
@@ -27,4 +27,4 @@ _n_complete() {
 compdef _n_complete n
 
 alias notes='n'
-alias notesls='nls'
+alias lsnotes='nls'

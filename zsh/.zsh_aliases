@@ -4,6 +4,7 @@ alias gpg='gpg2'
 # Project aliases
 alias pjls='project ls'
 alias pjcd='project cd'
+alias pjadd='project add'
 
 # Deploy shortcuts
 alias update-blog='docker build -t lfkeitel/blog-site . && docker push lfkeitel/blog-site:latest && ssh -4 root@blog.keitel.xyz /root/update-blog.sh'
