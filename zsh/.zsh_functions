@@ -35,3 +35,8 @@ maclookup() {
     # there's always a new line.
     echo $(curl -s "https://api.macvendors.com/$1")
 }
+
+sshsudo() {
+    ssh -t $1 sudo -i
+}
+alias sudossh='sshsudo'
