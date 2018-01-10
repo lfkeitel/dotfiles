@@ -2,16 +2,17 @@
 
 Configures:
 
+- ZSH
 - Emacs
 - Git
 - GPG Agent
 - Tmux
 - Visual Studio Code
-- ZSH
 - Code font
 - macOS Finder
 - Golang
 - System packages
+- NPM (prefix)
 
 ## TL;DR
 
@@ -29,7 +30,7 @@ the script is.
 Sections:
 
 - `packages`
-- `golang` - Doesn't actually install Go on macOS. But it still installed development packages.
+- `golang` - Doesn't actually install Go on macOS. But it still installs development packages.
 - `fonts`
 - `git`
 - `tmux`
@@ -39,3 +40,4 @@ Sections:
 - `vscode` - Can take an optional second argument of `install` (install vscode, Linux only),
 `link` (link configuration files), `ext` (install extensions), or `all` (same as no argument, do everything).
 - `mac`
+- `npm`
