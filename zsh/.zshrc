@@ -42,6 +42,9 @@ export DOCKER_HIDE_LEGACY_COMMANDS=1
 source $HOME/.zsh_aliases
 source $HOME/.zsh_functions
 
+# Add NPM to path
+PATH="$HOME/.npm-packages/bin:$PATH"
+
 if [ -f "$HOME/.local.zsh" ]; then
     source $HOME/.local.zsh
 fi
