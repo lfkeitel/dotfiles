@@ -24,7 +24,6 @@ addtopath() {
         fi
     fi
 }
-export -f addtopath # Export so hook scripts can use it
 
 PATH='/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'
 
