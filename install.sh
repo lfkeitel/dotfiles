@@ -57,20 +57,33 @@ finish() {
 }
 trap finish EXIT
 
+declare -A installScripts
+installScripts['zsh']=$DIR/zsh/install.sh
+installScripts['packages']=$DIR/other/packages.sh
+installScripts['golang']=$DIR/golang/install.sh
+installScripts['fonts']=$DIR/other/fonts.sh
+installScripts['git']=$DIR/git/install.sh
+installScripts['tmux']=$DIR/tmux/install.sh
+installScripts['emacs']=$DIR/emacs/install.sh
+installScripts['gpg']=$DIR/gpg/install.sh
+installScripts['vscode']=$DIR/vscode/install.sh
+installScripts['npm']=$DIR/npm/install.sh
+installScripts['macos']=$DIR/other/macos.sh
+
 run_all() {
-    $DIR/zsh/install.sh
-    $DIR/packages.sh
-    $DIR/golang/install.sh
-    $DIR/fonts.sh
-    $DIR/git/install.sh
-    $DIR/tmux/install.sh
-    $DIR/emacs/install.sh
-    $DIR/gpg/install.sh
-    $DIR/vscode/install.sh all
-    $DIR/npm/install.sh
+    ${installScripts['zsh']}
+    ${installScripts['packages']}
+    ${installScripts['golang']}
+    ${installScripts['fonts']}
+    ${installScripts['git']}
+    ${installScripts['tmux']}
+    ${installScripts['emacs']}
+    ${installScripts['gpg']}
+    ${installScripts['vscode']}
+    ${installScripts['npm']}
 
     if [ "$system_type" = 'Darwin' ]; then
-        $DIR/macos.sh
+        ${installScripts['macos']}
     fi
 }
 
@@ -80,15 +93,15 @@ if [[ -z "$1" || "$1" = 'all' ]]; then
 fi
 
 case "$1" in
-    packages)   $DIR/packages.sh;;
-    golang)     $DIR/golang/install.sh;;
-    fonts)      $DIR/fonts.sh;;
-    git)        $DIR/git/install.sh;;
-    tmux)       $DIR/tmux/install.sh;;
-    zsh|shell)  $DIR/zsh/install.sh;;
-    emacs)      $DIR/emacs/install.sh;;
-    gpg)        $DIR/gpg/install.sh;;
-    vscode)     shift; $DIR/vscode/install.sh ${@};;
-    npm)        $DIR/npm/install.sh;;
-    mac)        $DIR/macos.sh;;
+    zsh|shell)  ${installScripts['zsh']};;
+    packages)   ${installScripts['packages']};;
+    golang)     ${installScripts['golang']};;
+    fonts)      ${installScripts['fonts']};;
+    git)        ${installScripts['git']};;
+    tmux)       ${installScripts['tmux']};;
+    emacs)      ${installScripts['emacs']};;
+    gpg)        ${installScripts['gpg']};;
+    vscode)     shift; ${installScripts['vscode']} ${@};;
+    npm)        ${installScripts['npm']};;
+    mac)        ${installScripts['macos']};;
 esac
