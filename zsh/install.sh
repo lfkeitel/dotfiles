@@ -28,15 +28,15 @@ fi
 
 ZSH_CUSTOM="${ZSH_CUSTOM:-"$HOME/.oh-my-zsh/custom"}"
 
+# Update Oh My ZSH
 pushd "$HOME/.oh-my-zsh"
 git pull
 popd
 
-# Plugins
+# Install/update Plugins
 if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
 fi
-
 pushd "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
 git pull
 popd
@@ -44,7 +44,6 @@ popd
 if [ ! -d "$ZSH_CUSTOM/plugins/project" ]; then
     git clone https://github.com/lfkeitel/project-list.git "$ZSH_CUSTOM/plugins/project"
 fi
-
 pushd "$ZSH_CUSTOM/plugins/project"
 git pull
 popd
@@ -58,3 +57,15 @@ if [ -h "$ZSH_CUSTOM/themes/gnzh.zsh-theme" ]; then # Remove this if once all ma
     rm "$ZSH_CUSTOM/themes/gnzh.zsh-theme"
 fi
 ln -sfn "$DIR/lfk.zsh-theme" "$ZSH_CUSTOM/themes/lfk.zsh-theme"
+
+# Setup hook system
+mkdir -p "$HOME/.local.zsh.d/pre"
+mkdir -p "$HOME/.local.zsh.d/post"
+mkdir -p "$HOME/.local.zsh.d/paths"
+
+# Convert old custom into new hooks system
+if [ -f "$HOME/.local.zsh" ]; then
+    mv -n "$HOME/.local.zsh" "$HOME/.local.zsh.d/post/00-old-local.zsh"
+fi
+
+addtopath 'zsh' "$HOME/bin"

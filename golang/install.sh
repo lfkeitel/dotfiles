@@ -1,15 +1,16 @@
 #!/bin/bash
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 system_type="$(uname)"
+GOROOT="/usr/local/go"
 
 install_golang() {
     echo "Installing Go"
     GO_VERSION="1.9.2"
-    GO_INSTALLED="$(go version 2> /dev/null | cut -d' ' -f3)"
-    GOROOT="/usr/local/go"
+    GO_INSTALLED="$($GOROOT/bin/go version 2> /dev/null | cut -d' ' -f3)"
 
     if [ "go$GO_VERSION" == "$GO_INSTALLED" ]; then
         echo "Go is at requested version $GO_VERSION"
-        install_go_packages
+        finish_install
         return
     fi
 
@@ -38,7 +39,7 @@ install_golang() {
     # Remove any archive packages from older version of Go
     rm -rf "$GOPATH/pkg/*"
 
-    install_go_packages
+    finish_install
 }
 
 install_go_packages() {
@@ -50,6 +51,13 @@ install_go_packages() {
     go get -u github.com/tools/godep
     go get -u github.com/golang/dep/cmd/dep
     go get -u golang.org/x/tools/cmd/guru
+}
+
+finish_install() {
+    addtopath go "$GOROOT/bin" # Go binary and tools
+    addtopath go "$GOPATH/bin" # Installed Go programs
+    install_go_packages
+    add_zsh_hook 'post' '10-golang' "$DIR/setuphook.zsh"
 }
 
 install_golang
