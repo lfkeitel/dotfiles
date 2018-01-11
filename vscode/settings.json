@@ -76,5 +76,21 @@
     "d.dfmtPath": "/home/lfkeitel/.vscode/extensions/webfreak.code-d-0.16.2/bin/dfmt/bin/dfmt",
     "d.dcdClientPath": "/home/lfkeitel/.vscode/extensions/webfreak.code-d-0.16.2/bin/DCD/bin/dcd-client",
     "d.dcdServerPath": "/home/lfkeitel/.vscode/extensions/webfreak.code-d-0.16.2/bin/DCD/bin/dcd-server",
-    "dfmt.braceStyle": "otbs"
+    "dfmt.braceStyle": "otbs",
+    "auto-close-tag.activationOnLanguage": [
+        "xml",
+        "php",
+        "blade",
+        "ejs",
+        "jinja",
+        "javascriptreact",
+        "typescriptreact",
+        "plaintext",
+        "markdown",
+        "vue",
+        "liquid",
+        "erb",
+        "lang-cfml",
+        "cfml"
+    ]
 }
