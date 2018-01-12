@@ -32,6 +32,12 @@
 		"description": "Import React"
 	},
 
+	"Import Anything": {
+		"prefix": "im",
+		"body": "import $1 from '$2';\n",
+		"description": "Import React"
+	},
+
 	"React Component": {
 		"prefix": "rc",
 		"body": [
