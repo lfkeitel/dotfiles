@@ -100,7 +100,7 @@ case "$1" in
     git)        ${installScripts['git']};;
     tmux)       ${installScripts['tmux']};;
     emacs)      ${installScripts['emacs']};;
-    gpg)        ${installScripts['gpg']};;
+    gpg)        shift; ${installScripts['gpg']} ${@};;
     vscode)     shift; ${installScripts['vscode']} ${@};;
     npm)        ${installScripts['npm']};;
     mac)        ${installScripts['macos']};;

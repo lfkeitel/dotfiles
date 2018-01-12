@@ -36,7 +36,7 @@ Sections:
 - `tmux`
 - `zsh` or `shell`
 - `emacs`
-- `gpg`
+- `gpg` - Can take an optional argument of `force`.
 - `vscode` - Can take an optional second argument of `install` (install vscode, Linux only),
 `link` (link configuration files), `ext` (install extensions), or `all` (same as no argument, do everything).
 - `mac`
