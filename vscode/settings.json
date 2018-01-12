@@ -92,5 +92,7 @@
         "erb",
         "lang-cfml",
         "cfml"
-    ]
+    ],
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true
 }
