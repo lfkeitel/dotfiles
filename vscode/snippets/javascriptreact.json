@@ -1,0 +1,61 @@
+{
+	"Print to console": {
+		"prefix": "log",
+		"body": [
+			"console.log('$1');",
+			"$2"
+		],
+		"description": "Log output to console"
+	},
+
+	"Document query selector": {
+		"prefix": "dqs",
+		"body": [
+			"const ${1:element} = document.querySelector('$2');",
+			"$3"
+		],
+		"description": "Query select a single element"
+	},
+
+	"Document query selector All": {
+		"prefix": "dqsa",
+		"body": [
+			"const ${1:elements} = document.querySelectorAll('$2');",
+			"$3"
+		],
+		"description": "Query select multiple elements"
+	},
+
+	"Import React": {
+		"prefix": "ir",
+		"body": "import React from 'react';\n",
+		"description": "Import React"
+	},
+
+	"Import Anything": {
+		"prefix": "im",
+		"body": "import $1 from '$2';\n",
+		"description": "Import React"
+	},
+
+	"React Component": {
+		"prefix": "rc",
+		"body": [
+			"class ${1:Component} extends React.Component {",
+			"  render() {",
+			"    return (",
+			"      $2",
+			"    );",
+			"  }",
+			"}\n",
+			"export default ${1};\n"
+		],
+		"description": "description"
+	},
+
+	"React method bind": {
+		"prefix": "rb",
+		"body": "this.${1:method} = this.${1}.bind(this);",
+		"description": "Import React"
+	}
+}
