@@ -31,6 +31,7 @@ if [[ $runLinks = "yes" ]]; then
         settingsPath="$HOME/Library/Application Support/Code/User"
     fi
 
+    mkdir -p "$settingsPath"
     ln -sfn "$DIR/settings.json" "$settingsPath/settings.json"
     ln -sfn "$DIR/keybindings.json" "$settingsPath/keybindings.json"
 
