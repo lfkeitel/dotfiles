@@ -69,6 +69,7 @@ installScripts['gpg']=$DIR/gpg/install.sh
 installScripts['vscode']=$DIR/vscode/install.sh
 installScripts['npm']=$DIR/npm/install.sh
 installScripts['macos']=$DIR/other/macos.sh
+installScripts['vim']=$DIR/vim/install.sh
 
 run_all() {
     ${installScripts['zsh']}
@@ -81,6 +82,7 @@ run_all() {
     ${installScripts['gpg']}
     ${installScripts['vscode']}
     ${installScripts['npm']}
+    ${installScripts['vim']}
 
     if [ "$system_type" = 'Darwin' ]; then
         ${installScripts['macos']}
@@ -104,4 +106,5 @@ case "$1" in
     vscode)     shift; ${installScripts['vscode']} ${@};;
     npm)        ${installScripts['npm']};;
     mac)        ${installScripts['macos']};;
+    vim)        ${installScripts['vim']};;
 esac
