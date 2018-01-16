@@ -40,3 +40,5 @@ sshsudo() {
     ssh -t $1 sudo -i
 }
 alias sudossh='sshsudo'
+
+alias code.='code .'
