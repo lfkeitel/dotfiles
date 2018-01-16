@@ -44,6 +44,7 @@ vnoremap ; :
 
 nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
+nnoremap <leader>qq :q!<cr>
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -60,6 +61,7 @@ nnoremap K :m .-2<CR>==
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
+" Check and download vim-plug if necessary
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -91,6 +93,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-sensible'
 call plug#end()
 
 "Arpeggio
@@ -109,7 +112,7 @@ let g:bookmark_auto_save = 1
 let g:bookmark_center = 1
 
 "GitGutter
- let g:gitgutter_max_signs = 2000
+let g:gitgutter_max_signs = 2000
 
 "NERDTree
 nnoremap <silent> <F2> :NERDTreeToggle<CR>
