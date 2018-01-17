@@ -43,6 +43,7 @@ nnoremap ; :
 vnoremap ; :
 
 nnoremap <leader>w :w<cr>
+nnoremap <leader>wq :wq<cr>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>qq :q!<cr>
 nnoremap <C-h> <C-w>h
