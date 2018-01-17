@@ -15,6 +15,8 @@ install_packages_mac() {
         wget
         coreutils
         grep
+        vim
+        bash
     )
     declare -a PACKAGES_NEEDED
 
