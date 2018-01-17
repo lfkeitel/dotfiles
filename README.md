@@ -13,6 +13,7 @@ Configures:
 - Golang
 - System packages
 - NPM (prefix)
+- Vim
 
 ## TL;DR
 
@@ -41,3 +42,4 @@ Sections:
 `link` (link configuration files), `ext` (install extensions), or `all` (same as no argument, do everything).
 - `mac`
 - `npm`
+- `vim`
