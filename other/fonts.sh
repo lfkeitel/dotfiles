@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 system_type="$(uname)"
 
 echo "Install Inconsolata font"
