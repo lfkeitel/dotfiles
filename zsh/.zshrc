@@ -3,7 +3,11 @@ export LANG=en_US.UTF-8
 export EDITOR='vim'
 CUSTOM_HOOKS_PATH="$HOME/.local.zsh.d"
 CUSTOM_PATH_DIR="$CUSTOM_HOOKS_PATH/paths"
-GREP_CMD="$(whereis grep)"
+GREP_CMD=/bin/grep
+
+if [ "$(uname)" = "Darwin" ]; then
+    GREP_CMD="$(whereis grep)"
+fi
 
 run_custom_hooks() {
     setopt +o nomatch
