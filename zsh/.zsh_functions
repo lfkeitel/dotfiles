@@ -28,3 +28,17 @@ compdef _n_complete n
 
 alias notes='n'
 alias lsnotes='nls'
+
+maclookup() {
+    # I don't call curl by itself because a normal response will not return a newline
+    # but a failed response will. This removes any trailing whitespace and ensures
+    # there's always a new line.
+    echo $(curl -s "https://api.macvendors.com/$1")
+}
+
+sshsudo() {
+    ssh -t $1 sudo -i
+}
+alias sudossh='sshsudo'
+
+alias code.='code .'

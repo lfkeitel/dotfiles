@@ -33,7 +33,8 @@
         "*.tmpl": "gohtml",
         ".zsh_aliases": "shellscript",
         ".zsh_functions": "shellscript",
-        "*.exp": "tcl"
+        "*.exp": "tcl",
+        "*.js": "javascriptreact"
     },
     "[javascript]": {
         "editor.insertSpaces": true,
@@ -50,7 +51,6 @@
     "auto-rename-tag.activationOnLanguage": [
         "html",
         "xml",
-        "php",
         "javascript",
         "javascriptreact"
     ],
@@ -77,5 +77,23 @@
     "d.dfmtPath": "/home/lfkeitel/.vscode/extensions/webfreak.code-d-0.16.2/bin/dfmt/bin/dfmt",
     "d.dcdClientPath": "/home/lfkeitel/.vscode/extensions/webfreak.code-d-0.16.2/bin/DCD/bin/dcd-client",
     "d.dcdServerPath": "/home/lfkeitel/.vscode/extensions/webfreak.code-d-0.16.2/bin/DCD/bin/dcd-server",
-    "dfmt.braceStyle": "otbs"
+    "dfmt.braceStyle": "otbs",
+    "auto-close-tag.activationOnLanguage": [
+        "xml",
+        "php",
+        "blade",
+        "ejs",
+        "jinja",
+        "javascriptreact",
+        "typescriptreact",
+        "plaintext",
+        "markdown",
+        "vue",
+        "liquid",
+        "erb",
+        "lang-cfml",
+        "cfml"
+    ],
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true
 }

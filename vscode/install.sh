@@ -7,7 +7,7 @@ runInstall="no"
 runLinks="no"
 runExtInstall="no"
 
-[[ -z "$1" ]] && runInstall="yes" $$ runLinks="yes" && runExtInstall="yes"
+[[ -z "$1" ]] && runInstall="yes" && runLinks="yes" && runExtInstall="yes"
 [[ "$1" = "all" || "$1" = "install" ]] && runInstall="yes"
 [[ "$1" = "all" || "$1" = "link" ]] && runLinks="yes"
 [[ "$1" = "all" || "$1" = "ext" ]] && runExtInstall="yes"
@@ -31,6 +31,7 @@ if [[ $runLinks = "yes" ]]; then
         settingsPath="$HOME/Library/Application Support/Code/User"
     fi
 
+    mkdir -p "$settingsPath"
     ln -sfn "$DIR/settings.json" "$settingsPath/settings.json"
     ln -sfn "$DIR/keybindings.json" "$settingsPath/keybindings.json"
 
@@ -40,55 +41,8 @@ if [[ $runLinks = "yes" ]]; then
     ln -sfn "$DIR/snippets" "$settingsPath"
 fi
 
-# Install extensions
-vscode_exts=(
-    bungcip.better-toml
-    ms-vscode.cpptools
-    ms-vscode.csharp
-    akamud.vscode-caniuse
-    wesbos.theme-cobalt2
-    naumovs.color-highlight
-    anseki.vscode-color
-    msjsdiag.debugger-for-chrome
-    PeterJausovec.vscode-docker
-    EditorConfig.editorconfig
-    dbaeumer.vscode-eslint
-    donjayamanne.githistory
-    eamodio.gitlens
-    felipecaputo.git-project-manager
-    HookyQR.githubissues
-    lukehoban.go
-    casualjim.gotemplate
-    oderwat.indent-rainbow
-    wholroyd.jinja
-    redhat.java
-    Ionide.ionide-fsharp
-    lfkeitel.language-nitrogen
-    techer.open-in-browser
-    christian-kohler.path-intellisense
-    felixfbecker.php-intellisense
-    alefragnani.project-manager
-    ms-python.python
-    2gua.rainbow-brackets
-    kalitaalexey.vscode-rust
-    swyphcosmo.spellchecker
-    rashwell.tcl
-    eg2.tslint
-    robertohuertasm.vscode-icons
-    MattiasPernhult.vscode-todo
-    jsynowiec.vscode-insertdatestring
-    bibhasdn.unique-lines
-    formulahendry.auto-close-tag
-    sysoev.language-stylus
-    formulahendry.auto-rename-tag
-    webfreak.code-d
-    Asuka.insertnumbers
-    nmsmith89.incrementor
-    wix.vscode-import-cost
-)
-
 if [[ $runExtInstall = "yes" ]]; then
-    for ext in "${vscode_exts[@]}"; do
+    while read ext; do
         code --install-extension "$ext"
-    done
+    done <$DIR/extensions
 fi

@@ -1,6 +1,43 @@
 setopt autopushd
 export LANG=en_US.UTF-8
 export EDITOR='vim'
+CUSTOM_HOOKS_PATH="$HOME/.local.zsh.d"
+CUSTOM_PATH_DIR="$CUSTOM_HOOKS_PATH/paths"
+
+run_custom_hooks() {
+    setopt +o nomatch
+    local hook="$1"
+    if [ -d "$CUSTOM_HOOKS_PATH/$hook" ]; then
+        for s in $CUSTOM_HOOKS_PATH/$hook/*.zsh(N); do
+            source "$s"
+        done
+    fi
+    setopt -o nomatch
+}
+
+addtopath() {
+    if ! echo "$PATH" | /bin/grep -Eq "(^|:)$1($|:)"; then
+        if [ "$2" = "after" ]; then
+            PATH="$PATH:$1"
+        else
+            PATH="$1:$PATH"
+        fi
+    fi
+}
+
+PATH='/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'
+
+if [ -d "$CUSTOM_PATH_DIR" ]; then
+    for s in $CUSTOM_PATH_DIR/*(N); do
+        while read line; do
+            addtopath $line
+        done <$s
+    done
+fi
+
+run_custom_hooks pre
+
+run_custom_hooks pre-oh-my-zsh
 
 # Bring in Oh My ZSH!
 export ZSH=$HOME/.oh-my-zsh
@@ -9,43 +46,18 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(git common-aliases zsh-autosuggestions command-not-found docker sudo wd project docker-host)
 source $ZSH/oh-my-zsh.sh
 
-# Go paths
-export GOROOT="/usr/local/go"
-export GOPATH="$HOME/go"
-export GOBIN="$GOPATH/bin"
-export GOSRC="$GOPATH/src"
-
-# Add custom folders to PATH
-export PATH="$HOME/bin:$GOBIN:$GOROOT/bin:$PATH"
-
-if [ "$(uname)" = "Darwin" ]; then
-    export PATH="/usr/local/opt/gpg-agent/bin:$PATH" # gpg-agent
-    export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin" # VS Code
-fi
-
-# Start gpg-agent if it's not running
-if ! pidof gpg-agent > /dev/null; then
-    gpg-agent --homedir $HOME/.gnupg --daemon --sh --enable-ssh-support > $HOME/.gnupg/env
-fi
-if [ -f "$HOME/.gnupg/env" ]; then
-    source $HOME/.gnupg/env
-fi
-
-if [ "$(uname)" = "Darwin" ]; then
-    export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
-fi
+run_custom_hooks post-oh-my-zsh
 
 # Force better docker commands
 export DOCKER_HIDE_LEGACY_COMMANDS=1
 
-# Import aliases
+# Import extras
 source $HOME/.zsh_aliases
 source $HOME/.zsh_functions
 
-if [ -f "$HOME/.local.zsh" ]; then
-    source $HOME/.local.zsh
-fi
+run_custom_hooks post
 
 if [ -f "$HOME/.tnsrc" ]; then 
     source "$HOME/.tnsrc"
 fi
+
