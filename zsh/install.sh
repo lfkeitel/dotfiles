@@ -30,7 +30,7 @@ ZSH_CUSTOM="${ZSH_CUSTOM:-"$HOME/.oh-my-zsh/custom"}"
 
 # Update Oh My ZSH
 pushd "$HOME/.oh-my-zsh"
-git pull
+git pull --rebase --stat origin master
 popd
 
 # Install/update Plugins
