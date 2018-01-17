@@ -3,6 +3,7 @@ export LANG=en_US.UTF-8
 export EDITOR='vim'
 CUSTOM_HOOKS_PATH="$HOME/.local.zsh.d"
 CUSTOM_PATH_DIR="$CUSTOM_HOOKS_PATH/paths"
+GREP_CMD="$(whereis grep)"
 
 run_custom_hooks() {
     setopt +o nomatch
@@ -16,7 +17,7 @@ run_custom_hooks() {
 }
 
 addtopath() {
-    if ! echo "$PATH" | /bin/grep -Eq "(^|:)$1($|:)"; then
+    if ! echo "$PATH" | "$GREP_CMD" -Eq "(^|:)$1($|:)"; then
         if [ "$2" = "after" ]; then
             PATH="$PATH:$1"
         else
@@ -57,7 +58,6 @@ source $HOME/.zsh_functions
 
 run_custom_hooks post
 
-if [ -f "$HOME/.tnsrc" ]; then 
+if [ -f "$HOME/.tnsrc" ]; then
     source "$HOME/.tnsrc"
 fi
-
