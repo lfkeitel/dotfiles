@@ -40,6 +40,10 @@
         "editor.insertSpaces": true,
         "editor.tabSize": 2
     },
+    "[javascriptreact]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2
+    },
     "[yaml]": {
         "editor.insertSpaces": true,
         "editor.tabSize": 2
