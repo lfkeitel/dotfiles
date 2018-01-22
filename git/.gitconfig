@@ -15,6 +15,7 @@
   st = status -sb
   sum = log --oneline --no-merges
   unstage = reset HEAD
+  pushall = !git remote | xargs -L1 git push
 [branch]
   autosetuprebase = always
 [color]
