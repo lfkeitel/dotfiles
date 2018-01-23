@@ -56,6 +56,8 @@ run_custom_hooks post-oh-my-zsh
 # Force better docker commands
 export DOCKER_HIDE_LEGACY_COMMANDS=1
 
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+
 # Import extras
 source $HOME/.zsh_aliases
 source $HOME/.zsh_functions
