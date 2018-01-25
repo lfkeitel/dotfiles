@@ -1,8 +1,19 @@
 #!/usr/bin/env bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 system_type="$(uname)"
+linux_distro="$(gawk -F= '/^NAME/{print $2}' /etc/os-release 2>/dev/null | tr -d '"')"
 
 FORCE="$1"
+
+install_gpg_packages() {
+    if [[ $system_type = "Darwin" ]]; then
+        brew install gpg-agent gpg2 pidof
+    elif [[ $linux_distro = "Ubuntu" ]]; then
+        sudo apt install -y gnupg-agent gnupg2 pinentry-gtk2 scdaemon libccid pcscd libpcsclite1 gpgsm
+    elif [[ $linux_distro = "Fedora" ]]; then
+        sudo dnf install ykpers libyubikey gnupg gnupg2-smime pcsc-lite pcsc-lite-ccid
+    fi
+}
 
 echo "Setting up GPG agent"
 INSTALLED_FILE="$HOME/.gnupg/.dotfile-installed.3"
@@ -16,11 +27,7 @@ if [ -f "$INSTALLED_FILE" -a ! "$FORCE" = "force" ]; then
     exit
 fi
 
-# Install packages for gpg-agent and smartcards
-case "$system_type" in
-    Darwin) brew install gpg-agent gpg2 pidof;;
-    *)      sudo apt install -y gnupg-agent gnupg2 pinentry-gtk2 scdaemon libccid pcscd libpcsclite1 gpgsm;;
-esac
+install_gpg_packages
 mkdir -p "$HOME/.gnupg"
 ln -sfn "$DIR/gpg.conf" "$HOME/.gnupg/gpg.conf"
 if [[ $system_type = "Darwin" ]]; then

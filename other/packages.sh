@@ -34,23 +34,34 @@ install_packages_mac() {
     fi
 }
 
+LINUX_PACKAGES=(
+    vim
+    emacs
+    curl
+    zsh
+    vlc
+    git
+    htop
+    mousepad
+    tmux
+    xclip
+)
+
 install_packages_linux() {
-    PACKAGES=(
-        vim
-        emacs
-        curl
-        zsh
-        vlc
-        git
-        htop
-        mousepad
-        tmux
-        xclip
-    )
+    if [[ -n $(which apt) ]]; then
+        install_with_apt
+    elif [[ -n $(which dnf) ]]; then
+        install_with_dnf
+    else
+        echo "Unsupported package manager"
+    fi
+}
+
+install_with_apt() {
     INSTALLED_PACKAGES="$(apt list --installed 2>/dev/null)"
     declare -a PACKAGES_NEEDED
 
-    for PACKAGE in "${PACKAGES[@]}"; do
+    for PACKAGE in "${LINUX_PACKAGES[@]}"; do
         if [ -z "$(echo "$INSTALLED_PACKAGES" | grep "$PACKAGE/")" ]; then
             PACKAGES_NEEDED+=("$PACKAGE")
         fi
@@ -59,10 +70,14 @@ install_packages_linux() {
     # Install applications
     if [ ${#PACKAGES_NEEDED} -gt 0 ]; then
         printf "Installing: %s\n" "${PACKAGES_NEEDED[@]}"
-        sudo apt install "${PACKAGES_NEEDED[@]}"
+        sudo apt install -y "${PACKAGES_NEEDED[@]}"
     else
         echo "No packages need to be installed"
     fi
+}
+
+install_with_dnf() {
+    dnf install -y ${LINUX_PACKAGES[*]}
 }
 
 echo "Installing packages"

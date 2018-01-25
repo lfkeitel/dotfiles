@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 system_type="$(uname)"
+linux_distro="$(gawk -F= '/^NAME/{print $2}' /etc/os-release 2>/dev/null | tr -d '"')"
 
 echo "Install Inconsolata font"
 RELOAD_FONT=0
 
 library="/usr/local/share/fonts"
+if [[ $linux_distro = "Fedora" ]]; then
+    library="/usr/share/fonts"
+fi
 if [[ $system_type = "Darwin" ]]; then
     library="$HOME/Library/Fonts"
 fi

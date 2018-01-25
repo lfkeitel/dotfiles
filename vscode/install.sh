@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 system_type="$(uname)"
+linux_distro="$(gawk -F= '/^NAME/{print $2}' /etc/os-release 2>/dev/null | tr -d '"')"
 
 echo "Setting up Visual Studio Code"
 runInstall="no"
@@ -12,12 +13,16 @@ runExtInstall="no"
 [[ "$1" = "all" || "$1" = "link" ]] && runLinks="yes"
 [[ "$1" = "all" || "$1" = "ext" ]] && runExtInstall="yes"
 
+if [ "$(uname)" = 'Darwin' ]; then
+    addtopath vscode '/Applications/Visual Studio Code.app/Contents/Resources/app/bin'
+fi
+
 if [[ $runInstall = "yes" && -z "$(which code 2>/dev/null)" ]]; then
     if [[ $system_type = "Darwin" ]]; then
         # TODO: Install VSCode: http://commandlinemac.blogspot.com/2008/12/installing-dmg-application-from-command.html
         echo "Please install VS Code first"
         exit 1
-    else
+    elif [[ $linux_distro == "Ubuntu" ]]; then
         wget -O vscode.deb https://go.microsoft.com/fwlink/?LinkID=760868
         sudo dpkg -i vscode.deb
         sudo apt install -f
