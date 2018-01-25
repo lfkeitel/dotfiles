@@ -34,7 +34,8 @@
         ".zsh_aliases": "shellscript",
         ".zsh_functions": "shellscript",
         "*.exp": "tcl",
-        "*.js": "javascriptreact"
+        "*.js": "javascriptreact",
+        "*.el": "lisp"
     },
     "[javascript]": {
         "editor.insertSpaces": true,
