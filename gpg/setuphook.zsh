@@ -1,7 +1,4 @@
-if [ "$(uname)" = 'Darwin' ]; then
-    addtopath '/usr/local/opt/gpg-agent/bin' # gpg-agent
-    addtopath '/Applications/Visual Studio Code.app/Contents/Resources/app/bin' after # VS Code
-fi
+[ "$(uname)" = 'Darwin' ] && addtopath '/usr/local/opt/gpg-agent/bin'
 
 # Start gpg-agent if it's not running
 if ! pidof gpg-agent > /dev/null; then

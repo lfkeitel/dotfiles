@@ -2,7 +2,7 @@
 system_type="$(uname)"
 
 
-if [[ $system_type != "Darwin" ]]; then exit 0; fi
+[[ $system_type != "Darwin" ]] && exit 0
 
 # Setup Finder
 defaults write com.apple.finder AppleShowAllFiles YES

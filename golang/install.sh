@@ -35,9 +35,7 @@ install_golang() {
 
     GOPATH="$HOME/go"
 
-    mkdir -p "$GOPATH/src"
-    mkdir -p "$GOPATH/pkg"
-    mkdir -p "$GOPATH/bin"
+    mkdir -p "$GOPATH/{src,pkg,bin}"
 
     # Remove any archive packages from older version of Go
     rm -rf "$GOPATH/pkg/*"
