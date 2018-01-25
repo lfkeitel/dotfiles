@@ -5,7 +5,7 @@ GOROOT="/usr/local/go"
 
 install_golang() {
     echo "Installing Go"
-    GO_VERSION="1.9.2"
+    GO_VERSION="1.9.3"
     GO_INSTALLED="$($GOROOT/bin/go version 2> /dev/null | cut -d' ' -f3)"
 
     if [ "go$GO_VERSION" == "$GO_INSTALLED" ]; then
