@@ -42,12 +42,6 @@ install_packages_linux() {
         zsh
         vlc
         git
-        texlive-base
-        texlive-bibtex-extra
-        texlive-fonts-recommended
-        texlive-latex-base
-        texlive-latex-extra
-        texlive-latex-recommended
         htop
         mousepad
         tmux
