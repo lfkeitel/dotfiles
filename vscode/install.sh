@@ -23,10 +23,9 @@ if [[ $runInstall = "yes" && -z "$(which code 2>/dev/null)" ]]; then
         echo "Please install VS Code first"
         exit 1
     elif [[ $linux_distro == "Ubuntu" ]]; then
-        wget -O vscode.deb https://go.microsoft.com/fwlink/?LinkID=760868
-        sudo dpkg -i vscode.deb
-        sudo apt install -f
-        rm vscode.deb
+        curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+        sudo cp $DIR/vscode.list /etc/apt/sources.list.d/vscode.list
+        sudo apt update && sudo apt install -y code
     elif [[ $linux_distro == "Fedora" ]]; then
         sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
         sudo cp $DIR/vscode.repo /etc/yum.repos.d/vscode.repo
