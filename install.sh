@@ -3,6 +3,7 @@ set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 system_type="$(uname)"
 export TMP_PATHS_DIR='./tmp-paths'
+export DOTFILE_INSTALLER=1
 
 mkdir -p "$TMP_PATHS_DIR"
 
