@@ -18,13 +18,13 @@ install_gpg_packages() {
 echo "Setting up GPG agent"
 INSTALLED_FILE="$HOME/.gnupg/.dotfile-installed.3"
 
-if [ ! -e /usr/local/bin/gpg2 ]; then # Use macOS binary location for consistancy
-    sudo ln -s /usr/bin/gpg2 /usr/local/bin/gpg2
-fi
-
 if [ -f "$INSTALLED_FILE" -a ! "$FORCE" = "force" ]; then
     echo "GPG already setup"
     exit
+fi
+
+if [ ! -e /usr/local/bin/gpg2 ]; then # Use macOS binary location for consistancy
+    sudo ln -s /usr/bin/gpg2 /usr/local/bin/gpg2
 fi
 
 install_gpg_packages
@@ -42,6 +42,10 @@ chmod -R og-rwx "$HOME/.gnupg"
 gpg2 --recv-keys E638625F
 trust_str="$(gpg2 --list-keys --fingerprint | grep 'E638 625F' | tr -d '[:space:]' | cut -d'=' -f2 | awk '{ print $1 ":6:"}')"
 echo "$trust_str" | gpg2 --import-ownertrust
+
+if [[ $linux_distro == "Fedora" ]]; then
+    sudo mv /etc/xdg/autostart/gnome-keyring-ssh.desktop /etc/xdg/autostart/gnome-keyring-ssh.desktop.inactive
+fi
 
 # Idempotency
 rm -f $HOME/.gnupg/.dotfile-installed.*
