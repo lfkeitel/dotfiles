@@ -42,14 +42,17 @@ nnoremap <leader>l :source ~/.vimrc<cr>
 nnoremap ; :
 vnoremap ; :
 
-nnoremap <leader>w :w<cr>
-nnoremap <leader>wq :wq<cr>
+nnoremap <leader>w :wq<cr>
 nnoremap <leader>q :q<cr>
-nnoremap <leader>qq :q!<cr>
+nnoremap <leader>Q :q!<cr>
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+noremap <silent> <C-S> :update<CR>
+vnoremap <silent> <C-S> <C-C>:update<CR>
+inoremap <silent> <C-S> <C-O>:update<CR>
 
 nnoremap <leader>mm :!clear && make<cr>
 nnoremap <leader>mt :!clear && make test<cr>

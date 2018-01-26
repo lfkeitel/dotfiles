@@ -67,3 +67,6 @@ run_custom_hooks post
 if [ -f "$HOME/.tnsrc" ]; then
     source "$HOME/.tnsrc"
 fi
+
+# Allow Ctrl-S in vim
+stty -ixon
