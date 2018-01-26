@@ -48,9 +48,9 @@ LINUX_PACKAGES=(
 )
 
 install_packages_linux() {
-    if [[ -n $(which apt) ]]; then
+    if [[ -n $(which apt 2>/dev/null) ]]; then
         install_with_apt
-    elif [[ -n $(which dnf) ]]; then
+    elif [[ -n $(which dnf 2>/dev/null) ]]; then
         install_with_dnf
     else
         echo "Unsupported package manager"
@@ -76,8 +76,14 @@ install_with_apt() {
     fi
 }
 
+install_rpmfusion_repo() {
+    sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+}
+
 install_with_dnf() {
-    dnf install -y ${LINUX_PACKAGES[*]}
+    install_rpmfusion_repo
+    LINUX_PACKAGES+=('util-linux-user')
+    sudo dnf install -y ${LINUX_PACKAGES[*]}
 }
 
 echo "Installing packages"

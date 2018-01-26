@@ -72,8 +72,8 @@ installScripts['macos']=$DIR/other/macos.sh
 installScripts['vim']=$DIR/vim/install.sh
 
 run_all() {
-    ${installScripts['zsh']}
     ${installScripts['packages']}
+    ${installScripts['zsh']}
     ${installScripts['golang']}
     ${installScripts['fonts']}
     ${installScripts['git']}

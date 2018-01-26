@@ -15,6 +15,12 @@ Configures:
 - NPM (prefix)
 - Vim
 
+## Supported Systems
+
+- Ubuntu
+- Fedora
+- macOS
+
 ## TL;DR
 
 Run `./install.sh` from the repo root to install/configure the above.
@@ -22,11 +28,11 @@ Run `./install.sh` from the repo root to install/configure the above.
 ## Structure
 
 The main installer is `install.sh` at the root. Each configured system/section is in a separate script.
-If a system has a folder for configuration files, the installer is in that folder. Otherwise it's at
-the root. Each script can be called individually to install/configure only that section.
+If a system has a folder for configuration files, the installer is in that folder. Otherwise it's in
+`other`. DO NOT run an install script by itself. Use the root `install.sh` script with a section
+parameter to configure a single application.
 
-The installer can take an optional argument to run a specific installer without needing to know where
-the script is.
+The installer can take an optional argument to run a specific installer.
 
 Sections:
 

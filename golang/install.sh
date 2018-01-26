@@ -46,12 +46,12 @@ install_golang() {
 install_go_packages() {
     echo "Installing Go packages"
 
-    go get -u github.com/kardianos/govendor
-    go get -u github.com/nsf/gocode
-    go get -u golang.org/x/tools/cmd/goimports
-    go get -u github.com/tools/godep
-    go get -u github.com/golang/dep/cmd/dep
-    go get -u golang.org/x/tools/cmd/guru
+    $GOROOT/bin/go get -u github.com/kardianos/govendor
+    $GOROOT/bin/go get -u github.com/nsf/gocode
+    $GOROOT/bin/go get -u golang.org/x/tools/cmd/goimports
+    $GOROOT/bin/go get -u github.com/tools/godep
+    $GOROOT/bin/go get -u github.com/golang/dep/cmd/dep
+    $GOROOT/bin/go get -u golang.org/x/tools/cmd/guru
 }
 
 finish_install() {
