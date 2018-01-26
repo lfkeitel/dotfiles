@@ -77,11 +77,12 @@ install_with_apt() {
 }
 
 install_rpmfusion_repo() {
-    sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+    sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
 }
 
 install_with_dnf() {
     install_rpmfusion_repo
+    LINUX_PACKAGES+=('util-linux-user')
     sudo dnf install -y ${LINUX_PACKAGES[*]}
 }
 
