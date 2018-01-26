@@ -27,6 +27,9 @@ if [[ $runInstall = "yes" && -z "$(which code 2>/dev/null)" ]]; then
         sudo dpkg -i vscode.deb
         sudo apt install -f
         rm vscode.deb
+    else
+        echo 'Unsupported distribution'
+        exit 0
     fi
 fi
 

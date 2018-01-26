@@ -15,6 +15,11 @@ ln -sfn "$DIR/.zshrc" "$HOME/.zshrc"
 ln -sfn "$DIR/.zsh_aliases" "$HOME/.zsh_aliases"
 ln -sfn "$DIR/.zsh_functions" "$HOME/.zsh_functions"
 
+# If the folder exists, but the main script doesn't, remove everything to try again
+if [ -d "$HOME/.oh-my-zsh" -a ! -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
+    rm -rf "$HOME/.oh-my-zsh"
+fi
+
 # oh-my-zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
     echo "Installing oh-my-zsh"
