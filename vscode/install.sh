@@ -27,6 +27,10 @@ if [[ $runInstall = "yes" && -z "$(which code 2>/dev/null)" ]]; then
         sudo dpkg -i vscode.deb
         sudo apt install -f
         rm vscode.deb
+    elif [[ $linux_distro == "Fedora" ]]; then
+        sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+        sudo cp $DIR/vscode.repo /etc/yum.repos.d/vscode.repo
+        sudo dnf install -y code
     else
         echo 'Unsupported distribution'
         exit 0
