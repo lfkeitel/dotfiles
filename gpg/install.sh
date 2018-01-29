@@ -12,7 +12,7 @@ install_gpg_packages() {
     elif [[ $linux_distro = "Ubuntu" ]]; then
         sudo apt install -y gnupg-agent gnupg2 pinentry-gtk2 scdaemon libccid pcscd libpcsclite1 gpgsm
     elif [[ $linux_distro = "Fedora" ]]; then
-        sudo dnf install ykpers libyubikey gnupg gnupg2-smime pcsc-lite pcsc-lite-ccid
+        sudo dnf install -y ykpers libyubikey gnupg gnupg2-smime pcsc-lite pcsc-lite-ccid
     fi
 }
 
