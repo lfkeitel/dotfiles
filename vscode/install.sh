@@ -20,7 +20,7 @@ if ! cmd_exists code && [[ $runInstall = "yes" ]]; then
     if is_macos; then
         # TODO: Install VSCode: http://commandlinemac.blogspot.com/2008/12/installing-dmg-application-from-command.html
         echo "Please install VS Code first"
-        return 1
+        exit 1
     elif is_linux; then
         import_repo_key https://packages.microsoft.com/keys/microsoft.asc
         install_repo_list $DIR/vscode
@@ -28,7 +28,7 @@ if ! cmd_exists code && [[ $runInstall = "yes" ]]; then
         install_packages code
     else
         echo 'Unsupported distribution'
-        return 0
+        exit 0
     fi
 fi
 

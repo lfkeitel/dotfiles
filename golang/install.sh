@@ -11,7 +11,7 @@ install_golang() {
     if [ "go$GO_VERSION" == "$GO_INSTALLED" ]; then
         echo "Go is at requested version $GO_VERSION"
         finish_install
-        return
+        exit
     fi
 
     echo "Installed: $GO_INSTALLED"
@@ -19,7 +19,7 @@ install_golang() {
 
     if is_macos; then
         echo "macOS detected, please install/upgrade Go"
-        return
+        exit
     fi
 
     if [ ! -f "go$GO_VERSION.linux-amd64.tar.gz" ]; then

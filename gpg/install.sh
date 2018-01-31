@@ -19,7 +19,7 @@ INSTALLED_FILE="$HOME/.gnupg/.dotfile-installed.3"
 
 if [[ -f "$INSTALLED_FILE" && ! "$FORCE" = "force" ]]; then
     echo "GPG already setup"
-    return
+    exit
 fi
 
 if [[ ! -e /usr/local/bin/gpg2 ]]; then # Use macOS binary location for consistancy
