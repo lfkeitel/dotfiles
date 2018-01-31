@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-system_type="$(uname)"
-
+[[ $DOTFILE_INSTALLER != 1 ]] && exit 0
 install_packages_mac() {
     echo "Installing Homebrew"
 
@@ -87,7 +86,7 @@ install_with_dnf() {
 }
 
 echo "Installing packages"
-case "$system_type" in
+case "$SYSTEM_TYPE" in
     Darwin) install_packages_mac;;
     *)      install_packages_linux;;
 esac

@@ -14,6 +14,7 @@ Configures:
 - System packages
 - NPM (prefix)
 - Vim
+- Docker
 
 ## Supported Systems
 
@@ -49,3 +50,4 @@ Sections:
 - `mac`
 - `npm`
 - `vim`
+- `docker`

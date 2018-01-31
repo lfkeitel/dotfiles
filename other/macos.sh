@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
-system_type="$(uname)"
-
-
-[[ $system_type != "Darwin" ]] && exit 0
+[[ $DOTFILE_INSTALLER != 1 ]] && exit 0
+[[ $SYSTEM_TYPE != "Darwin" ]] && exit 0
 
 # Setup Finder
 defaults write com.apple.finder AppleShowAllFiles YES

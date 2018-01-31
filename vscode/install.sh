@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 [[ $DOTFILE_INSTALLER != 1 ]] && exit 0
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-system_type="$(uname)"
-linux_distro="$(gawk -F= '/^NAME/{print $2}' /etc/os-release 2>/dev/null | tr -d '"')"
 
 echo "Setting up Visual Studio Code"
 runInstall="no"
@@ -19,15 +17,15 @@ if [ "$(uname)" = 'Darwin' ]; then
 fi
 
 if [[ $runInstall = "yes" && -z "$(which code 2>/dev/null)" ]]; then
-    if [[ $system_type = "Darwin" ]]; then
+    if [[ $SYSTEM_TYPE = "Darwin" ]]; then
         # TODO: Install VSCode: http://commandlinemac.blogspot.com/2008/12/installing-dmg-application-from-command.html
         echo "Please install VS Code first"
         exit 1
-    elif [[ $linux_distro == "Ubuntu" ]]; then
+    elif [[ $LINUX_DISTRO == "Ubuntu" ]]; then
         curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
         sudo cp $DIR/vscode.list /etc/apt/sources.list.d/vscode.list
         sudo apt update && sudo apt install -y code
-    elif [[ $linux_distro == "Fedora" ]]; then
+    elif [[ $LINUX_DISTRO == "Fedora" ]]; then
         sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
         sudo cp $DIR/vscode.repo /etc/yum.repos.d/vscode.repo
         sudo dnf install -y code
@@ -39,7 +37,7 @@ fi
 
 if [[ $runLinks = "yes" ]]; then
     settingsPath="$HOME/.config/Code/User"
-    if [ "$system_type" = "Darwin" ]; then
+    if [ "$SYSTEM_TYPE" = "Darwin" ]; then
         settingsPath="$HOME/Library/Application Support/Code/User"
     fi
 

@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 [[ $DOTFILE_INSTALLER != 1 ]] && exit 0
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-system_type="$(uname)"
 GOROOT="/usr/local/go"
 
 install_golang() {
@@ -18,7 +17,7 @@ install_golang() {
     echo "Installed: $GO_INSTALLED"
     echo "Wanted:    go$GO_VERSION"
 
-    if [ "$system_type" = "Darwin" ]; then
+    if [ "$SYSTEM_TYPE" = "Darwin" ]; then
         echo "macOS detected, please install/upgrade Go"
         return
     fi

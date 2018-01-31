@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 [[ $DOTFILE_INSTALLER != 1 ]] && exit 0
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-system_type="$(uname)"
 
 pushd () {
     command pushd "$@" > /dev/null
@@ -27,7 +26,7 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
     "$DIR/install-oh-my-zsh.sh"
 
     # On Mac, set zsh as default
-    if [ "$system_type" = "Darwin" ]; then
+    if [ "$SYSTEM_TYPE" = "Darwin" ]; then
         sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
     fi
 fi

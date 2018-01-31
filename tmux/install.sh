@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+[[ $DOTFILE_INSTALLER != 1 ]] && exit 0
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 tmux_config="$DIR/.tmux-new.conf"
 
