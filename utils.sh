@@ -132,6 +132,17 @@ cmd_exists() {
 }
 export -f cmd_exists
 
+decrypt_to_file() {
+    IN="$1"
+    OUT="$2"
+
+    GPG_OUT="$(gpg2 --yes --output "$OUTPUT" -d "$DIR/servlist.conf.gpg" 2>&1)"
+    RET=$?
+    [[ $RET != 0 ]] && echo "$GPG_OUT"
+    return $RET
+}
+export -f decrypt_to_file
+
 show_banner() {
     show_multiline_banner "${@}"
 }

@@ -20,6 +20,7 @@ Automatic (just run install.sh):
 Manual (requires argument to install.sh):
 
 - Docker
+- Hexchat (Server list)
 
 ## Supported Systems
 
@@ -56,3 +57,4 @@ Sections:
 - `npm`
 - `vim`
 - `docker`
+- `hexchat`

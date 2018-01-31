@@ -19,6 +19,7 @@ installScripts['npm']=$DIR/npm/install.sh
 installScripts['macos']=$DIR/other/macos.sh
 installScripts['vim']=$DIR/vim/install.sh
 installScripts['docker']=$DIR/docker/install.sh
+installScripts['hexchat']=$DIR/hexchat/install.sh
 
 run_all() {
     ${installScripts['packages']} "${@}"
@@ -57,4 +58,5 @@ case "$1" in
     mac)        shift; ${installScripts['macos']} "${@}";;
     vim)        shift; ${installScripts['vim']} "${@}";;
     docker)     shift; ${installScripts['docker']} "${@}";;
+    hexchat)     shift; ${installScripts['hexchat']} "${@}";;
 esac
