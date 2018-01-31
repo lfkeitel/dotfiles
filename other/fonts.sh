@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 [[ $DOTFILE_INSTALLER != 1 ]] && exit 0
-echo "Install Inconsolata font"
+install_header "Install Inconsolata font"
 RELOAD_FONT=0
 
 library="/usr/local/share/fonts"

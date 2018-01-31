@@ -14,7 +14,7 @@ install_gpg_packages() {
     fi
 }
 
-echo "Setting up GPG agent"
+install_header "Setting up GPG agent"
 INSTALLED_FILE="$HOME/.gnupg/.dotfile-installed.3"
 
 if [[ -f "$INSTALLED_FILE" && ! "$FORCE" = "force" ]]; then

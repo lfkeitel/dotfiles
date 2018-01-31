@@ -4,21 +4,21 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 GOROOT="/usr/local/go"
 
 install_golang() {
-    echo "Installing Go"
+    install_header "Installing Go"
     GO_VERSION="1.9.3"
     GO_INSTALLED="$($GOROOT/bin/go version 2> /dev/null | cut -d' ' -f3)"
 
     if [ "go$GO_VERSION" == "$GO_INSTALLED" ]; then
-        echo "Go is at requested version $GO_VERSION"
+        show_colored_line_nl green "Go is at requested version $GO_VERSION"
         finish_install
         exit
     fi
 
-    echo "Installed: $GO_INSTALLED"
-    echo "Wanted:    go$GO_VERSION"
+    show_warning_msg "Installed: $GO_INSTALLED"
+    show_warning_msg "Wanted:    go$GO_VERSION"
 
     if is_macos; then
-        echo "macOS detected, please install/upgrade Go"
+        show_warning_msg "macOS detected, please install/upgrade Go"
         exit
     fi
 
@@ -44,8 +44,6 @@ install_golang() {
 }
 
 install_go_packages() {
-    echo "Installing Go packages"
-
     $GOROOT/bin/go get -u github.com/kardianos/govendor
     $GOROOT/bin/go get -u github.com/nsf/gocode
     $GOROOT/bin/go get -u golang.org/x/tools/cmd/goimports
@@ -57,7 +55,15 @@ install_go_packages() {
 finish_install() {
     addtopath go "$GOROOT/bin" # Go binary and tools
     addtopath go "$GOPATH/bin" # Installed Go programs
-    install_go_packages
+
+    show_colored_line magenta 'Installing Go packages'
+
+    (install_go_packages) &
+
+    echo -n -e `resolve_color_code magenta`
+    waiting_dots $!
+    echo -e ".Finished!\e[0m"
+
     add_zsh_hook 'post' '10-golang' "$DIR/setuphook.zsh"
 }
 

@@ -3,6 +3,9 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 is_linux || return
+
+install_header "Setting up Docker"
+
 if cmd_exists docker && [[ "$1" != 'force' ]]; then
     echo "Docker already installed, skipping"
     return

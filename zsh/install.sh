@@ -10,7 +10,7 @@ popd () {
     command popd "$@" > /dev/null
 }
 
-echo "Setting up ZSH"
+install_header "Setting up ZSH"
 ln -sfn "$DIR/.zshrc" "$HOME/.zshrc"
 ln -sfn "$DIR/.zsh_aliases" "$HOME/.zsh_aliases"
 ln -sfn "$DIR/.zsh_functions" "$HOME/.zsh_functions"

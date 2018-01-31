@@ -3,6 +3,8 @@ set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $DIR/utils.sh
 
+show_main_banner blue "Lee's Dotfiles"
+
 declare -A installScripts
 installScripts['zsh']=$DIR/zsh/install.sh
 installScripts['packages']=$DIR/other/packages.sh
@@ -19,40 +21,40 @@ installScripts['vim']=$DIR/vim/install.sh
 installScripts['docker']=$DIR/docker/install.sh
 
 run_all() {
-    ${installScripts['packages']}
-    ${installScripts['zsh']}
-    ${installScripts['golang']}
-    ${installScripts['fonts']}
-    ${installScripts['git']}
-    ${installScripts['tmux']}
-    ${installScripts['emacs']}
-    ${installScripts['gpg']}
-    ${installScripts['vscode']}
-    ${installScripts['npm']}
-    ${installScripts['vim']}
+    ${installScripts['packages']} "${@}"
+    ${installScripts['zsh']} "${@}"
+    ${installScripts['golang']} "${@}"
+    ${installScripts['fonts']} "${@}"
+    ${installScripts['git']} "${@}"
+    ${installScripts['tmux']} "${@}"
+    ${installScripts['emacs']} "${@}"
+    ${installScripts['gpg']} "${@}"
+    ${installScripts['vscode']} "${@}"
+    ${installScripts['npm']} "${@}"
+    ${installScripts['vim']} "${@}"
 
     if [ "$SYSTEM_TYPE" = 'Darwin' ]; then
-        ${installScripts['macos']}
+        ${installScripts['macos']} "${@}"
     fi
 }
 
 if [[ -z "$1" || "$1" = 'all' ]]; then
-    run_all
+    run_all "${@}"
     exit
 fi
 
 case "$1" in
-    zsh|shell)  shift; ${installScripts['zsh']} ${@};;
-    packages)   shift; ${installScripts['packages']} ${@};;
-    golang)     shift; ${installScripts['golang']} ${@};;
-    fonts)      shift; ${installScripts['fonts']} ${@};;
-    git)        shift; ${installScripts['git']} ${@};;
-    tmux)       shift; ${installScripts['tmux']} ${@};;
-    emacs)      shift; ${installScripts['emacs']} ${@};;
-    gpg)        shift; ${installScripts['gpg']} ${@};;
-    vscode)     shift; ${installScripts['vscode']} ${@};;
-    npm)        shift; ${installScripts['npm']} ${@};;
-    mac)        shift; ${installScripts['macos']} ${@};;
-    vim)        shift; ${installScripts['vim']} ${@};;
-    docker)     shift; ${installScripts['docker']} ${@};;
+    zsh|shell)  shift; ${installScripts['zsh']} "${@}";;
+    packages)   shift; ${installScripts['packages']} "${@}";;
+    golang)     shift; ${installScripts['golang']} "${@}";;
+    fonts)      shift; ${installScripts['fonts']} "${@}";;
+    git)        shift; ${installScripts['git']} "${@}";;
+    tmux)       shift; ${installScripts['tmux']} "${@}";;
+    emacs)      shift; ${installScripts['emacs']} "${@}";;
+    gpg)        shift; ${installScripts['gpg']} "${@}";;
+    vscode)     shift; ${installScripts['vscode']} "${@}";;
+    npm)        shift; ${installScripts['npm']} "${@}";;
+    mac)        shift; ${installScripts['macos']} "${@}";;
+    vim)        shift; ${installScripts['vim']} "${@}";;
+    docker)     shift; ${installScripts['docker']} "${@}";;
 esac

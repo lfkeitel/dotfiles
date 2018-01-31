@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 [[ $DOTFILE_INSTALLER != 1 ]] && exit 0
 install_packages_mac() {
-    echo "Installing Homebrew"
-
     if ! cmd_exists brew; then
+        echo "Installing Homebrew"
         /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     fi
 
@@ -85,7 +84,7 @@ install_with_dnf() {
     sudo dnf install -y ${LINUX_PACKAGES[*]}
 }
 
-echo "Installing packages"
+install_header "Installing packages"
 case "$SYSTEM_TYPE" in
     Darwin) install_packages_mac;;
     *)      install_packages_linux;;

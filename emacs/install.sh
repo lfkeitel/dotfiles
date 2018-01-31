@@ -2,7 +2,7 @@
 [[ $DOTFILE_INSTALLER != 1 ]] && exit 0
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-echo "Setting up Emacs"
+install_header "Setting up Emacs"
 mkdir -p "$HOME/.emacs.d"
 ln -sfn "$DIR/emacs/.emacs.d/config" "$HOME/.emacs.d/config"
 ln -sfn "$DIR/emacs/.emacs.d/lisp" "$HOME/.emacs.d/lisp"

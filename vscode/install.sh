@@ -2,7 +2,7 @@
 [[ $DOTFILE_INSTALLER != 1 ]] && exit 0
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-echo "Setting up Visual Studio Code"
+install_header "Setting up VS Code"
 runInstall="no"
 runLinks="no"
 runExtInstall="no"
@@ -49,7 +49,16 @@ if [[ $runLinks = "yes" ]]; then
 fi
 
 if [[ $runExtInstall = "yes" ]]; then
+    show_colored_line magenta 'Installing VSCode extensions'
+
+    (
     while read ext; do
-        code --install-extension "$ext"
+        OUTPUT="$(code --install-extension "$ext")"
+        [[ $? != 0 ]] && echo "$OUTPUT"
     done <$DIR/extensions
+    ) &
+
+    echo -n -e `resolve_color_code magenta`
+    waiting_dots $!
+    echo -e ".Finished!\e[0m"
 fi
