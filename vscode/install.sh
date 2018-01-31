@@ -7,37 +7,34 @@ runInstall="no"
 runLinks="no"
 runExtInstall="no"
 
-[[ -z "$1" ]] && runInstall="yes" && runLinks="yes" && runExtInstall="yes"
-[[ "$1" = "all" || "$1" = "install" ]] && runInstall="yes"
-[[ "$1" = "all" || "$1" = "link" ]] && runLinks="yes"
-[[ "$1" = "all" || "$1" = "ext" ]] && runExtInstall="yes"
+[[ -z "$1" || "$1" == "all" ]] && runInstall="yes" && runLinks="yes" && runExtInstall="yes"
+[[ "$1" = "install" ]] && runInstall="yes"
+[[ "$1" = "link" ]] && runLinks="yes"
+[[ "$1" = "ext" ]] && runExtInstall="yes"
 
-if [ "$(uname)" = 'Darwin' ]; then
+if is_macos; then
     addtopath vscode '/Applications/Visual Studio Code.app/Contents/Resources/app/bin'
 fi
 
-if [[ $runInstall = "yes" && -z "$(which code 2>/dev/null)" ]]; then
-    if [[ $SYSTEM_TYPE = "Darwin" ]]; then
+if ! cmd_exists code && [[ $runInstall = "yes" ]]; then
+    if is_macos; then
         # TODO: Install VSCode: http://commandlinemac.blogspot.com/2008/12/installing-dmg-application-from-command.html
         echo "Please install VS Code first"
-        exit 1
-    elif [[ $LINUX_DISTRO == "Ubuntu" ]]; then
-        curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-        sudo cp $DIR/vscode.list /etc/apt/sources.list.d/vscode.list
-        sudo apt update && sudo apt install -y code
-    elif [[ $LINUX_DISTRO == "Fedora" ]]; then
-        sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-        sudo cp $DIR/vscode.repo /etc/yum.repos.d/vscode.repo
-        sudo dnf install -y code
+        return 1
+    elif is_linux; then
+        import_repo_key https://packages.microsoft.com/keys/microsoft.asc
+        install_repo_list $DIR/vscode
+        update_package_lists
+        install_packages code
     else
         echo 'Unsupported distribution'
-        exit 0
+        return 0
     fi
 fi
 
 if [[ $runLinks = "yes" ]]; then
     settingsPath="$HOME/.config/Code/User"
-    if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+    if is_macos; then
         settingsPath="$HOME/Library/Application Support/Code/User"
     fi
 

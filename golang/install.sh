@@ -17,7 +17,7 @@ install_golang() {
     echo "Installed: $GO_INSTALLED"
     echo "Wanted:    go$GO_VERSION"
 
-    if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+    if is_macos; then
         echo "macOS detected, please install/upgrade Go"
         return
     fi

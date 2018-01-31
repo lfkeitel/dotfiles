@@ -26,7 +26,7 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
     "$DIR/install-oh-my-zsh.sh"
 
     # On Mac, set zsh as default
-    if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+    if is_macos; then
         sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
     fi
 fi
@@ -39,19 +39,20 @@ git pull --rebase --stat origin master
 popd
 
 # Install/update Plugins
-if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
-    git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
-fi
-pushd "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
-git pull
-popd
+install_zsh_plugin() {
+    local plugin_name="$1"
+    local remote_url="$2"
 
-if [ ! -d "$ZSH_CUSTOM/plugins/project" ]; then
-    git clone https://github.com/lfkeitel/project-list.git "$ZSH_CUSTOM/plugins/project"
-fi
-pushd "$ZSH_CUSTOM/plugins/project"
-git pull
-popd
+    if [ ! -d "$ZSH_CUSTOM/plugins/$plugin_name" ]; then
+        git clone $remote_url "$ZSH_CUSTOM/plugins/$plugin_name"
+    fi
+    pushd "$ZSH_CUSTOM/plugins/$plugin_name"
+    git pull
+    popd
+}
+
+install_zsh_plugin zsh-autosuggestions https://github.com/zsh-users/zsh-autosuggestions.git
+install_zsh_plugin project git clone https://github.com/lfkeitel/project-list.git
 
 mkdir -p "$ZSH_CUSTOM/plugins/docker-host"
 ln -sfn "$DIR/docker-host.sh" "$ZSH_CUSTOM/plugins/docker-host/docker-host.plugin.zsh"

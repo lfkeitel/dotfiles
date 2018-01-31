@@ -2,6 +2,8 @@
 
 Configures:
 
+Automatic (just run install.sh):
+
 - ZSH
 - Emacs
 - Git
@@ -14,6 +16,9 @@ Configures:
 - System packages
 - NPM (prefix)
 - Vim
+
+Manual (requires argument to install.sh):
+
 - Docker
 
 ## Supported Systems

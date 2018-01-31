@@ -4,10 +4,9 @@ echo "Install Inconsolata font"
 RELOAD_FONT=0
 
 library="/usr/local/share/fonts"
-if [[ $LINUX_DISTRO = "Fedora" ]]; then
+if is_fedora; then
     library="/usr/share/fonts"
-fi
-if [[ $SYSTEM_TYPE = "Darwin" ]]; then
+elif is_macos; then
     library="$HOME/Library/Fonts"
 fi
 
@@ -26,22 +25,22 @@ bold_font_powerline="https://github.com/powerline/fonts/raw/master/Inconsolata/I
 # If font doesn't exist, download to destination
 if [ ! -f $regular_font_out ]; then
     sudo wget -q --show-progress -O $regular_font_out $regular_font
-    if [[ $SYSTEM_TYPE != "Darwin" ]]; then RELOAD_FONT=1; fi
+    is_linux && RELOAD_FONT=1
 fi
 
 if [ ! -f $bold_font_out ]; then
     sudo wget -q --show-progress -O $bold_font_out $bold_font
-    if [[ $SYSTEM_TYPE != "Darwin" ]]; then RELOAD_FONT=1; fi
+    is_linux && RELOAD_FONT=1
 fi
 
 if [ ! -f $regular_font_powerline_out ]; then
     sudo wget -q --show-progress -O $regular_font_powerline_out $regular_font_powerline
-    if [[ $SYSTEM_TYPE != "Darwin" ]]; then RELOAD_FONT=1; fi
+    is_linux && RELOAD_FONT=1
 fi
 
 if [ ! -f $bold_font_powerline_out ]; then
     sudo wget -q --show-progress -O $bold_font_powerline_out $bold_font_powerline
-    if [[ $SYSTEM_TYPE != "Darwin" ]]; then RELOAD_FONT=1; fi
+    is_linux && RELOAD_FONT=1
 fi
 
 # Linux, reload font cache

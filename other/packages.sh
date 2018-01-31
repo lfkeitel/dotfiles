@@ -3,7 +3,7 @@
 install_packages_mac() {
     echo "Installing Homebrew"
 
-    if [ -z "$(which brew 2>/dev/null)" ]; then
+    if ! cmd_exists brew; then
         /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     fi
 
@@ -47,9 +47,9 @@ LINUX_PACKAGES=(
 )
 
 install_packages_linux() {
-    if [[ -n $(which apt 2>/dev/null) ]]; then
+    if is_ubuntu; then
         install_with_apt
-    elif [[ -n $(which dnf 2>/dev/null) ]]; then
+    elif is_fedora; then
         install_with_dnf
     else
         echo "Unsupported package manager"

@@ -1,68 +1,7 @@
 #!/usr/bin/env bash
 set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-export SYSTEM_TYPE="$(uname)"
-export TMP_PATHS_DIR='./tmp-paths'
-export DOTFILE_INSTALLER=1
-
-LINUX_DISTRO=""
-if [[ $SYSTEM_TYPE == "Linux" ]]; then
-    LINUX_DISTRO="$(gawk -F= '/^NAME/{print $2}' /etc/os-release 2>/dev/null | tr -d '"')"
-fi
-export LINUX_DISTRO
-
-mkdir -p "$TMP_PATHS_DIR"
-
-addtopath() {
-    module="$1"
-    path="$2"
-    pathfile="$TMP_PATHS_DIR/40-$module"
-
-    echo "$path" >> $pathfile
-}
-export -f addtopath
-
-add_zsh_hook() {
-    hook="$1"
-    hookname="$2"
-    hookfile="$3"
-
-    echo "Adding $hookname to ZSH $hook hooks"
-
-    mkdir -p "$HOME/.local.zsh.d/$hook"
-    ln -sfn "$hookfile" "$HOME/.local.zsh.d/$hook/$hookname.zsh"
-}
-export -f add_zsh_hook
-
-rm_zsh_hook() {
-    hook="$1"
-    hookname="$2"
-    hookpath="$HOME/.local.zsh.d/$hook/$hookname.zsh"
-
-    echo "Removing $hookname from ZSH $hook hooks"
-
-    [ -f "$hookpath" ] && rm -rf "$hookpath"
-}
-export -f rm_zsh_hook
-
-zsh_hook_exists() {
-    hook="$1"
-    hookname="$2"
-    hookpath="$HOME/.local.zsh.d/$hook/$hookname.zsh"
-
-    [ -f "$hookpath" ]
-    return $?
-}
-export -f zsh_hook_exists
-
-finish() {
-    file_count="$(ls -l $TMP_PATHS_DIR | wc -l)"
-    if [ -d "$HOME/.local.zsh.d/paths" -a $file_count -gt 1 ]; then
-        cp -r $TMP_PATHS_DIR/* "$HOME/.local.zsh.d/paths/"
-    fi
-    rm -rf "$TMP_PATHS_DIR"
-}
-trap finish EXIT
+source $DIR/utils.sh
 
 declare -A installScripts
 installScripts['zsh']=$DIR/zsh/install.sh
@@ -91,7 +30,6 @@ run_all() {
     ${installScripts['vscode']}
     ${installScripts['npm']}
     ${installScripts['vim']}
-    ${installScripts['docker']}
 
     if [ "$SYSTEM_TYPE" = 'Darwin' ]; then
         ${installScripts['macos']}
@@ -104,17 +42,17 @@ if [[ -z "$1" || "$1" = 'all' ]]; then
 fi
 
 case "$1" in
-    zsh|shell)  ${installScripts['zsh']};;
-    packages)   ${installScripts['packages']};;
-    golang)     ${installScripts['golang']};;
-    fonts)      ${installScripts['fonts']};;
-    git)        ${installScripts['git']};;
-    tmux)       ${installScripts['tmux']};;
-    emacs)      ${installScripts['emacs']};;
+    zsh|shell)  shift; ${installScripts['zsh']} ${@};;
+    packages)   shift; ${installScripts['packages']} ${@};;
+    golang)     shift; ${installScripts['golang']} ${@};;
+    fonts)      shift; ${installScripts['fonts']} ${@};;
+    git)        shift; ${installScripts['git']} ${@};;
+    tmux)       shift; ${installScripts['tmux']} ${@};;
+    emacs)      shift; ${installScripts['emacs']} ${@};;
     gpg)        shift; ${installScripts['gpg']} ${@};;
     vscode)     shift; ${installScripts['vscode']} ${@};;
-    npm)        ${installScripts['npm']};;
-    mac)        ${installScripts['macos']};;
-    vim)        ${installScripts['vim']};;
-    docker)        ${installScripts['docker']};;
+    npm)        shift; ${installScripts['npm']} ${@};;
+    mac)        shift; ${installScripts['macos']} ${@};;
+    vim)        shift; ${installScripts['vim']} ${@};;
+    docker)     shift; ${installScripts['docker']} ${@};;
 esac
