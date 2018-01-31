@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-system_type="$(uname)"
+export SYSTEM_TYPE="$(uname)"
 export TMP_PATHS_DIR='./tmp-paths'
 export DOTFILE_INSTALLER=1
+
+LINUX_DISTRO=""
+if [[ $SYSTEM_TYPE == "Linux" ]]; then
+    LINUX_DISTRO="$(gawk -F= '/^NAME/{print $2}' /etc/os-release 2>/dev/null | tr -d '"')"
+fi
+export LINUX_DISTRO
 
 mkdir -p "$TMP_PATHS_DIR"
 
@@ -71,6 +77,7 @@ installScripts['vscode']=$DIR/vscode/install.sh
 installScripts['npm']=$DIR/npm/install.sh
 installScripts['macos']=$DIR/other/macos.sh
 installScripts['vim']=$DIR/vim/install.sh
+installScripts['docker']=$DIR/docker/install.sh
 
 run_all() {
     ${installScripts['packages']}
@@ -84,8 +91,9 @@ run_all() {
     ${installScripts['vscode']}
     ${installScripts['npm']}
     ${installScripts['vim']}
+    ${installScripts['docker']}
 
-    if [ "$system_type" = 'Darwin' ]; then
+    if [ "$SYSTEM_TYPE" = 'Darwin' ]; then
         ${installScripts['macos']}
     fi
 }
@@ -108,4 +116,5 @@ case "$1" in
     npm)        ${installScripts['npm']};;
     mac)        ${installScripts['macos']};;
     vim)        ${installScripts['vim']};;
+    docker)        ${installScripts['docker']};;
 esac
