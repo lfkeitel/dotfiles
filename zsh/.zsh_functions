@@ -37,7 +37,7 @@ maclookup() {
 }
 
 sshsudo() {
-    ssh -t $1 sudo -i
+    ssh -t $1 sudo su
 }
 alias sudossh='sshsudo'
 
