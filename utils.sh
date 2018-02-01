@@ -133,10 +133,10 @@ cmd_exists() {
 export -f cmd_exists
 
 decrypt_to_file() {
-    IN="$1"
-    OUT="$2"
+    local IN="$1"
+    local OUT="$2"
 
-    GPG_OUT="$(gpg2 --yes --output "$OUTPUT" -d "$DIR/servlist.conf.gpg" 2>&1)"
+    GPG_OUT="$(gpg2 --yes --output "$OUT" -d "$IN" 2>&1)"
     RET=$?
     [[ $RET != 0 ]] && echo "$GPG_OUT"
     return $RET
