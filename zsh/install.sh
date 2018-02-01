@@ -52,7 +52,7 @@ install_zsh_plugin() {
 }
 
 install_zsh_plugin zsh-autosuggestions https://github.com/zsh-users/zsh-autosuggestions.git
-install_zsh_plugin project git clone https://github.com/lfkeitel/project-list.git
+install_zsh_plugin project https://github.com/lfkeitel/project-list.git
 
 mkdir -p "$ZSH_CUSTOM/plugins/docker-host"
 ln -sfn "$DIR/docker-host.sh" "$ZSH_CUSTOM/plugins/docker-host/docker-host.plugin.zsh"
