@@ -126,6 +126,21 @@ is_macos() {
 }
 export -f is_macos
 
+is_pkg_installed() {
+    if is_ubuntu; then
+        COUNT=$(apt list $1 2>/dev/null | grep installed | wc -l)
+        [[ $COUNT > 0 ]]
+        return $?
+    elif is_fedora; then
+        dnf list $1
+        return $?
+    elif is_macos; then
+        [[ -z "$(brew list $1 2>/dev/null)" ]]
+        return $?
+    fi
+}
+export -f is_pkg_installed
+
 cmd_exists() {
     which "$1" 2>/dev/null >/dev/null
     return $?
