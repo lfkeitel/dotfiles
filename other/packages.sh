@@ -43,6 +43,7 @@ LINUX_PACKAGES=(
     mousepad
     tmux
     xclip
+    haveged
 )
 
 install_packages_linux() {
