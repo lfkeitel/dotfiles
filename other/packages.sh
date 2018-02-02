@@ -44,6 +44,7 @@ LINUX_PACKAGES=(
     tmux
     xclip
     haveged
+    jq
 )
 
 install_packages_linux() {
@@ -53,7 +54,11 @@ install_packages_linux() {
         install_with_dnf
     else
         echo "Unsupported package manager"
+        return
     fi
+
+    sudo systemctl start haveged
+    sudo systemctl enable haveged
 }
 
 install_with_apt() {
