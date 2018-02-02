@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-source $DIR/utils.sh
+source "$DIR/utils/utils.sh"
 
 show_main_banner blue "Lee's Dotfiles"
 

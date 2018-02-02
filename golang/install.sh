@@ -58,7 +58,7 @@ finish_install() {
     addtopath go "$GOROOT/bin" # Go binary and tools
     addtopath go "$GOPATH/bin" # Installed Go programs
 
-    show_colored_line magenta 'Installing Go packages'
+    show_colored_line magenta 'Installing/updating Go packages'
 
     (install_go_packages) &
 
