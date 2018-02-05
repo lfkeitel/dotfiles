@@ -20,12 +20,4 @@ alias pwdu='du --max-depth=1 -h .'
 alias v2ssh='ssh -t alice ssh '
 alias kill-tmux-sessions='tmux list-sessions | grep -v attached | cut -d: -f1 |  xargs -t -n1 tmux kill-session -t'
 alias sudp='sudo'
-
-sys-upgrade() {
-    linux_distro="$(gawk -F= '/^NAME/{print $2}' /etc/os-release 2>/dev/null | tr -d '"')"
-    if [[ $linux_distro == "Ubuntu" ]]; then
-        sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
-    elif [[ $linux_distro == "Fedora" ]]; then
-        sudo dnf upgrade -y
-    fi
-}
+alias code.='code .'

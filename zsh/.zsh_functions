@@ -41,4 +41,22 @@ sshsudo() {
 }
 alias sudossh='sshsudo'
 
-alias code.='code .'
+sys-upgrade() {
+    linux_distro="$(gawk -F= '/^NAME/{print $2}' /etc/os-release 2>/dev/null | tr -d '"')"
+    if [[ $linux_distro == "Ubuntu" ]]; then
+        sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
+    elif [[ $linux_distro == "Fedora" ]]; then
+        sudo dnf upgrade -y
+    fi
+}
+
+gogithub() {
+    local repo="git@github.com:${1}.git"
+    local repo_path="$GOPATH/src/github.com/${1}"
+    local current_dir="$(pwd)"
+    repo_path="$(dirname $repo_path)"
+    mkdir -p $repo_path
+    cd $repo_path
+    git clone $repo
+    cd $current_dir
+}
