@@ -155,9 +155,9 @@ autocmd Filetype go setlocal noexpandtab
 autocmd Filetype nerdtree setlocal nohlsearch
 
 "Show invisible characters
-nnoremap <leader>v :setlocal list!<cr>
-set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
-set list
+"nnoremap <leader>v :setlocal list!<cr>
+"set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+"set list
 
 "Open NERDTree if no file was opened
 autocmd StdinReadPre * let s:std_in=1
