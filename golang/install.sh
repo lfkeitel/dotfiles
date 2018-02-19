@@ -2,6 +2,7 @@
 [[ $DOTFILE_INSTALLER != 1 ]] && exit 0
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 GOROOT="/usr/local/go"
+GOPATH="$HOME/go"
 
 install_golang() {
     install_header "Installing Go"
@@ -33,8 +34,6 @@ install_golang() {
     sudo tar -C /usr/local -xzf go$GO_VERSION.linux-amd64.tar.gz
     rm -f go$GO_VERSION.linux-amd64.tar.gz
 
-    GOPATH="$HOME/go"
-
     mkdir -p "$GOPATH/src"
     mkdir -p "$GOPATH/pkg"
     mkdir -p "$GOPATH/bin"
@@ -46,11 +45,10 @@ install_golang() {
 }
 
 install_go_packages() {
+    $GOROOT/bin/go get -u github.com/golang/dep/cmd/dep
     $GOROOT/bin/go get -u github.com/kardianos/govendor
     $GOROOT/bin/go get -u github.com/nsf/gocode
     $GOROOT/bin/go get -u golang.org/x/tools/cmd/goimports
-    $GOROOT/bin/go get -u github.com/tools/godep
-    $GOROOT/bin/go get -u github.com/golang/dep/cmd/dep
     $GOROOT/bin/go get -u golang.org/x/tools/cmd/guru
 }
 
