@@ -45,11 +45,17 @@ install_golang() {
 }
 
 install_go_packages() {
-    $GOROOT/bin/go get -u github.com/golang/dep/cmd/dep
-    $GOROOT/bin/go get -u github.com/kardianos/govendor
-    $GOROOT/bin/go get -u github.com/nsf/gocode
-    $GOROOT/bin/go get -u golang.org/x/tools/cmd/goimports
-    $GOROOT/bin/go get -u golang.org/x/tools/cmd/guru
+    get_go github.com/golang/dep/cmd/dep
+    get_go github.com/kardianos/govendor
+    get_go github.com/nsf/gocode
+    get_go golang.org/x/tools/cmd/goimports
+    get_go golang.org/x/tools/cmd/guru
+    get_go github.com/erning/gorun
+    get_go golang.org/x/vgo
+}
+
+get_go() {
+    $GOROOT/bin/go get -u "$1"
 }
 
 finish_install() {
@@ -63,6 +69,13 @@ finish_install() {
     echo -n -e `resolve_color_code magenta`
     waiting_dots $!
     echo -e ".Finished!\e[0m"
+
+    show_colored_line_nl magenta 'Setting up gorun bin fmt'
+
+    sudo mv $GOPATH/bin/gorun /usr/local/bin/
+    if [[ ! -f /proc/sys/fs/binfmt_misc/golang ]]; then
+        echo ':golang:E::go::/usr/local/bin/gorun:OC' | sudo tee /proc/sys/fs/binfmt_misc/register
+    fi
 
     add_zsh_hook 'post' '10-golang' "$DIR/setuphook.zsh"
 }
