@@ -1,0 +1,10 @@
+{
+	"ansible-managed": {
+		"prefix": "am",
+		"body": [
+			"# {{ ansible_managed }}",
+			"$0"
+		],
+		"description": "Add ansible_managed line to Jinja templates"
+	}
+}
