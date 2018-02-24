@@ -70,11 +70,13 @@ finish_install() {
     waiting_dots $!
     echo -e ".Finished!\e[0m"
 
-    show_colored_line_nl magenta 'Setting up gorun bin fmt'
+    if ! is_macos; then
+        show_colored_line_nl magenta 'Setting up gorun binfmt_misc'
 
-    sudo mv $GOPATH/bin/gorun /usr/local/bin/
-    if [[ ! -f /proc/sys/fs/binfmt_misc/golang ]]; then
-        echo ':golang:E::go::/usr/local/bin/gorun:OC' | sudo tee /proc/sys/fs/binfmt_misc/register
+        sudo mv $GOPATH/bin/gorun /usr/local/bin/
+        if [[ ! -f /proc/sys/fs/binfmt_misc/golang ]]; then
+            echo ':golang:E::go::/usr/local/bin/gorun:OC' | sudo tee /proc/sys/fs/binfmt_misc/register
+        fi
     fi
 
     add_zsh_hook 'post' '10-golang' "$DIR/setuphook.zsh"
