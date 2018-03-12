@@ -52,6 +52,7 @@ install_go_packages() {
     get_go golang.org/x/tools/cmd/guru
     get_go github.com/erning/gorun
     get_go golang.org/x/vgo
+    get_go github.com/go-bindata/go-bindata/...
 }
 
 get_go() {
