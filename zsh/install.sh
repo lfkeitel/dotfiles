@@ -75,3 +75,7 @@ if [ -f "$HOME/.local.zsh" ]; then
 fi
 
 addtopath 'zsh' "$HOME/bin"
+
+# Add auto-complete scripts
+mkdir -p "$HOME/.zsh"
+link_file "$DIR/completion" "$HOME/.zsh/completion"

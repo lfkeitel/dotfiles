@@ -68,5 +68,9 @@ if [ -f "$HOME/.tnsrc" ]; then
     source "$HOME/.tnsrc"
 fi
 
+# Setup auto-complete
+fpath=("$HOME/.zsh/completion" $fpath)
+autoload -Uz compinit && compinit -i
+
 # Allow Ctrl-S in vim
 stty -ixon
