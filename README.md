@@ -1,8 +1,12 @@
 # Lee's dotfiles
 
+## Requirements
+
+- [PowerShell Core](https://github.com/PowerShell/PowerShell)
+
 Configures:
 
-Automatic (just run install.sh):
+Automatic (just run install.ps1):
 
 - ZSH
 - Emacs
@@ -17,7 +21,7 @@ Automatic (just run install.sh):
 - NPM (prefix)
 - Vim
 
-Manual (requires argument to install.sh):
+Manual (requires argument to install.ps1):
 
 - Docker
 - Hexchat (Server list)
@@ -30,13 +34,13 @@ Manual (requires argument to install.sh):
 
 ## TL;DR
 
-Run `./install.sh` from the repo root to install/configure the above.
+Run `./install.ps1` from the repo root to install/configure the above.
 
 ## Structure
 
-The main installer is `install.sh` at the root. Each configured system/section is in a separate script.
+The main installer is `install.ps1` at the root. Each configured system/section is in a separate script.
 If a system has a folder for configuration files, the installer is in that folder. Otherwise it's in
-`other`. DO NOT run an install script by itself. Use the root `install.sh` script with a section
+`other`. DO NOT run an install script by itself. Use the root `install.ps1` script with a section
 parameter to configure a single application.
 
 The installer can take an optional argument to run a specific installer.
@@ -53,7 +57,7 @@ Sections:
 - `gpg` - Can take an optional argument of `force`.
 - `vscode` - Can take an optional second argument of `install` (install vscode, Linux only),
 `link` (link configuration files), `ext` (install extensions), or `all` (same as no argument, do everything).
-- `mac`
+- `mac` - Only runs on macOS
 - `npm`
 - `vim`
 - `docker`
