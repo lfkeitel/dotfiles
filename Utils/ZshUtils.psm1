@@ -11,7 +11,7 @@ function Add-ToPath ([string] $module, [string] $path) {
 
 function Add-ZshHook ([string] $hook, [string] $hookname, [string] $hookfile) {
     Write-Output "Adding $hookname to ZSH $hook hooks"
-    New-Item -ItemType Directory "$HOME/.local.zsh.d/$hook"
+    New-Item -ItemType Directory "$HOME/.local.zsh.d/$hook" -ErrorAction Ignore
     Add-FileLink $hookfile "$HOME/.local.zsh.d/$hook/$hookname.zsh"
 }
 

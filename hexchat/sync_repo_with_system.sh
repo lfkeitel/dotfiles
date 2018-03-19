@@ -11,3 +11,4 @@ copy_hexchat_config hexchat
 copy_hexchat_config ignore
 copy_hexchat_config notify
 copy_hexchat_config sound
+gpg --encrypt -r lee@keitel.xyz --armour -o $DIR/servlist.conf.gpg $HOME/.config/hexchat/servlist.con
