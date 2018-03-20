@@ -1,7 +1,6 @@
-#!/usr/bin/env bash
-[[ $DOTFILE_INSTALLER != 1 ]] && exit 0
-is_macos || exit 0
+#!/usr/bin/env pwsh
+if (!$IsMacOS) { return }
 
-# Setup Finder
+# Setup Finder to show all files
 defaults write com.apple.finder AppleShowAllFiles YES
 killall Finder /System/Library/CoreServices/Finder.app
