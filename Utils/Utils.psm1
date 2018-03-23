@@ -46,3 +46,8 @@ function Invoke-Command {
         ExitCode = $p.ExitCode
     }
 }
+
+function ExitWithCode ($exitcode) {
+    $host.SetShouldExit($exitcode)
+    exit
+}

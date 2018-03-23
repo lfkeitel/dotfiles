@@ -47,7 +47,7 @@ $Module = $Args[0]
 if ($InstallScripts.Contains($Module)) {
     $Installer = $InstallScripts.$Module
     if (Test-FileExists $Installer) {
-        pwsh $InstallScripts.$Module
+        pwsh $InstallScripts.$Module ($Args | Select-Object -Skip 1)
     } else {
         Write-Output "Module $Module doesn't have an install script yet."
     }
