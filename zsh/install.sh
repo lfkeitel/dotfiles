@@ -11,9 +11,9 @@ popd () {
 }
 
 install_header "Setting up ZSH"
-ln -sfn "$DIR/.zshrc" "$HOME/.zshrc"
-ln -sfn "$DIR/.zsh_aliases" "$HOME/.zsh_aliases"
-ln -sfn "$DIR/.zsh_functions" "$HOME/.zsh_functions"
+link_file "$DIR/.zshrc" "$HOME/.zshrc"
+link_file "$DIR/.zsh_aliases" "$HOME/.zsh_aliases"
+link_file "$DIR/.zsh_functions" "$HOME/.zsh_functions"
 
 # If the folder exists, but the main script doesn't, remove everything to try again
 if [ -d "$HOME/.oh-my-zsh" -a ! -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
@@ -35,7 +35,7 @@ ZSH_CUSTOM="${ZSH_CUSTOM:-"$HOME/.oh-my-zsh/custom"}"
 
 # Update Oh My ZSH
 pushd "$HOME/.oh-my-zsh"
-git pull --rebase --stat origin master
+git pull --rebase --stat origin master >/dev/null
 popd
 
 # Install/update Plugins
@@ -44,25 +44,28 @@ install_zsh_plugin() {
     local remote_url="$2"
 
     if [ ! -d "$ZSH_CUSTOM/plugins/$plugin_name" ]; then
-        git clone $remote_url "$ZSH_CUSTOM/plugins/$plugin_name"
+        show_colored_line_nl blue "Cloning ZSH plugin $plugin_name"
+        git clone $remote_url "$ZSH_CUSTOM/plugins/$plugin_name" >/dev/null
     fi
+    show_colored_line_nl yellow "Updating ZSH plugin $plugin_name"
     pushd "$ZSH_CUSTOM/plugins/$plugin_name"
-    git pull
+    git pull >/dev/null
     popd
 }
 
 install_zsh_plugin zsh-autosuggestions https://github.com/zsh-users/zsh-autosuggestions.git
 install_zsh_plugin project https://github.com/lfkeitel/project-list.git
+install_zsh_plugin you-should-use https://github.com/MichaelAquilina/zsh-you-should-use.git
 
 mkdir -p "$ZSH_CUSTOM/plugins/docker-host"
-ln -sfn "$DIR/docker-host.sh" "$ZSH_CUSTOM/plugins/docker-host/docker-host.plugin.zsh"
+link_file "$DIR/docker-host.sh" "$ZSH_CUSTOM/plugins/docker-host/docker-host.plugin.zsh"
 
 # Theme
 mkdir -p "$ZSH_CUSTOM/themes"
 if [ -h "$ZSH_CUSTOM/themes/gnzh.zsh-theme" ]; then # Remove this if once all machines have been updated
     rm "$ZSH_CUSTOM/themes/gnzh.zsh-theme"
 fi
-ln -sfn "$DIR/lfk.zsh-theme" "$ZSH_CUSTOM/themes/lfk.zsh-theme"
+link_file "$DIR/lfk.zsh-theme" "$ZSH_CUSTOM/themes/lfk.zsh-theme"
 
 # Setup hook system
 mkdir -p "$HOME/.local.zsh.d/pre"
