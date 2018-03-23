@@ -55,6 +55,7 @@ function Update-PackageLists {
 function Install-SystemPackages {
     if (Get-IsUbuntu) { sudo apt install -y @Args }
     elseif (Get-IsFedora) { sudo dnf install -y @Args }
+    elseif ($IsMacOS) { brew install -y @Args }
 }
 
 function Get-CommandExists ([string] $command) {

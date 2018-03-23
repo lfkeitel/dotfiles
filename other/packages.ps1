@@ -40,25 +40,15 @@ function Install-MacPackages {
 )
 
 function Install-LinuxPackages {
-    if (Get-IsUbuntu) { Install-WithApt }
-    elseif (Get-IsFedora) { Install-WithDnf }
-    else { Write-Output 'Unsupported package manager' }
+    if (Get-IsFedora) {
+        Install-SystemPackages "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
+        Install-SystemPackages $LinuxPackages 'util-linux-user'
+    } else {
+        Install-SystemPackages $LinuxPackages
+    }
 
     sudo systemctl start haveged
     sudo systemctl enable haveged
-}
-
-function Install-WithApt {
-    sudo apt install -y "$LinuxPackages"
-}
-
-function Install-RPMFusionRepo {
-    sudo dnf install -y "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
-}
-
-function Install-WithDnf {
-    Install-RPMFusionRepo
-    sudo dnf install -y $LinuxPackages 'util-linux-user'
 }
 
 Write-Header 'Installing packages'
