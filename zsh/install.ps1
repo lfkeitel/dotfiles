@@ -22,7 +22,7 @@ if (-not (Test-DirExists "$HOME/.oh-my-zsh")) {
     }
 }
 
-$ZSHCustom="$HOME/.oh-my-zsh/custom"
+$ZSHCustom = "$HOME/.oh-my-zsh/custom"
 
 # Update Oh My ZSH
 Push-Location "$HOME/.oh-my-zsh"
@@ -31,6 +31,7 @@ Pop-Location
 
 # Install/update Plugins
 function Install-ZSHPlugin ([string] $Plugin, [string] $Remote) {
+    Write-Output "Installing plugin $Plugin"
     if (-not (Test-DirExists "$ZSHCustom/plugins/$Plugin")) {
         git clone $Remote "$ZSHCustom/plugins/$Plugin"
     }

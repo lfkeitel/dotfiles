@@ -20,38 +20,44 @@ $InstallScripts = @{
     hexchat = (Join-Path (Get-Location) hexchat install.ps1)
 }
 
-if ($Args.Count -eq 0) {
-    # packages
-    # zsh
-    # golang
-    # fonts
-    # git
-    # tmux
-    # emacs
-    # gpg
-    # vscode
-    # npm
-    # vim
+$InstallerArgs = ($Args | Select-Object -Skip 1)
 
-    # if ($IsMacOS) {
-    #   macos
-    # }
-    Write-Output "Running all modules is not supported at this time."
-    exit 1
+function Run-Installer ([string] $Module) {
+    if ($InstallScripts.Contains($Module)) {
+        $Installer = $InstallScripts.$Module
+        if (Test-FileExists $Installer) {
+            pwsh $InstallScripts.$Module $InstallerArgs
+        } else {
+            Write-Output "Module $Module doesn't have an install script yet."
+        }
+    } else {
+        Write-Output "No installer for $Module."
+    }
 }
 
 Write-MainBanner "Lee's Dotfiles" Blue
+if ($Args.Count -eq 0) {
+    $Installers = @(
+        'packages'
+        'zsh'
+        'golang'
+        'fonts'
+        'git'
+        'tmux'
+        'emacs'
+        'gpg'
+        'vscode'
+        'npm'
+        'vim'
+    )
 
-$Module = $Args[0]
+    foreach ($Installer in $Installers) {
+        Run-Installer $Installer
+    }
 
-if ($InstallScripts.Contains($Module)) {
-    $Installer = $InstallScripts.$Module
-    if (Test-FileExists $Installer) {
-        pwsh $InstallScripts.$Module ($Args | Select-Object -Skip 1)
-    } else {
-        Write-Output "Module $Module doesn't have an install script yet."
+    if ($IsMacOS) {
+        Run-Installer macos
     }
 } else {
-    Write-Output "No installer for $Module."
-    exit 1
+    Run-Installer $Args[0]
 }
