@@ -40,8 +40,13 @@ function Install-ZSHPlugin ([string] $Plugin, [string] $Remote) {
     Pop-Location
 }
 
-Install-ZSHPlugin zsh-autosuggestions 'https://github.com/zsh-users/zsh-autosuggestions.git'
-Install-ZSHPlugin project 'https://github.com/lfkeitel/project-list.git'
+$ZSHPlugins = @{
+    'zsh-autosuggestions' = 'https://github.com/zsh-users/zsh-autosuggestions.git'
+    'project' = 'https://github.com/lfkeitel/project-list.git'
+    'you-should-use' = 'https://github.com/MichaelAquilina/zsh-you-should-use.git'
+}
+
+$ZSHPlugins.Keys | ForEach-Object { Install-ZSHPlugin $_ $ZSHPlugins.Item($_) }
 
 New-Directory "$ZSHCustom/plugins/docker-host"
 Add-FileLink "$PSScriptRoot/docker-host.sh" "$ZSHCustom/plugins/docker-host/docker-host.plugin.zsh"

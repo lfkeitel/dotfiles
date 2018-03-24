@@ -105,5 +105,8 @@
         "editor.insertSpaces": true,
         "editor.tabSize": 4
     },
-    "gitlens.keymap": "alternate"
+    "gitlens.keymap": "alternate",
+    "editor.renderWhitespace": "all",
+    "editor.renderControlCharacters": true,
+    "terminal.integrated.fontSize": 16
 }
