@@ -51,3 +51,7 @@ function ExitWithCode ($exitcode) {
     $host.SetShouldExit($exitcode)
     exit
 }
+
+function New-Directory ([string] $Dir) {
+    New-Item $Dir -ItemType Directory -Force | Out-Null
+}
