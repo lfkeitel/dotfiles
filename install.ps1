@@ -44,7 +44,6 @@ if ($Args.Count -eq 0) {
         'fonts'
         'git'
         'tmux'
-        'emacs'
         'gpg'
         'vscode'
         'npm'

@@ -4,12 +4,13 @@
 
 - [PowerShell Core](https://github.com/PowerShell/PowerShell)
 
-Configures:
+Use the `install-powershell.sh` script to install PowerShell.
 
-Automatic (just run install.ps1):
+## Applications
+
+### Automatic (just run install.ps1):
 
 - ZSH
-- Emacs
 - Git
 - GPG Agent
 - Tmux
@@ -21,8 +22,9 @@ Automatic (just run install.ps1):
 - NPM (prefix)
 - Vim
 
-Manual (requires argument to install.ps1):
+### Manual (requires argument to install.ps1):
 
+- Emacs
 - Docker
 - Hexchat (Server list)
 
@@ -36,23 +38,24 @@ Manual (requires argument to install.ps1):
 
 Run `./install.ps1` from the repo root to install/configure the above.
 
+Run `./installer.ps1 [application]` to run the installer for a specific application.
+
 ## Structure
 
-The main installer is `install.ps1` at the root. Each configured system/section is in a separate script.
-If a system has a folder for configuration files, the installer is in that folder. Otherwise it's in
-`other`. DO NOT run an install script by itself. Use the root `install.ps1` script with a section
-parameter to configure a single application.
+The main installer is `install.ps1` at the root. Each configured module/application is in a separate script.
+If a module has a folder for configuration files, the installer is in that folder. Otherwise it's in
+`other`. Scripts may be ran directly, but it's recommended to use the main installer instead.
 
 The installer can take an optional argument to run a specific installer.
 
-Sections:
+Applications:
 
 - `packages`
 - `golang` - Doesn't actually install Go on macOS. But it still installs development packages.
 - `fonts`
 - `git`
 - `tmux`
-- `zsh` or `shell`
+- `zsh`
 - `emacs`
 - `gpg` - Can take an optional argument of `force`.
 - `vscode` - Can take an optional second argument of `install` (install vscode, Linux only),
