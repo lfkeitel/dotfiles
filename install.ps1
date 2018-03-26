@@ -18,6 +18,7 @@ $InstallScripts = @{
     vim = (Join-Path (Get-Location) vim install.ps1)
     docker = (Join-Path (Get-Location) docker install.ps1)
     hexchat = (Join-Path (Get-Location) hexchat install.ps1)
+    powershell = (Join-Path (Get-Location) powershell install.ps1)
 }
 
 $InstallerArgs = ($Args | Select-Object -Skip 1)
@@ -40,6 +41,7 @@ if ($Args.Count -eq 0) {
     $Installers = @(
         'packages'
         'zsh'
+        'powershell'
         'golang'
         'fonts'
         'git'
