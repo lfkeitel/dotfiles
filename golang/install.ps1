@@ -10,7 +10,7 @@ function Install-Golang {
     $tarfile = "$GoVersion.linux-amd64.tar.gz"
 
     if ($GoVersion -eq $GoInstalled) {
-        Write-ColoredLineNl "Go is at requested version $GoInstalled" DarkGreen
+        Write-ColoredLine "Go is at requested version $GoInstalled" DarkGreen
         Finish-Install
         return
     }
@@ -69,12 +69,12 @@ function Finish-Install() {
     Add-ToPath go "$GoRoot/bin" # Go binary and tools
     Add-ToPath go "$GoPath/bin" # Installed Go programs
 
-    Write-ColoredLineNl 'Installing/updating Go packages' Magenta
+    Write-ColoredLine 'Installing/updating Go packages' Magenta
 
     Install-GoPackages
 
     if ($IsLinux) {
-        Write-ColoredLineNl 'Setting up gorun binfmt_misc' Magent
+        Write-ColoredLine 'Setting up gorun binfmt_misc' Magent
         sudo mv "$GoPath/bin/gorun" '/usr/local/bin/'
 
         if (!(Test-fileExists '/proc/sys/fs/binfmt_misc/golang')) {
