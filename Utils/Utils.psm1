@@ -55,3 +55,8 @@ function ExitWithCode ($exitcode) {
 function New-Directory ([string] $Dir) {
     New-Item $Dir -ItemType Directory -Force | Out-Null
 }
+
+function Get-Max ([int] $A, [int] $B) {
+    if ($A -gt $B) { return $A }
+    return $B
+}

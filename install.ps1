@@ -26,7 +26,7 @@ function Run-Installer ([string] $Module) {
     if ($InstallScripts.Contains($Module)) {
         $Installer = $InstallScripts.$Module
         if (Test-FileExists $Installer) {
-            pwsh $InstallScripts.$Module $InstallerArgs
+            & $InstallScripts.$Module $InstallerArgs
         } else {
             Write-Output "Module $Module doesn't have an install script yet."
         }
@@ -35,7 +35,7 @@ function Run-Installer ([string] $Module) {
     }
 }
 
-Write-MainBanner "Lee's Dotfiles" Blue
+Write-MainBanner "LEE'S DOTFILES" Blue
 if ($Args.Count -eq 0) {
     $Installers = @(
         'packages'

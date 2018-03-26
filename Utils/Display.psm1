@@ -17,28 +17,41 @@
 #  White
 
 $BannerPadding = 1
+$MinimumLength = 20
 
 function Write-Header ([string] $message) {
     Write-Banner $message DarkGreen
 }
 
 function Write-Banner ([string] $message, [ConsoleColor] $color = 'White') {
-    $BannerFril = "*" * ($message.Length + 4 + ($BannerPadding*2))
+    $Length = Get-Max $message.Length $MinimumLength
+    $BannerFril = "*" * ($Length + 4 + ($BannerPadding*2))
+    $ExtraPadding = Get-ExtraPadding $message
 
     Write-Host $BannerFril -ForegroundColor $color
-    Write-Host "** $message **" -ForegroundColor $color
+    Write-Host "** $message$ExtraPadding **" -ForegroundColor $color
     Write-Host $BannerFril -ForegroundColor $color
 }
 
 function Write-MainBanner ([string] $message, [ConsoleColor] $color = 'White') {
-    $BannerFril = "*" * ($message.Length + 4 + ($BannerPadding*2))
-    $BannerFrilSp = " " * $message.Length
+    $Length = Get-Max $message.Length $MinimumLength
+    $BannerFril = "*" * ($Length + 4 + ($BannerPadding*2))
+    $BannerFrilSp = " " * $Length
+    $ExtraPadding = Get-ExtraPadding $message
 
     Write-Host $BannerFril -ForegroundColor $color
     Write-Host "** $BannerFrilSp **" -ForegroundColor $color
-    Write-Host "** $message **" -ForegroundColor $color
+    Write-Host "** $message$ExtraPadding **" -ForegroundColor $color
     Write-Host "** $BannerFrilSp **" -ForegroundColor $color
     Write-Host $BannerFril -ForegroundColor $color
+}
+
+function Get-ExtraPadding ([string] $Message) {
+    $ExtraPadding = ''
+    if ($Message.Length -lt $MinimumLength) {
+        $ExtraPadding = " " * ($MinimumLength - $Message.Length)
+    }
+    return $ExtraPadding
 }
 
 function Write-ColoredLineNN ([string] $message, [ConsoleColor] $color = 'White') {
