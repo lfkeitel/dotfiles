@@ -3,6 +3,7 @@
   amend = commit --amend
   br = branch
   checkout-pr = "!f() { git fetch origin pull/$1/head:pr-$1 && git checkout pr-$1; }; f"
+  ca = commit -a
   cm = commit -m
   co = checkout
   dc = diff --cached
