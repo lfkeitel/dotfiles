@@ -24,6 +24,7 @@ Use the `install-powershell.sh` script to install PowerShell.
 
 ### Manual (requires argument to install.ps1):
 
+- Dart lang
 - Emacs
 - Docker
 - Hexchat (Server list)

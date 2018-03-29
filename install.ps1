@@ -19,6 +19,7 @@ $InstallScripts = @{
     docker = (Join-Path (Get-Location) docker install.ps1)
     hexchat = (Join-Path (Get-Location) hexchat install.ps1)
     powershell = (Join-Path (Get-Location) powershell install.ps1)
+    dart = (Join-Path (Get-Location) other dartlang.ps1)
 }
 
 $InstallerArgs = ($Args | Select-Object -Skip 1)
