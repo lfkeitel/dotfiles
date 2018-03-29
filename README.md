@@ -21,13 +21,14 @@ Use the `install-powershell.sh` script to install PowerShell.
 - System packages
 - NPM (prefix)
 - Vim
+- PowerShell
 
 ### Manual (requires argument to install.ps1):
 
 - Dart lang
 - Emacs
 - Docker
-- Hexchat (Server list)
+- Hexchat
 
 ## Supported Systems
 
@@ -39,7 +40,7 @@ Use the `install-powershell.sh` script to install PowerShell.
 
 Run `./install.ps1` from the repo root to install/configure the above.
 
-Run `./installer.ps1 [application]` to run the installer for a specific application.
+Run `./install.ps1 [application]` to run the installer for a specific application.
 
 ## Structure
 
@@ -52,17 +53,25 @@ The installer can take an optional argument to run a specific installer.
 Applications:
 
 - `packages`
-- `golang` - Doesn't actually install Go on macOS. But it still installs development packages.
+- `golang`
+    - Doesn't actually install Go on macOS. But it still installs development packages.
+    - `-Force` - Reinstall Go even if the required version is installed
 - `fonts`
 - `git`
 - `tmux`
 - `zsh`
 - `emacs`
-- `gpg` - Can take an optional argument of `force`.
-- `vscode` - Can take an optional second argument of `install` (install vscode, Linux only),
-`link` (link configuration files), `ext` (install extensions), or `all` (same as no argument, do everything).
+- `gpg`
+    - `-Force` - Setup GPG even if it's already done
+- `vscode`
+    - `-Install` - Install vscode, Linux only
+    - `-Link` - Link configuration files
+    - `-Ext` install extensions
 - `mac` - Only runs on macOS
 - `npm`
 - `vim`
 - `docker`
 - `hexchat`
+- `powershell`
+- `dart`
+    - `-Force` - Reinstall Go even if the required version is installed

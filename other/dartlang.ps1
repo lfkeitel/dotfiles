@@ -1,5 +1,16 @@
 #!/usr/bin/env pwsh
+Param(
+    [string]
+    $SettingsFile = (Join-Path $PSScriptRoot 'settings.json'),
+
+    [switch]
+    $Force
+)
+
 Import-Module (Join-Path $PSScriptRoot '..' Utils)
+$Settings = Get-JSONFile $SettingsFile
+
+Write-Header 'Install Dart lang'
 
 if ($IsMacOS) {
     brew tap dart-lang/dart
@@ -7,15 +18,13 @@ if ($IsMacOS) {
     return
 }
 
-Write-Header 'Install Dart lang'
-
-$DartVersion = '1.24.3'
+$DartVersion = $Settings.dart.version
 $SDKUrl = "https://storage.googleapis.com/dart-archive/channels/stable/release/$DartVersion/sdk/dartsdk-linux-x64-release.zip"
 $zipfile = 'dartsdk-linux-x64-release.zip'
-$DartRoot = '/usr/lib/dart'
+$DartRoot = $Settings.dart.dartroot
 $DartInstalled = (Invoke-Command "$DartRoot/bin/dart" "--version").StdErr.Split(' ')[3]
 
-if ($DartVersion -eq $DartInstalled) {
+if ((!$Force) -and ($DartVersion -eq $DartInstalled)) {
     Write-ColoredLine "Dart is at requested version $DartInstalled" DarkGreen
     return
 }

@@ -1,7 +1,14 @@
 #!/usr/bin/env pwsh
+if ($IsWindows) {
+    Write-Output "These dotfiles are written for Linux and macOS only"
+    return
+}
+
 Set-Location $PSScriptRoot
 
 Import-Module (Join-Path (Get-Location) Utils)
+
+$SettingsFile = (Join-Path (Get-Location) 'settings.json')
 
 $InstallScripts = @{
     zsh = (Join-Path (Get-Location) zsh install.ps1)
@@ -22,13 +29,13 @@ $InstallScripts = @{
     dart = (Join-Path (Get-Location) other dartlang.ps1)
 }
 
-$InstallerArgs = ($Args | Select-Object -Skip 1)
+$InstallerArgs = $Args[1..($Args.Length-1)]
 
 function Run-Installer ([string] $Module) {
     if ($InstallScripts.Contains($Module)) {
         $Installer = $InstallScripts.$Module
         if (Test-FileExists $Installer) {
-            & $InstallScripts.$Module $InstallerArgs
+            & $InstallScripts.$Module -SettingsFile $SettingsFile @InstallerArgs
         } else {
             Write-Output "Module $Module doesn't have an install script yet."
         }

@@ -1,5 +1,10 @@
 #!/usr/bin/env pwsh
+Param(
+    [string]
+    $SettingsFile = (Join-Path $PSScriptRoot 'settings.json')
+)
 Import-Module (Join-Path $PSScriptRoot '..' Utils)
+$Settings = Get-JSONFile $SettingsFile
 
 Write-Header 'Setting up ZSH'
 Add-FileLink "$PSScriptRoot/.zshrc" "$HOME/.zshrc"
@@ -40,13 +45,9 @@ function Install-ZSHPlugin ([string] $Plugin, [string] $Remote) {
     Pop-Location
 }
 
-$ZSHPlugins = @{
-    'zsh-autosuggestions' = 'https://github.com/zsh-users/zsh-autosuggestions.git'
-    'project' = 'https://github.com/lfkeitel/project-list.git'
-    'you-should-use' = 'https://github.com/MichaelAquilina/zsh-you-should-use.git'
+$Settings.zsh.plugins | ForEach-Object {
+    Install-ZSHPlugin $_.name $_.remote
 }
-
-$ZSHPlugins.Keys | ForEach-Object { Install-ZSHPlugin $_ $ZSHPlugins.Item($_) }
 
 New-Directory "$ZSHCustom/plugins/docker-host"
 Add-FileLink "$PSScriptRoot/docker-host.sh" "$ZSHCustom/plugins/docker-host/docker-host.plugin.zsh"

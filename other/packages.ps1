@@ -1,5 +1,11 @@
 #!/usr/bin/env pwsh
+Param(
+    [string]
+    $SettingsFile = (Join-Path $PSScriptRoot 'settings.json')
+)
+
 Import-Module (Join-Path $PSScriptRoot '..' Utils)
+$Settings = Get-JSONFile $SettingsFile
 
 function Install-Homebrew {
     if (!(Get-CommandExists brew)) {
@@ -10,41 +16,15 @@ function Install-Homebrew {
 
 function Install-MacPackages {
     Install-Homebrew
-
-    [string[]]$Packages = @(
-        'zsh',
-        'zsh-completions',
-        'tmux',
-        'wget',
-        'coreutils',
-        'grep',
-        'vim',
-        'bash'
-    )
-    brew install $Packages
+    brew install $Settings.packages.macos
 }
-
-[string[]]$LinuxPackages = @(
-    'zsh',
-    'tmux',
-    'vim',
-    'emacs',
-    'curl',
-    'vlc',
-    'git',
-    'htop',
-    'mousepad',
-    'xclip',
-    'haveged',
-    'jq'
-)
 
 function Install-LinuxPackages {
     if (Get-IsFedora) {
         Install-SystemPackages "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
-        Install-SystemPackages $LinuxPackages 'util-linux-user'
+        Install-SystemPackages $Settings.packages.linux 'util-linux-user'
     } else {
-        Install-SystemPackages $LinuxPackages
+        Install-SystemPackages $Settings.packages.linux
     }
 
     sudo systemctl start haveged

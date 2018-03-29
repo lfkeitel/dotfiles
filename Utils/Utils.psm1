@@ -73,3 +73,7 @@ function Get-RemoteFile ([string] $url, [string] $path, [switch] $silent) {
         Write-Output "Download took: $((Get-Date).Subtract($start_time).Seconds)s"
     }
 }
+
+function Get-JSONFile ([string] $File) {
+    return (Get-Content $File) | ConvertFrom-Json
+}

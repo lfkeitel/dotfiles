@@ -1,6 +1,0 @@
-Settings locations:
-
-Mac   $HOME/Library/Application Support/Code/User/settings.json
-Linux $HOME/.config/Code/User/settings.json
-
-Extension List: `code --install-extension <extension-id>`

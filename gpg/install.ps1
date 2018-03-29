@@ -1,9 +1,16 @@
 #!/usr/bin/env pwsh
+Param(
+    [string]
+    $SettingsFile = (Join-Path $PSScriptRoot 'settings.json'),
+
+    [switch]
+    $Force
+)
+
 Import-Module (Join-Path $PSScriptRoot '..' Utils)
+$Settings = Get-JSONFile $SettingsFile
 
 Write-Header 'Setting up GPG agent'
-
-$Force = ($Args.Count -gt 0 -and $Args[0] -eq 'force')
 
 function Install-GPGPackages {
     if ($IsMacOS) {
@@ -39,8 +46,8 @@ if ($IsMacOS) {
 chmod -R og-rwx "$HOME/.gnupg"
 
 # Import my public key and trust it ultimately
-gpg2 --recv-keys E638625F
-$Key = (gpg2 --list-keys --fingerprint | Where-Object{ $_ -match 'E638 625F' }).Trim().Replace(' ', '')
+gpg2 --recv-keys $Settings.gpg.key
+$Key = (gpg2 --list-keys --fingerprint | Where-Object{ $_ -match $Settings.gpg.key_formatted }).Trim().Replace(' ', '')
 $Key = "${Key}:6:"
 Write-Output "$Key" | gpg2 --import-ownertrust
 

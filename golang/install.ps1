@@ -1,16 +1,26 @@
 #!/usr/bin/env pwsh
+Param(
+    [string]
+    $SettingsFile = (Join-Path $PSScriptRoot 'settings.json'),
+
+    [switch]
+    $Force
+)
+
 Import-Module (Join-Path $PSScriptRoot '..' Utils)
-$GoRoot = "/usr/local/go"
+$Settings = Get-JSONFile $SettingsFile
+$GoRoot = $Settings.go.goroot
 $GoPath = "$HOME/go"
+$GoVersion = "go$($Settings.go.version)"
+
 
 function Install-Golang {
     Write-Header "Installing Go"
-    $GoVersion = "go1.10.1"
     $GoInstalled = (Invoke-Command "$GoRoot/bin/go" "version").StdOut.Split(' ')[2]
     $tarfile = "$GoVersion.linux-amd64.tar.gz"
     $url = "https://storage.googleapis.com/golang/$GoVersion.linux-amd64.tar.gz"
 
-    if ($GoVersion -eq $GoInstalled) {
+    if ((!$Force) -and ($GoVersion -eq $GoInstalled)) {
         Write-ColoredLine "Go is at requested version $GoInstalled" DarkGreen
         Finish-Install
         return
@@ -48,14 +58,7 @@ function Install-Golang {
 }
 
 function Install-GoPackages {
-    Get-GoPackage 'github.com/golang/dep/cmd/dep'
-    Get-GoPackage 'github.com/kardianos/govendor'
-    Get-GoPackage 'github.com/nsf/gocode'
-    Get-GoPackage 'golang.org/x/tools/cmd/goimports'
-    Get-GoPackage 'golang.org/x/tools/cmd/guru'
-    Get-GoPackage 'github.com/erning/gorun'
-    Get-GoPackage 'golang.org/x/vgo'
-    Get-GoPackage 'github.com/go-bindata/go-bindata/...'
+    $Settings.go.packages | ForEach-Object { Get-GoPackage $_ }
 }
 
 function Get-GoPackage ([string] $Package) {

@@ -1,42 +1,57 @@
 #!/usr/bin/env pwsh
+Param(
+    [string]
+    $SettingsFile = (Join-Path $PSScriptRoot 'settings.json'),
+
+    [alias("Install")]
+    [switch]
+    $RunInstall,
+
+    [alias("Link")]
+    [switch]
+    $RunLinks,
+
+    [alias("Ext")]
+    [switch]
+    $RunExtInstall
+)
+
 Import-Module (Join-Path $PSScriptRoot '..' Utils)
 
 Write-Header 'Setting up VS Code'
-$RunInstall = $false
-$RunLinks = $false
-$RunExtInstall = $false
+$Settings = Get-JSONFile $SettingsFile
 
-if ($Args.Count -eq 0 -or $Args[0] -eq 'all') {
+if (!$RunInstall -and !$RunLinks -and !$RunExtInstall) {
     $RunInstall = $true
     $RunLinks = $true
     $RunExtInstall = $true
-}
-switch ($Args[0]) {
-    'install' { $RunInstall = $true }
-    'link' { $RunLinks = $true }
-    'ext' { $RunLinks = $true }
 }
 
 if ($IsMacOS) {
     Add-ToPath vscode '/Applications/Visual Studio Code.app/Contents/Resources/app/bin'
 }
 
-if ($RunInstall -and -not (Get-CommandExists code)) {
-    if ($IsMacOS) {
-        Write-Output 'Please install VS Code first'
-        ExitWithCode 1
-    } elseif ($IsLinux) {
-        Import-RepoKey 'https://packages.microsoft.com/keys/microsoft.asc'
-        Install-RepoList $DIR/vscode
-        Update-PackageLists
-        Install-SystemPackages code
+if ($RunInstall) {
+    if (Get-CommandExists code) {
+        Write-ColoredLine 'VSCode already installed, update through the package manager' Magenta
     } else {
-        Write-Output 'Unsupported distribution'
-        return
+        if ($IsMacOS) {
+            Write-Output 'Please install VS Code first'
+            ExitWithCode 1
+        } elseif ($IsLinux) {
+            Import-RepoKey 'https://packages.microsoft.com/keys/microsoft.asc'
+            Install-RepoList $DIR/vscode
+            Update-PackageLists
+            Install-SystemPackages code
+        } else {
+            Write-Output 'Unsupported distribution'
+            return
+        }
     }
 }
 
 if ($RunLinks) {
+    Write-ColoredLine 'Linking VSCode Settings' Magenta
     $SettingsPath = "$HOME/.config/Code/User"
     if ($IsMacOS) {
         $SettingsPath = "$HOME/Library/Application Support/Code/User"
@@ -53,9 +68,9 @@ if ($RunLinks) {
 }
 
 if ($RunExtInstall) {
-    Write-Banner 'Installing VSCode extensions' Magenta
+    Write-ColoredLine 'Installing VSCode Extensions' Magenta
 
-    Get-Content "$PSScriptRoot/extensions" | ForEach-Object {
+    $Settings.vscode.extensions | ForEach-Object {
         code --install-extension $_
     }
 }

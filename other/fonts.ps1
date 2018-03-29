@@ -1,5 +1,11 @@
 #!/usr/bin/env pwsh
+Param(
+    [string]
+    $SettingsFile = (Join-Path $PSScriptRoot 'settings.json')
+)
+
 Import-Module (Join-Path $PSScriptRoot '..' Utils)
+$Settings = Get-JSONFile $SettingsFile
 
 Write-Header 'Install Inconsolata font'
 $ReloadFont = $false
@@ -11,18 +17,6 @@ if (Get-IsFedora) {
     $Library = "$HOME/Library/Fonts"
 }
 
-# Destination paths
-$regular_font_out = "$Library/Inconsolata-Regular.ttf"
-$bold_font_out = "$Library/Inconsolata-Bold.ttf"
-$regular_font_powerline_out = "$Library/Inconsolata-Powerline-Regular.ttf"
-$bold_font_powerline_out = "$Library/Inconsolata-Powerline-Bold.ttf"
-
-# Source paths
-$regular_font = "https://github.com/google/fonts/raw/master/ofl/inconsolata/Inconsolata-Regular.ttf"
-$bold_font = "https://github.com/google/fonts/raw/master/ofl/inconsolata/Inconsolata-Bold.ttf"
-$regular_font_powerline = "https://github.com/powerline/fonts/raw/master/Inconsolata/Inconsolata%20for%20Powerline.otf"
-$bold_font_powerline = "https://github.com/powerline/fonts/raw/master/Inconsolata/Inconsolata%20Bold%20for%20Powerline.ttf"
-
 function Install-Font ([string] $url, [string] $out) {
     if (!(Test-FileExists $out)) {
         sudo wget -q --show-progress -O $out $url
@@ -30,11 +24,9 @@ function Install-Font ([string] $url, [string] $out) {
     }
 }
 
-# If font doesn't exist, download to destination
-Install-Font $regular_font $regular_font_out
-Install-Font $bold_font $bold_font_out
-Install-Font $regular_font_powerline $regular_font_powerline_out
-Install-Font $bold_font_powerline $bold_font_powerline_out
+$Settings.fonts | ForEach-Object {
+    Install-Font $_.remote "$Library/$($_.name)"
+}
 
 # Linux, reload font cache
 if ($ReloadFont) {
