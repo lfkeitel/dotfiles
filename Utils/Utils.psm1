@@ -60,3 +60,16 @@ function Get-Max ([int] $A, [int] $B) {
     if ($A -gt $B) { return $A }
     return $B
 }
+
+function Get-RemoteFile ([string] $url, [string] $path, [switch] $silent) {
+    if (!$silent) {
+        Write-Output "Downloading $url"
+    }
+
+    $start_time = Get-Date
+    (New-Object System.Net.WebClient).DownloadFile($url, $path)
+
+    if (!$silent) {
+        Write-Output "Download took: $((Get-Date).Subtract($start_time).Seconds)s"
+    }
+}
