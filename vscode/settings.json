@@ -108,5 +108,9 @@
     "gitlens.keymap": "alternate",
     "editor.renderWhitespace": "all",
     "editor.renderControlCharacters": true,
-    "terminal.integrated.fontSize": 16
+    "terminal.integrated.fontSize": 16,
+    "dart.allowAnalytics": false,
+    "dart.lineLength": 120,
+    "dart.reportAnalyzerErrors": false,
+    "dart.showLintNames": true
 }
