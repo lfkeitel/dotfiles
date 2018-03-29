@@ -46,13 +46,29 @@ function Install-RepoList ([string] $RepoFileBase) {
     sudo chmod 0644 $RepoDir/$RepoFileBaseName
 }
 
+function Install-RemoteRepoList ([string] $url) {
+    $RepoFile = (Split-Path -Path $url -Leaf)
+
+    $RepoDir = '/etc/apt/sources.list.d'
+    if (Get-IsFedora) {
+        $RepoDir = '/etc/yum.repos.d'
+    }
+
+    $TempFile = ([System.IO.Path]::GetTempFileName())
+    (New-Object System.Net.WebClient).DownloadFile($url, $TempFile)
+    sudo mv $TempFile $RepoDir/$RepoFile
+    sudo chown root:root $RepoDir/$RepoFile
+    sudo chmod 0644 $RepoDir/$RepoFile
+}
+
 function Update-PackageLists {
     if (Get-IsUbuntu) {
         sudo apt update
     }
 }
 
-function Install-SystemPackages {
+function Install-SystemPackages ([switch] $Update) {
+    if ($Update) { Update-PackageLists }
     if (Get-IsUbuntu) { sudo apt install -y @Args }
     elseif (Get-IsFedora) { sudo dnf install -y @Args }
     elseif ($IsMacOS) { brew install -y @Args }

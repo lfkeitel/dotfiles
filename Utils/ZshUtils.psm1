@@ -1,12 +1,16 @@
 $NewPaths = @{}
 
 function Add-ToPath ([string] $module, [string] $path) {
+    Write-Output "Adding path for $module to $path"
     $module = "40-$module"
     if (!$NewPaths.Contains($module)) {
-        $newPaths.Add($module, @())
+        $NewPaths.Add($module, (New-Object System.Collections.ArrayList($null)))
     }
+    Write-Output $NewPaths
 
-    $NewPaths.$module += $path
+    ($NewPaths[$module]).Add($path)
+    Write-Output $NewPaths
+    Write-Output $NewPaths.Keys
 }
 
 function Add-ZshHook ([string] $hook, [string] $hookname, [string] $hookfile) {
@@ -24,10 +28,14 @@ function Get-ZshHookExists ([string] $hook, [string] $hookname) {
     return (Test-Path "$HOME/.local.zsh.d/$hook/$hookname.zsh" -PathType Leaf)
 }
 
-Register-EngineEvent -SourceIdentifier PowerShell.Exiting -Action {
+function Write-PathData {
     if (Test-DirExists "$HOME/.local.zsh.d/paths") {
         $NewPaths.Keys | ForEach-Object {
             Write-Output $NewPaths.Item($_) | Out-File "$HOME/.local.zsh.d/paths/$_"
         }
     }
+}
+
+Register-EngineEvent -SourceIdentifier PowerShell.Exiting -Action {
+    Write-PathData
 }
