@@ -36,10 +36,9 @@ maclookup() {
     echo $(curl -s "https://api.macvendors.com/$1")
 }
 
-sshsudo() {
+sudossh() {
     ssh -t $1 sudo su
 }
-alias sudossh='sshsudo'
 
 sys-upgrade() {
     linux_distro="$(gawk -F= '/^NAME/{print $2}' /etc/os-release 2>/dev/null | tr -d '"')"
