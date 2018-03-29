@@ -1,16 +1,11 @@
 $NewPaths = @{}
 
 function Add-ToPath ([string] $module, [string] $path) {
-    Write-Output "Adding path for $module to $path"
     $module = "40-$module"
     if (!$NewPaths.Contains($module)) {
         $NewPaths.Add($module, (New-Object System.Collections.ArrayList($null)))
     }
-    Write-Output $NewPaths
-
-    ($NewPaths[$module]).Add($path)
-    Write-Output $NewPaths
-    Write-Output $NewPaths.Keys
+    ($NewPaths[$module]).Add($path) | Out-Null # Add returns the inserted index, ignore it
 }
 
 function Add-ZshHook ([string] $hook, [string] $hookname, [string] $hookfile) {
