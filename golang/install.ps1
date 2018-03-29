@@ -5,9 +5,10 @@ $GoPath = "$HOME/go"
 
 function Install-Golang {
     Write-Header "Installing Go"
-    $GoVersion = "go1.10"
+    $GoVersion = "go1.10.1"
     $GoInstalled = (Invoke-Command "$GoRoot/bin/go" "version").StdOut.Split(' ')[2]
     $tarfile = "$GoVersion.linux-amd64.tar.gz"
+    $url = "https://storage.googleapis.com/golang/$GoVersion.linux-amd64.tar.gz"
 
     if ($GoVersion -eq $GoInstalled) {
         Write-ColoredLine "Go is at requested version $GoInstalled" DarkGreen
@@ -24,8 +25,7 @@ function Install-Golang {
     }
 
     if (!(Test-FileExists $tarfile)) {
-        $url = "https://storage.googleapis.com/golang/$GoVersion.linux-amd64.tar.gz"
-        (New-Object System.Net.WebClient).DownloadFile($url, $tarfile)
+        Get-RemoteFile $url $tarfile
     }
 
     if (Test-DirExists $GoRoot) {
