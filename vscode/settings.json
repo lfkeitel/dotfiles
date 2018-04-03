@@ -73,6 +73,8 @@
         "suppressGitVersionWarning": false,
         "suppressLineUncommittedWarning": false,
         "suppressNoRepositoryWarning": false,
+        "suppressResultsExplorerNotice": false,
+        "suppressShowKeyBindingsNotice": true,
         "suppressUpdateNotice": true,
         "suppressWelcomeNotice": true
     },
@@ -105,12 +107,13 @@
         "editor.insertSpaces": true,
         "editor.tabSize": 4
     },
-    "gitlens.keymap": "alternate",
+    "gitlens.keymap": "none",
     "editor.renderWhitespace": "all",
     "editor.renderControlCharacters": true,
     "terminal.integrated.fontSize": 16,
     "dart.allowAnalytics": false,
     "dart.lineLength": 120,
     "dart.reportAnalyzerErrors": false,
-    "dart.showLintNames": true
+    "dart.showLintNames": true,
+    "ledger.binary": "/usr/bin/ledger"
 }

@@ -138,7 +138,8 @@
             "mattn.lisp",
             "ms-vscode.powershell",
             "Dart-Code.dart-code",
-            "formulahendry.code-runner"
+            "formulahendry.code-runner",
+            "mariosangiorgio.ledger"
         ]
     }
 }
