@@ -26,3 +26,6 @@ alias zrcs='source $HOME/.zshrc'
 
 alias gs='git status'
 alias gds='git diff --staged'
+
+alias socksproxy='ssh -C -N -D'
+alias socksproxyf='ssh -f -C -N -D'
