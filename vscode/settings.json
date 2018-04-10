@@ -115,5 +115,8 @@
     "dart.lineLength": 120,
     "dart.reportAnalyzerErrors": false,
     "dart.showLintNames": true,
-    "ledger.binary": "/usr/bin/ledger"
+    "ledger.binary": "/usr/bin/ledger",
+    "restructuredtext.linter.extraArgs": [
+        "--ignore D001"
+    ]
 }
