@@ -1,7 +1,7 @@
 {
     "explorer.openEditors.visible": 0,
     "files.exclude": {
-        "**/.git": false,
+        "**/.git": true,
         "**/.svn": true,
         "**/.hg": true,
         "**/CVS": true,
@@ -118,5 +118,6 @@
     "ledger.binary": "/usr/bin/ledger",
     "restructuredtext.linter.extraArgs": [
         "--ignore D001"
-    ]
+    ],
+    "powershell.integratedConsole.showOnStartup": false
 }

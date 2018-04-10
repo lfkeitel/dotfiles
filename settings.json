@@ -132,14 +132,14 @@
             "webfreak.code-d",
             "Asuka.insertnumbers",
             "nmsmith89.incrementor",
-            "wix.vscode-import-cost",
             "Telerik.nativescript",
             "fallenwood.viml",
             "mattn.lisp",
             "ms-vscode.powershell",
             "Dart-Code.dart-code",
             "formulahendry.code-runner",
-            "mariosangiorgio.ledger"
+            "mariosangiorgio.ledger",
+            "lextudio.restructuredtext"
         ]
     }
 }
