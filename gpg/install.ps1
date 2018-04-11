@@ -14,7 +14,7 @@ Write-Header 'Setting up GPG agent'
 
 function Install-GPGPackages {
     if ($IsMacOS) {
-        Install-SystemPackages gpg-agent gpg2 pidof
+        Install-SystemPackages gpg2 pidof pinentry-mac
     } elseif (Get-IsUbuntu) {
         Install-SystemPackages gnupg-agent gnupg2 pinentry-gtk2 scdaemon libccid pcscd libpcsclite1 gpgsm
     } elseif (Get-IsFedora) {
