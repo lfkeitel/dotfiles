@@ -30,3 +30,4 @@ alias socksproxy='ssh -C -N -D'
 alias socksproxyf='ssh -f -C -N -D'
 
 alias psg='ps aux | grep'
+alias noproxy='ssh -o ProxyCommand=none'

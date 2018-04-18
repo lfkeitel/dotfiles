@@ -42,6 +42,7 @@ nnoremap <leader>l :source ~/.vimrc<cr>
 nnoremap ; :
 vnoremap ; :
 
+command! Wq wq
 nnoremap <leader>w :wq<cr>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>Q :q!<cr>
