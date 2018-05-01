@@ -18,7 +18,7 @@ function Install-GPGPackages {
     } elseif (Get-IsUbuntu) {
         Install-SystemPackages gnupg-agent gnupg2 pinentry-gtk2 scdaemon libccid pcscd libpcsclite1 gpgsm
     } elseif (Get-IsFedora) {
-        Install-SystemPackages ykpers libyubikey gnupg gnupg2-smime pcsc-lite pcsc-lite-ccid
+        Install-SystemPackages ykpers libyubikey gnupg gnupg2-smime
     }
 }
 
