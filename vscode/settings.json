@@ -119,5 +119,13 @@
     "restructuredtext.linter.extraArgs": [
         "--ignore D001"
     ],
-    "powershell.integratedConsole.showOnStartup": false
+    "powershell.integratedConsole.showOnStartup": false,
+    "mocha.env": {
+        "NODE_ENV": "test"
+    },
+    "mocha.options": {
+        "ignoreLeaks": true
+    },
+    "eslint.alwaysShowStatus": true,
+    "eslint.packageManager": "yarn"
 }
