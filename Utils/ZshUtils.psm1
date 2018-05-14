@@ -8,6 +8,10 @@ function Add-ToPath ([string] $module, [string] $path) {
     ($NewPaths[$module]).Add($path) | Out-Null # Add returns the inserted index, ignore it
 }
 
+function Remove-PathModule ([string] $module) {
+    Remove-Item "$HOME/.local.zsh.d/paths/$module" -ErrorAction Ignore
+}
+
 function Add-ZshHook ([string] $hook, [string] $hookname, [string] $hookfile) {
     Write-Output "Adding $hookname to ZSH $hook hooks"
     New-Item -ItemType Directory "$HOME/.local.zsh.d/$hook" -ErrorAction Ignore

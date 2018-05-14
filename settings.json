@@ -1,4 +1,18 @@
 {
+    "defaultInstallers": [
+        "packages",
+        "zsh",
+        "powershell",
+        "golang",
+        "fonts",
+        "git",
+        "tmux",
+        "gpg",
+        "vscode",
+        "node",
+        "vim"
+    ],
+
     "packages": {
         "macos": [
             "zsh",
@@ -76,6 +90,18 @@
             "golang.org/x/vgo",
             "github.com/go-bindata/go-bindata/..."
         ]
+    },
+
+    "nodejs": {
+        "nvm": {
+            "version": "v0.33.11",
+            "engines": [
+                "8",
+                "9",
+                "10"
+            ],
+            "default": "9"
+        }
     },
 
     "dart": {

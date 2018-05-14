@@ -40,9 +40,8 @@ if ($RunInstall) {
             ExitWithCode 1
         } elseif ($IsLinux) {
             Import-RepoKey 'https://packages.microsoft.com/keys/microsoft.asc'
-            Install-RepoList $DIR/vscode
-            Update-PackageLists
-            Install-SystemPackages code
+            Install-RepoList "$PSScriptRoot/vscode"
+            Install-SystemPackages -Update code
         } else {
             Write-Output 'Unsupported distribution'
             return

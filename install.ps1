@@ -9,6 +9,7 @@ Set-Location $PSScriptRoot
 Import-Module (Join-Path (Get-Location) Utils)
 
 $SettingsFile = (Join-Path (Get-Location) 'settings.json')
+$Settings = Get-JSONFile $SettingsFile
 
 $InstallScripts = @{
     zsh = (Join-Path (Get-Location) zsh install.ps1)
@@ -20,7 +21,7 @@ $InstallScripts = @{
     emacs = (Join-Path (Get-Location) emacs install.ps1)
     gpg = (Join-Path (Get-Location) gpg install.ps1)
     vscode = (Join-Path (Get-Location) vscode install.ps1)
-    npm = (Join-Path (Get-Location) npm install.ps1)
+    node = (Join-Path (Get-Location) node install.ps1)
     macos = (Join-Path (Get-Location) other macos.ps1)
     vim = (Join-Path (Get-Location) vim install.ps1)
     docker = (Join-Path (Get-Location) docker install.ps1)
@@ -46,21 +47,7 @@ function Run-Installer ([string] $Module) {
 
 Write-MainBanner "LEE'S DOTFILES" Blue
 if ($Args.Count -eq 0) {
-    $Installers = @(
-        'packages'
-        'zsh'
-        'powershell'
-        'golang'
-        'fonts'
-        'git'
-        'tmux'
-        'gpg'
-        'vscode'
-        'npm'
-        'vim'
-    )
-
-    foreach ($Installer in $Installers) {
+    foreach ($Installer in $Settings.defaultInstallers) {
         Run-Installer $Installer
     }
 

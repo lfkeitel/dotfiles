@@ -19,7 +19,7 @@ Use the `install-powershell.sh` script to install PowerShell.
 - macOS Finder
 - Golang
 - System packages
-- NPM (prefix)
+- Node JS (with nvm and Yarn)
 - Vim
 - PowerShell
 
