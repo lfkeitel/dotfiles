@@ -71,3 +71,5 @@ Add-ToPath 'zsh' "$HOME/bin"
 # Add auto-complete scripts
 New-Directory "$HOME/.zsh"
 Add-FileLink "$PSScriptRoot/completion" "$HOME/.zsh/completion"
+
+New-Directory "$HOME/code"

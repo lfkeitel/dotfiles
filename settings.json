@@ -2,14 +2,15 @@
     "defaultInstallers": [
         "packages",
         "zsh",
-        "powershell",
-        "golang",
         "fonts",
+        "gpg",
         "git",
         "tmux",
-        "gpg",
-        "vscode",
+        "powershell",
+        "golang",
+        "python",
         "node",
+        "vscode",
         "vim"
     ],
 
@@ -40,6 +41,10 @@
             "xclip",
             "haveged",
             "jq"
+        ],
+
+        "fedora": [
+            "util-linux-user"
         ]
     },
 
@@ -109,6 +114,15 @@
     "dart": {
         "version": "1.24.3",
         "dartroot": "/usr/lib/dart"
+    },
+
+    "python": {
+        "pip": {
+            "packages": [
+                "virtualenv",
+                "pipenv"
+            ]
+        }
     },
 
     "gpg": {

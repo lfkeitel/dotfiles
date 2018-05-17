@@ -22,7 +22,7 @@ function Install-MacPackages {
 function Install-LinuxPackages {
     if (Get-IsFedora) {
         Install-SystemPackages "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
-        Install-SystemPackages $Settings.packages.linux 'util-linux-user'
+        Install-SystemPackages $Settings.packages.linux $Settings.packages.fedora
     } else {
         Install-SystemPackages $Settings.packages.linux
     }
