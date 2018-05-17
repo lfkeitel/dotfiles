@@ -10,24 +10,25 @@ Use the `install-powershell.sh` script to install PowerShell.
 
 ### Automatic (just run install.ps1):
 
-- ZSH
+- Inconsolata font
 - Git
-- GPG Agent
-- Tmux
-- Visual Studio Code
-- Code font
-- macOS Finder
 - Golang
-- System packages
+- GPG Agent
+- macOS Finder
 - Node JS (with nvm and Yarn)
-- Vim
 - PowerShell
+- Python
+- System packages
+- Tmux
+- Vim
+- Visual Studio Code
+- ZSH
 
 ### Manual (requires argument to install.ps1):
 
 - Dart lang
-- Emacs
 - Docker
+- Emacs
 - Hexchat
 
 ## Supported Systems
@@ -50,28 +51,15 @@ If a module has a folder for configuration files, the installer is in that folde
 
 The installer can take an optional argument to run a specific installer.
 
-Applications:
+## Applications taking extra arguments
 
-- `packages`
 - `golang`
-    - Doesn't actually install Go on macOS. But it still installs development packages.
     - `-Force` - Reinstall Go even if the required version is installed
-- `fonts`
-- `git`
-- `tmux`
-- `zsh`
-- `emacs`
 - `gpg`
     - `-Force` - Setup GPG even if it's already done
 - `vscode`
     - `-Install` - Install vscode, Linux only
     - `-Link` - Link configuration files
     - `-Ext` install extensions
-- `mac` - Only runs on macOS
-- `npm`
-- `vim`
-- `docker`
-- `hexchat`
-- `powershell`
 - `dart`
     - `-Force` - Reinstall Go even if the required version is installed
