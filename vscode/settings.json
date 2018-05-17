@@ -127,5 +127,6 @@
         "ignoreLeaks": true
     },
     "eslint.alwaysShowStatus": true,
-    "eslint.packageManager": "yarn"
+    "eslint.packageManager": "yarn",
+    "gitlens.historyExplorer.enabled": true
 }
