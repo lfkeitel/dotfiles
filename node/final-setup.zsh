@@ -1,6 +1,11 @@
 #!/usr/bin/zsh
 
-source $HOME/.nvm/nvm.sh
+export NVM_DIR="$HOME/.nvm"
+if [ "$(uname)" = "Darwin" ]; then
+    source "/usr/local/opt/nvm/nvm.sh"
+else
+    source "$NVM_DIR/nvm.sh"
+fi
 
 install_node() {
     for version in "$@"; do

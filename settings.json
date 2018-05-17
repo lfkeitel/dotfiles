@@ -15,14 +15,16 @@
 
     "packages": {
         "macos": [
-            "zsh",
-            "zsh-completions",
-            "tmux",
-            "wget",
+            "bash",
             "coreutils",
+            "gcc",
             "grep",
+            "minicom",
+            "tmux",
             "vim",
-            "bash"
+            "wget",
+            "zsh-completions",
+            "zsh",
         ],
 
         "linux": [

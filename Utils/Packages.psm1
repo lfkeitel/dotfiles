@@ -62,9 +62,8 @@ function Install-RemoteRepoList ([string] $url) {
 }
 
 function Update-PackageLists {
-    if (Get-IsUbuntu) {
-        sudo apt update
-    }
+    if (Get-IsUbuntu) { sudo apt update }
+    elseif ($IsMacOS) { brew update }
 }
 
 function Install-SystemPackages ([switch] $Update) {

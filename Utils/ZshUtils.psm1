@@ -9,7 +9,7 @@ function Add-ToPath ([string] $module, [string] $path) {
 }
 
 function Remove-PathModule ([string] $module) {
-    Remove-Item "$HOME/.local.zsh.d/paths/$module" -ErrorAction Ignore
+    Remove-Item "$HOME/.local.zsh.d/paths/40-$module" -ErrorAction Ignore
 }
 
 function Add-ZshHook ([string] $hook, [string] $hookname, [string] $hookfile) {

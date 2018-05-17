@@ -13,12 +13,16 @@ Remove-PathModule npm
 
 Write-ColoredLine 'Installing NVM' Magenta
 
-if (!(Test-DirExists $HOME/.nvm)) {
-    git clone "https://github.com/creationix/nvm.git" $HOME/.nvm
-    Set-Location $HOME/.nvm
+if ($IsMacOS) {
+    Install-SystemPackages nvm
 } else {
-    Set-Location $HOME/.nvm
-    git fetch
+    if (!(Test-DirExists $HOME/.nvm)) {
+        git clone "https://github.com/creationix/nvm.git" $HOME/.nvm
+        Set-Location $HOME/.nvm
+    } else {
+        Set-Location $HOME/.nvm
+        git fetch
+    }
 }
 
 git checkout $Settings.nodejs.nvm.version
@@ -43,4 +47,4 @@ if (Get-CommandExists yarn) {
     }
 }
 
-Add-ZshHook post '10-nvm'  "$PSScriptRoot/nvm-hook.zsh"
+Add-ZshHook post '10-nvm' "$PSScriptRoot/nvm-hook.zsh"
