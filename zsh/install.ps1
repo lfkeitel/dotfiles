@@ -73,3 +73,5 @@ New-Directory "$HOME/.zsh"
 Add-FileLink "$PSScriptRoot/completion" "$HOME/.zsh/completion"
 
 New-Directory "$HOME/code"
+
+Add-ZshHook 'post' '10-vars' "$PSScriptRoot/vars.zsh"

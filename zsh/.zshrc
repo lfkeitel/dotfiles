@@ -1,3 +1,12 @@
+# To profile everything, add the code below to /etc/zshenv
+PROFILE_STARTUP=false
+if [[ "$PROFILE_STARTUP" == true ]]; then
+    # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
+    PS4=$'%D{%M%S%.} %N:%i> '
+    exec 3>&2 2>$HOME/startlog.$$
+    setopt xtrace prompt_subst
+fi
+
 setopt autopushd
 export LANG=en_US.UTF-8
 export EDITOR='vim'
@@ -64,13 +73,14 @@ source $HOME/.zsh_functions
 
 run_custom_hooks post
 
-if [ -f "$HOME/.tnsrc" ]; then
-    source "$HOME/.tnsrc"
-fi
-
 # Setup auto-complete
 fpath=("$HOME/.zsh/completion" $fpath)
 autoload -Uz compinit && compinit -i
 
 # Allow Ctrl-S in vim
 stty -ixon
+
+if [[ "$PROFILE_STARTUP" == true ]]; then
+    unsetopt xtrace
+    exec 2>&3 3>&-
+fi
