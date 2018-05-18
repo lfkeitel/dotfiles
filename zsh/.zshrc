@@ -57,7 +57,7 @@ run_custom_hooks pre-oh-my-zsh
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="lfk"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-plugins=(git common-aliases zsh-autosuggestions command-not-found docker sudo wd project docker-host you-should-use scriptbook)
+plugins=(git common-aliases zsh-autosuggestions docker sudo wd project docker-host you-should-use scriptbook)
 source $ZSH/oh-my-zsh.sh
 
 run_custom_hooks post-oh-my-zsh
