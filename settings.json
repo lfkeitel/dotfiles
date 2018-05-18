@@ -61,6 +61,10 @@
             {
                 "name": "you-should-use",
                 "remote": "https://github.com/MichaelAquilina/zsh-you-should-use.git"
+            },
+            {
+                "name": "scriptbook",
+                "remote": "https://github.com/lfkeitel/scriptbook.git"
             }
         ]
     },
