@@ -1,16 +1,16 @@
 let mapleader="\<Space>"
 
 " Genral UI settings
-set number             " Enables the line numbers.
-set ruler              " Enables the ruler on the bottom of the screen.
-set laststatus=2       " Always show the statusline.
-set showmatch          " Shows matching brackets when text indicator is over them.
-set scrolloff=2        " Show the given number lines of context around the cursor.
-set lazyredraw         " The screen won't be redrawn unless actions took place.
-set scrolljump=0       " Jump only one line on scroll.
-set showcmd            " Displays the selection size and the partion commands.
-set ttyfast            " Improves redrawing for newer computers.
-set nostartofline      " When moving thru the lines, the cursor will try to stay in the previous columns.
+set number relativenumber " Enables the line numbers.
+set ruler                 " Enables the ruler on the bottom of the screen.
+set laststatus=2          " Always show the statusline.
+set showmatch             " Shows matching brackets when text indicator is over them.
+set scrolloff=2           " Show the given number lines of context around the cursor.
+set lazyredraw            " The screen won't be redrawn unless actions took place.
+set scrolljump=0          " Jump only one line on scroll.
+set showcmd               " Displays the selection size and the partion commands.
+set ttyfast               " Improves redrawing for newer computers.
+set nostartofline         " When moving thru the lines, the cursor will try to stay in the previous columns.
 
 " Disable backup files, you are using a version control system anyway :)
 set nobackup
@@ -162,7 +162,12 @@ autocmd Filetype nerdtree setlocal nohlsearch
 
 "Open NERDTree if no file was opened
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | call RunOnEnter() | endif
+
+function RunOnEnter()
+    Startify
+    NERDTreeToggle
+endfunction
 
 "Always show hidden files in NERDTree
 let NERDTreeShowHidden=1
