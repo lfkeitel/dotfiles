@@ -72,6 +72,13 @@ Add-ToPath 'zsh' "$HOME/bin"
 New-Directory "$HOME/.zsh"
 Add-FileLink "$PSScriptRoot/completion" "$HOME/.zsh/completion"
 
+# Link up wd and project list plugins
+$ProjectList = "$HOME/.project.list"
+if (!(Test-FileExists $ProjectList)) {
+    Write-Output $null > $ProjectList
+}
+Add-FileLink $ProjectList "$HOME/.warprc"
+
 New-Directory "$HOME/code"
 
 Add-ZshHook 'post' '10-vars' "$PSScriptRoot/vars.zsh"
