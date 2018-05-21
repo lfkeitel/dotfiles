@@ -1,0 +1,38 @@
+# Passive - It just works, no extra commands or keybinds
+    jiangmiao/auto-pairs - Pairs quotes, brackets, parens
+    elzr/vim-json - Better JSON highlighting and visuals
+    dbakker/vim-projectroot - Determines the project root of a file
+    tpope/vim-repeat - Allows plugins to better integrate with vim's repeat operator
+    tpope/vim-sensible - General "sensible" settings, need to reevaluate
+    gregsexton/MatchTag - Highlights matching HTML tag
+    ntpeters/vim-better-whitespace - Highlights trailing whitespace (has keybind to strip, but mainly passive)
+    airblade/vim-gitgutter - Displays git information on the left side
+    joeytwiddle/sexy_scroller.vim - Pretty scrolling
+    nathanalderson/yang.vim - Syntax highlighting for YANG files
+    sukima/xmledit - XML editing, templating for XML tags (works on HTML and PHP too)
+    fatih/vim-go - gocode and utilities for Golang
+    Shougo/deoplete.nvim - Autocomplete framework
+    roxma/nvim-yarp - Autocomplete framework
+    roxma/vim-hug-neovim-rpc - Autocomplete framework
+    zchee/deoplete-go - Autocomplete for Go
+    vim-airline/vim-airline - Pretty status bar
+    vim-airline/vim-airline-themes - Themes for airline
+    kana/vim-textobj-user - Required for various vim-textobj plugins
+
+# Active - Requires keybinds
+    scrooloose/nerdtree - Directory tree and file opener
+    mhinz/vim-startify - Loads a start page when no file is opened
+    tpope/vim-surround - Manipulate pairs of quotes, brackets, parens, and XML tags
+    kana/vim-arpeggio - Allows keymaps to be multiple keys at the same time
+    jeetsukumaran/vim-buffergator - Buffer navigator
+    MattesGroeger/vim-bookmarks - Make bookmarks with a file with annnotations
+    easymotion/vim-easymotion - Quickly move around the document using labeled anchors
+    terryma/vim-multiple-cursors - Multiple cursors
+    tpope/vim-fugitive - Git, need to learn
+    tpope/vim-commentary - Quick, language aware commenting
+    christoomey/vim-titlecase - Teach Vim about title casing
+    christoomey/vim-sort-motion - Sorting
+    christoomey/vim-system-copy - Copy to system clipboard
+    kana/vim-textobj-entire - Add entire document as a text object
+    kana/vim-textobj-indent - Add indent block as a text object
+    kana/vim-textobj-line - Add line as a text object

@@ -1,5 +1,3 @@
-let mapleader="\<Space>"
-
 " Genral UI settings
 set number relativenumber " Enables the line numbers.
 set ruler                 " Enables the ruler on the bottom of the screen.
@@ -43,7 +41,6 @@ nnoremap ; :
 vnoremap ; :
 
 command! Wq wq
-nnoremap <leader>w :wq<cr>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>Q :q!<cr>
 nnoremap <C-h> <C-w>h
@@ -66,43 +63,56 @@ nnoremap K :m .-2<CR>==
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-" Check and download vim-plug if necessary
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
 " Uses https://github.com/junegunn/vim-plug for plugin management
 call plug#begin('~/.vim/plugged')
-  Plug 'jiangmiao/auto-pairs'
-  Plug 'kana/vim-arpeggio'
-  Plug 'ntpeters/vim-better-whitespace'
-  Plug 'jeetsukumaran/vim-buffergator'
-  Plug 'MattesGroeger/vim-bookmarks'
-  Plug 'easymotion/vim-easymotion'
-  Plug 'airblade/vim-gitgutter'
-  Plug 'terryma/vim-multiple-cursors'
-  Plug 'scrooloose/nerdtree'
-  Plug 'elzr/vim-json'
-  Plug 'dbakker/vim-projectroot'
-  Plug 'gregsexton/MatchTag'
-  Plug 'mhinz/vim-startify'
-  Plug 'tpope/vim-surround'
-  Plug 'ervandew/supertab'
-  Plug 'joeytwiddle/sexy_scroller.vim'
-  Plug 'nathanalderson/yang.vim'
-  Plug 'tpope/vim-repeat'
-  Plug 'sukima/xmledit'
-  Plug 'Blackrush/vim-gocode'
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-sensible'
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'kana/vim-arpeggio'
+    Plug 'ntpeters/vim-better-whitespace'
+    Plug 'jeetsukumaran/vim-buffergator'
+    Plug 'MattesGroeger/vim-bookmarks'
+    Plug 'easymotion/vim-easymotion'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'terryma/vim-multiple-cursors'
+    Plug 'scrooloose/nerdtree'
+    Plug 'elzr/vim-json'
+    Plug 'dbakker/vim-projectroot'
+    Plug 'gregsexton/MatchTag'
+    Plug 'mhinz/vim-startify'
+    Plug 'tpope/vim-surround'
+    Plug 'joeytwiddle/sexy_scroller.vim'
+    Plug 'nathanalderson/yang.vim'
+    Plug 'tpope/vim-repeat'
+    Plug 'sukima/xmledit'
+    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-sensible'
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+    Plug 'zchee/deoplete-go'
+    Plug 'tpope/vim-commentary'
+    Plug 'christoomey/vim-titlecase'
+    Plug 'christoomey/vim-sort-motion'
+    Plug 'christoomey/vim-system-copy'
+    Plug 'kana/vim-textobj-user'
+    Plug 'kana/vim-textobj-entire'
+    Plug 'kana/vim-textobj-indent'
+    Plug 'kana/vim-textobj-line'
 call plug#end()
 
-"Arpeggio
-call arpeggio#map('iv', '', 0, 'jk', '<Esc>')
+let g:deoplete#enable_at_startup = 1
+
+" titlecase
+let g:titlecase_map_keys = 0
+nmap <leader>gt <Plug>Titlecase
+vmap <leader>gt <Plug>Titlecase
+nmap <leader>gT <Plug>TitlecaseLine
+
+" system-copy - xclip is already installed for Tmux, might as well use it
+let g:system_copy#copy_command='xclip -sel clipboard'
+let g:system_copy#paste_command='xclip -sel clipboard -o'
 
 "BetterWhitespace
 nnoremap <leader>sw :StripWhitespace<cr>
@@ -130,18 +140,28 @@ let g:NERDTreeShowBookmarks = 1
 let g:NERDTreeDirArrows=0
 let NERDTreeMinimalUI=0
 let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeShowHidden=1
 
 "ProjectRoot
 function! <SID>AutoProjectRootCD()
-  try
-    if &ft != 'help'
-      ProjectRootCD
-    endif
-  catch
+    try
+        if &ft != 'help'
+            ProjectRootCD
+        endif
+    catch
     " Silently ignore invalid buffers
-  endtry
+    endtry
 endfunction
 autocmd BufEnter * call <SID>AutoProjectRootCD()
+
+"Open NERDTree if no file was opened
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | call RunOnEnter() | endif
+
+function! RunOnEnter()
+    Startify
+    NERDTreeToggle
+endfunction
 
 "SexyScroller
 let g:SexyScroller_MaxTime = 400
@@ -156,21 +176,9 @@ autocmd Filetype go setlocal noexpandtab
 autocmd Filetype nerdtree setlocal nohlsearch
 
 "Show invisible characters
-"nnoremap <leader>v :setlocal list!<cr>
-"set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+nnoremap <leader>v :setlocal list!<cr>
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 "set list
-
-"Open NERDTree if no file was opened
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | call RunOnEnter() | endif
-
-function RunOnEnter()
-    Startify
-    NERDTreeToggle
-endfunction
-
-"Always show hidden files in NERDTree
-let NERDTreeShowHidden=1
 
 "Autocomplete setup
 " Disable AutoComplPop.
@@ -183,19 +191,19 @@ let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 
 " <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 set t_Co=256
 let g:airline#extensions#tabline#enabled = 1
 if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
+    let g:airline_symbols = {}
 endif
 let g:airline_symbols.space = "\ua0"
 let g:airline_powerline_fonts = 1
 let g:airline_theme='dark'
 
 "Rename tabs to show tab number.
-"(Based on http://stackoverflow.com/questions/5927952/whats-implementation-of-vims-default-tabline-function)
+"(Based on https://stackoverflow.com/questions/5927952/whats-implementation-of-vims-default-tabline-function)
 if exists("+showtabline")
     function! MyTabLine()
         let s = ''
