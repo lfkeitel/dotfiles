@@ -35,7 +35,7 @@ set magic              " Set magic on, for regular expressions.
 set ignorecase         " Searches are Non Case-sensitive.
 set smartcase          " Overrides ignorecase, if search contains uppercase character.
 
-nnoremap <leader>l :source ~/.vimrc<cr>
+nnoremap <leader>l :source ~/.config/nvim/init.vim<cr>
 
 nnoremap ; :
 vnoremap ; :
@@ -88,9 +88,13 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline-themes'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-sensible'
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
     Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
+endif
     Plug 'zchee/deoplete-go'
     Plug 'tpope/vim-commentary'
     Plug 'christoomey/vim-titlecase'
@@ -100,6 +104,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'kana/vim-textobj-entire'
     Plug 'kana/vim-textobj-indent'
     Plug 'kana/vim-textobj-line'
+    Plug 'PProvost/vim-ps1'
 call plug#end()
 
 let g:deoplete#enable_at_startup = 1
@@ -133,7 +138,7 @@ let g:gitgutter_max_signs = 2000
 nnoremap <silent> <F2> :NERDTreeToggle<CR>
 let g:NERDTreeMapMenu = '<F3>'
 let g:NERDTreeChristmasTree = 1
-let g:NERDTreeCaseSensitiveSort = 1
+let g:NERDTreeCaseSensitiveSort = 0
 let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeWinPos = 'left'
 let g:NERDTreeShowBookmarks = 1

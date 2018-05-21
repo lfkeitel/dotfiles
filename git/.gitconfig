@@ -32,7 +32,7 @@
   template = ~/.gitmessage
 [core]
   excludesfile = ~/.gitignore
-  editor = vim
+  editor = nvim
 [fetch]
   prune = true
 [grep]

@@ -1,5 +1,8 @@
 # Application aliases
 alias gpg='gpg2'
+alias nvim='TERM=screen nvim'
+alias vim='TERM=screen nvim'
+alias vi='TERM=screen nvim'
 
 # Project aliases
 alias pjls='project ls'

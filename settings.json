@@ -22,16 +22,15 @@
             "grep",
             "minicom",
             "tmux",
-            "vim",
+            "neovim",
             "wget",
             "zsh-completions",
-            "zsh",
+            "zsh"
         ],
 
         "linux": [
             "zsh",
             "tmux",
-            "vim",
             "emacs",
             "curl",
             "vlc",
@@ -44,7 +43,12 @@
         ],
 
         "fedora": [
+            "neovim",
             "util-linux-user"
+        ],
+
+        "ubuntu": [
+            "software-properties-common"
         ]
     },
 

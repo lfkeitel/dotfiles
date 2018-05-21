@@ -61,6 +61,12 @@ function Install-RemoteRepoList ([string] $url) {
     sudo chmod 0644 $RepoDir/$RepoFile
 }
 
+function Install-UbuntuPPA ([string] $Repo, [switch] $Update) {
+    if (!(Get-IsUbuntu)) { return }
+    sudo add-apt-repository ppa:$Repo
+    if ($Update) { Update-PackageLists }
+}
+
 function Update-PackageLists {
     if (Get-IsUbuntu) { sudo apt update }
     elseif ($IsMacOS) { brew update }
@@ -75,6 +81,11 @@ function Install-SystemPackages ([switch] $Update) {
 
 function Get-CommandExists ([string] $command) {
     which $command 2>/dev/null >/dev/null
+    return ($LASTEXITCODE -eq 0)
+}
+
+function Get-PipPackInstalled ([string] $Package) {
+    python3 -c "import $Package" 2>/dev/null >/dev/null
     return ($LASTEXITCODE -eq 0)
 }
 

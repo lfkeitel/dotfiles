@@ -24,7 +24,7 @@ function Install-LinuxPackages {
         Install-SystemPackages "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
         Install-SystemPackages $Settings.packages.linux $Settings.packages.fedora
     } else {
-        Install-SystemPackages $Settings.packages.linux
+        Install-SystemPackages $Settings.packages.linux $Settings.packages.ubuntu
     }
 
     sudo systemctl start haveged
