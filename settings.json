@@ -185,7 +185,8 @@
             "Dart-Code.dart-code",
             "formulahendry.code-runner",
             "mariosangiorgio.ledger",
-            "lextudio.restructuredtext"
+            "lextudio.restructuredtext",
+            "maty.vscode-mocha-sidebar"
         ]
     }
 }

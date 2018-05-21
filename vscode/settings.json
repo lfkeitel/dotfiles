@@ -79,7 +79,6 @@
         "suppressWelcomeNotice": true
     },
     "d.dubPath": "/home/lfkeitel/.vscode/extensions/webfreak.code-d-0.16.2/bin/dub",
-    "d.workspacedPath": "/home/lfkeitel/.vscode/extensions/webfreak.code-d-0.16.2/bin/workspace-d",
     "d.dscannerPath": "/home/lfkeitel/.vscode/extensions/webfreak.code-d-0.16.2/bin/Dscanner/bin/dscanner",
     "d.dfmtPath": "/home/lfkeitel/.vscode/extensions/webfreak.code-d-0.16.2/bin/dfmt/bin/dfmt",
     "d.dcdClientPath": "/home/lfkeitel/.vscode/extensions/webfreak.code-d-0.16.2/bin/DCD/bin/dcd-client",
