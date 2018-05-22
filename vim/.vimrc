@@ -27,6 +27,22 @@ set autoindent         " Adds automatic indentation on copy paste as well.
 " Buffer management
 set hidden             " Enables hidden buffers. You don't have to close a buffer if you changes buffer.
 
+" Fold stuff, F9 will toggle folds
+set foldmethod=syntax
+set foldlevelstart=99
+inoremap <F9> <C-O>za
+nnoremap <F9> za
+onoremap <F9> <C-C>za
+vnoremap <F9> zf
+
+" Keybinds to move lines up or down
+nnoremap <C-Down> :m .+1<CR>==
+nnoremap <C-Up> :m .-2<CR>==
+inoremap <C-Down> <Esc>:m .+1<CR>==gi
+inoremap <C-Up> <Esc>:m .-2<CR>==gi
+vnoremap <C-Down> :m '>+1<CR>gv=gv
+vnoremap <C-Up> :m '<-2<CR>gv=gv
+
 " Search Options
 " Highlight search.
 nnoremap <leader>h :setlocal hlsearch!<cr>
