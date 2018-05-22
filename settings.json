@@ -25,7 +25,8 @@
             "neovim",
             "wget",
             "zsh-completions",
-            "zsh"
+            "zsh",
+            "minicom"
         ],
 
         "linux": [
@@ -39,7 +40,8 @@
             "mousepad",
             "xclip",
             "haveged",
-            "jq"
+            "jq",
+            "minicom"
         ],
 
         "fedora": [

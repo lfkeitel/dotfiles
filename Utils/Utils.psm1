@@ -1,3 +1,18 @@
+$SystemInfo = @{}
+$LinuxDistro = ""
+if ($IsLinux) {
+    $SystemInfo = (ConvertFrom-StringData (Get-Content /etc/os-release -raw))
+    $LinuxDistro = $SystemInfo.Name.Trim('"')
+}
+
+function Get-IsFedora {
+    return ($LinuxDistro -eq 'Fedora')
+}
+
+function Get-IsUbuntu {
+    return ($LinuxDistro -eq 'Ubuntu')
+}
+
 function Restore-EncryptedFile ([string] $Source, [string] $Dest) {
     $gpgOut = (gpg2 --yes --output $Dest -d $Source 2>&1)
     if ($LASTEXITCODE -gt 0) {

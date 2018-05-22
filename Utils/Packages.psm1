@@ -1,18 +1,3 @@
-$SystemInfo = @{}
-$LinuxDistro = ""
-if ($IsLinux) {
-    $SystemInfo = (ConvertFrom-StringData (Get-Content /etc/os-release -raw))
-    $LinuxDistro = $SystemInfo.Name.Trim('"')
-}
-
-function Get-IsFedora {
-    return ($LinuxDistro -eq 'Fedora')
-}
-
-function Get-IsUbuntu {
-    return ($LinuxDistro -eq 'Ubuntu')
-}
-
 function Import-RepoKey ([string] $url) {
     if (Get-IsUbuntu) {
         curl -fsSL $url | sudo apt-key add -
