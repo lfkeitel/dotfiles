@@ -10,7 +10,7 @@ fi
 setopt autopushd
 setopt globdots
 export LANG=en_US.UTF-8
-export EDITOR='vim'
+export EDITOR='nvim'
 CUSTOM_HOOKS_PATH="$HOME/.local.zsh.d"
 CUSTOM_PATH_DIR="$CUSTOM_HOOKS_PATH/paths"
 GREP_CMD=/bin/grep
