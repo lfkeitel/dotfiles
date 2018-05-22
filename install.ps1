@@ -6,21 +6,21 @@ if ($IsWindows) {
 
 Set-Location $PSScriptRoot
 
-Import-Module (Join-Path (Get-Location) Utils)
+Import-Module (Join-Path $PSScriptRoot Utils)
 
-$SettingsFile = (Join-Path (Get-Location) 'settings.json')
+$SettingsFile = (Join-Path $PSScriptRoot 'settings.json')
 $Settings = Get-JSONFile $SettingsFile
 
 $InstallerArgs = $Args[1..($Args.Length-1)]
 
 function Run-Installer ([string] $Module) {
-    $Installer = (Join-Path (Get-Location) $Module 'install.ps1')
+    $Installer = (Join-Path $PSScriptRoot $Module 'install.ps1')
     if (Test-FileExists $Installer) {
         & $Installer -SettingsFile $SettingsFile @InstallerArgs
         return
     }
 
-    $Installer = (Join-Path (Get-Location) 'other' "$Module.ps1")
+    $Installer = (Join-Path $PSScriptRoot 'other' "$Module.ps1")
     if (Test-FileExists $Installer) {
         & $Installer -SettingsFile $SettingsFile @InstallerArgs
         return
