@@ -125,9 +125,6 @@
     "mocha.options": {
         "ignoreLeaks": true
     },
-    "eslint.alwaysShowStatus": true,
-    "eslint.packageManager": "yarn",
     "gitlens.historyExplorer.enabled": true,
-    "tslint.packageManager": "yarn",
-    "tslint.jsEnable": true
+    "tslint.packageManager": "yarn"
 }

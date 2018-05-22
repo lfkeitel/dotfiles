@@ -8,6 +8,7 @@ if [[ "$PROFILE_STARTUP" == true ]]; then
 fi
 
 setopt autopushd
+setopt globdots
 export LANG=en_US.UTF-8
 export EDITOR='vim'
 CUSTOM_HOOKS_PATH="$HOME/.local.zsh.d"
