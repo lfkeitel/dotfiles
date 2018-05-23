@@ -5,47 +5,138 @@
 " {{{ Plugins
 " Uses https://github.com/junegunn/vim-plug for plugin management
 call plug#begin('~/.vim/plugged')
-    Plug 'jiangmiao/auto-pairs'
     Plug 'kana/vim-arpeggio'
     Plug 'ntpeters/vim-better-whitespace'
     Plug 'jeetsukumaran/vim-buffergator'
-    Plug 'MattesGroeger/vim-bookmarks'
     Plug 'easymotion/vim-easymotion'
-    Plug 'airblade/vim-gitgutter'
     Plug 'terryma/vim-multiple-cursors'
-    Plug 'scrooloose/nerdtree'
     Plug 'elzr/vim-json'
     Plug 'dbakker/vim-projectroot'
     Plug 'gregsexton/MatchTag'
     Plug 'mhinz/vim-startify'
     Plug 'tpope/vim-surround'
-    Plug 'joeytwiddle/sexy_scroller.vim'
     Plug 'nathanalderson/yang.vim'
     Plug 'tpope/vim-repeat'
     Plug 'sukima/xmledit'
-    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-sensible'
-if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-endif
-    Plug 'zchee/deoplete-go'
     Plug 'tpope/vim-commentary'
-    Plug 'christoomey/vim-titlecase'
     Plug 'christoomey/vim-sort-motion'
-    Plug 'christoomey/vim-system-copy'
     Plug 'kana/vim-textobj-user'
     Plug 'kana/vim-textobj-entire'
     Plug 'kana/vim-textobj-indent'
     Plug 'kana/vim-textobj-line'
     Plug 'PProvost/vim-ps1'
+
+" {{{ Sexy scroller
+    Plug 'joeytwiddle/sexy_scroller.vim'
+
+    let g:SexyScroller_MaxTime = 400
+    let g:SexyScroller_EasingStyle = 3
+" }}}
+
+" {{{ NerdTree
+    Plug 'scrooloose/nerdtree'
+
+    let g:NERDTreeMapMenu = '<F3>'
+    let g:NERDTreeChristmasTree = 1
+    let g:NERDTreeCaseSensitiveSort = 0
+    let g:NERDTreeQuitOnOpen = 1
+    let g:NERDTreeWinPos = 'left'
+    let g:NERDTreeShowBookmarks = 1
+    let g:NERDTreeDirArrows = 0
+    let g:NERDTreeMinimalUI = 0
+    let g:NERDTreeIgnore = ['\.pyc$']
+    let g:NERDTreeShowHidden = 1
+    autocmd Filetype nerdtree setlocal nohlsearch
+" }}}
+
+" {{{ Git gutter
+    Plug 'airblade/vim-gitgutter'
+
+    let g:gitgutter_max_signs = 2000
+" }}}
+
+" {{{ Bookmarks
+    Plug 'MattesGroeger/vim-bookmarks'
+
+    let g:bookmark_sign = '>>'
+    let g:bookmark_annotation_sign = '##'
+    let g:bookmark_auto_close = 1
+    let g:bookmark_highlight_lines = 1
+    let g:bookmark_save_per_working_dir = 1
+    let g:bookmark_auto_save = 1
+    let g:bookmark_center = 1
+" }}}
+
+" {{{ System copy
+    Plug 'christoomey/vim-system-copy'
+
+    " xclip is already installed for Tmux, might as well use it
+    let g:system_copy#copy_command='xclip -sel clipboard'
+    let g:system_copy#paste_command='xclip -sel clipboard -o'
+" }}}
+
+" {{{ Titlecase
+    Plug 'christoomey/vim-titlecase'
+
+    let g:titlecase_map_keys = 0
+" }}}
+
+" {{{ Golang
+    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+    Plug 'zchee/deoplete-go'
+" }}}
+
+" {{{ Deoplete
+    if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+    endif
+
+    let g:deoplete#enable_at_startup = 1
+" }}}
+
+" {{{ CtrlP
     Plug 'ctrlpvim/ctrlp.vim'
+
+    " Setup some default ignores
+    let g:ctrlp_custom_ignore = {
+      \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
+      \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
+    \}
+
+    " Use the nearest .git directory as the cwd
+    " This makes a lot of sense if you are working on a project that is in version
+    " control. It also supports works with .svn, .hg, .bzr.
+    let g:ctrlp_working_path_mode = 'r'
+    let g:ctrlp_map = '<leader>p'
+" }}}
+
+" {{{ Auto Pairs
+    Plug 'jiangmiao/auto-pairs'
+
+    " Disable auto-pairs from taking over C-h in i mode
+    let g:AutoPairsMapCh = 0
+" }}}
+
+" {{{ Airline
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+
+    set t_Co=256
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#fnamemod = ':t'
+    if !exists('g:airline_symbols')
+        let g:airline_symbols = {}
+    endif
+    let g:airline_symbols.space = "\ua0"
+    let g:airline_powerline_fonts = 1
+    let g:airline_theme='dark'
+" }}}
 call plug#end()
 " }}}
 
@@ -60,14 +151,24 @@ set scrolljump=0          " Jump only one line on scroll.
 set showcmd               " Displays the selection size and the partion commands.
 set ttyfast               " Improves redrawing for newer computers.
 set nostartofline         " When moving thru the lines, the cursor will try to stay in the previous columns.
+set autoread
+
+" {{{ Show invisible characters
+nnoremap <leader>v :setlocal list!<cr>
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+" set list
 " }}}
 
+" }}}
+
+" {{{ Backup settings
 " Disable backup files, you are using a version control system anyway :)
 set nobackup
 set nowritebackup
 set noswapfile
+" }}}
 
-" Tab management
+" {{{ Indention management
 set tabstop=4          " How many spaces takes a tab character.
 set softtabstop=4      " The number of spaces a tab character counts for.
 set expandtab          " Use spaces instead of tabs for indenting.
@@ -75,22 +176,31 @@ set shiftwidth=4       " Autoindent width.
 set smarttab           " A tab executes automatic indentation in insert mode.
 set smartindent        " Adds automatic indentation on new line.
 set autoindent         " Adds automatic indentation on copy paste as well.
+" }}}
 
-" Buffer management
+" {{{ Search Options
+set incsearch          " Incremental search.
+set magic              " Set magic on, for regular expressions.
+set ignorecase         " Searches are Non Case-sensitive.
+set smartcase          " Overrides ignorecase, if search contains uppercase character.
+" }}}
+
+" {{{ Buffer management
 set hidden             " Enables hidden buffers. You don't have to close a buffer if you changes buffer.
 set splitbelow
 set splitright
+" }}}
 
+" {{{ Keybinds
+
+" {{{ Buffer management
 " To open a new empty buffer
 " This replaces :tabnew which I used to bind to this mapping
 nnoremap <leader>T :enew<cr>
-
 " Move to the next buffer
 nnoremap <leader>' :bnext<CR>
-
 " Move to the previous buffer
 nnoremap <leader>; :bprevious<CR>
-
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
 nnoremap <leader>bq :bp <BAR> bd #<CR>
@@ -98,28 +208,31 @@ nnoremap <leader>bq :bp <BAR> bd #<CR>
 " Show all open buffers and their status
 nnoremap <leader>bl :ls<CR>
 
-" Fold stuff, F9 will toggle folds
+" Make buffer changes a little quicker
+nnoremap <F5> :buffers<CR>:buffer<Space>
+" }}}
+
+" {{{ Fold stuff, F9 will toggle folds
 inoremap <F9> <C-O>za
 nnoremap <F9> za
 onoremap <F9> <C-C>za
 vnoremap <F9> zf
+" }}}
 
-" Keybinds to move lines up or down
+" {{{ Keybinds to move lines up or down
 nnoremap <C-Down> :m .+1<CR>==
 nnoremap <C-Up> :m .-2<CR>==
 inoremap <C-Down> <Esc>:m .+1<CR>==gi
 inoremap <C-Up> <Esc>:m .-2<CR>==gi
 vnoremap <C-Down> :m '>+1<CR>gv=gv
 vnoremap <C-Up> :m '<-2<CR>gv=gv
+" }}}
 
-" Search Options
-" Highlight search.
-nnoremap <leader>h :setlocal hlsearch!<cr>
-set incsearch          " Incremental search.
-set magic              " Set magic on, for regular expressions.
-set ignorecase         " Searches are Non Case-sensitive.
-set smartcase          " Overrides ignorecase, if search contains uppercase character.
+" {{{ Search Options
+nnoremap <leader>h :noh<cr>
+" }}}
 
+" {{{ Misc remaps
 nnoremap <leader>l :source ~/.config/nvim/init.vim<cr>
 
 nnoremap ; :
@@ -128,10 +241,9 @@ vnoremap ; :
 command! Wq wq
 nnoremap <leader>q :q<cr>
 nnoremap <leader>Q :q!<cr>
+" }}}
 
-" Window navigation
-" Disable auto-pairs from taking over C-h in i mode
-let g:AutoPairsMapCh = 0
+" {{{ Window navigation
 if has('nvim')
 tnoremap <C-h> <C-\><C-N><C-w>h
 tnoremap <C-j> <C-\><C-N><C-w>j
@@ -146,83 +258,45 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+" }}}
 
-" Create/delete blank lines
+" {{{ Create/delete blank lines
 nnoremap <C-o> O<Esc>j
 nnoremap <C-p> o<Esc>k
 nnoremap <leader>o jddk
 nnoremap <leader>P kdd
+" }}}
 
-" Make Ctrl-S a thing to save
+" {{{ Make Ctrl-S a thing to save
 nnoremap <silent> <C-S> :update<CR>
 vnoremap <silent> <C-S> <C-C>:update<CR>
 inoremap <silent> <C-S> <C-O>:update<CR>
+" }}}
 
-" Make buffer changes a little quicker
-nnoremap <F5> :buffers<CR>:buffer<Space>
+" {{{ BetterWhitespace
+nnoremap <leader>sw :StripWhitespace<cr>
+" }}}
 
-let g:deoplete#enable_at_startup = 1
-
-" CtrlP settings
-" Setup some default ignores
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
-  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
-\}
-
-" Use the nearest .git directory as the cwd
-" This makes a lot of sense if you are working on a project that is in version
-" control. It also supports works with .svn, .hg, .bzr.
-let g:ctrlp_working_path_mode = 'r'
-
-" Use a leader instead of the actual named binding
-nnoremap <leader>p :CtrlP<cr>
-
+" {{{ CtrlP
 " Easy bindings for its various modes
 nnoremap <leader>bb :CtrlPBuffer<cr>
 nnoremap <leader>bm :CtrlPMixed<cr>
 nnoremap <leader>bs :CtrlPMRU<cr>
+" }}}
 
-" titlecase
-let g:titlecase_map_keys = 0
+" {{{ Titlecase
 nnoremap <leader>gt <Plug>Titlecase
 vnoremap <leader>gt <Plug>Titlecase
 nnoremap <leader>gT <Plug>TitlecaseLine
+" }}}
 
-" system-copy - xclip is already installed for Tmux, might as well use it
-let g:system_copy#copy_command='xclip -sel clipboard'
-let g:system_copy#paste_command='xclip -sel clipboard -o'
-
-"BetterWhitespace
-nnoremap <leader>sw :StripWhitespace<cr>
-
-"Bookmarks
-let g:bookmark_sign = '>>'
-let g:bookmark_annotation_sign = '##'
-let g:bookmark_auto_close = 1
-let g:bookmark_highlight_lines = 1
-let g:bookmark_save_per_working_dir = 1
-let g:bookmark_auto_save = 1
-let g:bookmark_center = 1
-
-"GitGutter
-let g:gitgutter_max_signs = 2000
-
-"NERDTree
+" {{{ NERDTree
 nnoremap <silent> <F2> :NERDTreeToggle<CR>
-let g:NERDTreeMapMenu = '<F3>'
-let g:NERDTreeChristmasTree = 1
-let g:NERDTreeCaseSensitiveSort = 0
-let g:NERDTreeQuitOnOpen = 1
-let g:NERDTreeWinPos = 'left'
-let g:NERDTreeShowBookmarks = 1
-let g:NERDTreeDirArrows = 0
-let g:NERDTreeMinimalUI = 0
-let g:NERDTreeIgnore = ['\.pyc$']
-let g:NERDTreeShowHidden = 1
-autocmd Filetype nerdtree setlocal nohlsearch
+" }}}
 
-"ProjectRoot
+" }}}
+
+" {{{ Determine correct project root directory
 function! <SID>AutoProjectRootCD()
     try
         if &ft != 'help'
@@ -233,8 +307,9 @@ function! <SID>AutoProjectRootCD()
     endtry
 endfunction
 autocmd BufEnter * call <SID>AutoProjectRootCD()
+" }}}
 
-"Open NERDTree if no file was opened
+" {{{ Open NERDTree and Startify if no file was opened
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | call RunOnEnter() | endif
 
@@ -242,93 +317,14 @@ function! RunOnEnter()
     Startify
     NERDTreeToggle
 endfunction
+" }}}
 
-"SexyScroller
-let g:SexyScroller_MaxTime = 400
-let g:SexyScroller_EasingStyle = 3
-
-set autoread
-
-"Go source file settings
+" {{{ Go settings
 autocmd BufWritePost *.go silent !goreturns -w %
 autocmd Filetype go setlocal noexpandtab
+" }}}
 
-"Show invisible characters
-nnoremap <leader>v :setlocal list!<cr>
-set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
-"set list
-
-"Autocomplete setup
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-
-" <TAB>: completion.
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-set t_Co=256
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
-let g:airline_powerline_fonts = 1
-let g:airline_theme='dark'
-
-"Rename tabs to show tab number.
-"(Based on https://stackoverflow.com/questions/5927952/whats-implementation-of-vims-default-tabline-function)
-if exists("+showtabline")
-    function! MyTabLine()
-        let s = ''
-        let wn = ''
-        let t = tabpagenr()
-        let i = 1
-        while i <= tabpagenr('$')
-            let buflist = tabpagebuflist(i)
-            let winnr = tabpagewinnr(i)
-            let s .= '%' . i . 'T'
-            let s .= (i == t ? '%1*' : '%2*')
-            let s .= ' '
-            let wn = tabpagewinnr(i,'$')
-
-            let s .= '%#TabNum#'
-            let s .= i
-            " let s .= '%*'
-            let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
-            let bufnr = buflist[winnr - 1]
-            let file = bufname(bufnr)
-            let buftype = getbufvar(bufnr, 'buftype')
-            if buftype == 'nofile'
-                if file =~ '\/.'
-                    let file = substitute(file, '.*\/\ze.', '', '')
-                endif
-            else
-                let file = fnamemodify(file, ':p:t')
-            endif
-            if file == ''
-                let file = '[No Name]'
-            endif
-            let s .= ' ' . file . ' '
-            let i = i + 1
-        endwhile
-        let s .= '%T%#TabLineFill#%='
-        let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
-        return s
-    endfunction
-
-"    set stal=2
-"    set tabline=%!MyTabLine()
-"    set showtabline=1
-"    highlight link TabNum Special
-endif
-
-" Transparent editing of gpg encrypted files.
+" {{{ Transparent editing of gpg encrypted files.
 augroup encrypted
     au!
     " First make sure nothing is written to ~/.viminfo while editing
@@ -359,5 +355,6 @@ augroup encrypted
     autocmd BufWritePost,FileWritePost  *.gpg silent u
     autocmd BufWritePost,FileWritePost  *.gpg set nobin
 augroup END
+" }}}
 
 set secure
