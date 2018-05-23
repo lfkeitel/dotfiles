@@ -83,20 +83,20 @@ set splitright
 
 " To open a new empty buffer
 " This replaces :tabnew which I used to bind to this mapping
-nmap <leader>T :enew<cr>
+nnoremap <leader>T :enew<cr>
 
 " Move to the next buffer
-nmap <leader>' :bnext<CR>
+nnoremap <leader>' :bnext<CR>
 
 " Move to the previous buffer
-nmap <leader>; :bprevious<CR>
+nnoremap <leader>; :bprevious<CR>
 
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
-nmap <leader>bq :bp <BAR> bd #<CR>
+nnoremap <leader>bq :bp <BAR> bd #<CR>
 
 " Show all open buffers and their status
-nmap <leader>bl :ls<CR>
+nnoremap <leader>bl :ls<CR>
 
 " Fold stuff, F9 will toggle folds
 inoremap <F9> <C-O>za
@@ -128,20 +128,37 @@ vnoremap ; :
 command! Wq wq
 nnoremap <leader>q :q<cr>
 nnoremap <leader>Q :q!<cr>
+
+" Window navigation
+" Disable auto-pairs from taking over C-h in i mode
+let g:AutoPairsMapCh = 0
+if has('nvim')
+tnoremap <C-h> <C-\><C-N><C-w>h
+tnoremap <C-j> <C-\><C-N><C-w>j
+tnoremap <C-k> <C-\><C-N><C-w>k
+tnoremap <C-l> <C-\><C-N><C-w>l
+endif
+inoremap <C-h> <C-o><C-w>h
+inoremap <C-j> <C-o><C-w>j
+inoremap <C-k> <C-o><C-w>k
+inoremap <C-l> <C-o><C-w>l
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-noremap <silent> <C-S> :update<CR>
+" Create/delete blank lines
+nnoremap <C-o> O<Esc>j
+nnoremap <C-p> o<Esc>k
+nnoremap <leader>o jddk
+nnoremap <leader>P kdd
+
+" Make Ctrl-S a thing to save
+nnoremap <silent> <C-S> :update<CR>
 vnoremap <silent> <C-S> <C-C>:update<CR>
 inoremap <silent> <C-S> <C-O>:update<CR>
 
-nnoremap <leader>mm :!clear && make<cr>
-nnoremap <leader>mt :!clear && make test<cr>
-nnoremap <leader>mc :!clear && make clean<cr>
-nnoremap <leader>m<leader> :!clear && make
-
+" Make buffer changes a little quicker
 nnoremap <F5> :buffers<CR>:buffer<Space>
 
 let g:deoplete#enable_at_startup = 1
@@ -159,39 +176,18 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_working_path_mode = 'r'
 
 " Use a leader instead of the actual named binding
-nmap <leader>p :CtrlP<cr>
+nnoremap <leader>p :CtrlP<cr>
 
 " Easy bindings for its various modes
-nmap <leader>bb :CtrlPBuffer<cr>
-nmap <leader>bm :CtrlPMixed<cr>
-nmap <leader>bs :CtrlPMRU<cr>
-
-function! ConfirmQuit(writeFile)
-    if (a:writeFile)
-        if (expand('%:t')=="")
-            echo "Can't save a file with no name."
-            return
-        endif
-        :write
-    endif
-
-    if (winnr('$')==1 && tabpagenr('$')==1)
-        if (confirm("Do you really want to quit?", "&Yes\n&No", 2)==1)
-            :quit
-        endif
-    else
-        :quit
-    endif
-endfu
-
-" cnoremap <silent> q<CR>  :call ConfirmQuit(0)<CR>
-" cnoremap <silent> x<CR>  :call ConfirmQuit(1)<CR>
+nnoremap <leader>bb :CtrlPBuffer<cr>
+nnoremap <leader>bm :CtrlPMixed<cr>
+nnoremap <leader>bs :CtrlPMRU<cr>
 
 " titlecase
 let g:titlecase_map_keys = 0
-nmap <leader>gt <Plug>Titlecase
-vmap <leader>gt <Plug>Titlecase
-nmap <leader>gT <Plug>TitlecaseLine
+nnoremap <leader>gt <Plug>Titlecase
+vnoremap <leader>gt <Plug>Titlecase
+nnoremap <leader>gT <Plug>TitlecaseLine
 
 " system-copy - xclip is already installed for Tmux, might as well use it
 let g:system_copy#copy_command='xclip -sel clipboard'
