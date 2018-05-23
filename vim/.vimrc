@@ -140,7 +140,7 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 " }}}
 
-" {{{ Genral UI settings
+" {{{ General UI settings
 set number relativenumber " Enables the line numbers.
 set ruler                 " Enables the ruler on the bottom of the screen.
 set laststatus=2          " Always show the statusline.
@@ -179,16 +179,36 @@ set autoindent         " Adds automatic indentation on copy paste as well.
 " }}}
 
 " {{{ Search Options
+set wrapscan
 set incsearch          " Incremental search.
+set hlsearch
 set magic              " Set magic on, for regular expressions.
 set ignorecase         " Searches are Non Case-sensitive.
 set smartcase          " Overrides ignorecase, if search contains uppercase character.
+set infercase
 " }}}
 
 " {{{ Buffer management
 set hidden             " Enables hidden buffers. You don't have to close a buffer if you changes buffer.
 set splitbelow
 set splitright
+" }}}
+
+" {{{ Fold stuff, F9 will toggle folds
+set foldcolumn=4                " (fdc) width of fold column (to see where folds are)
+set foldmethod=indent           " (fdm) creates a fold for every level of indentation
+set foldlevel=99                " (fdl) when file is opened, don't close any folds
+set foldenable
+
+inoremap <F9> <C-O>za
+nnoremap <F9> za
+onoremap <F9> <C-C>za
+vnoremap <F9> zf
+
+hi Folded ctermfg=195
+hi Folded ctermbg=232
+
+autocmd FileType vim setlocal foldmethod=marker
 " }}}
 
 " {{{ Keybinds
@@ -210,13 +230,6 @@ nnoremap <leader>bl :ls<CR>
 
 " Make buffer changes a little quicker
 nnoremap <F5> :buffers<CR>:buffer<Space>
-" }}}
-
-" {{{ Fold stuff, F9 will toggle folds
-inoremap <F9> <C-O>za
-nnoremap <F9> za
-onoremap <F9> <C-C>za
-vnoremap <F9> zf
 " }}}
 
 " {{{ Keybinds to move lines up or down
@@ -355,6 +368,18 @@ augroup encrypted
     autocmd BufWritePost,FileWritePost  *.gpg silent u
     autocmd BufWritePost,FileWritePost  *.gpg set nobin
 augroup END
+" }}}
+
+" {{{ Append modeline after last line in buffer.
+" Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
+" files.
+function! AppendModeline()
+  let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d %set :",
+        \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
+  let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+  call append(line("$"), l:modeline)
+endfunction
+nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 " }}}
 
 set secure
