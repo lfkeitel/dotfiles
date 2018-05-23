@@ -36,3 +36,4 @@
     kana/vim-textobj-entire - Add entire document as a text object
     kana/vim-textobj-indent - Add indent block as a text object
     kana/vim-textobj-line - Add line as a text object
+    ctrlpvim/ctrlp.vim - Powerful fuzzy search

@@ -1,4 +1,55 @@
-" Genral UI settings
+" vim: fdm=marker foldenable sw=4 ts=4 sts=4
+" Lee Keitel's .vimrc file
+" "zo" to open folds, "zc" to close, "zn" to disable.
+
+" {{{ Plugins
+" Uses https://github.com/junegunn/vim-plug for plugin management
+call plug#begin('~/.vim/plugged')
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'kana/vim-arpeggio'
+    Plug 'ntpeters/vim-better-whitespace'
+    Plug 'jeetsukumaran/vim-buffergator'
+    Plug 'MattesGroeger/vim-bookmarks'
+    Plug 'easymotion/vim-easymotion'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'terryma/vim-multiple-cursors'
+    Plug 'scrooloose/nerdtree'
+    Plug 'elzr/vim-json'
+    Plug 'dbakker/vim-projectroot'
+    Plug 'gregsexton/MatchTag'
+    Plug 'mhinz/vim-startify'
+    Plug 'tpope/vim-surround'
+    Plug 'joeytwiddle/sexy_scroller.vim'
+    Plug 'nathanalderson/yang.vim'
+    Plug 'tpope/vim-repeat'
+    Plug 'sukima/xmledit'
+    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-sensible'
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+endif
+    Plug 'zchee/deoplete-go'
+    Plug 'tpope/vim-commentary'
+    Plug 'christoomey/vim-titlecase'
+    Plug 'christoomey/vim-sort-motion'
+    Plug 'christoomey/vim-system-copy'
+    Plug 'kana/vim-textobj-user'
+    Plug 'kana/vim-textobj-entire'
+    Plug 'kana/vim-textobj-indent'
+    Plug 'kana/vim-textobj-line'
+    Plug 'PProvost/vim-ps1'
+    Plug 'ctrlpvim/ctrlp.vim'
+call plug#end()
+" }}}
+
+" {{{ Genral UI settings
 set number relativenumber " Enables the line numbers.
 set ruler                 " Enables the ruler on the bottom of the screen.
 set laststatus=2          " Always show the statusline.
@@ -9,6 +60,7 @@ set scrolljump=0          " Jump only one line on scroll.
 set showcmd               " Displays the selection size and the partion commands.
 set ttyfast               " Improves redrawing for newer computers.
 set nostartofline         " When moving thru the lines, the cursor will try to stay in the previous columns.
+" }}}
 
 " Disable backup files, you are using a version control system anyway :)
 set nobackup
@@ -26,10 +78,27 @@ set autoindent         " Adds automatic indentation on copy paste as well.
 
 " Buffer management
 set hidden             " Enables hidden buffers. You don't have to close a buffer if you changes buffer.
+set splitbelow
+set splitright
+
+" To open a new empty buffer
+" This replaces :tabnew which I used to bind to this mapping
+nmap <leader>T :enew<cr>
+
+" Move to the next buffer
+nmap <leader>' :bnext<CR>
+
+" Move to the previous buffer
+nmap <leader>; :bprevious<CR>
+
+" Close the current buffer and move to the previous one
+" This replicates the idea of closing a tab
+nmap <leader>bq :bp <BAR> bd #<CR>
+
+" Show all open buffers and their status
+nmap <leader>bl :ls<CR>
 
 " Fold stuff, F9 will toggle folds
-set foldmethod=syntax
-set foldlevelstart=99
 inoremap <F9> <C-O>za
 nnoremap <F9> za
 onoremap <F9> <C-C>za
@@ -73,57 +142,50 @@ nnoremap <leader>mt :!clear && make test<cr>
 nnoremap <leader>mc :!clear && make clean<cr>
 nnoremap <leader>m<leader> :!clear && make
 
-" Move lines in all modes
-nnoremap J :m .+1<CR>==
-nnoremap K :m .-2<CR>==
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-
-" Uses https://github.com/junegunn/vim-plug for plugin management
-call plug#begin('~/.vim/plugged')
-    Plug 'jiangmiao/auto-pairs'
-    Plug 'kana/vim-arpeggio'
-    Plug 'ntpeters/vim-better-whitespace'
-    Plug 'jeetsukumaran/vim-buffergator'
-    Plug 'MattesGroeger/vim-bookmarks'
-    Plug 'easymotion/vim-easymotion'
-    Plug 'airblade/vim-gitgutter'
-    Plug 'terryma/vim-multiple-cursors'
-    Plug 'scrooloose/nerdtree'
-    Plug 'elzr/vim-json'
-    Plug 'dbakker/vim-projectroot'
-    Plug 'gregsexton/MatchTag'
-    Plug 'mhinz/vim-startify'
-    Plug 'tpope/vim-surround'
-    Plug 'joeytwiddle/sexy_scroller.vim'
-    Plug 'nathanalderson/yang.vim'
-    Plug 'tpope/vim-repeat'
-    Plug 'sukima/xmledit'
-    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-    Plug 'tpope/vim-fugitive'
-    Plug 'tpope/vim-sensible'
-if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-endif
-    Plug 'zchee/deoplete-go'
-    Plug 'tpope/vim-commentary'
-    Plug 'christoomey/vim-titlecase'
-    Plug 'christoomey/vim-sort-motion'
-    Plug 'christoomey/vim-system-copy'
-    Plug 'kana/vim-textobj-user'
-    Plug 'kana/vim-textobj-entire'
-    Plug 'kana/vim-textobj-indent'
-    Plug 'kana/vim-textobj-line'
-    Plug 'PProvost/vim-ps1'
-call plug#end()
+nnoremap <F5> :buffers<CR>:buffer<Space>
 
 let g:deoplete#enable_at_startup = 1
+
+" CtrlP settings
+" Setup some default ignores
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
+  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
+\}
+
+" Use the nearest .git directory as the cwd
+" This makes a lot of sense if you are working on a project that is in version
+" control. It also supports works with .svn, .hg, .bzr.
+let g:ctrlp_working_path_mode = 'r'
+
+" Use a leader instead of the actual named binding
+nmap <leader>p :CtrlP<cr>
+
+" Easy bindings for its various modes
+nmap <leader>bb :CtrlPBuffer<cr>
+nmap <leader>bm :CtrlPMixed<cr>
+nmap <leader>bs :CtrlPMRU<cr>
+
+function! ConfirmQuit(writeFile)
+    if (a:writeFile)
+        if (expand('%:t')=="")
+            echo "Can't save a file with no name."
+            return
+        endif
+        :write
+    endif
+
+    if (winnr('$')==1 && tabpagenr('$')==1)
+        if (confirm("Do you really want to quit?", "&Yes\n&No", 2)==1)
+            :quit
+        endif
+    else
+        :quit
+    endif
+endfu
+
+" cnoremap <silent> q<CR>  :call ConfirmQuit(0)<CR>
+" cnoremap <silent> x<CR>  :call ConfirmQuit(1)<CR>
 
 " titlecase
 let g:titlecase_map_keys = 0
@@ -158,10 +220,11 @@ let g:NERDTreeCaseSensitiveSort = 0
 let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeWinPos = 'left'
 let g:NERDTreeShowBookmarks = 1
-let g:NERDTreeDirArrows=0
-let NERDTreeMinimalUI=0
-let NERDTreeIgnore = ['\.pyc$']
-let NERDTreeShowHidden=1
+let g:NERDTreeDirArrows = 0
+let g:NERDTreeMinimalUI = 0
+let g:NERDTreeIgnore = ['\.pyc$']
+let g:NERDTreeShowHidden = 1
+autocmd Filetype nerdtree setlocal nohlsearch
 
 "ProjectRoot
 function! <SID>AutoProjectRootCD()
@@ -194,8 +257,6 @@ set autoread
 autocmd BufWritePost *.go silent !goreturns -w %
 autocmd Filetype go setlocal noexpandtab
 
-autocmd Filetype nerdtree setlocal nohlsearch
-
 "Show invisible characters
 nnoremap <leader>v :setlocal list!<cr>
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
@@ -216,6 +277,7 @@ let g:neocomplete#sources#syntax#min_keyword_length = 3
 
 set t_Co=256
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
@@ -272,32 +334,34 @@ endif
 
 " Transparent editing of gpg encrypted files.
 augroup encrypted
-au!
-" First make sure nothing is written to ~/.viminfo while editing
-" an encrypted file.
-autocmd BufReadPre,FileReadPre      *.gpg set viminfo=
-" We don't want a swap file, as it writes unencrypted data to disk
-autocmd BufReadPre,FileReadPre      *.gpg set noswapfile
-" Switch to binary mode to read the encrypted file
-autocmd BufReadPre,FileReadPre      *.gpg set bin
-autocmd BufReadPre,FileReadPre      *.gpg let ch_save = &ch|set ch=2
-autocmd BufReadPre,FileReadPre      *.gpg let shsave=&sh
-autocmd BufReadPre,FileReadPre      *.gpg let &sh='sh'
-autocmd BufReadPre,FileReadPre      *.gpg let ch_save = &ch|set ch=2
-autocmd BufReadPost,FileReadPost    *.gpg '[,']!gpg --decrypt --default-recipient-self 2> /dev/null
-autocmd BufReadPost,FileReadPost    *.gpg let &sh=shsave
-" Switch to normal mode for editing
-autocmd BufReadPost,FileReadPost    *.gpg set nobin
-autocmd BufReadPost,FileReadPost    *.gpg let &ch = ch_save|unlet ch_save
-autocmd BufReadPost,FileReadPost    *.gpg execute ":doautocmd BufReadPost " . expand("%:r")
-" Convert all text to encrypted text before writing
-autocmd BufWritePre,FileWritePre    *.gpg set bin
-autocmd BufWritePre,FileWritePre    *.gpg let shsave=&sh
-autocmd BufWritePre,FileWritePre    *.gpg let &sh='sh'
-autocmd BufWritePre,FileWritePre    *.gpg '[,']!gpg --encrypt --default-recipient-self 2>/dev/null
-autocmd BufWritePre,FileWritePre    *.gpg let &sh=shsave
-" Undo the encryption so we are back in the normal text, directly
-" after the file has been written.
-autocmd BufWritePost,FileWritePost  *.gpg silent u
-autocmd BufWritePost,FileWritePost  *.gpg set nobin
+    au!
+    " First make sure nothing is written to ~/.viminfo while editing
+    " an encrypted file.
+    autocmd BufReadPre,FileReadPre      *.gpg set viminfo=
+    " We don't want a swap file, as it writes unencrypted data to disk
+    autocmd BufReadPre,FileReadPre      *.gpg set noswapfile
+    " Switch to binary mode to read the encrypted file
+    autocmd BufReadPre,FileReadPre      *.gpg set bin
+    autocmd BufReadPre,FileReadPre      *.gpg let ch_save = &ch|set ch=2
+    autocmd BufReadPre,FileReadPre      *.gpg let shsave=&sh
+    autocmd BufReadPre,FileReadPre      *.gpg let &sh='sh'
+    autocmd BufReadPre,FileReadPre      *.gpg let ch_save = &ch|set ch=2
+    autocmd BufReadPost,FileReadPost    *.gpg '[,']!gpg --decrypt --default-recipient-self 2> /dev/null
+    autocmd BufReadPost,FileReadPost    *.gpg let &sh=shsave
+    " Switch to normal mode for editing
+    autocmd BufReadPost,FileReadPost    *.gpg set nobin
+    autocmd BufReadPost,FileReadPost    *.gpg let &ch = ch_save|unlet ch_save
+    autocmd BufReadPost,FileReadPost    *.gpg execute ":doautocmd BufReadPost " . expand("%:r")
+    " Convert all text to encrypted text before writing
+    autocmd BufWritePre,FileWritePre    *.gpg set bin
+    autocmd BufWritePre,FileWritePre    *.gpg let shsave=&sh
+    autocmd BufWritePre,FileWritePre    *.gpg let &sh='sh'
+    autocmd BufWritePre,FileWritePre    *.gpg '[,']!gpg --encrypt --default-recipient-self 2>/dev/null
+    autocmd BufWritePre,FileWritePre    *.gpg let &sh=shsave
+    " Undo the encryption so we are back in the normal text, directly
+    " after the file has been written.
+    autocmd BufWritePost,FileWritePost  *.gpg silent u
+    autocmd BufWritePost,FileWritePost  *.gpg set nobin
 augroup END
+
+set secure
