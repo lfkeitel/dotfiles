@@ -29,6 +29,7 @@ Use the `install-powershell.sh` script to install PowerShell.
 - Dart lang
 - Docker
 - Hexchat
+- Minicom (serial terminal)
 
 ## Supported Systems
 
