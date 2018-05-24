@@ -10,16 +10,18 @@ $Settings = Get-JSONFile $SettingsFile
 Write-Header 'Install Inconsolata font'
 $ReloadFont = $false
 
-$Library = "/usr/local/share/fonts"
-if (Get-IsFedora) {
-    $Library = "/usr/share/fonts"
-} elseif ($IsMacOS) {
+$Library = "$HOME/.fonts"
+if ($IsMacOS) {
     $Library = "$HOME/Library/Fonts"
+}
+
+if (!(Test-DirExists $Library)) {
+    New-Directory $Library
 }
 
 function Install-Font ([string] $url, [string] $out) {
     if (!(Test-FileExists $out)) {
-        sudo wget -q --show-progress -O $out $url
+        wget -q --show-progress -O $out $url
         if ($IsLinux) { $ReloadFont = $true }
     }
 }

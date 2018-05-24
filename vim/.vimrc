@@ -5,6 +5,7 @@
 " {{{ Plugins
 " Uses https://github.com/junegunn/vim-plug for plugin management
 call plug#begin('~/.vim/plugged')
+    Plug 'PotatoesMaster/i3-vim-syntax'
     Plug 'kana/vim-arpeggio'
     Plug 'ntpeters/vim-better-whitespace'
     Plug 'jeetsukumaran/vim-buffergator'
