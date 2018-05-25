@@ -177,6 +177,8 @@ set shiftwidth=4       " Autoindent width.
 set smarttab           " A tab executes automatic indentation in insert mode.
 set smartindent        " Adds automatic indentation on new line.
 set autoindent         " Adds automatic indentation on copy paste as well.
+
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " }}}
 
 " {{{ Search Options
