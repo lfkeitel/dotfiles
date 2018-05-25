@@ -182,7 +182,7 @@ set autoindent         " Adds automatic indentation on copy paste as well.
 " {{{ Search Options
 set wrapscan
 set incsearch          " Incremental search.
-set hlsearch
+set nohlsearch
 set magic              " Set magic on, for regular expressions.
 set ignorecase         " Searches are Non Case-sensitive.
 set smartcase          " Overrides ignorecase, if search contains uppercase character.
