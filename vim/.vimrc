@@ -248,7 +248,7 @@ vnoremap <C-Up> :m '<-2<CR>gv=gv
 nnoremap <leader>h :noh<cr>
 " }}}
 
-" {{{ Misc remaps
+" {{{ Misc maps
 nnoremap <leader>l :source ~/.config/nvim/init.vim<cr>
 
 nnoremap ; :
@@ -257,6 +257,9 @@ vnoremap ; :
 command! Wq wq
 nnoremap <leader>q :q<cr>
 nnoremap <leader>Q :q!<cr>
+
+inoremap <Space><Space> <C-o>/<++><cr><C-o>d4l
+nnoremap <Space><Space> /<++><cr>d4li
 " }}}
 
 " {{{ Window navigation
