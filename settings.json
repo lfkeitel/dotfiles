@@ -77,6 +77,26 @@
 
     "fonts": [
         {
+            "remote": "https://github.com/tonsky/FiraCode/raw/master/distr/ttf/FiraCode-Bold.ttf",
+            "name": "FiraCode-Bold.ttf"
+        },
+        {
+            "remote": "https://github.com/tonsky/FiraCode/raw/master/distr/ttf/FiraCode-Light.ttf",
+            "name": "FiraCode-Light.ttf"
+        },
+        {
+            "remote": "https://github.com/tonsky/FiraCode/raw/master/distr/ttf/FiraCode-Medium.ttf",
+            "name": "FiraCode-Medium.ttf"
+        },
+        {
+            "remote": "https://github.com/tonsky/FiraCode/raw/master/distr/ttf/FiraCode-Regular.ttf",
+            "name": "FiraCode-Regular.ttf"
+        },
+        {
+            "remote": "https://github.com/tonsky/FiraCode/raw/master/distr/ttf/FiraCode-Retina.ttf",
+            "name": "FiraCode-Retina.ttf"
+        },
+        {
             "remote": "https://github.com/google/fonts/raw/master/ofl/inconsolata/Inconsolata-Regular.ttf",
             "name": "Inconsolata-Regular.ttf"
         },

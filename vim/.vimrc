@@ -28,6 +28,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'kana/vim-textobj-indent'
     Plug 'kana/vim-textobj-line'
     Plug 'PProvost/vim-ps1'
+    Plug 'leafgarland/typescript-vim'
+    Plug 'Quramy/tsuquyomi'
 
 " {{{ Sexy scroller
     Plug 'joeytwiddle/sexy_scroller.vim'
@@ -106,7 +108,7 @@ call plug#begin('~/.vim/plugged')
 
     " Setup some default ignores
     let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
+      \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site|node_modules)$',
       \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
     \}
 
@@ -236,12 +238,15 @@ nnoremap <F5> :buffers<CR>:buffer<Space>
 " }}}
 
 " {{{ Keybinds to move lines up or down
-nnoremap <C-Down> :m .+1<CR>==
-nnoremap <C-Up> :m .-2<CR>==
-inoremap <C-Down> <Esc>:m .+1<CR>==gi
-inoremap <C-Up> <Esc>:m .-2<CR>==gi
-vnoremap <C-Down> :m '>+1<CR>gv=gv
-vnoremap <C-Up> :m '<-2<CR>gv=gv
+nnoremap <C-S-Down> :m .+1<CR>==
+nnoremap <C-S-Up> :m .-2<CR>==
+inoremap <C-S-Down> <Esc>:m .+1<CR>==gi
+inoremap <C-S-Up> <Esc>:m .-2<CR>==gi
+vnoremap <C-S-Down> :m '>+1<CR>gv=gv
+vnoremap <C-S-Up> :m '<-2<CR>gv=gv
+
+nnoremap <C-Down> <C-d>
+nnoremap <C-Up> <C-u>
 " }}}
 
 " {{{ Search Options

@@ -13,8 +13,8 @@
     "telemetry.enableCrashReporter": false,
     "extensions.ignoreRecommendations": true,
     "java.errors.incompleteClasspath.severity": "ignore",
-
-    "editor.fontFamily": "Inconsolata, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "editor.fontFamily": "Fira Code, Inconsolata, monospace",
     "editor.fontSize": 17,
     "files.trimTrailingWhitespace": true,
     "docker.showExplorer": false,
