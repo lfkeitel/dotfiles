@@ -72,7 +72,7 @@ function Install-SystemPackages ([switch] $Update) {
 
 function Install-AURPackage ([switch] $Update) {
     if (!(Get-IsArch)) { return }
-    sudo aurman -S @Args
+    aurman -S @Args
 }
 
 function Get-CommandExists ([string] $command) {
