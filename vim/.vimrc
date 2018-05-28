@@ -159,8 +159,13 @@ set ttyfast               " Improves redrawing for newer computers.
 set nostartofline         " When moving thru the lines, the cursor will try to stay in the previous columns.
 set autoread
 
+if has('termguicolors')
+highlight Pmenu guibg=LightGray guifg=Black
+highlight PmenuSel guibg=Black guifg=LightGray
+else
 highlight Pmenu ctermbg=LightGray ctermfg=Black
 highlight PmenuSel ctermbg=Black ctermfg=LightGray
+endif
 
 " {{{ Show invisible characters
 nnoremap <leader>v :setlocal list!<cr>
@@ -399,4 +404,5 @@ endfunction
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 " }}}
 
+set background = "dark"
 set secure
