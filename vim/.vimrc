@@ -156,6 +156,9 @@ set ttyfast               " Improves redrawing for newer computers.
 set nostartofline         " When moving thru the lines, the cursor will try to stay in the previous columns.
 set autoread
 
+highlight Pmenu ctermbg=LightGray ctermfg=Black
+highlight PmenuSel ctermbg=Black ctermfg=LightGray
+
 " {{{ Show invisible characters
 nnoremap <leader>v :setlocal list!<cr>
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
