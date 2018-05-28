@@ -12,6 +12,11 @@ if (Get-CommandExists docker -and !$Force) {
     return
 }
 
+if (Get-IsArch) {
+    Install-AURPackage 'docker-bin'
+    return
+}
+
 Import-RepoKey 'https://download.docker.com/linux/ubuntu/gpg'
 Install-RepoList "$PSScriptRoot/docker"
 Update-PackageLists

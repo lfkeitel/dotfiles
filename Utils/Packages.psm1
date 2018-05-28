@@ -7,6 +7,8 @@ function Import-RepoKey ([string] $url) {
 }
 
 function Install-RepoList ([string] $RepoFileBase) {
+    if (!$IsLinux -or (Get-IsArch)) { return }
+
     $CodeRelease = ''
     if (Get-IsUbuntu) {
         $CodeRelease = $SystemInfo.Version_Codename
@@ -32,6 +34,8 @@ function Install-RepoList ([string] $RepoFileBase) {
 }
 
 function Install-RemoteRepoList ([string] $url) {
+    if (!$IsLinux -or (Get-IsArch)) { return }
+
     $RepoFile = (Split-Path -Path $url -Leaf)
 
     $RepoDir = '/etc/apt/sources.list.d'
@@ -59,9 +63,16 @@ function Update-PackageLists {
 
 function Install-SystemPackages ([switch] $Update) {
     if ($Update) { Update-PackageLists }
+
     if (Get-IsUbuntu) { sudo apt install -y @Args }
     elseif (Get-IsFedora) { sudo dnf install -y @Args }
+    elseif (Get-IsArch) { sudo pacman -S --noconfirm @Args }
     elseif ($IsMacOS) { brew install -y @Args }
+}
+
+function Install-AURPackage ([switch] $Update) {
+    if (!(Get-IsArch)) { return }
+    sudo aurman -S @Args
 }
 
 function Get-CommandExists ([string] $command) {
@@ -80,6 +91,9 @@ function Get-IsPackageInstalled ([string] $pkg) {
         return ($AptList.Count -gt 0)
     } elseif (Get-IsFedora) {
         dnf list $pkg >/dev/null
+        return ($LASTEXITCODE -eq 0)
+    } elseif (Get-IsArch) {
+        pacman -Q $pkg >/dev/null 2>&1
         return ($LASTEXITCODE -eq 0)
     } elseif ($IsMacOS) {
         $BrewList = (brew list $pkg 2>/dev/null)

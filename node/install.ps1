@@ -37,6 +37,8 @@ if (Get-CommandExists yarn) {
 } else {
     if ($IsMacOS) {
         brew install yarn --without-node
+    } elseif (Get-IsArch) {
+        Install-SystemPackages yarn
     } elseif ($IsLinux) {
         Import-RepoKey 'https://dl.yarnpkg.com/debian/pubkey.gpg'
         Install-RepoList "$PSScriptRoot/yarn"

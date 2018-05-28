@@ -13,6 +13,10 @@ function Get-IsUbuntu {
     return ($LinuxDistro -eq 'Ubuntu')
 }
 
+function Get-IsArch {
+    return ($LinuxDistro.StartsWith('Arch'))
+}
+
 function Restore-EncryptedFile ([string] $Source, [string] $Dest) {
     $gpgOut = (gpg2 --yes --output $Dest -d $Source 2>&1)
     if ($LASTEXITCODE -gt 0) {

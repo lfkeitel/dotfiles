@@ -38,6 +38,8 @@ if ($RunInstall) {
         if ($IsMacOS) {
             Write-Output 'Please install VS Code first'
             ExitWithCode 1
+        } elseif (Get-IsArch) {
+            Install-AURPackage visual-studio-code-bin
         } elseif ($IsLinux) {
             Import-RepoKey 'https://packages.microsoft.com/keys/microsoft.asc'
             Install-RepoList "$PSScriptRoot/vscode"

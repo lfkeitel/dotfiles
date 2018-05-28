@@ -11,6 +11,20 @@ if [[ -n "$(which pwsh)" ]]; then
     exit
 fi
 
+install_aurman() {
+    mkdir -p "$HOME/code"
+    if [[ -d "$HOME/code/aurman" ]]; then
+        cd "$HOME/code/aurman"
+        git fetch
+    else
+        git clone 'https://aur.archlinux.org/aurman.git' "$HOME/code/aurman"
+        cd "$HOME/code/aurman"
+    fi
+
+    makepkg -Acs
+    sudo pacman -U *.pkg.tar.xz
+}
+
 if [[ $SYSTEM_TYPE == "Darwin" ]]; then
     brew tap caskroom/cask
     brew cask install powershell
@@ -25,4 +39,7 @@ elif [[ $LINUX_DISTRO == "Fedora" ]]; then
     sudo dnf update
     sudo dnf install compat-openssl10
     sudo dnf install -y powershell
+elif [[ $LINUX_DISTRO == "Arch Linux" ]]; then
+    install_aurman
+    aurman -S powershell-bin
 fi

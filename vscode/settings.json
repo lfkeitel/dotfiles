@@ -14,7 +14,7 @@
     "extensions.ignoreRecommendations": true,
     "java.errors.incompleteClasspath.severity": "ignore",
     "editor.fontLigatures": true,
-    "editor.fontFamily": "Fira Code, Inconsolata, monospace",
+    "editor.fontFamily": "'Fira Code', Inconsolata, monospace",
     "editor.fontSize": 17,
     "files.trimTrailingWhitespace": true,
     "docker.showExplorer": false,

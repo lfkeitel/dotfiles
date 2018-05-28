@@ -19,6 +19,10 @@ function Install-GPGPackages {
         Install-SystemPackages gnupg-agent gnupg2 pinentry-gtk2 scdaemon libccid pcscd libpcsclite1 gpgsm
     } elseif (Get-IsFedora) {
         Install-SystemPackages ykpers libyubikey gnupg gnupg2-smime
+    } elseif (Get-IsArch) {
+        Install-SystemPackages gnupg pinentry ccid pcsclite
+        sudo systemctl enable pcscd.service
+        sudo systemctl start pcscd.service
     }
 }
 

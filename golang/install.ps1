@@ -13,12 +13,25 @@ $GoRoot = $Settings.go.goroot
 $GoPath = "$HOME/go"
 $GoVersion = "go$($Settings.go.version)"
 
+function Install-GolangFromRemote {
+    $tarfile = "$GoVersion.linux-amd64.tar.gz"
+    $url = "https://storage.googleapis.com/golang/$GoVersion.linux-amd64.tar.gz"
+
+    if (!(Test-FileExists $tarfile)) {
+        Get-RemoteFile $url $tarfile
+    }
+
+    if (Test-DirExists $GoRoot) {
+        sudo rm -rf $GoRoot
+    }
+
+    sudo tar -C /usr/local -xzf $tarfile
+    Remove-Item $tarfile
+}
 
 function Install-Golang {
     Write-Header "Installing Go"
-    $GoInstalled = (Invoke-Command "$GoRoot/bin/go" "version").StdOut.Split(' ')[2]
-    $tarfile = "$GoVersion.linux-amd64.tar.gz"
-    $url = "https://storage.googleapis.com/golang/$GoVersion.linux-amd64.tar.gz"
+    $GoInstalled = (Invoke-Command "go" "version").StdOut.Split(' ')[2]
 
     if ((!$Force) -and ($GoVersion -eq $GoInstalled)) {
         Write-ColoredLine "Go is at requested version $GoInstalled" DarkGreen
@@ -34,16 +47,7 @@ function Install-Golang {
         exit
     }
 
-    if (!(Test-FileExists $tarfile)) {
-        Get-RemoteFile $url $tarfile
-    }
-
-    if (Test-DirExists $GoRoot) {
-        sudo rm -rf $GoRoot
-    }
-
-    sudo tar -C /usr/local -xzf $tarfile
-    Remove-Item $tarfile
+    Install-GolangFromRemote
 
     if (Test-DirExists "$GoPath/pkg") {
         # Remove any archive packages from older version of Go

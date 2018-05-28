@@ -19,12 +19,32 @@ function Install-MacPackages {
     brew install $Settings.packages.macos
 }
 
+function Install-Aurman {
+    if (!(Get-IsArch) -or (Get-CommandExists aurman)) { return }
+
+    New-Directory "$HOME/code"
+
+    if (Test-DirExists $HOME/code/aurman) {
+        Set-Location $HOME/code/aurman
+        git fetch
+    } else {
+        git clone 'https://aur.archlinux.org/aurman.git' $HOME/code/aurman
+        Set-Location $HOME/code/aurman
+    }
+
+    makepkg -Acs
+    sudo pacman -U *.pkg.tar.xz
+}
+
 function Install-LinuxPackages {
     if (Get-IsFedora) {
         Install-SystemPackages "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
         Install-SystemPackages $Settings.packages.linux $Settings.packages.fedora
-    } else {
+    } elseif (Get-IsUbuntu) {
         Install-SystemPackages $Settings.packages.linux $Settings.packages.ubuntu
+    } elseif (Get-IsArch) {
+        Install-Aurman
+        Install-SystemPackages $Settings.packages.linux $Settings.packages.arch
     }
 
     sudo systemctl start haveged

@@ -10,13 +10,13 @@ Use the `install-powershell.sh` script to install PowerShell.
 
 ### Automatic (just run install.ps1):
 
-- Inconsolata font
+- Fonts (Inconsolata, Fira Code, Font Awesome 5)
 - Git
 - Golang
-- GPG Agent
-- macOS Finder
+- GPG Agent (Imports my personal keys and trusts ultimately)
+- macOS Finder (Show all files)
 - Node JS (with nvm and Yarn)
-- PowerShell
+- PowerShell (Doesn't work on Arch)
 - Python
 - System packages
 - Tmux
@@ -28,13 +28,14 @@ Use the `install-powershell.sh` script to install PowerShell.
 
 - Dart lang
 - Docker
-- Hexchat
+- Hexchat (Some config files encrypted)
 - Minicom (serial terminal)
 
 ## Supported Systems
 
 - Ubuntu
 - Fedora
+- Arch
 - macOS
 
 ## TL;DR
@@ -62,4 +63,18 @@ The installer can take an optional argument to run a specific installer.
     - `-Link` - Link configuration files
     - `-Ext` install extensions
 - `dart`
-    - `-Force` - Reinstall Go even if the required version is installed
+    - `-Force` - Reinstall Dart even if the required version is installed
+
+
+## Why PowerShell?
+
+Originally my install scripts were written in normal Bash but I decided to move to
+PowerShell for a couple reasons. One was simply to try something new. I had never
+used PowerShell and it looked like an interesting shell runner. With PowerShell Core
+and full Linux support it made it more compelling. Second is the language itself
+is much more expressive and powerful than plain Bash/POSIX shell. Many operations
+that were convoluted or ugly in Bash are very simple in PowerShell. It combines
+the simplicity of a shell langauge with the power of a typical programming language.
+
+If you don't want to use PowerShell, all the configs can be manually symlinked or
+copied to their appropiate places.
