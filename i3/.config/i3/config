@@ -13,7 +13,7 @@ set $ws10 "10"
 
 set $browser google-chrome-stable
 set $terminal st -c st-terminal
-set $i3lock i3lock
+set $i3lock lock_screen
 
 # Power commands
 set $shutdown sudo shutdown -h now
@@ -26,8 +26,9 @@ font pango:Inconsolata 13
 # Startup applications
 # Starts dunst for notifications:
 exec --no-startup-id dunst
-# Autolock desktop after 15 minutes
+# Autolock desktop after 5 minutes
 exec --no-startup-id xautolock -time 5 -locker $i3lock
+# Turn off displays after 5 minutes
 exec --no-startup-id xset dpms 300 300 300
 # Set wallpaper
 exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper.jpg
