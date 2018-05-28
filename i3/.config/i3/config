@@ -24,6 +24,8 @@ set $hibernate sudo systemctl suspend
 font pango:Inconsolata 13
 
 # Startup applications
+# Enable NumLock
+exec --no-startup-id numlockx
 # Starts dunst for notifications:
 exec --no-startup-id dunst
 # Autolock desktop after 5 minutes
