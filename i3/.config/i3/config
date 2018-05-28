@@ -184,9 +184,9 @@ bindsym $mod+Right focus right
 bindsym $mod+Shift+Right move right
 
 # Media controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5 #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 5 #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id toggle-mute # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id volume up
+bindsym XF86AudioLowerVolume exec --no-startup-id volume down
+bindsym XF86AudioMute exec --no-startup-id volume mute
 
 # Application specific settings
 for_window [class="Google-chrome"] move container to workspace $ws1

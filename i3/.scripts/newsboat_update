@@ -1,0 +1,7 @@
+#!/bin/bash
+
+[[ $BLOCK_BUTTON = "1" ]] && st -e newsboat -r
+
+newsboat -x reload
+
+echo  $(newsboat -x print-unread | cut -d' ' -f1)
