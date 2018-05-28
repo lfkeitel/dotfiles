@@ -139,6 +139,9 @@ call plug#begin('~/.vim/plugged')
     let g:airline_symbols.space = "\ua0"
     let g:airline_powerline_fonts = 1
     let g:airline_theme='dark'
+    if has('nvim')
+    set termguicolors
+    endif
 " }}}
 call plug#end()
 " }}}
