@@ -1,0 +1,3 @@
+#!/bin/sh -e
+
+/home/lfkeitel/.scripts/i3lock

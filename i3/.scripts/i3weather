@@ -1,0 +1,16 @@
+#!/bin/bash
+### This is only if your location isn't automatically detected, otherwise you can leave it blank.
+location=""
+
+[[ $BLOCK_BUTTON = "1" ]] && st -e sh -c "curl -s \"wttr.in/$location?m\"; read"
+
+ping -q -w 1 -c 1 `ip r | grep default | cut -d ' ' -f 3` >/dev/null || exit
+
+if [[ "$location" != "" ]]; then
+    location="${location// /+}"
+fi
+curl -s "wttr.in/$location?m&1" > ~/.weatherreport
+
+echo -n  $(cat ~/.weatherreport | sed -n 16p | sed -e 's/[^m]*m//g' | grep -o "[0-9]*%" | sort -n | sed -e '$!d')
+
+cat ~/.weatherreport | sed -n 13p | tr -d '[[:cntrl:]]' | grep -oP 'm\d+?0m' | tr -d m | sed 's/.$//g' | sort -n | sed -e 1b -e '$!d' | tr '\n' ' ' | awk '{print " ",$1 "°","",$2 "°"}'

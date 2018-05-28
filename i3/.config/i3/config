@@ -1,0 +1,235 @@
+# Variables
+set $mod Mod4
+set $ws1 "1: web"
+set $ws2 "2: terminal"
+set $ws3 "3: email"
+set $ws4 "4: chat"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+set $browser google-chrome-stable
+set $terminal st -c st-terminal
+set $i3lock i3lock
+
+# Power commands
+set $shutdown sudo shutdown -h now
+set $reboot sudo reboot
+set $netrefresh --no-startup-id sudo systemctl restart NetworkManager
+set $hibernate sudo systemctl suspend
+
+font pango:Inconsolata 13
+
+# Startup applications
+# Starts dunst for notifications:
+exec --no-startup-id dunst
+# Autolock desktop after 15 minutes
+exec --no-startup-id xautolock -time 5 -locker $i3lock
+exec --no-startup-id xset dpms 300 300 300
+# Set wallpaper
+exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper.jpg
+# Set screen layout
+exec --no-startup-id ~/.screenlayout/default.sh
+# Start compositor
+exec --no-startup-id compton -f
+# Start Network Manager
+exec --no-startup-id nm-applet
+# Unclutter makes the mouse invisible after a brief period
+exec --no-startup-id unclutter
+
+hide_edge_borders both
+for_window [class="^.*"] border pixel 2
+floating_modifier $mod
+gaps inner 15
+gaps outer 15
+
+# Keybinds
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+bindsym $mod+Escape workspace prev
+bindsym $mod+Shift+Escape exec prompt "Are you sure you want to leave i3?" "i3-msg exit"
+
+# bindsym $mod+BackSpace
+bindsym $mod+Shift+BackSpace exec prompt "Are you sure you want to reboot?" "$reboot"
+
+bindsym $mod+a focus parent
+# bindsym $mod+Shift+a
+
+bindsym $mod+b exec $browser
+# bindsym $mod+Shift+b
+
+# bindsym $mod+c
+bindsym $mod+Shift+c reload
+
+bindsym $mod+d exec rofi -show run
+# bindsym $mod+Shift+d
+
+bindsym $mod+e layout toggle split
+# bindsym $mod+Shift+e
+
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+f exec firefox
+
+bindsym $mod+g [instance="dropdown"] scratchpad show; [instance="dropdown"] move position center
+# bindsym $mod+Shift+g
+
+bindsym $mod+h split h
+# bindsym $mod+Shift+h
+
+# bindsym $mod+i
+# bindsym $mod+Shift+i
+
+bindsym $mod+j focus left
+bindsym $mod+Shift+j move workspace to output left
+
+bindsym $mod+k focus down
+bindsym $mod+Shift+k move down
+
+bindsym $mod+l focus up
+bindsym $mod+Shift+l move up
+
+# bindsym $mod+m
+# bindsym $mod+Shift+m
+
+# bindsym $mod+n
+# bindsym $mod+Shift+n
+
+# bindsym $mod+o
+# bindsym $mod+Shift+o
+
+# bindsym $mod+p
+# bindsym $mod+Shift+p
+
+# bindsym $mod+q
+bindsym $mod+Shift+q kill
+
+bindsym $mod+r mode "resize"
+bindsym $mod+Shift+r restart
+
+bindsym $mod+s gaps inner current plus 5
+bindsym $mod+Shift+s gaps inner current minus 5
+
+bindsym $mod+t exec thunderbird
+# bindsym $mod+Shift+t
+
+# bindsym $mod+u
+# bindsym $mod+Shift+u
+
+bindsym $mod+v split v
+# bindsym $mod+Shift+v
+
+bindsym $mod+w layout tabbed
+# bindsym $mod+Shift+w
+
+bindsym $mod+x exec $i3lock
+bindsym $mod+Shift+x exec prompt "Are you sure you want to shutdown?" "$shutdown"
+
+# bindsym $mod+y
+# bindsym $mod+Shift+y
+
+# bindsym $mod+z
+# bindsym $mod+Shift+z
+
+bindsym $mod+Return exec $terminal
+# bindsym $mod+Shift+Return
+
+bindsym $mod+space focus mode_toggle
+bindsym $mod+Shift+space floating toggle
+
+bindsym $mod+semicolon focus right
+bindsym $mod+Shift+semicolon move workspace to output right
+
+bindsym $mod+Home workspace $ws1
+bindsym $mod+Shift+Home move container to workspace $ws1
+
+bindsym $mod+End workspace $ws10
+bindsym $mod+Shift+End move container to workspace $ws10
+
+bindsym $mod+Tab workspace back_and_forth
+
+# Arrow keys
+bindsym $mod+Left focus left
+bindsym $mod+Shift+Left move left
+
+bindsym $mod+Down focus down
+bindsym $mod+Shift+Down move down
+
+bindsym $mod+Up focus up
+bindsym $mod+Shift+Up move up
+
+bindsym $mod+Right focus right
+bindsym $mod+Shift+Right move right
+
+# Media controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5 #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 5 #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id toggle-mute # mute sound
+
+# Application specific settings
+for_window [class="Google-chrome"] move container to workspace $ws1
+for_window [class="Firefox"] move container to workspace $ws1
+for_window [class="Gnome-terminal"] move container to workspace $ws2
+for_window [class="st-terminal"] move container to workspace $ws2
+for_window [class="Thunderbird"] move container to workspace $ws3
+for_window [class="Mattermost"] move container to workspace $ws4
+for_window [class="Hexchat"] move container to workspace $ws4
+
+for_window [title="GIMP Startup"] move workspace $ws5
+for_window [class="Gimp"] move workspace $ws5
+workspace $ws5 gaps inner 0
+workspace $ws5 gaps outer 0
+for_window [window_role="gimp-dock"] floating disable; move left; resize shrink width 50 px or 50ppt
+for_window [window_role="gimp-toolbox"] floating disable; move right; resize grow width 30 px or 30ppt
+
+# First I have a tmux window used for background scripts.
+for_window [instance="dropdown"] floating enable
+for_window [instance="dropdown"] resize set 625 400
+for_window [instance="dropdown"] move scratchpad
+for_window [instance="dropdown"] border pixel 5
+# Runs the tmuxinit script, which searches for an earlier tmux instance,
+# otherwise starts a new one (to prevent multiple dropdown sessions).
+exec --no-startup-id $terminal -n dropdown -e tmuxinit
+
+mode "resize" {
+    bindsym j resize shrink width 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym l resize shrink height 10 px or 10 ppt
+    bindsym semicolon resize grow width 10 px or 10 ppt
+
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+
+bar {
+    status_command i3blocks -c /home/lfkeitel/.config/i3/i3blocks.conf
+    position top
+}

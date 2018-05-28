@@ -6,8 +6,9 @@ arandr
 feh
 i3lock
 pavucontrol
+pamixer
+ncpamixer
 xautolock
-magrify?
 scrot
 lxappearance
 acpi
