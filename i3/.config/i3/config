@@ -12,7 +12,8 @@ set $ws9 "9"
 set $ws10 "10"
 
 set $browser google-chrome-stable
-set $terminal st -c st-terminal
+set $terminal st -c st-terminal 
+set $terminal_start st -c st-terminal -e tmux -2 -u
 set $i3lock lock_screen
 
 # Power commands
@@ -46,8 +47,10 @@ exec --no-startup-id unclutter
 hide_edge_borders both
 for_window [class="^.*"] border pixel 2
 floating_modifier $mod
-gaps inner 15
-gaps outer 15
+
+set $default_gaps 15
+gaps inner $default_gaps
+gaps outer $default_gaps
 
 # Keybinds
 bindsym $mod+1 workspace $ws1
@@ -97,7 +100,7 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+Shift+f exec firefox
 
 bindsym $mod+g [instance="dropdown"] scratchpad show; [instance="dropdown"] move position center
-# bindsym $mod+Shift+g
+bindsym $mod+Shift+g exec --no-startup-id $terminal -n dropdown -e tmuxinit
 
 bindsym $mod+h split h
 # bindsym $mod+Shift+h
@@ -153,10 +156,10 @@ bindsym $mod+Shift+x exec prompt "Are you sure you want to shutdown?" "$shutdown
 # bindsym $mod+y
 # bindsym $mod+Shift+y
 
-# bindsym $mod+z
-# bindsym $mod+Shift+z
+bindsym $mod+z gaps inner current set 0; gaps outer current set 0
+bindsym $mod+Shift+z gaps inner current set $default_gaps; gaps outer current set $default_gaps
 
-bindsym $mod+Return exec $terminal
+bindsym $mod+Return exec $terminal_start
 # bindsym $mod+Shift+Return
 
 bindsym $mod+space focus mode_toggle
@@ -172,6 +175,7 @@ bindsym $mod+End workspace $ws10
 bindsym $mod+Shift+End move container to workspace $ws10
 
 bindsym $mod+Tab workspace back_and_forth
+# bindsym $mod+Shift+Tab
 
 # Arrow keys
 bindsym $mod+Left focus left
@@ -209,7 +213,7 @@ for_window [window_role="gimp-toolbox"] floating disable; move right; resize gro
 
 # First I have a tmux window used for background scripts.
 for_window [instance="dropdown"] floating enable
-for_window [instance="dropdown"] resize set 625 400
+for_window [instance="dropdown"] resize set 825 500
 for_window [instance="dropdown"] move scratchpad
 for_window [instance="dropdown"] border pixel 5
 # Runs the tmuxinit script, which searches for an earlier tmux instance,
