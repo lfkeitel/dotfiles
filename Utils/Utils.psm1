@@ -25,7 +25,15 @@ function Restore-EncryptedFile ([string] $Source, [string] $Dest) {
 }
 
 function Add-FileLink ([string] $Source, [string] $Dest) {
-    New-Item -ItemType SymbolicLink -Target $Source -Path $Dest -Force | Out-Null
+    if (Test-FileExists $Dest) {
+        Remove-Item $Dest -Force | Out-Null
+    }
+
+    if ($env:DOT_NO_LINK -eq '') {
+        New-Item -ItemType SymbolicLink -Target $Source -Path $Dest -Force | Out-Null
+    } else {
+        Copy-Item $Source $Dest -Force | Out-Null
+    }
 }
 
 function Test-FileExists ([string] $path) {
