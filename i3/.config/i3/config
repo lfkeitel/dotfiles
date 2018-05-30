@@ -12,7 +12,7 @@ set $ws9 "9"
 set $ws10 "10"
 
 set $browser google-chrome-stable
-set $terminal st -c st-terminal 
+set $terminal st -c st-terminal
 set $terminal_start st -c st-terminal -e tmux -2 -u
 set $i3lock lock_screen
 
@@ -42,7 +42,7 @@ exec --no-startup-id compton -f
 # Start Network Manager
 exec --no-startup-id nm-applet
 # Unclutter makes the mouse invisible after a brief period
-exec --no-startup-id unclutter
+exec --no-startup-id unclutter -notclass 'Google-chrome'
 
 hide_edge_borders both
 for_window [class="^.*"] border pixel 2
