@@ -1,5 +1,10 @@
 #!/bin/sh -e
 
+if [ -f "$HOME/Pictures/lock_screen.png" ]; then
+    i3lock -i $HOME/Pictures/lock_screen.png
+    exit
+fi
+
 # Take a screenshot
 scrot /tmp/screen_locked.png
 
