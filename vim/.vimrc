@@ -5,20 +5,20 @@
 " {{{ Plugins
 " Uses https://github.com/junegunn/vim-plug for plugin management
 call plug#begin('~/.vim/plugged')
-    Plug 'PotatoesMaster/i3-vim-syntax'
+    Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
     Plug 'kana/vim-arpeggio'
     Plug 'ntpeters/vim-better-whitespace'
     Plug 'jeetsukumaran/vim-buffergator'
     Plug 'easymotion/vim-easymotion'
     Plug 'terryma/vim-multiple-cursors'
-    Plug 'elzr/vim-json'
+    Plug 'elzr/vim-json', { 'for': 'json' }
     Plug 'dbakker/vim-projectroot'
     Plug 'gregsexton/MatchTag'
-    Plug 'mhinz/vim-startify'
+    Plug 'mhinz/vim-startify', { 'on': 'Startify' }
     Plug 'tpope/vim-surround'
-    Plug 'nathanalderson/yang.vim'
+    Plug 'nathanalderson/yang.vim', { 'for': 'yang' }
     Plug 'tpope/vim-repeat'
-    Plug 'sukima/xmledit'
+    Plug 'sukima/xmledit', { 'for': 'xml' }
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-sensible'
     Plug 'tpope/vim-commentary'
@@ -27,9 +27,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'kana/vim-textobj-entire'
     Plug 'kana/vim-textobj-indent'
     Plug 'kana/vim-textobj-line'
-    Plug 'PProvost/vim-ps1'
+    Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
     Plug 'leafgarland/typescript-vim'
     Plug 'Quramy/tsuquyomi'
+    Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
 
 " {{{ Sexy scroller
     Plug 'joeytwiddle/sexy_scroller.vim'
@@ -39,7 +40,7 @@ call plug#begin('~/.vim/plugged')
 " }}}
 
 " {{{ NerdTree
-    Plug 'scrooloose/nerdtree'
+    Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
     let g:NERDTreeMapMenu = '<F3>'
     let g:NERDTreeChristmasTree = 1
@@ -87,8 +88,8 @@ call plug#begin('~/.vim/plugged')
 " }}}
 
 " {{{ Golang
-    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-    Plug 'zchee/deoplete-go'
+    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
+    Plug 'zchee/deoplete-go', { 'for': 'go' }
 " }}}
 
 " {{{ Deoplete
@@ -275,6 +276,7 @@ nnoremap ; :
 vnoremap ; :
 
 command! Wq wq
+command! Q q
 nnoremap <leader>q :q<cr>
 nnoremap <leader>Q :q!<cr>
 
