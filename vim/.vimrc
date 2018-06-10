@@ -265,7 +265,11 @@ nnoremap <leader>h :noh<cr>
 " }}}
 
 " {{{ Misc maps
+if has("nvim")
 nnoremap <leader>l :source ~/.config/nvim/init.vim<cr>
+else
+nnoremap <leader>l :source ~/.vimrc<cr>
+endif
 
 nnoremap ; :
 vnoremap ; :
@@ -274,8 +278,8 @@ command! Wq wq
 nnoremap <leader>q :q<cr>
 nnoremap <leader>Q :q!<cr>
 
-inoremap <Space><Space> <C-o>/<++><cr><C-o>d4l
-nnoremap <Space><Space> /<++><cr>d4li
+inoremap <leader><Space> <C-o>/<++><cr><C-o>d4l
+nnoremap <leader><Space> /<++><cr>d4li
 " }}}
 
 " {{{ Window navigation
