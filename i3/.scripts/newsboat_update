@@ -5,6 +5,11 @@ if ! which newsboat 2>/dev/null 1>&2; then
     exit 0
 fi
 
+if [ -f "$HOME/.newsboat/urls" ]; then
+    echo "No URLs"
+    exit 0
+fi
+
 [[ $BLOCK_BUTTON = "1" ]] && st -e newsboat -r
 
 newsboat -x reload
