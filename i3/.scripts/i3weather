@@ -11,6 +11,6 @@ if [[ "$location" != "" ]]; then
 fi
 curl -s "wttr.in/$location?m&1" > ~/.weatherreport
 
-echo -n  $(cat ~/.weatherreport | sed -n 16p | sed -e 's/[^m]*m//g' | grep -o "[0-9]*%" | sort -n | sed -e '$!d')
+echo -n ☂️ $(cat ~/.weatherreport | sed -n 16p | sed -e 's/[^m]*m//g' | grep -o "[0-9]*%" | sort -n | sed -e '$!d')
 
-cat ~/.weatherreport | sed -n 13p | tr -d '[[:cntrl:]]' | grep -oP 'm\d+?0m' | tr -d m | sed 's/.$//g' | sort -n | sed -e 1b -e '$!d' | tr '\n' ' ' | awk '{print " ",$1 "°","",$2 "°"}'
+cat ~/.weatherreport | sed -n 13p | tr -d '[[:cntrl:]]' | grep -oP 'm\d+?0m' | tr -d m | sed 's/.$//g' | sort -n | sed -e 1b -e '$!d' | tr '\n' ' ' | awk '{print " ❄️",$1 "°","☀️",$2 "°"}'
