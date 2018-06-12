@@ -9,6 +9,18 @@ esac
 
 printpastatus() {
     [[ $(pamixer --get-mute) = "true" ]] && echo -n 🔇 mute && exit
-    echo 🔊 $(pamixer --get-volume)%
+
+    LEVEL=$(pamixer --get-volume)
+    if [ $LEVEL -eq 0 ]; then
+        echo "🔇 $LEVEL%"
+    elif [ $LEVEL -lt 30 ]; then
+        echo "🔈 $LEVEL%"
+    elif [ $LEVEL -lt 70 ]; then
+        echo "🔉 $LEVEL%"
+    elif [ $LEVEL -lt 100 ]; then
+        echo "🔊 $LEVEL%"
+    else
+        echo "🔊$LEVEL%"
+    fi
 }
 printpastatus
