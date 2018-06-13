@@ -54,7 +54,12 @@
             "python",
             "python-pip",
             "neovim",
-            "xorg-xset"
+            "xorg-xset",
+            "noto-fonts-emoji",
+            "ttf-liberation",
+            "ttf-linux-libertine",
+            "noto-fonts",
+            "powerline-fonts"
         ]
     },
 

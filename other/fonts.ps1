@@ -7,7 +7,7 @@ Param(
 Import-Module (Join-Path $PSScriptRoot '..' Utils)
 $Settings = Get-JSONFile $SettingsFile
 
-Write-Header 'Install Inconsolata font'
+Write-Header 'Install fonts'
 $ReloadFont = $false
 
 $Library = "$HOME/.fonts"
