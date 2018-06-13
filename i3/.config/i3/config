@@ -23,6 +23,7 @@ set $netrefresh --no-startup-id sudo systemctl restart NetworkManager
 set $hibernate sudo systemctl suspend
 
 font pango:Inconsolata 13
+focus_follows_mouse no
 
 # Startup applications
 # Enable NumLock

@@ -44,7 +44,8 @@ get_active_docker_host() {
 }
 local active_docker_host='$(get_active_docker_host)'
 
-PROMPT="${user_host} ${current_dir} ${git_branch} ${active_docker_host}${prompt_date} $PR_PROMPT "
+PROMPT="${user_host} ${current_dir} ${git_branch} ${active_docker_host}
+${prompt_date} $PR_PROMPT "
 RPROMPT="${return_code}"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%F{yellow}‹"
