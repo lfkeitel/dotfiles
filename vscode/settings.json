@@ -78,11 +78,11 @@
         "suppressUpdateNotice": true,
         "suppressWelcomeNotice": true
     },
-    "d.dubPath": "/home/lfkeitel/.vscode/extensions/webfreak.code-d-0.16.2/bin/dub",
+    "d.dubPath": "/home/lfkeitel/.local/share/code-d/bin/dub",
     "d.dscannerPath": "/home/lfkeitel/.vscode/extensions/webfreak.code-d-0.16.2/bin/Dscanner/bin/dscanner",
     "d.dfmtPath": "/home/lfkeitel/.vscode/extensions/webfreak.code-d-0.16.2/bin/dfmt/bin/dfmt",
-    "d.dcdClientPath": "/home/lfkeitel/.vscode/extensions/webfreak.code-d-0.16.2/bin/DCD/bin/dcd-client",
-    "d.dcdServerPath": "/home/lfkeitel/.vscode/extensions/webfreak.code-d-0.16.2/bin/DCD/bin/dcd-server",
+    "d.dcdClientPath": "/home/lfkeitel/.local/share/code-d/bin/DCD/bin/dcd-client",
+    "d.dcdServerPath": "/home/lfkeitel/.local/share/code-d/bin/DCD/bin/dcd-server",
     "dfmt.braceStyle": "otbs",
     "auto-close-tag.activationOnLanguage": [
         "xml",
@@ -126,5 +126,10 @@
         "ignoreLeaks": true
     },
     "gitlens.historyExplorer.enabled": true,
-    "tslint.packageManager": "yarn"
+    "tslint.packageManager": "yarn",
+    "rust.mode": "legacy",
+    "rust.rustup": {
+        "toolchain": "stable-x86_64-unknown-linux-gnu"
+    },
+    "d.servedPath": "/home/lfkeitel/.local/share/code-d/bin/serve-d"
 }

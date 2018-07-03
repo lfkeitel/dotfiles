@@ -31,6 +31,17 @@ call plug#begin('~/.vim/plugged')
     Plug 'leafgarland/typescript-vim'
     Plug 'Quramy/tsuquyomi'
     Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
+    Plug 'racer-rust/vim-racer', { 'for': 'rust' }
+
+" {{{ Rust
+    Plug 'rust-lang/rust.vim'
+    Plug 'vim-syntastic/syntastic'
+
+    au FileType rust nmap gd <Plug>(rust-def)
+    au FileType rust nmap gs <Plug>(rust-def-split)
+    au FileType rust nmap gx <Plug>(rust-def-vertical)
+    au FileType rust nmap <leader>gd <Plug>(rust-doc)
+" }}}
 
 " {{{ Sexy scroller
     Plug 'joeytwiddle/sexy_scroller.vim'

@@ -57,5 +57,11 @@
 		"prefix": "rb",
 		"body": "this.${1:method} = this.${1}.bind(this);",
 		"description": "Import React"
+	},
+
+	"Redux Action": {
+		"prefix": "rea",
+		"body": "export const ${1:action} = '${1}';",
+		"description": "Create a new Redux action type"
 	}
 }
