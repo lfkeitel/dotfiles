@@ -282,6 +282,8 @@ nnoremap <leader>Q :q!<cr>
 
 inoremap <leader><Space> <C-o>/<++><cr><C-o>d4l
 nnoremap <leader><Space> /<++><cr>d4li
+
+inoremap jk <Esc>
 " }}}
 
 " {{{ Window navigation
