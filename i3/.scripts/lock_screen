@@ -1,5 +1,8 @@
 #!/bin/sh -e
 
+# Don't lock twice
+[ pgrep i3lock ] && exit
+
 if [ -f "$HOME/Pictures/lock_screen.png" ]; then
     i3lock -i $HOME/Pictures/lock_screen.png
     exit
