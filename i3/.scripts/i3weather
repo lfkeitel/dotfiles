@@ -1,6 +1,9 @@
 #!/bin/bash
 ### This is only if your location isn't automatically detected, otherwise you can leave it blank.
 location=""
+if [ -f "$HOME/.local/weather_loc" ]; then
+    location=$(cat $HOME/.local/weather_loc)
+fi
 
 [[ $BLOCK_BUTTON = "1" ]] && st -e w3m "wttr.in/$location?m"
 
