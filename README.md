@@ -26,7 +26,8 @@ Use the `install-powershell.sh` script to install PowerShell.
 
 ### Manual (requires argument to install.ps1):
 
-- Dart lang
+- Dart
+- Rust
 - Docker
 - Hexchat (Some config files encrypted)
 - Minicom (serial terminal)
@@ -74,7 +75,7 @@ used PowerShell and it looked like an interesting shell runner. With PowerShell 
 and full Linux support it made it more compelling. Second is the language itself
 is much more expressive and powerful than plain Bash/POSIX shell. Many operations
 that were convoluted or ugly in Bash are very simple in PowerShell. It combines
-the simplicity of a shell langauge with the power of a typical programming language.
+the simplicity of a shell language with the power of a typical programming language.
 
 If you don't want to use PowerShell, all the configs can be manually symlinked or
-copied to their appropiate places.
+copied to their appropriate places.
