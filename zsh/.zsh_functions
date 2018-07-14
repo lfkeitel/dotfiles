@@ -38,3 +38,8 @@ better_cat() {
     cat "$1"
 }
 alias cat='better_cat'
+
+code_jump() {
+    cd $HOME/code/$1*
+}
+alias p='code_jump'

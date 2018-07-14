@@ -38,7 +38,8 @@
             "mousepad",
             "xclip",
             "haveged",
-            "jq"
+            "jq",
+            "wget"
         ],
 
         "fedora": [

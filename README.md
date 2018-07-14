@@ -31,6 +31,7 @@ Use the `install-powershell.sh` script to install PowerShell.
 - Docker
 - Hexchat (Some config files encrypted)
 - Minicom (serial terminal)
+- i3 (Configs only)
 
 ## Supported Systems
 
