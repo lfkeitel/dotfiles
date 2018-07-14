@@ -22,8 +22,14 @@ if ($IsMacOS) {
     $RustupInitURL = "https://static.rust-lang.org/rustup/dist/x86_64-apple-darwin/rustup-init"
 }
 
-$DownloadedFile = (mktemp)
+$DownloadDir = (mktemp -d)
+$DownloadFile = "$DownloadDir/rustup-init"
 
-Get-RemoteFile $RustupInitURL $DownloadedFile
+wget -q --show-progress -O $DownloadFile $RustupInitURL
 
-& $DownloadedFile --no-modify-path -y
+chmod +x $DownloadFile
+& $DownloadFile --no-modify-path -y
+
+Remove-Item $DownloadDir -Force -Recurse
+
+Add-ToPath rust "$HOME/.cargo/bin"
