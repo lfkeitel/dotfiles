@@ -24,7 +24,7 @@ alias kill-tmux-sessions='tmux list-sessions | grep -v attached | cut -d: -f1 | 
 alias sudp='sudo'
 alias c.='code .'
 alias activate='source bin/activate'
-alias zrcs='source $HOME/.zshrc'
+alias szrc='source $HOME/.zshrc'
 
 alias gs='git status'
 alias gds='git diff --staged'

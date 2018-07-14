@@ -8,11 +8,17 @@ if (!(Get-IsPackageInstalled hexchat)) {
     Install-SystemPackages hexchat
 }
 
+$HexConfigDir = "$HOME/.config/hexchat"
+
 function Install-HexFile ([string] $File) {
-    Copy-Item "$PSScriptRoot/$File.conf" "$HOME/.config/hexchat/$File.conf" -Force
+    Copy-Item "$PSScriptRoot/$File.conf" "$HexConfigDir/$File.conf" -Force
 }
 
-Restore-EncryptedFile "$PSScriptRoot/servlist.conf.gpg" "$HOME/.config/hexchat/servlist.conf"
+function Install-HexFileEncrypted ([string] $File) {
+    Restore-EncryptedFile "$PSScriptRoot/$File.conf.gpg" "$HexConfigDir/$File.conf"
+}
+
+Install-HexFileEncrypted servlist
 Install-HexFile chanopt
 Install-HexFile colors
 Install-HexFile hexchat
