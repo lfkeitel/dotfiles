@@ -1,0 +1,7 @@
+[Unit]
+Description=Check number of available packages
+
+[Service]
+Type=oneshot
+ExecStart=%h/.scripts/pacman_update
+StandardOutput=journal

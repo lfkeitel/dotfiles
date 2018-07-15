@@ -1,0 +1,4 @@
+#!/bin/bash
+PACUPGRADE=$HOME/.local/.pacupgrade
+# sed makes the file empty if wc returns 0
+pacman -Qu | wc -l | sed -e '/^0$/d' > $PACUPGRADE && pkill -RTMIN+8 i3blocks

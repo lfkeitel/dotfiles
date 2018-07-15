@@ -11,6 +11,12 @@ signal=10
 command=i3weather
 interval=1800
 
+[pacman]
+label=📦
+command=i3pacman
+interval=once
+signal=8
+
 [rss]
 command=newsboat_update
 interval=300
@@ -18,7 +24,6 @@ signal=11
 
 [memory]
 label=
-separator=false
 interval=30
 
 [disk]
