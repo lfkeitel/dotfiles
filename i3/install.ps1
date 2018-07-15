@@ -7,11 +7,11 @@ Write-ColoredLine 'Remember to install i3 and any relevent packages' Magenta
 Add-FileLink "$PSScriptRoot/.scripts" "$HOME/.scripts"
 Add-FileLink "$PSScriptRoot/.profile" "$HOME/.profile"
 
-Add-FileLink "$PSScriptRoot/.config/i3" "$HOME/.config/i3"
-Add-FileLink "$PSScriptRoot/.config/i3blocks" "$HOME/.config/i3blocks"
-Add-FileLink "$PSScriptRoot/.config/dunst" "$HOME/.config/dunst"
-Add-FileLink "$PSScriptRoot/.config/rofi" "$HOME/.config/rofi"
-Add-FileLink "$PSScriptRoot/.config/systemd" "$HOME/.config/systemd"
+$dir = Get-ChildItem "$PSScriptRoot/.config" | ?{$_.PSISContainer}
+
+foreach ($d in $dir) {
+    Add-FileLink $d.FullName "$HOME/.config/$($d.Name)"
+}
 
 systemctl --user daemon-reload
 systemctl --user enable pacupdate.timer
