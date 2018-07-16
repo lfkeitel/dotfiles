@@ -1,0 +1,12 @@
+#!/bin/bash
+case $BLOCK_BUTTON in
+    1) toggle_xautolock ;;
+esac
+
+LOCKPID=$(pidof xautolock)
+
+if [ -n "$LOCKPID" ]; then
+    echo "🔒 AL EN"
+else
+    echo "🔓 AL DIS"
+fi

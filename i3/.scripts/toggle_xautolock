@@ -1,0 +1,14 @@
+#!/bin/bash
+TIMEOUT=5
+LOCK_SCRIPT=$HOME/.scripts/lock_screen
+
+LOCKPID=$(pidof xautolock)
+
+if [ -n "$LOCKPID" ]; then
+    xautolock -exit
+    sleep 1
+else
+    xautolock -time $TIMEOUT -locker $LOCK_SCRIPT &>/dev/null &disown;
+fi
+
+pkill -RTMIN+9 i3blocks

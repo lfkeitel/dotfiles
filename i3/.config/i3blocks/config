@@ -11,6 +11,11 @@ signal=10
 command=i3weather
 interval=1800
 
+[xautolock]
+command=i3xautolock
+interval=once
+signal=9
+
 [pacman]
 label=📦
 command=i3pacman
