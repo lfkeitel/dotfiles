@@ -5,7 +5,7 @@ if [ -f "$HOME/.local/weather_loc" ]; then
     location=$(cat $HOME/.local/weather_loc)
 fi
 
-[[ $BLOCK_BUTTON = "1" ]] && st -e w3m "wttr.in/$location?m"
+[[ $BLOCK_BUTTON = "1" ]] && $TERMINAL -e w3m "wttr.in/$location?m"
 
 ping -q -w 1 -c 1 `ip r | grep default | cut -d ' ' -f 3` >/dev/null || exit
 

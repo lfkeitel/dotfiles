@@ -30,6 +30,10 @@ focus_follows_mouse no
 exec --no-startup-id numlockx
 # Starts dunst for notifications:
 exec --no-startup-id dunst
+# Music player daemon:
+exec --no-startup-id mpd
+# Run the script to update the mpd i3block on change.
+exec --no-startup-id "pgrep -x i3mpdupdate || i3mpdupdate"
 # Autolock desktop after 5 minutes
 exec --no-startup-id xautolock -time 5 -locker $i3lock
 # Turn off displays after 5 minutes
@@ -44,6 +48,8 @@ exec --no-startup-id compton -f
 exec --no-startup-id nm-applet
 # Unclutter makes the mouse invisible after a brief period
 exec --no-startup-id unclutter -notclass 'Google-chrome' 'Code' 'Firefox'
+# Runs the key remapping scripts
+exec --no-startup-id ~/.scripts/remaps
 
 hide_edge_borders both
 for_window [class="^.*"] border pixel 2
