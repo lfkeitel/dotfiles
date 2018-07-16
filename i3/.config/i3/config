@@ -17,10 +17,10 @@ set $terminal_start st -c st-terminal -e tmux -2 -u
 set $i3lock lock_screen
 
 # Power commands
-set $shutdown sudo shutdown -h now
-set $reboot sudo reboot
+set $shutdown systemctl poweroff
+set $reboot systemctl reboot
 set $netrefresh --no-startup-id sudo systemctl restart NetworkManager
-set $hibernate sudo systemctl suspend
+set $hibernate systemctl suspend
 
 font pango:Inconsolata 13
 focus_follows_mouse no
@@ -204,6 +204,7 @@ for_window [class="st-terminal"] move container to workspace $ws2
 for_window [class="Thunderbird"] move container to workspace $ws3
 for_window [class="Mattermost"] move container to workspace $ws4
 for_window [class="Hexchat"] move container to workspace $ws4
+for_window [class="Code"] move container to workspace $ws5
 
 for_window [title="GIMP Startup"] move workspace $ws5
 for_window [class="Gimp"] move workspace $ws5
