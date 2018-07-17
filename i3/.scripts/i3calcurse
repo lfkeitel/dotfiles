@@ -1,0 +1,7 @@
+#!/bin/bash
+
+case $BLOCK_BUTTON in
+    1) $TERMINAL -e calcurse & disown ;;
+esac
+
+calcurse -a --format-apt '%S %m\n' --format-recur-apt '%S %m\n' -l 1 | tail -n1

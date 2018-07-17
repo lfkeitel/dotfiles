@@ -28,7 +28,7 @@ focus_follows_mouse no
 # Startup applications
 # Enable NumLock
 exec --no-startup-id numlockx
-# Starts dunst for notifications:
+# Start dunst for notifications:
 exec --no-startup-id dunst
 # Music player daemon:
 exec --no-startup-id mpd
@@ -50,6 +50,8 @@ exec --no-startup-id nm-applet
 exec --no-startup-id unclutter -notclass 'Google-chrome' 'Code' 'Firefox'
 # Runs the key remapping scripts
 exec --no-startup-id ~/.scripts/remaps
+# Automounter
+exec --no-startup-id udiskie --tray
 
 hide_edge_borders both
 for_window [class="^.*"] border pixel 2

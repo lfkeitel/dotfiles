@@ -25,7 +25,8 @@
             "neovim",
             "wget",
             "zsh-completions",
-            "zsh"
+            "zsh",
+            "calcurse"
         ],
 
         "linux": [
@@ -39,7 +40,11 @@
             "xclip",
             "haveged",
             "jq",
-            "wget"
+            "wget",
+            "calcurse",
+            "mpd",
+            "mpc",
+            "ncmpcpp"
         ],
 
         "fedora": [

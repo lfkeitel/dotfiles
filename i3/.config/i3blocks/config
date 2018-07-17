@@ -14,6 +14,11 @@ command=i3volume
 interval=once
 signal=10
 
+[calcurse]
+label=📅
+command=i3calcurse
+interval=300
+
 [weather]
 command=i3weather
 interval=1800
