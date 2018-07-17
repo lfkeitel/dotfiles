@@ -1,0 +1,8 @@
+[Unit]
+Description=Check RSS feeds
+
+[Timer]
+OnUnitActiveSec=15min
+
+[Install]
+WantedBy=timers.target

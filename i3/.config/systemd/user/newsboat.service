@@ -1,0 +1,7 @@
+[Unit]
+Description=Check RSS feeds
+
+[Service]
+Type=oneshot
+ExecStart=%h/.scripts/newsboat_update
+StandardOutput=journal

@@ -15,7 +15,6 @@ interval=once
 signal=10
 
 [calcurse]
-label=📅
 command=i3calcurse
 interval=300
 
@@ -35,8 +34,8 @@ interval=once
 signal=8
 
 [rss]
-command=newsboat_update
-interval=300
+command=i3newsboat
+interval=once
 signal=11
 
 [memory]
@@ -55,8 +54,8 @@ interval=10
 label=
 interval=10
 
-[load_average]
-interval=1
+# [load_average]
+# interval=1
 
 [battery]
 label=⚡

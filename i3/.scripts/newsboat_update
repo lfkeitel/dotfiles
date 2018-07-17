@@ -1,17 +1,12 @@
 #!/bin/bash
 
 if ! which newsboat 2>/dev/null 1>&2; then
-    echo "No RSS"
     exit 0
 fi
 
 if [ ! -f "$HOME/.newsboat/urls" ]; then
-    echo "No URLs"
     exit 0
 fi
 
-[[ $BLOCK_BUTTON = "1" ]] && $TERMINAL -e newsboat -r
-
 newsboat -x reload
-
-echo  $(newsboat -x print-unread | cut -d' ' -f1)
+pkill -RTMIN+11 i3blocks
