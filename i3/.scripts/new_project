@@ -33,6 +33,8 @@ if [[ -n $GIT_URL ]]; then
     git clone "$GIT_URL" "$NEW_DIR"
 else
     mkdir "$NEW_DIR"
+    cd "$NEW_DIR"
+    git init
 fi
 
 echo "Project Code: $NEXT_CODE"
