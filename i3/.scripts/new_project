@@ -35,6 +35,8 @@ else
     mkdir "$NEW_DIR"
     cd "$NEW_DIR"
     git init
+    echo 'private/' > .gitignore
+    mkdir private
 fi
 
 echo "Project Code: $NEXT_CODE"
