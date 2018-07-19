@@ -5,4 +5,4 @@ case $BLOCK_BUTTON in
 esac
 
 echo -n "📅"
-calcurse -a --format-apt '%S %m\n' --format-recur-apt '%S %m\n' -l 1 | tail -n1
+calcurse -n | tail -n1 | rev | cut -d' ' -f1-2 | rev
