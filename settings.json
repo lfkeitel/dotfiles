@@ -41,7 +41,6 @@
             "haveged",
             "jq",
             "wget",
-            "calcurse",
             "mpd",
             "mpc",
             "ncmpcpp"
@@ -49,11 +48,13 @@
 
         "fedora": [
             "neovim",
-            "util-linux-user"
+            "util-linux-user",
+            "calcurse"
         ],
 
         "ubuntu": [
-            "software-properties-common"
+            "software-properties-common",
+            "calcurse"
         ],
 
         "arch": [

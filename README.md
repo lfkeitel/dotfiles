@@ -80,3 +80,19 @@ the simplicity of a shell language with the power of a typical programming langu
 
 If you don't want to use PowerShell, all the configs can be manually symlinked or
 copied to their appropriate places.
+
+## Personal Arch Repo
+
+To use my personal arch repo add the following to your pacman config:
+
+```
+[personal]
+Server = http://arch-repo.keitel.xyz
+SigLevel = Required
+```
+
+You will need to add my key to you pacman GPG ring:
+
+Fingerprint: `D2B6 240B 7E78 9CF8 177F  BBC6 73E8 F0B8 E638 625F`
+
+`pacman-key --recv-keys BBC673E8F0B8E638625F`
