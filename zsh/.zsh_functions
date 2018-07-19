@@ -39,7 +39,12 @@ better_cat() {
 }
 alias cat='better_cat'
 
+CODE_DIR="$HOME/code"
 code_jump() {
-    cd $HOME/code/$1*
+    if [[ -z $1 ]]; then
+        find $CODE_DIR -maxdepth 1 -type d -printf "%f\n" | grep -P '\d{3}\-' | sort
+    else
+        cd $CODE_DIR/$1*
+    fi
 }
 alias p='code_jump'
