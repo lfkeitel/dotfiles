@@ -4,5 +4,8 @@ case $BLOCK_BUTTON in
     1) $TERMINAL -e calcurse & disown ;;
 esac
 
-echo -n "📅 "
-calcurse -n | tail -n1 | rev | cut -d' ' -f1-2 | rev
+echo -n "📅"
+
+next_apt="$(calcurse -n | tail -n1 | rev | cut -d' ' -f1-2 | rev)"
+[ -z "$next_apt" ] && next_apt="No apts"
+echo " $next_apt"
