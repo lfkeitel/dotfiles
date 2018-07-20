@@ -35,7 +35,7 @@ gogithub() {
 
 better_cat() {
     [ -d "$1" ] && ls -lah "$1" && return
-    cat "$1"
+    command cat "$1"
 }
 alias cat='better_cat'
 

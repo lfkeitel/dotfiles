@@ -129,14 +129,14 @@ bindsym $mod+Shift+l move up
 # bindsym $mod+m
 # bindsym $mod+Shift+m
 
-# bindsym $mod+n
+bindsym $mod+n exec --no-startup-id lmc next
 # bindsym $mod+Shift+n
 
 # bindsym $mod+o
 # bindsym $mod+Shift+o
 
-# bindsym $mod+p
-# bindsym $mod+Shift+p
+bindsym $mod+p exec --no-startup-id lmc toggle
+bindsym $mod+Shift+p exec --no-startup-id lmc prev
 
 # bindsym $mod+q
 bindsym $mod+Shift+q kill
@@ -144,14 +144,14 @@ bindsym $mod+Shift+q kill
 bindsym $mod+r mode "resize"
 bindsym $mod+Shift+r restart
 
-bindsym $mod+s gaps inner current plus 5
-bindsym $mod+Shift+s gaps inner current minus 5
+bindsym $mod+s exec --no-startup-id lmc stop
+# bindsym $mod+Shift+s
 
 bindsym $mod+t exec thunderbird
 # bindsym $mod+Shift+t
 
-# bindsym $mod+u
-# bindsym $mod+Shift+u
+bindsym $mod+u gaps inner current plus 5
+bindsym $mod+Shift+u gaps inner current minus 5
 
 bindsym $mod+v split v
 # bindsym $mod+Shift+v
@@ -200,9 +200,14 @@ bindsym $mod+Right focus right
 bindsym $mod+Shift+Right move right
 
 # Media controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id volume up
-bindsym XF86AudioLowerVolume exec --no-startup-id volume down
-bindsym XF86AudioMute exec --no-startup-id volume mute
+bindsym XF86AudioRaiseVolume exec --no-startup-id lmc up 5
+bindsym XF86AudioLowerVolume exec --no-startup-id lmc down 5
+bindsym XF86AudioMute exec --no-startup-id lmc mute
+
+bindsym XF86AudioNext exec --no-startup-id lmc next
+bindsym XF86AudioPlay exec --no-startup-id lmc toggle
+bindsym XF86AudioPrev exec --no-startup-id lmc prev
+bindsym XF86AudioStop exec --no-startup-id lmc toggle
 
 # Application specific settings
 for_window [class="Google-chrome"] move container to workspace $ws1

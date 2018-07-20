@@ -11,6 +11,7 @@ setopt autopushd
 setopt globdots
 export LANG=en_US.UTF-8
 export EDITOR='nvim'
+export MPD_HOST="$HOME/.mpd/socket"
 CUSTOM_HOOKS_PATH="$HOME/.local.zsh.d"
 CUSTOM_PATH_DIR="$CUSTOM_HOOKS_PATH/paths"
 GREP_CMD=/bin/grep

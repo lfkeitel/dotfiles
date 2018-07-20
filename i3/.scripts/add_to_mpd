@@ -1,0 +1,7 @@
+#!/bin/bash
+export MPD_HOST=$HOME/.mpd/socket
+
+mpc add file://"$1"
+
+# If mpd is paused, play starting with the song just added
+[ -z "$(mpc current)" ] && mpc play $(mpc playlist | wc -l)
