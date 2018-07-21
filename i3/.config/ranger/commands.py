@@ -62,3 +62,31 @@ class extractsel(Command, Extractor):
             self.fm.mark_files(all=True, val=False)
 
         self.extract(selected_files, cleaner)
+
+class archive(Command):
+    def execute(self):
+        """ Create tar gz archive of selected files """
+        selected_files = self.fm.thistab.get_selection()
+        if not selected_files:
+            return
+
+        output = "out.tar.gz"
+        args = self.line.split()[1:]
+        if len(args) > 0:
+            output = args[0]
+
+        original_path = self.fm.thisdir.path
+        def refresh(_):
+            cwd = self.fm.get_directory(original_path)
+            cwd.load_content()
+
+        self.fm.mark_files(all=True, val=False)
+
+        tar_flags = ['-czvf', output]
+        tar_flags += ['--xform', 's,%s/,,' % original_path[1:]]
+
+        descr = "Creating archive"
+        obj = CommandLoader(args=['tar'] + tar_flags + [f.path for f in selected_files], descr=descr)
+
+        obj.signal_bind('after', refresh)
+        self.fm.loader.add(obj)
