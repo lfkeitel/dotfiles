@@ -17,5 +17,8 @@ Add-FileLink "$PSScriptRoot/.calcurse/conf" "$HOME/.calcurse/conf"
 Add-FileLink "$PSScriptRoot/.calcurse/keys" "$HOME/.calcurse/keys"
 
 systemctl --user daemon-reload
-systemctl --user enable pacupdate.timer
-systemctl --user enable udiskie.service
+
+if (Get-IsArch) {
+    systemctl --user enable pacupdate.timer
+    systemctl --user enable udiskie.service
+}
