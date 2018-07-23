@@ -1,5 +1,5 @@
 #!/bin/bash
-export MPD_HOST=$HOME/.mpd/socket
+export MPD_HOST=${MPD_HOST:-$HOME/.mpd/socket}
 
 mpc add file://"$1"
 
