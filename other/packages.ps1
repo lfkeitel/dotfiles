@@ -45,8 +45,6 @@ function Install-LinuxPackages {
     } elseif (Get-IsArch) {
         Install-Aurman
         Install-SystemPackages $Settings.packages.linux $Settings.packages.arch
-
-        Write-ColoredLine "Remember to add personal repo to pacman and install wanted packages" Red
     }
 
     sudo systemctl start haveged

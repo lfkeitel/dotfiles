@@ -10,16 +10,26 @@ Use the `install-powershell.sh` script to install PowerShell.
 
 ### Automatic (just run install.ps1):
 
+- Configs
+    - calcurse
+    - dunst
+    - git
+    - i3 (i3blocks)
+    - misc. scripts
+    - mpd
+    - ranger
+    - rofi
+    - systemd user units
+    - tmux
 - Fonts (Inconsolata, Fira Code, Font Awesome 5)
-- Git
 - Golang
 - GPG Agent (Imports my personal keys and trusts ultimately)
 - macOS Finder (Show all files)
 - Node JS (with nvm and Yarn)
+- Pacman (Arch only)
 - PowerShell (Doesn't work on Arch)
 - Python
 - System packages
-- Tmux
 - Vim
 - Visual Studio Code
 - ZSH
@@ -31,7 +41,6 @@ Use the `install-powershell.sh` script to install PowerShell.
 - Docker
 - Hexchat (Some config files encrypted)
 - Minicom (serial terminal)
-- i3 (Configs only)
 
 ## Supported Systems
 

@@ -1,11 +1,11 @@
 {
     "defaultInstallers": [
+        "pacman",
         "packages",
         "zsh",
+        "configs",
         "fonts",
         "gpg",
-        "git",
-        "tmux",
         "powershell",
         "golang",
         "python",
@@ -66,7 +66,10 @@
             "ttf-liberation",
             "ttf-linux-libertine",
             "noto-fonts",
-            "powerline-fonts"
+            "powerline-fonts",
+            "calcurse-patched",
+            "st-patched",
+            "unclutter-patched"
         ]
     },
 

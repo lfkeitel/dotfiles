@@ -44,6 +44,14 @@ function Test-DirExists ([string] $path) {
     return (Test-Path $path -PathType Container)
 }
 
+function Copy-Config ([string] $src, [string] $dest, [switch] $sudo) {
+    if ($sudo) {
+        sudo cp $src $dest
+    } else {
+        Copy-Item $src $dest
+    }
+}
+
 function Invoke-Command {
     param
     (

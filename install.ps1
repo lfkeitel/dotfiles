@@ -26,7 +26,7 @@ function Run-Installer ([string] $Module) {
         return
     }
 
-    Write-Output "No installer for $Module."
+    Write-ColoredLine "No installer for $Module." Red
 }
 
 Write-MainBanner "LEE'S DOTFILES" Blue
