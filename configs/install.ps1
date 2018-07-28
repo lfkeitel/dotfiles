@@ -2,7 +2,6 @@
 Import-Module (Join-Path $PSScriptRoot '..' Utils)
 
 Write-Header 'Setting up Generic Configs'
-Write-ColoredLine 'Remember to install i3 and any relevent packages' Magenta
 
 # Generic scripts, utilities, and profile
 Add-FileLink "$PSScriptRoot/scripts" "$HOME/.scripts"
