@@ -37,14 +37,57 @@ better_cat() {
     [ -d "$1" ] && ls -lah "$1" && return
     command cat "$1"
 }
-alias cat='better_cat'
 
-CODE_DIR="$HOME/code"
-code_jump() {
-    if [[ -z $1 ]]; then
-        find $CODE_DIR -maxdepth 1 -type d -printf "%f\n" | grep -P '\d{3}\-' | sort
+format_project_code() {
+    # If not number, return early
+    if ! [[ $1 =~ '^[0-9]+$' ]]; then
+        echo '000'
+        return
+    fi
+
+    # Trim leading zeros
+    num=$(echo $1 | sed 's/^0*//')
+    [[ -z $num ]] && num='0'
+
+    # Pad number to three digits
+    if [[ $num -lt 10 ]]; then
+        echo "00$num"
+    elif [[ $num -lt 100 ]]; then
+        echo "0$num"
     else
-        cd $CODE_DIR/$1*
+        echo $num
     fi
 }
-alias p='code_jump'
+
+code_jump() {
+    # If arg is a number, cd to project
+    if [[ $1 =~ '^[0-9]+$' ]]; then
+        project=$(format_project_code $1)
+        cd $CODE_DIR/$project*
+        return
+    fi
+
+    if [[ $1 == 'd' ]]; then
+        project="$(dialog --dselect ~/code/ 20 80 3>&1 1>&2 2>&3 3>&1)"
+        if [[ -n $project ]]; then
+            cd "$project"
+        fi
+    else
+        find $CODE_DIR -maxdepth 1 -type d -printf "%f\n" | grep -P '\d{3}\-' | sort
+
+        echo
+        read "project?Select a project or press enter: "
+        if [[ -n $project && $project != 'q' ]]; then
+            project=$(format_project_code $project)
+            cd $CODE_DIR/$project*
+        fi
+    fi
+}
+
+gen_project_aliases() {
+    while IFS= read -r dir; do
+        code=$(echo "$dir" | cut -d- -f1)
+        alias $code="cd $CODE_DIR/$dir"
+    done < <(find $CODE_DIR -maxdepth 1 -type d -printf "%f\n" | grep -P '\d{3}\-')
+}
+gen_project_aliases

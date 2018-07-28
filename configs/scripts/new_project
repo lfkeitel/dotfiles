@@ -3,7 +3,7 @@
 PROJECT_NAME="$1"
 GIT_URL="$2"
 
-CODE_DIR="$HOME/code"
+CODE_DIR="${CODE_DIR:-$HOME/code}"
 
 if [[ -z $PROJECT_NAME ]]; then
     echo "What should I name the project?"
@@ -13,10 +13,10 @@ fi
 find_next_code() {
     local CODE
     CODE=$(find $CODE_DIR -maxdepth 1 -type d -printf "%f\n" | grep -P '\d{3}\-' | sort | tail -n1 | cut -d'-' -f1 | tr -d 0)
-    format_code $(($CODE + 1))
+    format_project_code $(($CODE + 1))
 }
 
-format_code() {
+format_project_code() {
     if [[ $1 -lt 10 ]]; then
         echo "00$1"
     elif [[ $1 -lt 100 ]]; then
@@ -40,3 +40,5 @@ else
 fi
 
 echo "Project Code: $NEXT_CODE"
+
+echo "Make sure to run gen_project_aliases to get new aliases"

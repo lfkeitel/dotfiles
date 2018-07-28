@@ -8,9 +8,10 @@ if [[ "$PROFILE_STARTUP" == true ]]; then
 fi
 
 setopt autopushd
-setopt globdots
+# setopt globdots
 export LANG=en_US.UTF-8
 export EDITOR='nvim'
+export CODE_DIR="$HOME/code"
 CUSTOM_HOOKS_PATH="$HOME/.local.zsh.d"
 CUSTOM_PATH_DIR="$CUSTOM_HOOKS_PATH/paths"
 GREP_CMD=/bin/grep
@@ -58,21 +59,18 @@ run_custom_hooks pre-oh-my-zsh
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="lfk"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-plugins=(git common-aliases zsh-autosuggestions docker sudo wd project docker-host you-should-use scriptbook)
+plugins=(git common-aliases zsh-autosuggestions docker sudo wd project docker-host you-should-use)
 source $ZSH/oh-my-zsh.sh
 
 run_custom_hooks post-oh-my-zsh
 
 # Force better docker commands
 export DOCKER_HIDE_LEGACY_COMMANDS=1
-
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 # Import extras
-source $HOME/.zsh_aliases
 source $HOME/.zsh_functions
-
-run_custom_hooks post
+source $HOME/.zsh_aliases
 
 # Setup auto-complete
 fpath=("$HOME/.zsh/completion" $fpath)
@@ -80,6 +78,8 @@ autoload -Uz compinit && compinit -i
 
 # Allow Ctrl-S in vim
 stty -ixon
+
+run_custom_hooks post
 
 if [[ "$PROFILE_STARTUP" == true ]]; then
     unsetopt xtrace
