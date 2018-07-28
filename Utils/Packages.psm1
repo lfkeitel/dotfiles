@@ -72,7 +72,7 @@ function Install-SystemPackages ([switch] $Update) {
 
 function Install-AURPackage ([switch] $Update) {
     if (!(Get-IsArch)) { return }
-    aurman -S @Args
+    aurman -S --noconfirm --needed @Args
 }
 
 function Get-CommandExists ([string] $command) {

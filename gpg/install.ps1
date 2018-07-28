@@ -4,7 +4,10 @@ Param(
     $SettingsFile = (Join-Path $PSScriptRoot 'settings.json'),
 
     [switch]
-    $Force
+    $Force,
+
+    [switch]
+    $NoKey
 )
 
 Import-Module (Join-Path $PSScriptRoot '..' Utils)
@@ -50,10 +53,12 @@ if ($IsMacOS) {
 chmod -R og-rwx "$HOME/.gnupg"
 
 # Import my public key and trust it ultimately
-gpg2 --recv-keys $Settings.gpg.key
-$Key = (gpg2 --list-keys --fingerprint | Where-Object{ $_ -match $Settings.gpg.key_formatted }).Trim().Replace(' ', '')
-$Key = "${Key}:6:"
-Write-Output "$Key" | gpg2 --import-ownertrust
+if (!$NoKey) {
+    gpg2 --recv-keys $Settings.gpg.key
+    $Key = (gpg2 --list-keys --fingerprint | Where-Object{ $_ -match $Settings.gpg.key_formatted }).Trim().Replace(' ', '')
+    $Key = "${Key}:6:"
+    Write-Output "$Key" | gpg2 --import-ownertrust
+}
 
 if ((Get-IsFedora) -and (Test-FileExists '/etc/xdg/autostart/gnome-keyring-ssh.desktop')) {
     sudo mv -f /etc/xdg/autostart/gnome-keyring-ssh.desktop /etc/xdg/autostart/gnome-keyring-ssh.desktop.inactive
