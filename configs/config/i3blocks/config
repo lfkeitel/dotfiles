@@ -18,10 +18,6 @@ signal=10
 command=i3calcurse
 interval=300
 
-[weather]
-command=i3weather
-interval=1800
-
 [xautolock]
 command=i3xautolock
 interval=once
@@ -42,25 +38,14 @@ signal=11
 label=
 interval=30
 
-[disk]
-label=🏠
-interval=30
-
-[iface]
-color=#00FF00
-interval=10
-
 [cpu_usage]
 label=
 interval=10
-
-# [load_average]
-# interval=1
 
 [battery]
 label=⚡
 interval=5
 
 [time]
-command=date '+%Y-%m-%d %H:%M:%S'
+command=date '+%a %Y-%m-%d %H:%M:%S'
 interval=1
