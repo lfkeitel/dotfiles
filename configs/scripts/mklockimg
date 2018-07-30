@@ -1,0 +1,43 @@
+#!/usr/bin/zsh
+set -e
+
+QUIET=''
+[[ $1 == '-q' ]] && QUIET=$1 && shift
+
+SRC1_IMG="$1"
+SRC2_IMG="$2"
+DEST_IMG="$3"
+
+usage() {
+    echo "Usage: mklockimg SRC1 SRC2 DEST"
+    exit 1
+}
+
+# Check required arguments
+[[ $# -ne 3 ]] && usage
+[[ -z $SRC1_IMG ]] && usage
+[[ -z $SRC2_IMG ]] && usage
+[[ -z $DEST_IMG ]] && usage
+
+[[ ! -f $SRC1_IMG ]] && echo "SRC1 doesn't exist" && exit 1
+[[ ! -f $SRC2_IMG ]] && echo "SRC2 doesn't exist" && exit 1
+
+# If no 2nd image, use first for both
+[[ $2 == '-' ]] && SRC2_IMG="$SRC1_IMG"
+
+if ! [[ $DEST_IMG =~ \.png$  ]]; then
+    echo 'DEST must be a PNG file'
+    exit 1
+fi
+
+TMP_RESIZE1="$(mktemp)"
+TMP_RESIZE2="$(mktemp)"
+
+[[ -z $QUIET ]] && echo 'Resizing...'
+convert "$SRC1_IMG" -resize '1680x1050!' "$TMP_RESIZE1"
+convert "$SRC2_IMG" -resize '1440x900!' "$TMP_RESIZE2"
+
+[[ -z $QUIET ]] && echo 'Combining...'
+convert "$TMP_RESIZE1" "$TMP_RESIZE2" +append "$DEST_IMG"
+
+rm "$TMP_RESIZE1" "$TMP_RESIZE2"
