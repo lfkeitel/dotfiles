@@ -91,3 +91,9 @@ gen_project_aliases() {
     done < <(find $CODE_DIR -maxdepth 1 -type d -printf "%f\n" | grep -P '\d{3}\-')
 }
 gen_project_aliases
+
+cd_go_folder() {
+    local GOPATH="${GOPATH:-$HOME/go}"
+    local DEST="$(find $GOPATH -lname $PWD)"
+    [[ -n $DEST ]] && cd $DEST
+}
