@@ -68,6 +68,7 @@ if (Test-FileExists "$HOME/.local.zsh") {
 
 Add-ToPath 'zsh' "$HOME/bin"
 Add-ToPath 'zsh' "$HOME/.scripts"
+Add-ToPath 'zsh' "$HOME/.local/scripts"
 
 # Add auto-complete scripts
 New-Directory "$HOME/.zsh"
