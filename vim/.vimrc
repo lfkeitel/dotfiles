@@ -31,11 +31,11 @@ call plug#begin('~/.vim/plugged')
     Plug 'leafgarland/typescript-vim'
     Plug 'Quramy/tsuquyomi'
     Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
-    Plug 'racer-rust/vim-racer', { 'for': 'rust' }
+    Plug 'vim-syntastic/syntastic'
 
 " {{{ Rust
+    Plug 'racer-rust/vim-racer', { 'for': 'rust' }
     Plug 'rust-lang/rust.vim'
-    Plug 'vim-syntastic/syntastic'
 
     au FileType rust nmap gd <Plug>(rust-def)
     au FileType rust nmap gs <Plug>(rust-def-split)
@@ -127,8 +127,10 @@ call plug#begin('~/.vim/plugged')
     " Use the nearest .git directory as the cwd
     " This makes a lot of sense if you are working on a project that is in version
     " control. It also supports works with .svn, .hg, .bzr.
-    let g:ctrlp_working_path_mode = 'r'
+    let g:ctrlp_working_path_mode = 'ra'
     let g:ctrlp_map = '<leader>p'
+    let g:ctrlp_cmd = 'CtrlPMixed'
+    let g:ctrlp_show_hidden = 1
 " }}}
 
 " {{{ Auto Pairs
@@ -170,6 +172,10 @@ set showcmd               " Displays the selection size and the partion commands
 set ttyfast               " Improves redrawing for newer computers.
 set nostartofline         " When moving thru the lines, the cursor will try to stay in the previous columns.
 set autoread
+
+" Highlight parts of line over 80 characters
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%100v.\+/
 
 if has('termguicolors')
 highlight Pmenu guibg=LightGray guifg=Black
@@ -312,6 +318,22 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+nnoremap <leader>t :call TabToggle()<cr>
+function! TabToggle()
+  if tabpagewinnr(tabpagenr(), '$') > 1
+    " Zoom in when this tab has more than one window
+    tab split
+  elseif tabpagenr('$') > 1
+    " Zoom out when this tab is not the last tab
+    if tabpagenr() < tabpagenr('$')
+      tabclose
+      tabprevious
+    else
+      tabclose
+    endif
+  endif
+endfunction
 " }}}
 
 " {{{ Create/delete blank lines
