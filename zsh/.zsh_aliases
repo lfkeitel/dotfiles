@@ -40,6 +40,8 @@ alias yb='yarn build'
 alias p='code_jump'
 alias cat='better_cat'
 
+alias bconsole="bconsole -c $HOME/.config/bconsole/bconsole.conf"
+
 unalias please
 please() {
     last_cmd="$(fc -ln -1)"
