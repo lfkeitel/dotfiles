@@ -140,6 +140,16 @@ call plug#begin('~/.vim/plugged')
     let g:AutoPairsMapCh = 0
 " }}}
 
+" {{{ Silver Searcher
+    Plug 'mileszs/ack.vim'
+    if executable('ag')
+      let g:ackprg = 'ag --nogroup --nocolor --column'
+    endif
+
+    cnoreabbrev Ack Ack!
+    nnoremap <Leader>a :Ack!<Space>
+" }}}
+
 " {{{ Airline
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
