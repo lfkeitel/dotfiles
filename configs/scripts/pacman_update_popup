@@ -1,0 +1,6 @@
+#!/bin/zsh
+sudo pacman -Syu
+pacman_update
+
+echo -n 'Press enter to close...'
+read -k 1

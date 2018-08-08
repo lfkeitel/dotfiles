@@ -2,7 +2,7 @@
 PACUPGRADE=$HOME/.local/.pacupgrade
 
 case $BLOCK_BUTTON in
-    1) $TERMINAL -e sudo pacman -Syu && pacman_update ;;
+    1) $TERMINAL -e zsh -c 'pacman_update_popup' ;;
 esac
 
 cat $PACUPGRADE | sed -e "/^$/d"
