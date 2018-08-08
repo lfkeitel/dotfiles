@@ -73,7 +73,7 @@ code_jump() {
             cd "$project"
         fi
     else
-        find $CODE_DIR -maxdepth 1 -type d -printf "%f\n" | grep -P '\d{3}\-' | sort
+        find $CODE_DIR -maxdepth 1 -printf "%f\n" | grep -P '\d{3}\-' | sort
 
         echo
         read "project?Select a project or press enter: "

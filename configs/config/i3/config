@@ -5,7 +5,7 @@ set $ws2 "2: terminal"
 set $ws3 "3: email"
 set $ws4 "4: chat"
 set $ws5 "5: editor"
-set $ws6 "6"
+set $ws6 "6: virtualbox"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
@@ -234,6 +234,12 @@ for_window [instance="dropdown"] border pixel 5
 # Runs the tmuxinit script, which searches for an earlier tmux instance,
 # otherwise starts a new one (to prevent multiple dropdown sessions).
 exec --no-startup-id $terminal -n dropdown -e tmuxinit
+
+# Calendar popup
+for_window [instance="calendar"] floating enable
+for_window [instance="calendar"] resize set 825 500
+for_window [instance="calendar"] border pixel 5
+for_window [instance="calendar"] move position center
 
 mode "resize" {
     bindsym j resize shrink width 10 px or 10 ppt

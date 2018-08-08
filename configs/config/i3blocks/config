@@ -47,5 +47,5 @@ label=⚡
 interval=5
 
 [time]
-command=date '+%a %Y-%m-%d %H:%M:%S'
+command=i3date
 interval=1
