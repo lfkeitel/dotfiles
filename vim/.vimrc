@@ -172,6 +172,9 @@ call plug#end()
 " }}}
 
 " {{{ General UI settings
+if has('mouse')
+set mouse=a " Enable mouse
+endif
 set number relativenumber " Enables the line numbers.
 set ruler                 " Enables the ruler on the bottom of the screen.
 set laststatus=2          " Always show the statusline.
