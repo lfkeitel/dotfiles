@@ -85,10 +85,13 @@ code_jump() {
 }
 
 gen_project_aliases() {
+    local grep_cmd="grep"
+    local find_cmd="find"
+    [[ $(uname) == 'Darwin' ]] && grep_cmd="ggrep" && find_cmd="gfind"
     while IFS= read -r dir; do
         code=$(echo "$dir" | cut -d- -f1)
         alias $code="cd $CODE_DIR/$dir"
-    done < <(find $CODE_DIR -maxdepth 1 -type d -printf "%f\n" | grep -P '\d{3}\-')
+    done < <($find_cmd $CODE_DIR -maxdepth 1 -type d -printf "%f\n" | $grep_cmd -P '\d{3}\-')
 }
 gen_project_aliases
 

@@ -17,11 +17,13 @@ foreach ($d in $dir) {
 & "$PSScriptRoot/calcurse/install.ps1"
 
 # Reload systemd units from config linking
-systemctl --user daemon-reload
-systemctl --user enable newsboat.timer
+if (!($IsMacOS)) {
+    systemctl --user daemon-reload
+    systemctl --user enable newsboat.timer
 
-if (Get-IsArch) {
-    systemctl --user enable pacupdate.timer
+    if (Get-IsArch) {
+        systemctl --user enable pacupdate.timer
+    }
 }
 
 & "$PSScriptRoot/home/install.ps1"
