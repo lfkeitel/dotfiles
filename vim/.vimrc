@@ -183,9 +183,9 @@ set ttyfast               " Improves redrawing for newer computers.
 set nostartofline         " When moving thru the lines, the cursor will try to stay in the previous columns.
 set autoread
 
-" Highlight parts of line over 80 characters
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%100v.\+/
+" Set rulers
+highlight ColorColumn guifg=White guibg=#592929 ctermbg=red ctermfg=white
+set colorcolumn=80,100
 
 if has('termguicolors')
 highlight Pmenu guibg=LightGray guifg=Black
