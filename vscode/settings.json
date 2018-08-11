@@ -132,5 +132,6 @@
         "toolchain": "stable-x86_64-unknown-linux-gnu"
     },
     "d.servedPath": "/home/lfkeitel/.local/share/code-d/bin/serve-d",
-    "eslint.packageManager": "yarn"
+    "eslint.packageManager": "yarn",
+    "javascript.updateImportsOnFileMove.enabled": "never"
 }
