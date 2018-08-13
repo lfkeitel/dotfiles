@@ -6,6 +6,6 @@ esac
 
 echo -n "📅"
 
-next_apt="$(calcurse -n | tail -n1 | rev | cut -d' ' -f1-2 | rev)"
+next_apt="$(calcurse -n | tail -n1 | cut -d' ' -f6-)"
 [ -z "$next_apt" ] && next_apt="No apts"
 echo " $next_apt"

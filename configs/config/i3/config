@@ -169,7 +169,7 @@ bindsym $mod+z gaps inner current set 0; gaps outer current set 0
 bindsym $mod+Shift+z gaps inner current set $default_gaps; gaps outer current set $default_gaps
 
 bindsym $mod+Return exec $terminal_start
-# bindsym $mod+Shift+Return
+bindsym $mod+Shift+Return exec $terminal
 
 bindsym $mod+space focus mode_toggle
 bindsym $mod+Shift+space floating toggle
