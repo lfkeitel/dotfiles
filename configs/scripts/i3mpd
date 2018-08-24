@@ -2,7 +2,7 @@
 export MPD_HOST=${MPD_HOST:-$HOME/.mpd/socket}
 
 filter() {
-    sed 2q | tac | sed -e "s/\&/&amp;/g;/volume:/d;s/\[paused\].*/<span color=\"gray\" font_style=\"italic\">/g;s/\[playing\].*/<span>/g" | tr -d '\n' | cut -c-43 | sed -e "s/$/<\/span>/g"
+    sed 2q | tac | sed -e "s/\&/&amp;/g;/volume:/d;s/\[paused\].*/<span color=\"gray\" font_style=\"italic\">/g;s/\[playing\].*/<span                                     >/g" | tr -d '\n' | cut -c-80 | sed -e "s/$/<\/span>/g"
 }
 
 case $BLOCK_BUTTON in
