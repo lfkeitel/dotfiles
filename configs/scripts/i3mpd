@@ -1,12 +1,14 @@
 #!/bin/bash
 export MPD_HOST=${MPD_HOST:-$HOME/.mpd/socket}
 
+TMUX_CMD="$TERMINAL -e tmux new -A -s Music -n Music ncmpcpp"
+
 filter() {
     sed 2q | tac | sed -e "s/\&/&amp;/g;/volume:/d;s/\[paused\].*/<span color=\"gray\" font_style=\"italic\">/g;s/\[playing\].*/<span                                     >/g" | tr -d '\n' | cut -c-80 | sed -e "s/$/<\/span>/g"
 }
 
 case $BLOCK_BUTTON in
-    1) mpc status | filter && $TERMINAL -e ncmpcpp & disown ;;  # left click, open "gui"
+    1) mpc status | filter && $TMUX_CMD & disown ;;  # left click, open "gui"
     2) mpc seek 0% | filter ;; # middle click, replay
     3) mpc toggle | filter ;;  # right click, pause/unpause
     4) mpc prev   | filter ;;  # scroll up, previous

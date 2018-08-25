@@ -8,3 +8,7 @@ Write-Header 'Setting up Git'
 Add-FileLink "$PSScriptRoot/.gitconfig" "$HOME/.gitconfig"
 Add-FileLink "$PSScriptRoot/.gitignore" "$HOME/.gitignore"
 Add-FileLink "$PSScriptRoot/.gitmessage" "$HOME/.gitmessage"
+
+Write-Header 'Setting up ncmpcpp'
+Add-FileLink "$PSScriptRoot/ncmpcpp/bindings" "$HOME/.ncmpcpp/bindings"
+Add-FileLink "$PSScriptRoot/ncmpcpp/config" "$HOME/.ncmpcpp/config"
