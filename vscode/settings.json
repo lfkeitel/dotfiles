@@ -133,5 +133,7 @@
     },
     "d.servedPath": "/home/lfkeitel/.local/share/code-d/bin/serve-d",
     "eslint.packageManager": "yarn",
-    "javascript.updateImportsOnFileMove.enabled": "never"
+    "javascript.updateImportsOnFileMove.enabled": "never",
+    "latex-workshop.chktex.enabled": true,
+    "latex-workshop.latex.clean.enabled": true
 }

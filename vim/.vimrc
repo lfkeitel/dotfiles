@@ -261,12 +261,6 @@ autocmd FileType vim setlocal foldmethod=marker
 
 " {{{ Keybinds
 
-" Disable arrow keys in normal mode.
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
-
 " {{{ Buffer management
 " To open a new empty buffer
 " This replaces :tabnew which I used to bind to this mapping

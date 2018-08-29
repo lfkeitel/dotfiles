@@ -100,3 +100,10 @@ cd_go_folder() {
     local DEST="$(find $GOPATH -lname $PWD)"
     [[ -n $DEST ]] && cd $DEST
 }
+
+go_mod() {
+    case $1 in
+        on) export GO111MODULE=on;;
+        *) export GO111MODULE=auto;;
+    esac
+}
