@@ -11,14 +11,14 @@ if [[ -n "$(which pwsh)" ]]; then
     exit
 fi
 
-install_aurman() {
+install_aur_helper() {
     mkdir -p "$HOME/code"
-    if [[ -d "$HOME/code/aurman" ]]; then
-        cd "$HOME/code/aurman"
+    if [[ -d "$HOME/code/yay" ]]; then
+        cd "$HOME/code/yay"
         git fetch
     else
-        git clone 'https://aur.archlinux.org/aurman.git' "$HOME/code/aurman"
-        cd "$HOME/code/aurman"
+        git clone 'https://aur.archlinux.org/yay-bin.git' "$HOME/code/yay"
+        cd "$HOME/code/yay"
     fi
 
     makepkg -Acs
@@ -40,6 +40,6 @@ elif [[ $LINUX_DISTRO == "Fedora" ]]; then
     sudo dnf install compat-openssl10
     sudo dnf install -y powershell
 elif [[ $LINUX_DISTRO == "Arch Linux" ]]; then
-    install_aurman
+    install_aur_helper
     aurman -S powershell-bin
 fi

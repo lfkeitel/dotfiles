@@ -19,17 +19,17 @@ function Install-MacPackages {
     brew install $Settings.packages.macos
 }
 
-function Install-Aurman {
-    if (!(Get-IsArch) -or (Get-CommandExists aurman)) { return }
+function Install-AurHelper {
+    if (!(Get-IsArch) -or (Get-CommandExists yay)) { return }
 
     New-Directory "$HOME/code"
 
-    if (Test-DirExists $HOME/code/aurman) {
-        Set-Location $HOME/code/aurman
+    if (Test-DirExists $HOME/code/yay) {
+        Set-Location $HOME/code/yay
         git fetch
     } else {
-        git clone 'https://aur.archlinux.org/aurman.git' $HOME/code/aurman
-        Set-Location $HOME/code/aurman
+        git clone 'https://aur.archlinux.org/yay-bin.git' $HOME/code/yay
+        Set-Location $HOME/code/yay
     }
 
     makepkg -Acs
@@ -43,7 +43,7 @@ function Install-LinuxPackages {
     } elseif (Get-IsUbuntu) {
         Install-SystemPackages $Settings.packages.linux $Settings.packages.ubuntu
     } elseif (Get-IsArch) {
-        Install-Aurman
+        Install-AurHelper
         Install-SystemPackages $Settings.packages.linux $Settings.packages.arch
     }
 

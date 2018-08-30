@@ -16,7 +16,7 @@ sys-upgrade() {
     elif [[ $linux_distro == "Fedora" ]]; then
         sudo dnf upgrade -y
     elif [[ $linux_distro == "Arch Linux" ]]; then
-        sudo pacman -Syu
+        yay -Syu
     elif [[ "$(uname)" == "Darwin" ]]; then
         brew upgrade
     fi
@@ -104,6 +104,7 @@ cd_go_folder() {
 go_mod() {
     case $1 in
         on) export GO111MODULE=on;;
+        off) export GO111MODULE=off;;
         *) export GO111MODULE=auto;;
     esac
 }

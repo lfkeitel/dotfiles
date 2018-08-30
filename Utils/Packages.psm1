@@ -66,7 +66,7 @@ function Install-SystemPackages ([switch] $Update) {
 
     if (Get-IsUbuntu) { sudo apt install -y @Args }
     elseif (Get-IsFedora) { sudo dnf install -y @Args }
-    elseif (Get-IsArch) { sudo pacman -S --noconfirm --needed @Args }
+    elseif (Get-IsArch) { sudo yay -S --noconfirm --needed @Args }
     elseif ($IsMacOS) { brew install -y @Args }
 }
 
