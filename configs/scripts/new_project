@@ -12,7 +12,7 @@ fi
 
 find_next_code() {
     local CODE
-    CODE=$(find $CODE_DIR -maxdepth 1 -type d -printf "%f\n" | grep -P '\d{3}\-' | sort | tail -n1 | cut -d'-' -f1 | tr -d 0)
+    CODE=$(find $CODE_DIR -maxdepth 1 -type d -printf "%f\n" | grep -P '\d{3}\-' | sort | tail -n1 | cut -d'-' -f1 | sed -e 's/^0*//')
     format_project_code $(($CODE + 1))
 }
 
