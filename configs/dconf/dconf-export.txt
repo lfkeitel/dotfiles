@@ -1,0 +1,222 @@
+[org/xfce/mousepad/preferences/view]
+indent-width=-1
+show-line-marks=false
+highlight-current-line=false
+word-wrap=false
+show-right-margin=false
+font-name='Monospace 16'
+color-scheme='cobalt'
+show-line-numbers=true
+insert-spaces=true
+match-braces=false
+indent-on-tab=true
+right-margin-position=80
+show-line-endings=false
+tab-width=4
+show-whitespace=false
+smart-home-end='disabled'
+auto-indent=true
+use-default-monospace-font=false
+
+[org/xfce/mousepad/preferences/window]
+always-show-tabs=false
+menubar-visible=true
+statusbar-visible=false
+cycle-tabs=false
+path-in-title=false
+toolbar-visible=false
+
+[org/xfce/mousepad/state/window]
+width=1228
+fullscreen=false
+maximized=false
+height=601
+
+[org/cinnamon]
+desktop-effects-unmaximize-transition='easeNone'
+desktop-effects-maximize-transition='easeInExpo'
+desktop-effects-map-effect='traditional'
+command-history=['st', 'mattermost-desktop', 'keepassxc', 'matter', 'virtualbox', 'virtualbox ', 'mattermost-desktop ', 'code', 'mousepad']
+desktop-effects-close-effect='traditional'
+hotcorner-layout=['expo:false:0', 'scale:false:0', 'scale:false:0', 'desktop:false:0']
+enabled-desklets=@as []
+desktop-effects-unmaximize-time=100
+desktop-effects-map-time=100
+desktop-effects-minimize-effect='traditional'
+workspace-osd-duration=400
+desklet-snap-interval=25
+panels-height=['1:25']
+next-applet-id=14
+panel-launchers=['DEPRECATED']
+desktop-effects-map-transition='easeOutQuad'
+desktop-effects-unmaximize-effect='none'
+desktop-effects-maximize-time=100
+desktop-effects-tile-transition='easeInQuad'
+desktop-effects-maximize-effect='none'
+enabled-applets=['panel1:right:0:systray@cinnamon.org:0', 'panel1:left:0:menu@cinnamon.org:1', 'panel1:left:1:show-desktop@cinnamon.org:2', 'panel1:left:2:panel-launchers@cinnamon.org:3', 'panel1:left:3:window-list@cinnamon.org:4', 'panel1:right:1:keyboard@cinnamon.org:5', 'panel1:right:2:notifications@cinnamon.org:6', 'panel1:right:3:removable-drives@cinnamon.org:7', 'panel1:right:4:user@cinnamon.org:8', 'panel1:right:5:network@cinnamon.org:9', 'panel1:right:6:bluetooth@cinnamon.org:10', 'panel1:right:7:power@cinnamon.org:11', 'panel1:right:8:calendar@cinnamon.org:12', 'panel1:right:9:sound@cinnamon.org:13']
+desktop-effects-minimize-time=160
+desktop-effects-minimize-transition='easeInQuad'
+desktop-effects-tile-effect='none'
+desktop-effects-close-transition='easeOutQuad'
+panel-edit-mode=false
+workspace-osd-x=50
+workspace-osd-y=50
+desktop-effects-close-time=120
+desktop-effects-tile-time=100
+
+[org/cinnamon/settings-daemon/plugins/power]
+button-power='interactive'
+
+[org/cinnamon/settings-daemon/peripherals/touchpad]
+motion-threshold=1
+
+[org/cinnamon/settings-daemon/peripherals/keyboard]
+repeat-interval=uint32 30
+delay=uint32 500
+numlock-state='on'
+
+[org/cinnamon/settings-daemon/peripherals/mouse]
+drag-threshold=8
+motion-threshold=1
+double-click=400
+
+[org/cinnamon/muffin]
+tile-hud-threshold=25
+
+[org/cinnamon/desktop/interface]
+clock-show-date=true
+cursor-size=24
+cursor-blink-time=1200
+clock-show-seconds=true
+text-scaling-factor=1.0
+
+[org/cinnamon/desktop/keybindings/custom-keybindings/custom0]
+binding=['<Super>Return']
+command='st -c st-terminal -e tmux -2 -u'
+name='Tmux'
+
+[org/cinnamon/desktop/keybindings]
+custom-list=['custom0']
+
+[org/cinnamon/desktop/keybindings/media-keys]
+restart-cinnamon=['<Control><Alt>Escape', '<Shift><Super>BackSpace']
+email=['XF86Mail', '<Super>t']
+www=['XF86WWW', '<Super>b']
+screensaver=['<Control><Alt>l', 'XF86ScreenSaver', '<Super>x']
+shutdown=['<Control><Alt>End', 'XF86PowerOff', '<Shift><Super>x']
+
+[org/cinnamon/desktop/keybindings/wm]
+close=['<Alt>F4', '<Shift><Super>q']
+move-to-workspace-up=@as []
+switch-to-workspace-left=@as []
+panel-run-dialog=['<Alt>F2', '<Super>d']
+switch-to-workspace-down=@as []
+move-to-workspace-right=@as []
+switch-to-workspace-right=@as []
+show-desktop=@as []
+move-to-workspace-left=@as []
+move-to-workspace-down=@as []
+switch-to-workspace-up=['<Alt>F1']
+
+[org/cinnamon/desktop/media-handling]
+autorun-never=false
+
+[org/cinnamon/desktop/screensaver]
+screensaver-name=''
+use-custom-format=false
+lock-delay=uint32 15
+default-message='Ni ne kontenta ĝis vi ne kontenta.'
+
+[org/cinnamon/desktop/session]
+idle-delay=uint32 300
+
+[org/cinnamon/desktop/privacy]
+recent-files-max-age=-1
+
+[org/cinnamon/desktop/wm/preferences]
+mouse-button-modifier='<Super>'
+theme='Menta'
+
+[org/cinnamon/desktop/sound]
+event-sounds=false
+
+[org/cinnamon/desktop/background]
+picture-uri='file:///home/lfkeitel/Pictures/lock_screen.png'
+picture-options='spanned'
+
+[org/cinnamon/desktop/background/slideshow]
+image-source='directory:///home/lfkeitel/Pictures'
+delay=15
+
+[org/cinnamon/theme]
+theme-cache-updated=1536671858
+name='cinnamon'
+
+[org/cinnamon/cinnamon-session]
+quit-time-delay=60
+
+[org/blueman/general]
+window-properties=[500, 350, 580, 324]
+
+[org/blueman/plugins/recentconns]
+recent-connections='eNprYPJmiC1kaCtk1AMAEQ4Cwg=='
+
+[org/blueman/transfer]
+shared-path='/home/lfkeitel'
+
+[org/gnome/nm-applet/eap/30c5ac96-9808-476f-bfd6-4307d8b7f8ac]
+ignore-phase2-ca-cert=false
+ignore-ca-cert=false
+
+[org/gnome/nm-applet/eap/1765f535-9c42-4b8b-adca-985171a030d6]
+ignore-phase2-ca-cert=false
+ignore-ca-cert=false
+
+[org/gnome/nm-applet/eap/de04c610-fa84-3647-b8c6-3f5539423ccb]
+ignore-phase2-ca-cert=false
+ignore-ca-cert=false
+
+[org/gnome/desktop/a11y/applications]
+screen-keyboard-enabled=false
+screen-reader-enabled=false
+
+[org/gnome/desktop/a11y/mouse]
+secondary-click-enabled=false
+secondary-click-time=1.2
+dwell-time=1.2
+dwell-threshold=10
+dwell-click-enabled=false
+
+[org/gnome/desktop/interface]
+toolkit-accessibility=false
+
+[org/gtk/settings/file-chooser]
+sort-column='name'
+sidebar-width=237
+window-position=(1750, 0)
+show-size-column=true
+show-hidden=false
+window-size=(1231, 879)
+sort-directories-first=false
+date-format='regular'
+sort-order='ascending'
+location-mode='path-bar'
+
+[org/nemo/window-state]
+start-with-sidebar=true
+geometry='800x550+430+224'
+maximized=false
+sidebar-bookmark-breakpoint=3
+
+[org/mate/atril]
+document-directory=@ms 'file:///home/lfkeitel/Downloads'
+
+[org/mate/atril/default]
+window-ratio=(1.6944444444444444, 1.0972222222222223)
+
+[ca/desrt/dconf-editor]
+saved-view='/org/cinnamon/desktop/wm/preferences/mouse-button-modifier'
+show-warning=false
+window-height=600
+window-width=800
+window-is-maximized=false
