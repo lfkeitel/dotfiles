@@ -137,5 +137,6 @@
     "javascript.updateImportsOnFileMove.enabled": "never",
     "latex-workshop.chktex.enabled": true,
     "latex-workshop.latex.clean.enabled": true,
-    "C_Cpp.default.cStandard": "c11"
+    "C_Cpp.default.cStandard": "c11",
+    "files.enableTrash": false
 }

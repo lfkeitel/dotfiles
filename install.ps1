@@ -14,13 +14,12 @@ $Settings = Get-JSONFile $SettingsFile
 $InstallerArgs = $Args[1..($Args.Length-1)]
 
 function Run-Installer ([string] $Module) {
-    $Installer = (Join-Path $PSScriptRoot $Module 'install.ps1')
-    if (Test-FileExists $Installer) {
-        & $Installer -SettingsFile $SettingsFile @InstallerArgs
+    if (Test-FileExists $Module) {
+        & $Module -SettingsFile $SettingsFile @InstallerArgs
         return
     }
 
-    $Installer = (Join-Path $PSScriptRoot 'other' "$Module.ps1")
+    $Installer = (Join-Path $PSScriptRoot $Module 'install.ps1')
     if (Test-FileExists $Installer) {
         & $Installer -SettingsFile $SettingsFile @InstallerArgs
         return
@@ -31,13 +30,31 @@ function Run-Installer ([string] $Module) {
 
 Write-MainBanner "LEE'S DOTFILES" Blue
 if ($Args.Count -eq 0) {
-    foreach ($Installer in $Settings.defaultInstallers) {
-        Run-Installer $Installer
+    foreach ($Installer in $Settings.Installers.PsObject.Properties) {
+        $InstallerV = $Installer.Value
+        if ($InstallerV.Autorun) {
+            if ($InstallerV.Path) {
+                Run-Installer $InstallerV.Path
+            } else {
+                Run-Installer $Installer.Name
+            }
+        }
     }
 
     if ($IsMacOS) {
-        Run-Installer macos
+        Run-Installer $Settings.Installers.macos.Path
     }
 } else {
-    Run-Installer $Args[0]
+    $Name = $Args[0]
+    $Installer = $Settings.Installers.($Name)
+    if (!$Installer) {
+        Write-ColoredLine "No installer for $Name." Red
+        Exit 1
+    }
+
+    if ($Installer.Path) {
+        Run-Installer $Installer.Path
+    } else {
+        Run-Installer $Name
+    }
 }
