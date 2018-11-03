@@ -35,7 +35,8 @@
         ".zsh_functions": "shellscript",
         "*.exp": "tcl",
         "*.js": "javascriptreact",
-        "*.el": "lisp"
+        "*.el": "lisp",
+        "*.asm": "asm"
     },
     "[javascript]": {
         "editor.insertSpaces": true,
@@ -135,5 +136,6 @@
     "eslint.packageManager": "yarn",
     "javascript.updateImportsOnFileMove.enabled": "never",
     "latex-workshop.chktex.enabled": true,
-    "latex-workshop.latex.clean.enabled": true
+    "latex-workshop.latex.clean.enabled": true,
+    "C_Cpp.default.cStandard": "c11"
 }
