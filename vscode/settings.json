@@ -143,5 +143,6 @@
         ".pyenv",
         ".direnv",
         "code/venv"
-    ]
+    ],
+    "C_Cpp.default.cStandard": "c11"
 }
