@@ -77,7 +77,8 @@
             "powerline-fonts",
             "calcurse-patched",
             "st-patched",
-            "unclutter-patched"
+            "unclutter-patched",
+            "direnv"
         ]
     },
 

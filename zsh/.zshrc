@@ -78,6 +78,7 @@ autoload -Uz compinit && compinit -i
 
 # Allow Ctrl-S in vim
 stty -ixon
+eval "$(direnv hook zsh)"
 
 run_custom_hooks post
 
