@@ -108,3 +108,17 @@ go_mod() {
         *) export GO111MODULE=auto;;
     esac
 }
+
+activate() {
+    VENV_NAME="$1"
+    VIRENV_ROOT="$HOME/code/venv"
+
+    if [ -z "$VENV_NAME" ]; then
+        echo "Available Virtual Environments:"
+        find ~/code/venv -maxdepth 1 -type d  -printf " %f\n" | tail -n +2 | sort
+        return
+    fi
+
+    source $VIRENV_ROOT/$VENV_NAME/bin/activate
+}
+alias act=activate

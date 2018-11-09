@@ -1,0 +1,16 @@
+#!/bin/bash
+
+VENV_NAME="$1"
+VIRENV_ROOT="$HOME/code/venv"
+
+if [ -z "$VENV_NAME" ]; then
+    echo "Usage: new_virenv NAME"
+    exit 1
+fi
+
+cd $VIRENV_ROOT
+virtualenv --python python3 $VENV_NAME
+
+source $VENV_NAME/bin/activate
+pip install pylint
+deactivate

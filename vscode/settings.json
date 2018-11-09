@@ -137,5 +137,11 @@
     "javascript.updateImportsOnFileMove.enabled": "never",
     "latex-workshop.chktex.enabled": true,
     "latex-workshop.latex.clean.enabled": true,
-    "files.enableTrash": false
+    "files.enableTrash": false,
+    "python.venvFolders": [
+        "envs",
+        ".pyenv",
+        ".direnv",
+        "code/venv"
+    ]
 }
