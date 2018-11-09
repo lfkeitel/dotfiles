@@ -12,5 +12,5 @@ cd $VIRENV_ROOT
 virtualenv --python python3 $VENV_NAME
 
 source $VENV_NAME/bin/activate
-pip install pylint
+pip install pylint rope
 deactivate
