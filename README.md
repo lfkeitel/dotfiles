@@ -17,6 +17,7 @@ Use the `install-powershell.sh` script to install PowerShell.
     - i3 (i3blocks)
     - misc. scripts
     - mpd
+    - ncmpcpp
     - ranger
     - rofi
     - systemd user units
@@ -24,7 +25,6 @@ Use the `install-powershell.sh` script to install PowerShell.
 - Fonts (Inconsolata, Fira Code, Font Awesome 5)
 - Golang
 - GPG Agent (Imports my personal keys and trusts ultimately)
-- macOS Finder (Show all files)
 - Node JS (with nvm and Yarn)
 - Pacman (Arch only)
 - PowerShell (Doesn't work on Arch)
@@ -36,11 +36,14 @@ Use the `install-powershell.sh` script to install PowerShell.
 
 ### Manual (requires argument to install.ps1):
 
+- dconf (Imports full dconf database)
+- macOS Finder (Show all files)
 - Dart
 - Rust
 - Docker
 - Hexchat (Some config files encrypted)
 - Minicom (serial terminal)
+- home files (Automatically ran with configs, here as direct installer)
 
 ## Supported Systems
 

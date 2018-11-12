@@ -66,37 +66,37 @@ function Install-SystemPackages ([switch] $Update) {
 
     if (Get-IsUbuntu) { sudo apt install -y @Args }
     elseif (Get-IsFedora) { sudo dnf install -y @Args }
-    elseif (Get-IsArch) { sudo yay -S --noconfirm --needed @Args }
+    elseif (Get-IsArch) { yay -S --noconfirm --needed @Args }
     elseif ($IsMacOS) { brew install -y @Args }
 }
 
 function Install-AURPackage ([switch] $Update) {
     if (!(Get-IsArch)) { return }
-    aurman -S --noconfirm --needed @Args
+    yay -S --noconfirm --needed @Args
 }
 
 function Get-CommandExists ([string] $command) {
-    which $command 2>/dev/null >/dev/null
+    which $command 2>&1 | Out-Null
     return ($LASTEXITCODE -eq 0)
 }
 
 function Get-PipPackInstalled ([string] $Package) {
-    python3 -c "import $Package" 2>/dev/null >/dev/null
+    python3 -c "import $Package" 2>&1 | Out-Null
     return ($LASTEXITCODE -eq 0)
 }
 
 function Get-IsPackageInstalled ([string] $pkg) {
     if (Get-IsUbuntu) {
-        $AptList = (apt list $pkg 2>/dev/null | Where-Object { $_ -match 'installed' })
+        $AptList = (apt list $pkg 2>$null | Where-Object { $_ -match 'installed' })
         return ($AptList.Count -gt 0)
     } elseif (Get-IsFedora) {
-        dnf list $pkg >/dev/null
+        dnf list $pkg | Out-Null
         return ($LASTEXITCODE -eq 0)
     } elseif (Get-IsArch) {
-        pacman -Q $pkg >/dev/null 2>&1
+        pacman -Q $pkg 2>&1 | Out-Null
         return ($LASTEXITCODE -eq 0)
     } elseif ($IsMacOS) {
-        $BrewList = (brew list $pkg 2>/dev/null)
+        $BrewList = (brew list $pkg)
         return ($BrewList.Count -gt 0)
     }
 }

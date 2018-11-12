@@ -5,16 +5,13 @@ Write-Header 'Setting up Generic Configs'
 
 # Generic scripts, utilities, and profile
 Add-FileLink "$PSScriptRoot/scripts" "$HOME/.scripts"
-Add-FileLink "$PSScriptRoot/.profile" "$HOME/.profile"
 
 # Link simply .config directories
-$dir = Get-ChildItem "$PSScriptRoot/config" | ?{$_.PSISContainer}
+$dir = Get-ChildItem "$PSScriptRoot/config" | Where-Object{$_.PSISContainer}
 
 foreach ($d in $dir) {
     Add-FileLink $d.FullName "$HOME/.config/$($d.Name)"
 }
-
-& "$PSScriptRoot/calcurse/install.ps1"
 
 # Reload systemd units from config linking
 if (!($IsMacOS)) {

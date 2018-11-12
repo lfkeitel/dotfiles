@@ -44,14 +44,17 @@ function Install-Golang {
 
     if ($IsMacOS) {
         Write-WarningMsg "macOS detected, please install/upgrade Go"
-        exit
-    }
+        return
+    } elseif (Get-IsArch) {
+        Write-ColoredLine "Go is managed by Arch, please run yay to update" DarkGreen
+        return
+    } else {
+        Install-GolangFromRemote
 
-    Install-GolangFromRemote
-
-    if (Test-DirExists "$GoPath/pkg") {
-        # Remove any archive packages from older version of Go
-        Remove-Item "$GoPath/pkg" -Recurse -Force | Out-Null
+        if (Test-DirExists "$GoPath/pkg") {
+            # Remove any archive packages from older version of Go
+            Remove-Item "$GoPath/pkg" -Recurse -Force | Out-Null
+        }
     }
 
     New-Item "$GoPath/src" -ItemType Directory -Force | Out-Null
@@ -66,14 +69,16 @@ function Install-GoPackages {
 }
 
 function Get-GoPackage ([string] $Package) {
-    $Result = (Invoke-Command "$GoRoot/bin/go" 'get' '-u' $Package)
+    $Result = (Invoke-Command 'go' 'get' '-u' $Package)
     if ($Result.ExitCode -eq 0) {
         Write-Output "Successfully downloaded $Package"
     }
 }
 
 function Finish-Install() {
-    Add-ToPath go "$GoRoot/bin" # Go binary and tools
+    if (!(Get-IsArch)) {
+        Add-ToPath go "$GoRoot/bin" # Go binary and tools
+    }
     Add-ToPath go "$GoPath/bin" # Installed Go programs
 
     Write-ColoredLine 'Installing/updating Go packages' Magenta
