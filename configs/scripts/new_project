@@ -10,6 +10,16 @@ if [[ -z $PROJECT_NAME ]]; then
     exit 1
 fi
 
+if [[ -z $GIT_URL ]]; then
+    # Check if a git URL was given and get the project name from that
+    if [[ $PROJECT_NAME =~ \.git$ ]]; then
+        GIT_URL=$PROJECT_NAME
+        PROJECT_NAME="$(echo "$PROJECT_NAME" | rev | cut -d'/' -f1 | rev | cut -d'.' -f1)"
+
+        echo "Using $PROJECT_NAME as project name"
+    fi
+fi
+
 find_next_code() {
     local CODE
     CODE=$(find $CODE_DIR -maxdepth 1 -type d -printf "%f\n" | grep -P '\d{3}\-' | sort | tail -n1 | cut -d'-' -f1 | sed -e 's/^0*//')
@@ -37,10 +47,13 @@ else
     git init
     echo 'private/' > .gitignore
     echo 'bin/' >> .gitignore
+    echo '.vscode/' >> .gitignore
+    echo 'vendor/' >> .gitignore
+    echo 'node_modules/' >> .gitignore
     mkdir private
     mkdir bin
 fi
 
+echo
 echo "Project Code: $NEXT_CODE"
-
 echo "Make sure to run gen_project_aliases to get new aliases"
