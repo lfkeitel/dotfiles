@@ -144,5 +144,6 @@
         ".direnv",
         "code/venv"
     ],
-    "C_Cpp.default.cStandard": "c11"
+    "C_Cpp.default.cStandard": "c11",
+    "go.docsTool": "gogetdoc"
 }
