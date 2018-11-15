@@ -145,5 +145,6 @@
         "code/venv"
     ],
     "C_Cpp.default.cStandard": "c11",
-    "go.docsTool": "gogetdoc"
+    "go.docsTool": "gogetdoc",
+    "go.autocompleteUnimportedPackages": true
 }
