@@ -122,3 +122,9 @@ activate() {
     source $VIRENV_ROOT/$VENV_NAME/bin/activate
 }
 alias act=activate
+
+ssh_alias() {
+    command ssh $@
+    tmux_color
+}
+alias ssh=ssh_alias

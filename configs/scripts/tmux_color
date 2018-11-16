@@ -1,0 +1,15 @@
+#!/usr/bin/env zsh
+
+fgcolor="$1"
+bgcolor="$2"
+
+if [[ -z $fgcolor ]]; then
+    fgcolor='default'
+fi
+if [[ -z $bgcolor ]]; then
+    bgcolor='default'
+fi
+
+paneid="$(tmux list-panes -a | grep $TMUX_PANE | cut -d' ' -f1 | cut -d':' -f1-2)"
+
+tmux select-pane -t "$paneid" -P "fg=${fgcolor},bg=${bgcolor}"
