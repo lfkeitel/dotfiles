@@ -68,12 +68,14 @@ code_jump() {
     fi
 
     if [[ $1 == 'd' ]]; then
-        project="$(dialog --dselect ~/code/ 20 80 3>&1 1>&2 2>&3 3>&1)"
+        project="$(dialog --dselect $CODE_DIR/ 10 60 3>&1 1>&2 2>&3 3>&1)"
         if [[ -n $project ]]; then
             cd "$project"
         fi
     else
-        find $CODE_DIR -maxdepth 1 -printf "%f\n" | grep -P '\d{3}\-' | sort
+        list="$(find $CODE_DIR -maxdepth 1 -printf "%f\n" | grep -P '\d{3}\-' | sort)"
+        echo "$list" | less -e
+        echo "$list"
 
         echo
         read "project?Select a project or press enter: "
@@ -128,3 +130,11 @@ ssh_alias() {
     tmux_color
 }
 alias ssh=ssh_alias
+
+autoenv_dis() {
+    AUTOENV_DISABLED=1
+}
+
+autoenv_en() {
+    AUTOENV_DISABLED=0
+}

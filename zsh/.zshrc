@@ -15,6 +15,8 @@ export CODE_DIR="$HOME/code"
 CUSTOM_HOOKS_PATH="$HOME/.local.zsh.d"
 CUSTOM_PATH_DIR="$CUSTOM_HOOKS_PATH/paths"
 GREP_CMD=/bin/grep
+AUTOENV_FILE_ENTER='.envrc'
+AUTOENV_FILE_LEAVE='.envrc_leave'
 
 if [ "$(uname)" = "Darwin" ]; then
     GREP_CMD="$(whereis grep)"
@@ -59,7 +61,7 @@ run_custom_hooks pre-oh-my-zsh
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="lfk"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-plugins=(git common-aliases zsh-autosuggestions docker sudo wd project docker-host you-should-use)
+plugins=(git common-aliases zsh-autosuggestions docker sudo wd project docker-host you-should-use autoenv)
 source $ZSH/oh-my-zsh.sh
 
 run_custom_hooks post-oh-my-zsh
@@ -78,7 +80,6 @@ autoload -Uz compinit && compinit -i
 
 # Allow Ctrl-S in vim
 stty -ixon
-eval "$(direnv hook zsh)"
 
 run_custom_hooks post
 

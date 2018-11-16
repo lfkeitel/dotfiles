@@ -79,8 +79,7 @@
             "powerline-fonts",
             "calcurse-patched",
             "st-patched",
-            "unclutter-patched",
-            "direnv"
+            "unclutter-patched"
         ]
     },
 
@@ -101,6 +100,10 @@
             {
                 "name": "scriptbook",
                 "remote": "https://github.com/lfkeitel/scriptbook.git"
+            },
+            {
+                "name": "autoenv",
+                "remote": "https://github.com/Tarrasch/zsh-autoenv.git"
             }
         ]
     },
