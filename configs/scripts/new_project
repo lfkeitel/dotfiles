@@ -3,6 +3,13 @@
 PROJECT_NAME="$1"
 GIT_URL="$2"
 
+FINDCMD='find'
+GREPCMD='grep'
+if [[ $(uname) -eq 'Darwin' ]]; then
+    FINDCMD='gfind'
+    GREPCMD='ggrep'
+fi
+
 CODE_DIR="${CODE_DIR:-$HOME/code}"
 
 if [[ -z $PROJECT_NAME ]]; then
@@ -22,7 +29,7 @@ fi
 
 find_next_code() {
     local CODE
-    CODE=$(find $CODE_DIR -maxdepth 1 -type d -printf "%f\n" | grep -P '\d{3}\-' | sort | tail -n1 | cut -d'-' -f1 | sed -e 's/^0*//')
+    CODE=$($FINDCMD $CODE_DIR -maxdepth 1 -type d -printf "%f\n" | $GREPCMD -P '\d{3}\-' | sort | tail -n1 | cut -d'-' -f1 | sed -e 's/^0*//')
     format_project_code $(($CODE + 1))
 }
 

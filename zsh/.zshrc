@@ -18,8 +18,11 @@ GREP_CMD=/bin/grep
 AUTOENV_FILE_ENTER='.envrc'
 AUTOENV_FILE_LEAVE='.envrc_leave'
 
-if [ "$(uname)" = "Darwin" ]; then
-    GREP_CMD="$(whereis grep)"
+export FINDCMD='find'
+export GREPCMD='grep'
+if [[ $(uname) = 'Darwin' ]]; then
+    FINDCMD='gfind'
+    GREPCMD='ggrep'
 fi
 
 run_custom_hooks() {
@@ -34,7 +37,7 @@ run_custom_hooks() {
 }
 
 addtopath() {
-    if ! echo "$PATH" | "$GREP_CMD" -Eq "(^|:)$1($|:)"; then
+    if ! echo "$PATH" | "$GREPCMD" -Eq "(^|:)$1($|:)"; then
         if [ "$2" = "after" ]; then
             PATH="$PATH:$1"
         else

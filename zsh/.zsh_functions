@@ -73,7 +73,7 @@ code_jump() {
             cd "$project"
         fi
     else
-        list="$(find $CODE_DIR -maxdepth 1 -printf "%f\n" | grep -P '\d{3}\-' | sort)"
+        list="$($FINDCMD $CODE_DIR -maxdepth 1 -printf "%f\n" | $GREPCMD -P '\d{3}\-' | sort)"
         echo "$list" | less -e
         echo "$list"
 
@@ -87,13 +87,10 @@ code_jump() {
 }
 
 gen_project_aliases() {
-    local grep_cmd="grep"
-    local find_cmd="find"
-    [[ $(uname) == 'Darwin' ]] && grep_cmd="ggrep" && find_cmd="gfind"
     while IFS= read -r dir; do
         code=$(echo "$dir" | cut -d- -f1)
         alias $code="cd $CODE_DIR/$dir"
-    done < <($find_cmd $CODE_DIR -maxdepth 1 -type d -printf "%f\n" | $grep_cmd -P '\d{3}\-')
+    done < <($FINDCMD $CODE_DIR -maxdepth 1 -type d -printf "%f\n" | $GREPCMD -P '\d{3}\-')
 }
 gen_project_aliases
 
@@ -117,7 +114,7 @@ activate() {
 
     if [ -z "$VENV_NAME" ]; then
         echo "Available Virtual Environments:"
-        find ~/code/venv -maxdepth 1 -type d  -printf " %f\n" | tail -n +2 | sort
+        $FINDCMD ~/code/venv -maxdepth 1 -type d  -printf " %f\n" | tail -n +2 | sort
         return
     fi
 
