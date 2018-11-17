@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+curl -sSL "https://unsplash.it/3840/2160/?random" > /tmp/wallpaper.png
+
+dconf write /com/deepin/wrap/gnome/desktop/background/picture-uri "'/tmp/wallpaper.png'"
+dconf write /org/cinnamon/desktop/background/picture-uri "'file:///tmp/wallpaper.png'"
+feh --bg-scale /tmp/wallpaper.png

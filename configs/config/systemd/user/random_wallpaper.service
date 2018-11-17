@@ -1,0 +1,8 @@
+[Unit]
+Description=Set a random wallpaper
+
+[Service]
+Type=oneshot
+ExecStart=%h/.scripts/random_wallpaper
+StandardOutput=journal
+Environment=DISPLAY=:0.0
