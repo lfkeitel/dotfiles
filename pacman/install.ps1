@@ -3,5 +3,9 @@ Import-Module (Join-Path $PSScriptRoot '..' Utils)
 if (!(Get-IsArch)) { return }
 
 Write-Header 'Setting up Pacman'
-Copy-Config -sudo "$PSScriptRoot/pacman.conf" "/etc/pacman.conf"
-Copy-Config -sudo "$PSScriptRoot/mirrorlist" "/etc/pacman.d/mirrorlist"
+Add-FileLink -Sudo "$PSScriptRoot/pacman.conf" "/etc/pacman.conf"
+Add-FileLink -Sudo "$PSScriptRoot/reflector_sync.sh" "/opt/reflector_sync.sh"
+
+foreach ($d in (Get-ChildItem "$PSScriptRoot/hooks")) {
+    Add-FileLink -Sudo $d.FullName "/etc/pacman.d/hooks/$($d.Name)"
+}

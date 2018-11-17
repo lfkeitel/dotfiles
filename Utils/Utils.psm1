@@ -24,15 +24,23 @@ function Restore-EncryptedFile ([string] $Source, [string] $Dest) {
     }
 }
 
-function Add-FileLink ([string] $Source, [string] $Dest) {
+function Add-FileLink ([string] $Source, [string] $Dest, [switch] $Sudo) {
     if ((Test-FileExists $Dest) -or (Test-DirExists $Dest)) {
-        Remove-Item $Dest -Force -Recurse | Out-Null
+        if ($Sudo) {
+            sudo rm -rf $Dest
+        } else {
+            Remove-Item $Dest -Force -Recurse | Out-Null
+        }
     }
 
     if ((Test-Path env:DOT_NO_LINK) -and ($env:DOT_NO_LINK -ne '')) {
         Copy-Item $Source $Dest -Force | Out-Null
     } else {
-        New-Item -ItemType SymbolicLink -Target $Source -Path $Dest -Force | Out-Null
+        if ($sudo) {
+            sudo ln -sfn $Source $Dest
+        } else {
+            New-Item -ItemType SymbolicLink -Target $Source -Path $Dest -Force | Out-Null
+        }
     }
 }
 
