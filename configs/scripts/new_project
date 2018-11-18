@@ -5,7 +5,7 @@ GIT_URL="$2"
 
 FINDCMD='find'
 GREPCMD='grep'
-if [[ $(uname) -eq 'Darwin' ]]; then
+if [[ $(uname) == 'Darwin' ]]; then
     FINDCMD='gfind'
     GREPCMD='ggrep'
 fi
