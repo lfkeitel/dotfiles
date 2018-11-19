@@ -71,7 +71,13 @@ if ($RunLinks) {
 if ($RunExtInstall) {
     Write-ColoredLine 'Installing VSCode Extensions' Magenta
 
-    $Settings.vscode.extensions | ForEach-Object {
-        code --install-extension $_
+    $InstalledExts = $(code --list-extensions) | ForEach-Object { $_.toLower() }
+
+    $NeededExts = $Settings.vscode.extensions | ForEach-Object { $_.toLower() } | Where-Object {
+        !($InstalledExts.Contains($_))
+    }
+
+    $NeededExts | ForEach-Object {
+        code --force --install-extension $_
     }
 }
