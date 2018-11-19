@@ -30,16 +30,18 @@ if [[ $SYSTEM_TYPE == "Darwin" ]]; then
     brew cask install powershell
 elif [[ $LINUX_DISTRO == "Ubuntu" ]]; then
     curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-    curl https://packages.microsoft.com/config/ubuntu/17.04/prod.list | sudo tee /etc/apt/sources.list.d/microsoft.list
+    curl https://packages.microsoft.com/config/ubuntu/18.04/prod.list | sudo tee /etc/apt/sources.list.d/microsoft.list
     sudo apt-get update
     sudo apt-get install -y powershell
 elif [[ $LINUX_DISTRO == "Fedora" ]]; then
     sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
     curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo
     sudo dnf update
-    sudo dnf install compat-openssl10
-    sudo dnf install -y powershell
+    sudo dnf install -y compat-openssl10 powershell
 elif [[ $LINUX_DISTRO == "Arch Linux" ]]; then
     install_aur_helper
-    aurman -S powershell-bin
+    yay -S powershell-bin
+else
+    echo "I don't know how to install PowerShell on this system."
+    echo "Please consult the official documentation."
 fi
