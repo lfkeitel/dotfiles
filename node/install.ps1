@@ -14,7 +14,7 @@ Remove-PathModule npm
 Write-ColoredLine 'Installing NVM' Magenta
 
 if ($IsMacOS) {
-    Install-SystemPackages nvm
+    Install-SystemPackage nvm
 } else {
     if (!(Test-DirExists $HOME/.nvm)) {
         git clone "https://github.com/creationix/nvm.git" $HOME/.nvm
@@ -32,17 +32,17 @@ zsh "$PSScriptRoot/final-setup.zsh" install $Settings.nodejs.nvm.engines
 zsh "$PSScriptRoot/final-setup.zsh" default $Settings.nodejs.nvm.default
 
 Write-ColoredLine 'Installing Yarn' Magenta
-if (Get-CommandExists yarn) {
+if (Test-CommandExists yarn) {
     Write-ColoredLine 'Yarn already installed' Magenta
 } else {
     if ($IsMacOS) {
         brew install yarn --without-node
-    } elseif (Get-IsArch) {
-        Install-SystemPackages yarn
+    } elseif (Test-IsArch) {
+        Install-SystemPackage yarn
     } elseif ($IsLinux) {
         Import-RepoKey 'https://dl.yarnpkg.com/debian/pubkey.gpg'
         Install-RepoList "$PSScriptRoot/yarn"
-        Install-SystemPackages -Update yarn
+        Install-SystemPackage -Update yarn
     } else {
         Write-Output 'Unsupported distribution'
         return

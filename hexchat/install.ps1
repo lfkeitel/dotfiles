@@ -4,8 +4,8 @@ Import-Module (Join-Path $PSScriptRoot '..' Utils)
 
 Write-Header 'Setting up Hexchat'
 
-if (!(Get-IsPackageInstalled hexchat)) {
-    Install-SystemPackages hexchat
+if (!(Test-IsPackageInstalled hexchat)) {
+    Install-SystemPackage hexchat
 }
 
 $HexConfigDir = "$HOME/.config/hexchat"

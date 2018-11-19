@@ -32,18 +32,18 @@ if ($IsMacOS) {
 }
 
 if ($RunInstall) {
-    if (Get-CommandExists code) {
+    if (Test-CommandExists code) {
         Write-ColoredLine 'VSCode already installed, update through the package manager' Magenta
     } else {
         if ($IsMacOS) {
             Write-Output 'Please install VS Code first'
             ExitWithCode 1
-        } elseif (Get-IsArch) {
-            Install-AURPackage visual-studio-code-bin
+        } elseif (Test-IsArch) {
+            Install-SystemPackage visual-studio-code-bin
         } elseif ($IsLinux) {
             Import-RepoKey 'https://packages.microsoft.com/keys/microsoft.asc'
             Install-RepoList "$PSScriptRoot/vscode"
-            Install-SystemPackages -Update code
+            Install-SystemPackage -Update code
         } else {
             Write-Output 'Unsupported distribution'
             return

@@ -14,7 +14,7 @@ Write-Header 'Install Dart lang'
 
 if ($IsMacOS) {
     brew tap dart-lang/dart
-    Install-SystemPackages dart
+    Install-SystemPackage dart
     return
 }
 

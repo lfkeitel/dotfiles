@@ -18,7 +18,7 @@ if (!($IsMacOS)) {
     systemctl --user daemon-reload
     systemctl --user enable newsboat.timer
 
-    if (Get-IsArch) {
+    if (Test-IsArch) {
         systemctl --user enable pacupdate.timer
     }
 }

@@ -12,10 +12,15 @@ function Remove-PathModule ([string] $module) {
     Remove-Item "$HOME/.local.zsh.d/paths/40-$module" -ErrorAction Ignore
 }
 
-function Add-ZshHook ([string] $hook, [string] $hookname, [string] $hookfile) {
+function Add-ZshHook ([string] $hook, [string] $hookname, [string] $hookfile, [switch] $nolink) {
     Write-Output "Adding $hookname to ZSH $hook hooks"
     New-Item -ItemType Directory "$HOME/.local.zsh.d/$hook" -ErrorAction Ignore
-    Add-FileLink $hookfile "$HOME/.local.zsh.d/$hook/$hookname.zsh"
+
+    if ($nolink) {
+        Copy-Config $hookfile "$HOME/.local.zsh.d/$hook/$hookname.zsh"
+    } else {
+        Add-FileLink $hookfile "$HOME/.local.zsh.d/$hook/$hookname.zsh"
+    }
 }
 
 function Remove-ZshHook ([string] $hook, [string] $hookname) {
@@ -23,7 +28,7 @@ function Remove-ZshHook ([string] $hook, [string] $hookname) {
     Remove-Item "$HOME/.local.zsh.d/$hook/$hookname.zsh"
 }
 
-function Get-ZshHookExists ([string] $hook, [string] $hookname) {
+function Test-ZshHookExists ([string] $hook, [string] $hookname) {
     return (Test-Path "$HOME/.local.zsh.d/$hook/$hookname.zsh" -PathType Leaf)
 }
 

@@ -4,12 +4,12 @@ Import-Module (Join-Path $PSScriptRoot '..' Utils)
 Write-Header 'Setting up Vim'
 
 # Install NeoVim
-if (!(Get-CommandExists 'nvim')) {
-    if (Get-IsFedora) {
-        Install-SystemPackages python2-neovim python3-neovim
-    } elseif (Get-IsUbuntu) {
+if (!(Test-CommandExists 'nvim')) {
+    if (Test-IsFedora) {
+        Install-SystemPackage python2-neovim python3-neovim
+    } elseif (Test-IsUbuntu) {
         Install-UbuntuPPA 'neovim-ppa/stable' -Update
-        Install-SystemPackages neovim python-dev python-pip python3-dev python3-pip
+        Install-SystemPackage neovim python-dev python-pip python3-dev python3-pip
         sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
         sudo update-alternatives --config vi
         sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
@@ -19,7 +19,7 @@ if (!(Get-CommandExists 'nvim')) {
     }
 }
 
-if (!(Get-PipPackInstalled neovim)) {
+if (!(Test-PipPackInstalled neovim)) {
     sudo pip3 install neovim
 }
 

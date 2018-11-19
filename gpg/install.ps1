@@ -17,13 +17,13 @@ Write-Header 'Setting up GPG agent'
 
 function Install-GPGPackages {
     if ($IsMacOS) {
-        Install-SystemPackages gpg2 pidof pinentry-mac
-    } elseif (Get-IsUbuntu) {
-        Install-SystemPackages gnupg-agent gnupg2 pinentry-gtk2 scdaemon libccid pcscd libpcsclite1 gpgsm
-    } elseif (Get-IsFedora) {
-        Install-SystemPackages ykpers libyubikey gnupg gnupg2-smime
-    } elseif (Get-IsArch) {
-        Install-SystemPackages gnupg pinentry ccid pcsclite
+        Install-SystemPackage gpg2 pidof pinentry-mac
+    } elseif (Test-IsUbuntu) {
+        Install-SystemPackage gnupg-agent gnupg2 pinentry-gtk2 scdaemon libccid pcscd libpcsclite1 gpgsm
+    } elseif (Test-IsFedora) {
+        Install-SystemPackage ykpers libyubikey gnupg gnupg2-smime
+    } elseif (Test-IsArch) {
+        Install-SystemPackage gnupg pinentry ccid pcsclite
         sudo systemctl enable pcscd.service
         sudo systemctl start pcscd.service
     }
@@ -60,7 +60,7 @@ if (!$NoKey) {
     Write-Output "$Key" | gpg2 --import-ownertrust
 }
 
-if ((Get-IsFedora) -and (Test-FileExists '/etc/xdg/autostart/gnome-keyring-ssh.desktop')) {
+if ((Test-IsFedora) -and (Test-FileExists '/etc/xdg/autostart/gnome-keyring-ssh.desktop')) {
     sudo mv -f /etc/xdg/autostart/gnome-keyring-ssh.desktop /etc/xdg/autostart/gnome-keyring-ssh.desktop.inactive
 }
 

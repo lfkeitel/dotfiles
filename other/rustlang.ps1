@@ -12,7 +12,7 @@ $Settings = Get-JSONFile $SettingsFile
 
 Write-Header 'Install Rust'
 
-if (Get-CommandExists 'rustup') {
+if (Test-CommandExists 'rustup') {
     Write-ColoredLine "Rustup is already installed, try running 'rustup update'" DarkGreen
     return
 }

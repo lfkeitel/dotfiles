@@ -5,15 +5,15 @@ if ($IsLinux) {
     $LinuxDistro = $SystemInfo.Name.Trim('"')
 }
 
-function Get-IsFedora {
+function Test-IsFedora {
     return ($LinuxDistro -eq 'Fedora')
 }
 
-function Get-IsUbuntu {
+function Test-IsUbuntu {
     return ($LinuxDistro -eq 'Ubuntu')
 }
 
-function Get-IsArch {
+function Test-IsArch {
     return ($LinuxDistro.StartsWith('Arch'))
 }
 

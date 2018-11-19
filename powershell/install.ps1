@@ -1,7 +1,7 @@
 #!/usr/bin/env pwsh
 Import-Module (Join-Path $PSScriptRoot '..' Utils)
 
-if (Get-IsArch) { return }
+if (Test-IsArch) { return }
 
 Write-Header 'Setting up PowerShell'
 

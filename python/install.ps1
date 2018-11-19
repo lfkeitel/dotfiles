@@ -9,20 +9,20 @@ $Settings = Get-JSONFile $SettingsFile
 
 Write-Header 'Setting up Python'
 
-if (!(Get-CommandExists('python3'))) {
+if (!(Test-CommandExists('python3'))) {
     # Ubuntu and Fedora already have Python 3 installed
     if ($IsMacOS) {
-        Install-SystemPackages 'python3'
+        Install-SystemPackage 'python3'
     } else {
         Write-ColoredLine 'Python 3 could not be installed.' Red
         return
     }
 }
 
-if (!(Get-CommandExists('pip3'))) {
+if (!(Test-CommandExists('pip3'))) {
     # pip3 is installed on macOS with brew
     if ($IsLinux) {
-        Install-SystemPackages 'python3-pip'
+        Install-SystemPackage 'python3-pip'
     } else {
         Write-ColoredLine 'Python 3 could not be installed.' Red
         return
@@ -32,7 +32,7 @@ if (!(Get-CommandExists('pip3'))) {
 Write-ColoredLine 'Installing Pip Packages' Magenta
 
 function Install-PipPackage ([string] $Package) {
-    if (Get-CommandExists($Package)) { return }
+    if (Test-CommandExists($Package)) { return }
     sudo pip3 install $Package
 }
 

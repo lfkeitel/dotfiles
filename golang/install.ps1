@@ -45,7 +45,7 @@ function Install-Golang {
     if ($IsMacOS) {
         Write-WarningMsg "macOS detected, please install/upgrade Go"
         return
-    } elseif (Get-IsArch) {
+    } elseif (Test-IsArch) {
         Write-ColoredLine "Go is managed by Arch, please run yay to update" DarkGreen
         return
     } else {
@@ -76,7 +76,7 @@ function Get-GoPackage ([string] $Package) {
 }
 
 function Finish-Install() {
-    if (!(Get-IsArch)) {
+    if (!(Test-IsArch)) {
         Add-ToPath go "$GoRoot/bin" # Go binary and tools
     }
     Add-ToPath go "$GoPath/bin" # Installed Go programs

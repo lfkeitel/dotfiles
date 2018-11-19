@@ -1,28 +1,28 @@
 function Import-RepoKey ([string] $url) {
-    if (Get-IsUbuntu) {
+    if (Test-IsUbuntu) {
         curl -fsSL $url | sudo apt-key add -
-    } elseif (Get-IsFedora) {
+    } elseif (Test-IsFedora) {
         sudo rpm --import $url
     }
 }
 
 function Install-RepoList ([string] $RepoFileBase) {
-    if (!$IsLinux -or (Get-IsArch)) { return }
+    if (!$IsLinux -or (Test-IsArch)) { return }
 
     $CodeRelease = ''
-    if (Get-IsUbuntu) {
+    if (Test-IsUbuntu) {
         $CodeRelease = $SystemInfo.Version_Codename
     }
 
     $RepoFile = "$RepoFileBase.list"
-    if (Get-IsFedora) {
+    if (Test-IsFedora) {
         $RepoFile = "$RepoFileBase.repo"
     }
     $RepoFileBaseName = (Get-ChildItem -Path $RepoFile | Select-Object BaseName,Extension)
     $RepoFileBaseName = "$($RepoFileBaseName.BaseName)$($RepoFileBaseName.Extension)"
 
     $RepoDir = '/etc/apt/sources.list.d'
-    if (Get-IsFedora) {
+    if (Test-IsFedora) {
         $RepoDir = '/etc/yum.repos.d'
     }
 
@@ -34,12 +34,12 @@ function Install-RepoList ([string] $RepoFileBase) {
 }
 
 function Install-RemoteRepoList ([string] $url) {
-    if (!$IsLinux -or (Get-IsArch)) { return }
+    if (!$IsLinux -or (Test-IsArch)) { return }
 
     $RepoFile = (Split-Path -Path $url -Leaf)
 
     $RepoDir = '/etc/apt/sources.list.d'
-    if (Get-IsFedora) {
+    if (Test-IsFedora) {
         $RepoDir = '/etc/yum.repos.d'
     }
 
@@ -51,48 +51,43 @@ function Install-RemoteRepoList ([string] $url) {
 }
 
 function Install-UbuntuPPA ([string] $Repo, [switch] $Update) {
-    if (!(Get-IsUbuntu)) { return }
+    if (!(Test-IsUbuntu)) { return }
     sudo add-apt-repository ppa:$Repo
     if ($Update) { Update-PackageLists }
 }
 
 function Update-PackageLists {
-    if (Get-IsUbuntu) { sudo apt update }
+    if (Test-IsUbuntu) { sudo apt update }
     elseif ($IsMacOS) { brew update }
 }
 
-function Install-SystemPackages ([switch] $Update) {
+function Install-SystemPackage ([switch] $Update) {
     if ($Update) { Update-PackageLists }
 
-    if (Get-IsUbuntu) { sudo apt install -y @Args }
-    elseif (Get-IsFedora) { sudo dnf install -y @Args }
-    elseif (Get-IsArch) { yay -S --noconfirm --needed @Args }
+    if (Test-IsUbuntu) { sudo apt install -y @Args }
+    elseif (Test-IsFedora) { sudo dnf install -y @Args }
+    elseif (Test-IsArch) { yay -S --noconfirm --needed @Args }
     elseif ($IsMacOS) { brew install -y @Args }
 }
 
-function Install-AURPackage ([switch] $Update) {
-    if (!(Get-IsArch)) { return }
-    yay -S --noconfirm --needed @Args
-}
-
-function Get-CommandExists ([string] $command) {
+function Test-CommandExists ([string] $command) {
     which $command 2>&1 | Out-Null
     return ($LASTEXITCODE -eq 0)
 }
 
-function Get-PipPackInstalled ([string] $Package) {
+function Test-PipPackInstalled ([string] $Package) {
     python3 -c "import $Package" 2>&1 | Out-Null
     return ($LASTEXITCODE -eq 0)
 }
 
-function Get-IsPackageInstalled ([string] $pkg) {
-    if (Get-IsUbuntu) {
+function Test-IsPackageInstalled ([string] $pkg) {
+    if (Test-IsUbuntu) {
         $AptList = (apt list $pkg 2>$null | Where-Object { $_ -match 'installed' })
         return ($AptList.Count -gt 0)
-    } elseif (Get-IsFedora) {
+    } elseif (Test-IsFedora) {
         dnf list $pkg | Out-Null
         return ($LASTEXITCODE -eq 0)
-    } elseif (Get-IsArch) {
+    } elseif (Test-IsArch) {
         pacman -Q $pkg 2>&1 | Out-Null
         return ($LASTEXITCODE -eq 0)
     } elseif ($IsMacOS) {
