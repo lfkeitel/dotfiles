@@ -203,6 +203,14 @@
         }
     },
 
+    "rust": {
+        "versions": [
+            "stable",
+            "beta",
+            "nightly"
+        ]
+    },
+
     "gpg": {
         "key": "E638625F",
         "key_formatted": "E638 625F"
@@ -237,7 +245,7 @@
             "HookyQR.githubissues",
             "Ionide.ionide-fsharp",
             "jsynowiec.vscode-insertdatestring",
-            "kalitaalexey.vscode-rust",
+            "rust-lang.rust",
             "kdarkhan.mips",
             "lextudio.restructuredtext",
             "lfkeitel.language-asml",
