@@ -93,6 +93,10 @@ the simplicity of a shell language with the power of a typical programming langu
 If you don't want to use PowerShell, all the configs can be manually symlinked or
 copied to their appropriate places.
 
+## Utility Module
+
+Documentation for the utility module can be found [here](Utils/docs.md).
+
 ## Personal Arch Repo
 
 To use my personal arch repo add the following to your pacman config:
