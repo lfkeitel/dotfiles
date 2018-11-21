@@ -140,7 +140,7 @@ autoenv_en() {
 
 _docker_wrapper() {
     # Ensure tmux coloring is reset when using docker over SSH
-    docker $@
+    command docker $@
     tmux_color
 }
 alias docker='_docker_wrapper'

@@ -97,8 +97,9 @@ active_host() {
 }
 
 disconnect_host() {
-    export DOCKER_HOST=
-    export DOCKER_HOST_NAME=
+    unexport DOCKER_HOST
+    unexport DOCKER_TLS_VERIFY
+    unexport DOCKER_HOST_NAME
 }
 
 show_help() {
@@ -132,11 +133,11 @@ EOF
 
 set_aliases() {
     alias dha='docker-host add'
-    alias dhs='docker-host connect'
+    alias dhc='docker-host connect'
     alias dhd='docker-host disconnect'
     alias dhl='docker-host ls'
     alias dhls='docker-host ls'
-    alias dha='docker-host active'
+    alias dhac='docker-host active'
 }
 
 if [ ! -d "$DOCKER_HOSTS_DIR" ]; then
