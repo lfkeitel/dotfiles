@@ -1,6 +1,7 @@
 Import-Module posh-git
 Import-Module oh-my-posh
 Set-Theme tehrob
+Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 
 function Git-Status { git status @args }
 Set-Alias gs Git-Status
