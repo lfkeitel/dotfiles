@@ -73,8 +73,10 @@ code_jump() {
             cd "$project"
         fi
     else
+        rows=$(stty size | cut -d' ' -f1)
         list="$($FINDCMD $CODE_DIR -maxdepth 1 -printf "%f\n" | $GREPCMD -P '\d{3}\-' | sort)"
-        echo "$list" | less -e
+        list_rows=$(echo "$list" | wc -l)
+        [[ $(($list_rows + 2)) > $rows ]] && echo "$list" | less -e
         echo "$list"
 
         echo
