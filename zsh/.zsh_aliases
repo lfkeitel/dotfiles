@@ -39,6 +39,8 @@ alias yb='yarn build'
 alias p='code_jump'
 alias cat='better_cat'
 
+alias mpp='mpc toggle'
+
 alias bconsole="bconsole -c $HOME/.config/bconsole/bconsole.conf"
 
 unalias please
