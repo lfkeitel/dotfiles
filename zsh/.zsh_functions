@@ -137,3 +137,10 @@ autoenv_dis() {
 autoenv_en() {
     AUTOENV_DISABLED=0
 }
+
+_docker_wrapper() {
+    # Ensure tmux coloring is reset when using docker over SSH
+    docker $@
+    tmux_color
+}
+alias docker=_docker_wrapper
