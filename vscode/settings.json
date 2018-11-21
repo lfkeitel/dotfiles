@@ -146,5 +146,8 @@
     ],
     "C_Cpp.default.cStandard": "c11",
     "go.docsTool": "gogetdoc",
-    "go.autocompleteUnimportedPackages": true
+    "go.autocompleteUnimportedPackages": true,
+    "[rust]": {
+        "editor.formatOnSave": true
+    }
 }
