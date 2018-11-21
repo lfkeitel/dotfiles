@@ -42,12 +42,3 @@ alias cat='better_cat'
 alias mpp='mpc toggle'
 
 alias bconsole="bconsole -c $HOME/.config/bconsole/bconsole.conf"
-
-unalias please
-please() {
-    last_cmd="$(fc -ln -1)"
-    echo -n "sudo $last_cmd"
-    read -k1 -s
-    echo
-    eval "sudo $last_cmd"
-}
