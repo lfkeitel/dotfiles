@@ -1,8 +1,6 @@
 #!/usr/bin/env pwsh
 Import-Module (Join-Path $PSScriptRoot '..' Utils)
 
-if (Test-IsArch) { return }
-
 Write-Header 'Setting up PowerShell'
 
 Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
