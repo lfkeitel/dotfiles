@@ -7,6 +7,10 @@ Param(
     [switch]
     $RunInstall,
 
+    [alias("Force")]
+    [switch]
+    $ForceInstall,
+
     [alias("Link")]
     [switch]
     $RunLinks,
@@ -32,7 +36,7 @@ if ($IsMacOS) {
 }
 
 if ($RunInstall) {
-    if (Test-CommandExists code) {
+    if (!$ForceInstall && (Test-CommandExists code)) {
         Write-ColoredLine 'VSCode already installed, update through the package manager' Magenta
     } else {
         if ($IsMacOS) {
