@@ -97,8 +97,9 @@ active_host() {
 }
 
 disconnect_host() {
-    export DOCKER_HOST=
-    export DOCKER_HOST_NAME=
+    unexport DOCKER_HOST
+    unexport DOCKER_TLS_VERIFY
+    unexport DOCKER_HOST_NAME
 }
 
 show_help() {
@@ -123,10 +124,20 @@ Connecting to a remote engine:
     Replace \$HOSTNAME with a memorable name for the Docker host.
     Replace \$IP with the IP address of the remote host.
 
-    $ docker-host add \$HOSTNAME tcp://\$IP:2376 # Add host to docker-host
-    $ docker-host connect \$HOSTNAME             # Set environment variables
-    $ docker ps                                  # Work on remote host as if it's local
+    $ docker-host add \$HOSTNAME tcp://\$IP:2376 # Add host to docker-host OR
+    $ docker-host add \$HOSTNAME ssh://\$IP      # Add host to docker-host
+    $ docker-host connect \$HOSTNAME            # Set environment variables
+    $ docker ps                                # Work on remote host as if it's local
 EOF
+}
+
+set_aliases() {
+    alias dha='docker-host add'
+    alias dhc='docker-host connect'
+    alias dhd='docker-host disconnect'
+    alias dhl='docker-host ls'
+    alias dhls='docker-host ls'
+    alias dhac='docker-host active'
 }
 
 if [ ! -d "$DOCKER_HOSTS_DIR" ]; then
@@ -141,6 +152,7 @@ case "$1" in
     connect) shift; connect_host "$@";;
     active) shift; active_host "$@";;
     disconnect) disconnect_host;;
+    set_aliases) set_aliases;;
     *) show_help;
 esac
 }

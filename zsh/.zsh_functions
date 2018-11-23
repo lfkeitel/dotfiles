@@ -122,13 +122,13 @@ activate() {
 
     source $VIRENV_ROOT/$VENV_NAME/bin/activate
 }
-alias act=activate
+alias act='activate'
 
-ssh_alias() {
+_ssh_alias() {
     command ssh $@
     tmux_color
 }
-alias ssh=ssh_alias
+alias ssh='_ssh_alias'
 
 autoenv_dis() {
     AUTOENV_DISABLED=1
@@ -137,3 +137,19 @@ autoenv_dis() {
 autoenv_en() {
     AUTOENV_DISABLED=0
 }
+
+_docker_wrapper() {
+    # Ensure tmux coloring is reset when using docker over SSH
+    command docker $@
+    tmux_color
+}
+alias docker='_docker_wrapper'
+
+_please() {
+    last_cmd="$(fc -ln -1)"
+    echo -n "sudo $last_cmd"
+    read -k1 -s
+    echo
+    eval "sudo $last_cmd"
+}
+alias please='_please'

@@ -7,6 +7,10 @@ Param(
     [switch]
     $RunInstall,
 
+    [alias("Force")]
+    [switch]
+    $ForceInstall,
+
     [alias("Link")]
     [switch]
     $RunLinks,
@@ -32,7 +36,7 @@ if ($IsMacOS) {
 }
 
 if ($RunInstall) {
-    if (Test-CommandExists code) {
+    if (!$ForceInstall -AND (Test-CommandExists code)) {
         Write-ColoredLine 'VSCode already installed, update through the package manager' Magenta
     } else {
         if ($IsMacOS) {
@@ -72,6 +76,10 @@ if ($RunExtInstall) {
     Write-ColoredLine 'Installing VSCode Extensions' Magenta
 
     $InstalledExts = $(code --list-extensions) | ForEach-Object { $_.toLower() }
+
+    if ($InstalledExts.Length -Eq 0) {
+        $InstalledExts = @()
+    }
 
     $NeededExts = $Settings.vscode.extensions | ForEach-Object { $_.toLower() } | Where-Object {
         !($InstalledExts.Contains($_))
