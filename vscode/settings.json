@@ -149,5 +149,7 @@
     "go.autocompleteUnimportedPackages": true,
     "[rust]": {
         "editor.formatOnSave": true
-    }
+    },
+    "window.titleBarStyle": "custom",
+    "terminal.integrated.rendererType": "dom"
 }
