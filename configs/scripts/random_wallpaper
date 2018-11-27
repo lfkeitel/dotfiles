@@ -16,7 +16,7 @@ curl -sSL "https://unsplash.it/3840/2160/?random" > "$CURRENT_PAPER"
 
 dconf write /com/deepin/wrap/gnome/desktop/background/picture-uri "'$CURRENT_PAPER'"
 dconf write /org/cinnamon/desktop/background/picture-uri "'file://$CURRENT_PAPER'"
-dconf write /org/cinnamon/desktop/background/picture-options "'scaled'"
+dconf write /org/cinnamon/desktop/background/picture-options "'stretched'"
 feh --bg-scale $CURRENT_PAPER
 
 if [[ $CURRENT_PAPER == $PAPER1 ]]; then
