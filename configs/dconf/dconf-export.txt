@@ -142,7 +142,7 @@ event-sounds=false
 
 [org/cinnamon/desktop/background]
 picture-uri='file:///home/lfkeitel/Pictures/lock_screen.png'
-picture-options='spanned'
+picture-options='stretched'
 
 [org/cinnamon/desktop/background/slideshow]
 image-source='directory:///home/lfkeitel/Pictures'
