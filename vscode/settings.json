@@ -151,5 +151,7 @@
         "editor.formatOnSave": true
     },
     "window.titleBarStyle": "custom",
-    "terminal.integrated.rendererType": "dom"
+    "terminal.integrated.rendererType": "dom",
+    "gitlens.views.fileHistory.enabled": true,
+    "gitlens.views.lineHistory.enabled": true
 }
