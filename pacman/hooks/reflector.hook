@@ -8,4 +8,4 @@ Target = pacman-mirrorlist
 Description = Updating mirrorlist...
 When = PostTransaction
 Depends = reflector
-Exec = /opt/reflector_sync.sh
+Exec = /usr/local/bin/reflector_sync

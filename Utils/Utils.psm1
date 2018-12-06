@@ -44,6 +44,16 @@ function Add-FileLink ([string] $Source, [string] $Dest, [switch] $Sudo) {
     }
 }
 
+function Remove-File ([string] $Path, [switch] $Sudo) {
+    if ((Test-FileExists $Path) -or (Test-DirExists $Path)) {
+        if ($Sudo) {
+            sudo rm -rf $Path
+        } else {
+            Remove-Item $Path -Force -Recurse | Out-Null
+        }
+    }
+}
+
 function Test-FileExists ([string] $path) {
     return (Test-Path $path -PathType Leaf)
 }
