@@ -3,6 +3,7 @@
 # Switch back and forth between files to alleviate any inode issues
 PAPER1='/tmp/wallpaper-1.png'
 PAPER2='/tmp/wallpaper-2.png'
+FALLBACK="$HOME/Pictures/wallpaper.png"
 
 CURRENT_PAPER=''
 
@@ -13,11 +14,18 @@ else
 fi
 
 curl -sSL "https://unsplash.it/3840/2160/?random" > "$CURRENT_PAPER"
+if [[ $? -ne 0 ]]; then
+    CURRENT_PAPER=$FALLBACK
+fi
 
 dconf write /com/deepin/wrap/gnome/desktop/background/picture-uri "'$CURRENT_PAPER'"
 dconf write /org/cinnamon/desktop/background/picture-uri "'file://$CURRENT_PAPER'"
 dconf write /org/cinnamon/desktop/background/picture-options "'stretched'"
 feh --bg-scale $CURRENT_PAPER
+
+if [[ $CURRENT_PAPER == $FALLBACK ]]; then
+    exit
+fi
 
 if [[ $CURRENT_PAPER == $PAPER1 ]]; then
     rm -rf $PAPER2

@@ -40,5 +40,6 @@ alias p='code_jump'
 alias cat='better_cat'
 
 alias mpp='mpc toggle'
+alias mpn='mpc next'
 
 alias bconsole="bconsole -c $HOME/.config/bconsole/bconsole.conf"
