@@ -197,8 +197,7 @@
     "python": {
         "pip": {
             "packages": [
-                "virtualenv",
-                "pipenv"
+                "virtualenv"
             ]
         }
     },
