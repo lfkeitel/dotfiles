@@ -205,7 +205,6 @@
     "rust": {
         "versions": [
             "stable",
-            "beta",
             "nightly"
         ]
     },
