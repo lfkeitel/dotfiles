@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+
+DEST="$1"
+
+[[ -z $DEST ]] && echo "No destination" && exit 1
+
+if [[ ! -d $DEST ]]; then
+    mkdir -p "$DEST"
+
+    if [[ -n $SUDO_USER ]]; then
+        chown -R $SUDO_USER:$SUDO_USER "$DEST"
+    fi
+fi
+
+mount ramfs -t ramfs "$DEST"
+
+if [[ -n $SUDO_USER ]]; then
+    chown -R $SUDO_USER:$SUDO_USER "$DEST"
+fi

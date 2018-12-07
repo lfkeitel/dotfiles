@@ -1,0 +1,28 @@
+#!/usr/bin/env zsh
+RECPT="$1"
+FILE="$2"
+ME='lee@keitel.xyz'
+SLEEP_NUMBER=30
+
+[[ -z $RECPT ]] && echo "No recipient given" && exit 1
+
+echo "Ctrl-D when done with message..."
+
+if [[ -n $FILE ]]; then
+    MESSAGE="$(gpg -e --armor -o- -r $ME -r $RECPT "$FILE")"
+else
+    MESSAGE="$(gpg -e --armor -r $ME -r $RECPT)"
+fi
+
+echo "$MESSAGE"
+echo "$MESSAGE" | xclip -in -selection clipboard
+echo 'Message copied to clipboard'
+
+sleep $SLEEP_NUMBER
+clear
+
+echo -n '' | xclip -in -selection clipboard
+echo 'Message cleared to clipboard'
+
+paneid="$(tmux list-panes -a | grep $TMUX_PANE | cut -d' ' -f1 | cut -d':' -f1-2)"
+tmux clear -t "$paneid"
