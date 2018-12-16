@@ -197,8 +197,7 @@
     "python": {
         "pip": {
             "packages": [
-                "virtualenv",
-                "pipenv"
+                "virtualenv"
             ]
         }
     },
@@ -206,7 +205,6 @@
     "rust": {
         "versions": [
             "stable",
-            "beta",
             "nightly"
         ]
     },

@@ -130,6 +130,13 @@ _ssh_alias() {
 }
 alias ssh='_ssh_alias'
 
+_scp_alias() {
+    command scp $@
+    tmux_color
+}
+alias scp='_scp_alias'
+
+
 autoenv_dis() {
     AUTOENV_DISABLED=1
 }

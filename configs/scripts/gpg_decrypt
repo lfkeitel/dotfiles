@@ -1,0 +1,18 @@
+#!/usr/bin/env zsh
+
+INPUT=''
+
+echo 'Paste GPG message and press enter'
+echo
+
+while IFS= read line; do
+    INPUT="$INPUT\n$line"
+    [[ $line == '-----END PGP MESSAGE-----' ]] && break
+done
+
+echo
+echo "$INPUT" | gpg -d 2>/dev/null
+# If an error occured, decrypt again this time showing stderr
+if [[ $? -ne 0 ]]; then
+    echo "$INPUT" | gpg -d
+fi

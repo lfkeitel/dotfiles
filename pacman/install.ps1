@@ -4,7 +4,8 @@ if (!(Test-IsArch)) { return }
 
 Write-Header 'Setting up Pacman'
 Add-FileLink -Sudo "$PSScriptRoot/pacman.conf" "/etc/pacman.conf"
-Add-FileLink -Sudo "$PSScriptRoot/reflector_sync.sh" "/opt/reflector_sync.sh"
+Remove-File -Sudo "/opt/reflector_sync.sh"
+Add-FileLink -Sudo "$PSScriptRoot/reflector_sync.sh" "/usr/local/bin/reflector_sync"
 
 Install-SystemPackage reflector
 
