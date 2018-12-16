@@ -38,6 +38,7 @@ alias yb='yarn build'
 
 alias p='code_jump'
 alias cat='better_cat'
+alias np='new_project'
 
 alias mpp='mpc toggle'
 alias mpn='mpc next'
