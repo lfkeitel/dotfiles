@@ -16,7 +16,7 @@ sys-upgrade() {
     elif [[ $linux_distro == "Fedora" ]]; then
         sudo dnf upgrade -y
     elif [[ $linux_distro == "Arch Linux" ]]; then
-        yay -Syu
+        yay
     elif [[ "$(uname)" == "Darwin" ]]; then
         brew upgrade
     fi
@@ -67,24 +67,25 @@ code_jump() {
         return
     fi
 
-    if [[ $1 == 'd' ]]; then
-        project="$(dialog --dselect $CODE_DIR/ 10 60 3>&1 1>&2 2>&3 3>&1)"
-        if [[ -n $project ]]; then
-            cd "$project"
-        fi
-    else
-        rows=$(stty size | cut -d' ' -f1)
-        list="$($FINDCMD $CODE_DIR -maxdepth 1 -printf "%f\n" | $GREPCMD -P '\d{3}\-' | sort)"
-        list_rows=$(echo "$list" | wc -l)
-        [[ $(($list_rows + 2)) > $rows ]] && echo "$list" | less -e
-        echo "$list"
+    list="$($FINDCMD $CODE_DIR -maxdepth 1 -printf "%f\n" | $GREPCMD -P '\d{3}\-' | sort)"
+    [[ -n $1 ]] && list="$(echo "$list" | $GREPCMD $1)"
 
-        echo
-        read "project?Select a project or press enter: "
-        if [[ -n $project && $project != 'q' ]]; then
-            project=$(format_project_code $project)
-            cd $CODE_DIR/$project*
-        fi
+    list_rows=$(echo "$list" | wc -l)
+    term_rows=$(stty size | cut -d' ' -f1)
+
+    if [[ -z $(echo "$list" | tr -d "\n") ]]; then
+        echo "No matching projects found"
+        return
+    fi
+
+    [[ $(($list_rows + 2)) -gt $term_rows ]] && echo "$list" | less -e
+    echo "$list"
+
+    echo
+    read "project?Select a project or press enter: "
+    if [[ $project =~ '^[0-9]+$' ]]; then
+        project=$(format_project_code $project)
+        cd $CODE_DIR/$project*
     fi
 }
 
