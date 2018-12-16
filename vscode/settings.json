@@ -151,5 +151,8 @@
         "editor.formatOnSave": true
     },
     "window.titleBarStyle": "custom",
-    "terminal.integrated.rendererType": "dom"
+    "terminal.integrated.rendererType": "dom",
+    "rust.all_features": true,
+    "rust.build_on_save": true,
+    "rust.clippy_preference": "on"
 }
