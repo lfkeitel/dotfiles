@@ -20,7 +20,8 @@
         "docker": { },
         "hexchat": { },
         "minicom": { },
-        "home": { "path": "configs/home" }
+        "home": { "path": "configs/home" },
+        "firefox": { }
     },
 
     "packages": {
