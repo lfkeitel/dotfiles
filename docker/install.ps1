@@ -39,3 +39,12 @@ if (!(Get-Member -InputObject $Config 'credsStore')) {
 
     sudo systemctl restart docker
 }
+
+Write-Header 'Setting up Overlayfs Kernel Workaround'
+
+Copy-Config -Sudo "$PSScriptRoot/overlay_metacopy_fix.service" "/etc/systemd/system/overlay_metacopy_fix.service"
+Copy-Config -Sudo "$PSScriptRoot/overlay_metacopy_fix.sh" "/opt/overlay_metacopy_fix.sh"
+sudo chmod +x "/opt/overlay_metacopy_fix.sh"
+
+sudo systemctl daemon-reload
+sudo systemctl enable overlay_metacopy_fix.service
