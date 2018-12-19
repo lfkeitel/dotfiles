@@ -78,6 +78,17 @@ code_jump() {
         return
     fi
 
+    if [[ $list_rows -eq 1 ]]; then
+        echo "$list"
+        echo
+        read "project?Press enter to accept or dot: "
+        if [[ $project != '.' ]]; then
+            cd $CODE_DIR/$list*
+        fi
+
+        return
+    fi
+
     [[ $(($list_rows + 2)) -gt $term_rows ]] && echo "$list" | less -e
     echo "$list"
 
