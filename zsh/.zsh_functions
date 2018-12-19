@@ -89,10 +89,18 @@ code_jump() {
     fi
 }
 
+project_jump() {
+    cd "$1"
+    if [[ $# -gt 1 ]]; then
+        shift
+        $@
+    fi
+}
+
 gen_project_aliases() {
     while IFS= read -r dir; do
         code=$(echo "$dir" | cut -d- -f1)
-        alias $code="cd $CODE_DIR/$dir"
+        alias $code="project_jump $CODE_DIR/$dir"
     done < <($FINDCMD $CODE_DIR -maxdepth 1 -type d -printf "%f\n" | $GREPCMD -P '\d{3}\-')
 }
 gen_project_aliases
