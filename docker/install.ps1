@@ -28,7 +28,7 @@ $DockerConfig = "$HOME/.docker/config.json"
 $Config = Get-JSONFile $DockerConfig
 
 if (!(Get-Member -InputObject $Config 'credsStore')) {
-    Install-SystemPackage 'docker-credential-secretservice'
+    Install-SystemPackage 'docker-credential-secretservice' 'gnome-keyring'
 
     if (Get-Member -InputObject $Config 'auths') {
         $Config.auths = @{}
