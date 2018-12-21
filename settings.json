@@ -54,7 +54,9 @@
             "mpd",
             "mpc",
             "ncmpcpp",
-            "rsync"
+            "rsync",
+            "nnn",
+            "moreutils"
         ],
 
         "fedora": [

@@ -84,3 +84,4 @@ Add-FileLink $ProjectList "$HOME/.warprc"
 New-Directory "$HOME/code"
 
 Add-ZshHook 'post' '10-vars' "$PSScriptRoot/vars.zsh"
+Add-ZshHook 'post' '10-nnn-setup' "$PSScriptRoot/nnn-setup.zsh"

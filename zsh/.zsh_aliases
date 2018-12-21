@@ -37,7 +37,7 @@ alias -g ys='yarn start'
 alias -g yb='yarn build'
 
 alias -g p='code_jump'
-alias -g cat='better_cat'
+alias cat='better_cat'
 alias -g np='new_project'
 
 alias -g mpp='mpc toggle'

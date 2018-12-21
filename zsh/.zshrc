@@ -12,6 +12,7 @@ setopt autopushd
 export LANG=en_US.UTF-8
 export EDITOR='nvim'
 export CODE_DIR="$HOME/code"
+export SCRIPTS_DIR="$HOME/.scripts"
 CUSTOM_HOOKS_PATH="$HOME/.local.zsh.d"
 CUSTOM_PATH_DIR="$CUSTOM_HOOKS_PATH/paths"
 GREP_CMD=/bin/grep
