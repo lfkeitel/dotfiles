@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# Switch back and forth between files to alleviate any inode issues
+PAPER1='/tmp/wallpaper-1.png'
+PAPER2='/tmp/wallpaper-2.png'
+WALLPAPER_DIR="$HOME/Pictures"
+WALLPAPER_DEST="$WALLPAPER_DIR/wallpaper-$(date +%y-%m-%dT%H:%M).png"
+CURRENT_PAPER=''
+
+if [[ -f $PAPER1 ]]; then
+    CURRENT_PAPER=$PAPER1
+else
+    CURRENT_PAPER=$PAPER2
+fi
+
+if [[ -f $WALLPAPER_DEST ]];
+    echo 'Destination file already exists'
+    exit 1
+fi
+
+if [[ $1 == "hires" ]]; then
+    cp $CURRENT_PAPER $WALLPAPER_DEST
+    echo 'Copied hi res version'
+else
+    convert $CURRENT_PAPER -resize 1920x1080 $WALLPAPER_DEST
+    echo 'Copied scaled version'
+fi
