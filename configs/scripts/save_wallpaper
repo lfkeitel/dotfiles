@@ -13,7 +13,7 @@ else
     CURRENT_PAPER=$PAPER2
 fi
 
-if [[ -f $WALLPAPER_DEST ]];
+if [[ -f $WALLPAPER_DEST ]]; then
     echo 'Destination file already exists'
     exit 1
 fi
