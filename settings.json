@@ -13,6 +13,8 @@
         "vscode": { "autorun": true },
         "vim": { "autorun": true },
 
+        "nvm": { "alias": "node" },
+        "yarn": { "alias": "node" },
         "dconf": { "path": "configs/dconf"},
         "dartlang": { "path": "other/dartlang.ps1" },
         "rustlang": { "path": "other/rustlang.ps1" },
@@ -182,14 +184,21 @@
 
     "nodejs": {
         "nvm": {
-            "version": "v0.33.11",
+            "version": "v0.34.0",
             "engines": [
                 "8",
                 "10",
                 "11"
             ],
             "default": "10"
-        }
+        },
+        "global_packages": [
+            "typescript",
+            "eslint",
+            "elm",
+            "neovim",
+            "@vue/cli"
+        ]
     },
 
     "dart": {

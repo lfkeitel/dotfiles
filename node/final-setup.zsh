@@ -9,7 +9,7 @@ fi
 
 install_node() {
     for version in "$@"; do
-        nvm install $version
+        nvm install --no-progress $version
     done
 }
 
