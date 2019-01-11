@@ -60,6 +60,8 @@ function Install-Yarn () {
     if (($Settings.nodejs.global_packages).Count -gt 0) {
         yarn global add $Settings.nodejs.global_packages
     }
+
+    Add-ToPath yarn "$HOME/.yarn/bin"
 }
 
 switch ($ModuleName) {
