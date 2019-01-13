@@ -196,6 +196,8 @@
             "typescript",
             "eslint",
             "elm",
+            "elm-format",
+            "elm-analyse",
             "neovim",
             "@vue/cli"
         ]
