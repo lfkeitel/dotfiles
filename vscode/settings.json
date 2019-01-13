@@ -156,5 +156,10 @@
     "rust.build_on_save": true,
     "rust.clippy_preference": "on",
     "gitlens.views.fileHistory.enabled": true,
-    "gitlens.views.lineHistory.enabled": true
+    "gitlens.views.lineHistory.enabled": true,
+    "elm.analyseEnabled": true,
+    "elm.includeUserFunctionDocumentation": true,
+    "[elm]": {
+        "editor.formatOnSave": true
+    }
 }
