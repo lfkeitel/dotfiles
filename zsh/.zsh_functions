@@ -180,3 +180,8 @@ _please() {
     eval "sudo $last_cmd"
 }
 alias please='_please'
+
+git_branch_sync() {
+    git branch --set-upstream-to=origin/$1 $1
+}
+alias gbs='git_branch_sync'
