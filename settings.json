@@ -23,7 +23,8 @@
         "hexchat": { },
         "minicom": { },
         "home": { "path": "configs/home" },
-        "firefox": { }
+        "firefox": { },
+        "fish": { }
     },
 
     "packages": {
@@ -42,6 +43,7 @@
         ],
 
         "linux": [
+            "fish",
             "zsh",
             "tmux",
             "curl",
