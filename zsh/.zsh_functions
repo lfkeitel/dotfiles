@@ -79,13 +79,7 @@ code_jump() {
     fi
 
     if [[ $list_rows -eq 1 ]]; then
-        echo "$list"
-        echo
-        read "project?Press enter to accept or dot: "
-        if [[ $project != '.' ]]; then
-            cd $CODE_DIR/$list*
-        fi
-
+        cd $CODE_DIR/$list*
         return
     fi
 
