@@ -17,6 +17,7 @@ alias digrep 'docker image ls | grep'
 alias docker-rm-dangle 'docker image rm (docker image ls -f dangling=true -q)'
 
 # Misc
+alias _ 'sudo'
 alias fix-mounts 'sudo umount -a -t cifs -l -f'
 alias pwdu 'du --max-depth=1 -h .'
 alias kill-tmux-sessions 'tmux list-sessions | grep -v attached | cut -d: -f1 |  xargs -t -n1 tmux kill-session -t'
