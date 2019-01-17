@@ -1,0 +1,11 @@
+[Trigger]
+Type = Package
+Operation = Install
+Operation = Remove
+Operation = Upgrade
+Target = *
+
+[Action]
+Description = Check for orphaned packages
+When = PostTransaction
+Exec = /usr/bin/bash -c "/usr/bin/pacman -Qtd || /usr/bin/echo '=> No orphans found.' | sed 's/^/  /'"
