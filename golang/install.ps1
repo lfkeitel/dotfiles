@@ -85,16 +85,17 @@ function Finish-Install() {
 
     Install-GoPackages
 
-    if ($IsLinux) {
-        Write-ColoredLine 'Setting up gorun binfmt_misc' Magent
-        sudo mv "$GoPath/bin/gorun" '/usr/local/bin/'
+    # if ($IsLinux) {
+    #     Write-ColoredLine 'Setting up gorun binfmt_misc' Magent
+    #     sudo mv "$GoPath/bin/gorun" '/usr/local/bin/'
 
-        if (!(Test-fileExists '/proc/sys/fs/binfmt_misc/golang')) {
-            sudo sh -c "echo ':golang:E::go::/usr/local/bin/gorun:OC' > /proc/sys/fs/binfmt_misc/register"
-        }
-    }
+    #     if (!(Test-fileExists '/proc/sys/fs/binfmt_misc/golang')) {
+    #         sudo sh -c "echo ':golang:E::go::/usr/local/bin/gorun:OC' > /proc/sys/fs/binfmt_misc/register"
+    #     }
+    # }
 
     Add-ZshHook post '10-golang'  "$PSScriptRoot/setuphook.zsh"
+    Add-FishHook post '10-golang'  "$PSScriptRoot/setuphook.fish"
 }
 
 Install-Golang

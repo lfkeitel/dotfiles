@@ -29,6 +29,9 @@ function Install-GPGPackages {
     }
 }
 
+Add-ZshHook 'post' '10-gpg' "$PSScriptRoot/setuphook.zsh"
+Add-FishHook 'post' '10-gpg' "$PSScriptRoot/setuphook.fish"
+
 $InstalledFile = "$HOME/.gnupg/.dotfile-installed.3"
 
 if ((Test-FileExists $InstalledFile) -and -not ($Force)) {
@@ -67,5 +70,3 @@ if ((Test-IsFedora) -and (Test-FileExists '/etc/xdg/autostart/gnome-keyring-ssh.
 # Idempotency
 Remove-Item "$HOME/.gnupg/.dotfile-installed.*" -Force
 touch $InstalledFile
-
-Add-ZshHook 'post' '10-gpg' "$PSScriptRoot/setuphook.zsh"
