@@ -1,0 +1,10 @@
+{
+	"Documentation Comment": {
+		"prefix": "docc",
+		"body": [
+			"{-| $1",
+			"-}$2"
+		],
+		"description": "Make a documentation style comment"
+	}
+}
