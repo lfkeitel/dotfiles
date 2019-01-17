@@ -1,8 +1,8 @@
 # Application aliases
 alias gpg='gpg2'
-alias nvim='TERM=screen nvim'
-alias vim='TERM=screen nvim'
-alias vi='TERM=screen nvim'
+alias nvim='env TERM=screen nvim'
+alias vim='env TERM=screen nvim'
+alias vi='env TERM=screen nvim'
 
 # Project aliases
 alias pjls='project ls'
@@ -22,7 +22,7 @@ alias pwdu='du --max-depth=1 -h .'
 alias kill-tmux-sessions='tmux list-sessions | grep -v attached | cut -d: -f1 |  xargs -t -n1 tmux kill-session -t'
 alias sudp='sudo'
 alias c='code .'
-alias szrc='source $HOME/.zshrc'
+alias sfc='source $HOME/.config/fish/config.fish'
 
 alias gs='git status'
 alias gds='git diff --staged'
