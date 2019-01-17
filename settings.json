@@ -23,7 +23,8 @@
         "hexchat": { },
         "minicom": { },
         "home": { "path": "configs/home" },
-        "firefox": { }
+        "firefox": { },
+        "fish": { }
     },
 
     "packages": {
@@ -42,6 +43,7 @@
         ],
 
         "linux": [
+            "fish",
             "zsh",
             "tmux",
             "curl",
@@ -278,6 +280,7 @@
             "rashwell.tcl",
             "redhat.java",
             "robertohuertasm.vscode-icons",
+            "sbrink.elm",
             "swyphcosmo.spellchecker",
             "sysoev.language-stylus",
             "techer.open-in-browser",

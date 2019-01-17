@@ -5,5 +5,5 @@
     Author = 'Lee Keitel <lee@keitel.xyz>'
     Copyright = '(c) Lee Keitel. All rights reserved.'
     FunctionsToExport = '*'
-    NestedModules = 'Display.psm1','Packages.psm1','ZshUtils.psm1'
+    NestedModules = 'Display.psm1','Packages.psm1','ShellUtils.psm1'
 }
