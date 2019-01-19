@@ -52,6 +52,10 @@ function format_project_code -a num
 end
 
 function code_jump -a project
+    function echo_list
+        echo -e (string join '\n' $argv)
+    end
+
     # If arg is a number, cd to project
     if string match --quiet --regex '\d+' $project
         set project (format_project_code $project)
@@ -60,7 +64,7 @@ function code_jump -a project
     end
 
     set list ($FINDCMD $CODE_DIR -maxdepth 1 -printf "%f\n" | $GREPCMD -P '\d{3}\-' | sort)
-    [ -n $project ] && set list (echo -e (string join '\n' $list) | $GREPCMD $project)
+    [ -n $project ] && set list (echo_list $list | $GREPCMD $project)
 
     set list_rows (count $list)
     set term_rows (stty size | cut -d' ' -f1)
@@ -75,11 +79,13 @@ function code_jump -a project
         return
     end
 
-    [ (expr $list_rows + 2) -gt $term_rows ] && echo "$list" | less -e
-    echo "$list"
+    if [ (expr $list_rows + 2) -gt $term_rows ]
+        echo_list $list | less -e
+    end
+    echo_list $list
 
     echo
-    read "project?Select a project or press enter: "
+    read -P "Select a project or press enter: " project
     if string match --quiet --regex '\d+' $project
         set project (format_project_code $project)
         cd $CODE_DIR/$project*

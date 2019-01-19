@@ -57,5 +57,5 @@ function fish_prompt
 
     # Terminate with a nice prompt char
     echo -e ''
-    echo -e -n -s $prompt_color $prompt_date ' › ' $normal
+    echo -e -n -s $prompt_color $prompt_date ' ➤ ' $normal
 end
