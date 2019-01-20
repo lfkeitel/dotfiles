@@ -1,0 +1,39 @@
+#!/usr/bin/fish
+
+echo "Decrypting Account Info"
+
+echo "-----BEGIN PGP MESSAGE-----
+
+hQIMA3tQRK72Njj2AQ/+LcN9LUgKC54nJ7HZCxFnMz6YGPFeyuE96KuxpuMWZ1/6
+UZmWR84Yz+Afzm8tNlRnM0dBH0Heaj7u5GJVUR1BNMqSZcUeWvvkgDCehpBrlcLX
+3smz0+EXa+gHLlE2yFUBIpFYhDPcQOkTnbD8zrg+Xxcxt+PFhgTaIjZaDq6/Zzr7
+Z9Mgh5D6HxlDMcgKOgFsHB7Wc4UYSZI5cg5ap0UDSb2wJiflz6c+E6en7AudfBf+
+zIvOsm3pcE3IvVFg+bRmar7fsop/hk/zKl9fXRjc0ROJnh5ASeMj8oZn3ZVIA41L
+YnOr76QWrcavEZXjUE4mrM3f/loepD/lEPb+CvxYGGhdjYXNi1b2ytRNDIOKMPX1
+buXLEPiVG63CV2p7S89iNgOT7svZ2SVhM9tSq+xVrw11R/mzbZjJLrRye4K3EI3j
+lk2yMnm5fNXZwqYumsVsG5NfE1ivioko9DDRLV+UPF2/O6PUAyn42Be30zHgN6yz
+JzWCzDRhOnChMoZMG0FnnsKBFovtsA5XwRMCDgAOSH8fmqjmoLo15IOBnZM/HKFK
+tYjSvx8cvw1sc69VmCL5f0XLw/eM2/9AOErpHWuy5YvTeWQKI5MSZwfC4hPqnRcb
+mokxq+JRRMtVmjRl2kMjsIaYT5c5shoyglfZHsZLRgkY0F0MnFv+4wJIvVmGFLnS
+wA8BMqL5S9Zck3NUJgNk1LhTs5JMAJxcFynIVds4FhcSmwwAzHyQsTSo+scPw2Mm
+X5ecmVtaq5zt8NYfO+W2DoPsOeQkG3ag5d6PVc0Dy69NJjo2WoAUwJoeBFVR4z06
+r0XtIz81vwLp38WoWsNiv7RWNWSH5jCW80vka5yzExU1kMzIZEff4enVPwv6saYx
+4LAfFTlwGCZYNlqDSDPRfs0Gse23ccSCoxrqoZqZD/9ZHBrxLyhjpqO5dYBEtCrY
+TDd74XgAysg60EaRUBr2m6o=
+=QULc
+-----END PGP MESSAGE-----" | gpg --decrypt | eval
+
+echo "Repo: $RESTIC_REPOSITORY"
+restic backup \
+    --exclude-caches \
+    -e "$HOME/Dropbox" \
+    -e "$HOME/Downloads" \
+    -e "$HOME/VirtualBox\ VMs" \
+    -e "$HOME/tmp" \
+    -e "$HOME/**/node_modules" \
+    -e "$HOME/code" \
+    -e "$HOME/.cargo" \
+    -e "$HOME/go" \
+    -e "CachedData" \
+    -e "Cache" \
+    $HOME
