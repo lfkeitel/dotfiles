@@ -36,4 +36,5 @@ restic backup \
     -e "$HOME/go" \
     -e "CachedData" \
     -e "Cache" \
+    -o b2.connections=10 \
     $HOME
