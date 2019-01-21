@@ -207,8 +207,8 @@
     },
 
     "dart": {
-        "version": "1.24.3",
-        "dartroot": "/usr/lib/dart"
+        "version": "2.1.0",
+        "dartroot": "/usr/local/dart"
     },
 
     "python": {

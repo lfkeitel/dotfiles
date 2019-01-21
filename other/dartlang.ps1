@@ -22,7 +22,11 @@ $DartVersion = $Settings.dart.version
 $SDKUrl = "https://storage.googleapis.com/dart-archive/channels/stable/release/$DartVersion/sdk/dartsdk-linux-x64-release.zip"
 $zipfile = 'dartsdk-linux-x64-release.zip'
 $DartRoot = $Settings.dart.dartroot
-$DartInstalled = (Invoke-Command "$DartRoot/bin/dart" "--version").StdErr.Split(' ')[3]
+$DartInstalled = '';
+
+if (Test-CommandExists dart) {
+    $DartInstalled = (Invoke-Command "$DartRoot/bin/dart" "--version").StdErr.Split(' ')[3]
+}
 
 if ((!$Force) -and ($DartVersion -eq $DartInstalled)) {
     Write-ColoredLine "Dart is at requested version $DartInstalled" DarkGreen
