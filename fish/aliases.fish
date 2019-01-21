@@ -1,8 +1,8 @@
 # Application aliases
 alias gpg 'gpg2'
-alias nvim 'TERM=screen nvim'
-alias vim 'TERM=screen nvim'
-alias vi 'TERM=screen nvim'
+alias nvim 'env TERM=screen nvim'
+alias vim 'env TERM=screen nvim'
+alias vi 'env TERM=screen nvim'
 
 # Project aliases
 alias pjls 'project ls'
@@ -36,6 +36,7 @@ alias noproxy 'ssh -o ProxyCommand=none'
 
 alias ys 'yarn start'
 alias yb 'yarn build'
+alias yr 'yarn run'
 
 alias p 'code_jump'
 alias cat 'better_cat'
@@ -44,4 +45,8 @@ alias np 'new_project'
 alias mpp 'mpc toggle'
 alias mpn 'mpc next'
 
-alias bconsole="bconsole -c $HOME/.config/bconsole/bconsole.conf"
+alias bconsole='bconsole -c $HOME/.config/bconsole/bconsole.conf'
+
+alias G 'grep'
+alias L 'less'
+alias T 'tail'
