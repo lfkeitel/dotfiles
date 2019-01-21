@@ -55,10 +55,13 @@ if ($IsMacOS) {
 
 chmod -R og-rwx "$HOME/.gnupg"
 
+$gpgKey = $Settings.gpg.key
+$gpgKeyNoSpaces = $gpgKey.replace(' ', '')
+
 # Import my public key and trust it ultimately
 if (!$NoKey) {
-    gpg2 --recv-keys $Settings.gpg.key
-    $Key = (gpg2 --list-keys --fingerprint | Where-Object{ $_ -match $Settings.gpg.key_formatted }).Trim().Replace(' ', '')
+    gpg2 --recv-keys $gpgKeyNoSpaces
+    $Key = (gpg2 --list-keys --fingerprint | Where-Object{ $_ -match $gpgKey }).Trim().Replace(' ', '')
     $Key = "${Key}:6:"
     Write-Output "$Key" | gpg2 --import-ownertrust
 }
