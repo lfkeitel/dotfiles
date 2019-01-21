@@ -236,7 +236,6 @@
             "13xforever.language-x86-64-assembly",
             "2gua.rainbow-brackets",
             "akamud.vscode-caniuse",
-            "alefragnani.project-manager",
             "anseki.vscode-color",
             "asuka.insertnumbers",
             "bibhasdn.unique-lines",
@@ -257,9 +256,8 @@
             "formulahendry.auto-close-tag",
             "formulahendry.auto-rename-tag",
             "formulahendry.code-runner",
-            "hookyqr.githubissues",
             "jsynowiec.vscode-insertdatestring",
-            "rust-lang.rust",
+            "justusadam.language-haskell",
             "kdarkhan.mips",
             "lextudio.restructuredtext",
             "lfkeitel.language-nitrogen",
@@ -276,12 +274,15 @@
             "msjsdiag.debugger-for-chrome",
             "naumovs.color-highlight",
             "nmsmith89.incrementor",
+            "octref.vetur",
             "oderwat.indent-rainbow",
             "peterjausovec.vscode-docker",
             "rashwell.tcl",
             "redhat.java",
             "robertohuertasm.vscode-icons",
+            "rust-lang.rust",
             "sbrink.elm",
+            "skyapps.fish-vscode",
             "swyphcosmo.spellchecker",
             "sysoev.language-stylus",
             "techer.open-in-browser",
@@ -289,8 +290,7 @@
             "webfreak.code-d",
             "wesbos.theme-cobalt2",
             "wholroyd.jinja",
-            "wix.vscode-import-cost",
-            "skyapps.fish-vscode"
+            "wix.vscode-import-cost"
         ]
     }
 }
