@@ -64,7 +64,7 @@ function code_jump -a project
     end
 
     set list ($FINDCMD $CODE_DIR -maxdepth 1 -printf "%f\n" | $GREPCMD -P '\d{3}\-' | sort)
-    [ -n $project ] && set list (echo_list $list | $GREPCMD $project)
+    [ -n "$project" ] && set list (echo_list $list | $GREPCMD $project)
 
     set list_rows (count $list)
     set term_rows (stty size | cut -d' ' -f1)
