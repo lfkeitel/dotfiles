@@ -161,5 +161,10 @@
     "elm.includeUserFunctionDocumentation": true,
     "[elm]": {
         "editor.formatOnSave": true
-    }
+    },
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript"
+    ]
 }
