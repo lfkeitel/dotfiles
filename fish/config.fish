@@ -68,6 +68,8 @@ set -x DOTNET_CLI_TELEMETRY_OPTOUT 1
 docker-host set_aliases
 
 # Allow Ctrl-S in vim
-stty -ixon
+if status is-interactive
+    stty -ixon
+end
 
 run_custom_hooks post
