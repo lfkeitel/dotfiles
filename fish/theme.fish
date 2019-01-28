@@ -25,7 +25,7 @@ function fish_prompt
 
     set -l cwd $blue(pwd | sed "s:^$HOME:~:")
     set -l username $green$USER
-    set -l prompt_date (date +"%Y-%d-%m %H:%M:%S")
+    set -l prompt_date (date +"%Y-%m-%d %H:%M:%S")
 
     # Output the prompt, left to right
 

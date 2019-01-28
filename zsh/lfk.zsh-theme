@@ -25,7 +25,7 @@ local return_code="%(?..%F{red}%? ↵%f)"
 
 local user_host="${PR_USER}%F{cyan}${PR_HOST}"
 local git_branch='$(git_prompt_info)'
-local prompt_date='$(date +"%Y-%d-%m %H:%M:%S")'
+local prompt_date='$(date +"%Y-%m-%d %H:%M:%S")'
 
 shorten_pwd() {
   echo -n "%B%F{blue}"
