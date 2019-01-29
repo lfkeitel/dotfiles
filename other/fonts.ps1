@@ -1,7 +1,10 @@
 #!/usr/bin/env pwsh
 Param(
     [string]
-    $SettingsFile = (Join-Path $PSScriptRoot 'settings.json')
+    $SettingsFile = (Join-Path $PSScriptRoot 'settings.json'),
+
+    [switch]
+    $Force
 )
 
 Import-Module (Join-Path $PSScriptRoot '..' Utils)
@@ -20,17 +23,18 @@ if (!(Test-DirExists $Library)) {
 }
 
 function Install-Font ([string] $url, [string] $out) {
-    if (!(Test-FileExists $out)) {
+    if (!(Test-FileExists $out) -or $Force) {
         wget -q --show-progress -O $out $url
-        if ($IsLinux) { $ReloadFont = $true }
+        return $IsLinux
     }
 }
 
 $Settings.fonts | ForEach-Object {
-    Install-Font $_.remote "$Library/$($_.name)"
+    $ReloadFont = (Install-Font $_.remote "$Library/$($_.name)") -or $ReloadFont
 }
 
 # Linux, reload font cache
 if ($ReloadFont) {
-    fc-cache -f
+    Write-Output 'Rescanning font caches'
+    fc-cache -r
 }

@@ -147,6 +147,14 @@
             "name": "Inconsolata-Bold.ttf"
         },
         {
+            "remote": "https://github.com/google/fonts/raw/master/ofl/montserrat/Montserrat-Regular.ttf",
+            "name": "Montserrat-Regular.ttf"
+        },
+        {
+            "remote": "https://github.com/google/fonts/raw/master/ofl/montserrat/Montserrat-Bold.ttf",
+            "name": "Montserrat-Bold.ttf"
+        },
+        {
             "remote": "https://github.com/powerline/fonts/raw/master/Inconsolata/Inconsolata%20for%20Powerline.otf",
             "name": "Inconsolata-Powerline-Regular.ttf"
         },
@@ -155,15 +163,15 @@
             "name": "Inconsolata-Powerline-Bold.ttf"
         },
         {
-            "remote": "https://github.com/FortAwesome/Font-Awesome/raw/5.0.13/use-on-desktop/Font%20Awesome%205%20Brands-Regular-400.otf",
+            "remote": "https://github.com/FortAwesome/Font-Awesome/raw/5.7.0/otfs/Font%20Awesome%205%20Brands-Regular-400.otf",
             "name": "Font Awesome 5 Brands-Regular-400.otf"
         },
         {
-            "remote": "https://github.com/FortAwesome/Font-Awesome/raw/5.0.13/use-on-desktop/Font%20Awesome%205%20Free-Regular-400.otf",
+            "remote": "https://github.com/FortAwesome/Font-Awesome/raw/5.7.0/otfs/Font%20Awesome%205%20Free-Regular-400.otf",
             "name": "Font Awesome 5 Free-Regular-400.otf"
         },
         {
-            "remote": "https://github.com/FortAwesome/Font-Awesome/raw/5.0.13/use-on-desktop/Font%20Awesome%205%20Free-Solid-900.otf",
+            "remote": "https://github.com/FortAwesome/Font-Awesome/raw/5.7.0/otfs/Font%20Awesome%205%20Free-Solid-900.otf",
             "name": "Font Awesome 5 Free-Solid-900.otf"
         }
     ],
