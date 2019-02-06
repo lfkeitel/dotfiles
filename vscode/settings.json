@@ -1,43 +1,4 @@
 {
-    "explorer.openEditors.visible": 0,
-    "files.exclude": {
-        "**/.git": true,
-        "**/.svn": true,
-        "**/.hg": true,
-        "**/CVS": true,
-        "**/.DS_Store": true
-    },
-    "window.zoomLevel": 0,
-    "workbench.startupEditor": "newUntitledFile",
-    "telemetry.enableTelemetry": false,
-    "telemetry.enableCrashReporter": false,
-    "extensions.ignoreRecommendations": true,
-    "java.errors.incompleteClasspath.severity": "ignore",
-    "editor.fontLigatures": true,
-    "editor.fontFamily": "'Fira Code', Inconsolata, monospace",
-    "editor.fontSize": 17,
-    "files.trimTrailingWhitespace": true,
-    "docker.showExplorer": false,
-    "workbench.colorTheme": "Cobalt2",
-    "editor.rulers": [120],
-    "[markdown]": {
-        "editor.rulers": [
-            80,
-            130
-        ]
-    },
-    "workbench.iconTheme": "vscode-icons",
-    "vsicons.dontShowNewVersionMessage": true,
-    "insertDateString.format": "YYYY-MM-DDThh:mm:ssZZZ",
-    "files.associations": {
-        "*.tmpl": "gohtml",
-        ".zsh_aliases": "shellscript",
-        ".zsh_functions": "shellscript",
-        "*.exp": "tcl",
-        "*.js": "javascriptreact",
-        "*.el": "lisp",
-        "*.asm": "asm"
-    },
     "[javascript]": {
         "editor.insertSpaces": true,
         "editor.tabSize": 2
@@ -46,45 +7,16 @@
         "editor.insertSpaces": true,
         "editor.tabSize": 2
     },
+    "[razor]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4
+    },
     "[yaml]": {
         "editor.insertSpaces": true,
         "editor.tabSize": 2
     },
-    "html.format.endWithNewline": true,
-    "html.autoClosingTags": true,
+    "C_Cpp.default.cStandard": "c11",
     "auto-close-tag.SublimeText3Mode": true,
-    "auto-close-tag.fullMode": true,
-    "auto-rename-tag.activationOnLanguage": [
-        "html",
-        "xml",
-        "javascript",
-        "javascriptreact"
-    ],
-    "window.restoreWindows": "none",
-    "explorer.confirmDragAndDrop": false,
-    "python.pythonPath": "python3",
-    "explorer.confirmDelete": false,
-    "python.disablePromptForFeatures": [
-        "pylint"
-    ],
-    "gitlens.advanced.messages": {
-        "suppressCommitHasNoPreviousCommitWarning": false,
-        "suppressCommitNotFoundWarning": false,
-        "suppressFileNotUnderSourceControlWarning": true,
-        "suppressGitVersionWarning": false,
-        "suppressLineUncommittedWarning": false,
-        "suppressNoRepositoryWarning": false,
-        "suppressResultsExplorerNotice": false,
-        "suppressShowKeyBindingsNotice": true,
-        "suppressUpdateNotice": true,
-        "suppressWelcomeNotice": true
-    },
-    "d.dubPath": "/home/lfkeitel/.local/share/code-d/bin/dub",
-    "d.dscannerPath": "/home/lfkeitel/.vscode/extensions/webfreak.code-d-0.16.2/bin/Dscanner/bin/dscanner",
-    "d.dfmtPath": "/home/lfkeitel/.vscode/extensions/webfreak.code-d-0.16.2/bin/dfmt/bin/dfmt",
-    "d.dcdClientPath": "/home/lfkeitel/.local/share/code-d/bin/DCD/bin/dcd-client",
-    "d.dcdServerPath": "/home/lfkeitel/.local/share/code-d/bin/DCD/bin/dcd-server",
-    "dfmt.braceStyle": "otbs",
     "auto-close-tag.activationOnLanguage": [
         "xml",
         "php",
@@ -101,70 +33,128 @@
         "lang-cfml",
         "cfml"
     ],
-    "files.insertFinalNewline": true,
-    "files.trimFinalNewlines": true,
-    "[razor]": {
-        "editor.insertSpaces": true,
-        "editor.tabSize": 4
-    },
-    "gitlens.keymap": "none",
-    "editor.renderWhitespace": "all",
-    "editor.renderControlCharacters": true,
-    "terminal.integrated.fontSize": 16,
+    "auto-close-tag.fullMode": true,
+    "auto-rename-tag.activationOnLanguage": [
+        "html",
+        "xml",
+        "javascript",
+        "javascriptreact"
+    ],
+    "breadcrumbs.enabled": true,
+    "d.dcdClientPath": "/home/lfkeitel/.local/share/code-d/bin/DCD/bin/dcd-client",
+    "d.dcdServerPath": "/home/lfkeitel/.local/share/code-d/bin/DCD/bin/dcd-server",
+    "d.dubPath": "/home/lfkeitel/.local/share/code-d/bin/dub",
+    "d.servedPath": "/home/lfkeitel/.local/share/code-d/bin/serve-d",
     "dart.allowAnalytics": false,
     "dart.lineLength": 120,
     "dart.reportAnalyzerErrors": false,
-    "dart.showLintNames": true,
-    "ledger.binary": "/usr/bin/ledger",
-    "restructuredtext.linter.extraArgs": [
-        "--ignore D001"
+    "dfmt.braceStyle": "otbs",
+    "docker.showExplorer": false,
+    "editor.copyWithSyntaxHighlighting": false,
+    "editor.cursorStyle": "block",
+    "editor.fontFamily": "'Fira Code', Inconsolata, monospace",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 17,
+    "editor.formatOnSave": true,
+    "editor.minimap.renderCharacters": false,
+    "editor.renderControlCharacters": true,
+    "editor.renderWhitespace": "all",
+    "editor.rulers": [
+        80,
+        120
     ],
-    "powershell.integratedConsole.showOnStartup": false,
+    "editor.smoothScrolling": true,
+    "elm.analyseEnabled": true,
+    "elm.includeUserFunctionDocumentation": true,
+    "eslint.packageManager": "yarn",
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript"
+    ],
+    "explorer.confirmDelete": true,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.openEditors.visible": 0,
+    "extensions.ignoreRecommendations": true,
+    "files.associations": {
+        "*.asm": "asm",
+        "*.el": "lisp",
+        "*.exp": "tcl",
+        "*.tmpl": "gohtml",
+        ".zsh_aliases": "shellscript",
+        ".zsh_functions": "shellscript"
+    },
+    "files.enableTrash": false,
+    "files.eol": "\n",
+    "files.exclude": {
+        "**/.DS_Store": true,
+        "**/.git": true,
+        "**/.hg": true,
+        "**/.svn": true,
+        "**/CVS": true
+    },
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": false,
+        "suppressCommitNotFoundWarning": false,
+        "suppressFileNotUnderSourceControlWarning": true,
+        "suppressGitVersionWarning": false,
+        "suppressLineUncommittedWarning": false,
+        "suppressNoRepositoryWarning": false,
+        "suppressResultsExplorerNotice": false,
+        "suppressShowKeyBindingsNotice": true,
+        "suppressUpdateNotice": true,
+        "suppressWelcomeNotice": true
+    },
+    "gitlens.keymap": "none",
+    "gitlens.views.fileHistory.enabled": true,
+    "gitlens.views.lineHistory.enabled": true,
+    "go.autocompleteUnimportedPackages": true,
+    "go.docsTool": "gogetdoc",
+    "html.autoClosingTags": true,
+    "html.format.endWithNewline": true,
+    "insertDateString.format": "YYYY-MM-DDThh:mm:ssZZZ",
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "javascript.updateImportsOnFileMove.enabled": "never",
+    "latex-workshop.chktex.enabled": true,
+    "latex-workshop.latex.clean.enabled": true,
+    "ledger.binary": "/usr/bin/ledger",
     "mocha.env": {
         "NODE_ENV": "test"
     },
     "mocha.options": {
         "ignoreLeaks": true
     },
-    "gitlens.historyExplorer.enabled": true,
-    "tslint.packageManager": "yarn",
-    "rust.mode": "legacy",
-    "rust.rustup": {
-        "toolchain": "stable-x86_64-unknown-linux-gnu"
-    },
-    "d.servedPath": "/home/lfkeitel/.local/share/code-d/bin/serve-d",
-    "eslint.packageManager": "yarn",
-    "javascript.updateImportsOnFileMove.enabled": "never",
-    "latex-workshop.chktex.enabled": true,
-    "latex-workshop.latex.clean.enabled": true,
-    "files.enableTrash": false,
+    "powershell.integratedConsole.showOnStartup": false,
+    "python.pythonPath": "python3",
     "python.venvFolders": [
         "envs",
         ".pyenv",
         ".direnv",
         "code/venv"
     ],
-    "C_Cpp.default.cStandard": "c11",
-    "go.docsTool": "gogetdoc",
-    "go.autocompleteUnimportedPackages": true,
-    "[rust]": {
-        "editor.formatOnSave": true
-    },
-    "window.titleBarStyle": "custom",
-    "terminal.integrated.rendererType": "dom",
+    "restructuredtext.linter.extraArgs": [
+        "--ignore D001"
+    ],
     "rust.all_features": true,
     "rust.build_on_save": true,
     "rust.clippy_preference": "on",
-    "gitlens.views.fileHistory.enabled": true,
-    "gitlens.views.lineHistory.enabled": true,
-    "elm.analyseEnabled": true,
-    "elm.includeUserFunctionDocumentation": true,
-    "[elm]": {
-        "editor.formatOnSave": true
-    },
-    "eslint.validate": [
-        "javascript",
-        "javascriptreact",
-        "typescript"
-    ]
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "terminal.integrated.fontSize": 16,
+    "terminal.integrated.rendererType": "dom",
+    "tslint.packageManager": "yarn",
+    "vsicons.dontShowNewVersionMessage": true,
+    "window.restoreWindows": "none",
+    "window.titleBarStyle": "custom",
+    "window.zoomLevel": 0,
+    "workbench.colorTheme": "Cobalt2",
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.settings.enableNaturalLanguageSearch": false,
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.statusBar.feedback.visible": false,
+    "workbench.tree.horizontalScrolling": true,
+    "workbench.tree.indent": 4
 }
