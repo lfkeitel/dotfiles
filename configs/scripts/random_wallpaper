@@ -13,7 +13,7 @@ else
     CURRENT_PAPER=$PAPER1
 fi
 
-curl -sSL "https://unsplash.it/3840/2160/?random" > "$CURRENT_PAPER"
+curl -sSL "https://picsum.photos/3840/2160/?random" > "$CURRENT_PAPER"
 if [[ $? -ne 0 ]]; then
     CURRENT_PAPER=$FALLBACK
 fi
