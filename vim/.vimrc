@@ -7,6 +7,7 @@
 call plug#begin('~/.vim/plugged')
     Plug 'lfkeitel/neovim-mpc', { 'do': 'bash install.sh' }
     Plug 'benmills/vimux'
+    Plug 'wikitopian/hardmode'
     Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
     Plug 'kana/vim-arpeggio'
     Plug 'ntpeters/vim-better-whitespace'
@@ -318,6 +319,8 @@ inoremap <leader><Space> <C-o>/<++><cr><C-o>d4l
 nnoremap <leader><Space> /<++><cr>d4li
 
 inoremap jk <Esc>
+
+nnoremap <leader>h <Esc>:call ToggleHardMode()<cr>
 " }}}
 
 " {{{ Window navigation
