@@ -19,18 +19,20 @@ auto-indent=true
 use-default-monospace-font=false
 
 [org/xfce/mousepad/preferences/window]
-always-show-tabs=false
 menubar-visible=true
-statusbar-visible=false
+remember-state=true
+always-show-tabs=false
+remember-size=true
 cycle-tabs=false
 path-in-title=false
 toolbar-visible=false
+statusbar-visible=true
 
 [org/xfce/mousepad/state/window]
-width=1228
+width=854
 fullscreen=false
 maximized=false
-height=601
+height=619
 
 [org/cinnamon]
 desktop-effects-unmaximize-transition='easeNone'
@@ -79,16 +81,21 @@ numlock-state='on'
 drag-threshold=8
 motion-threshold=1
 double-click=400
+left-handed=true
 
 [org/cinnamon/muffin]
 tile-hud-threshold=25
 
 [org/cinnamon/desktop/interface]
-clock-show-date=true
-cursor-size=24
-cursor-blink-time=1200
-clock-show-seconds=true
 text-scaling-factor=1.0
+cursor-size=24
+cursor-theme='mate-black'
+toolkit-accessibility=false
+clock-show-seconds=true
+cursor-blink-time=1200
+gtk-theme='Adwaita-dark'
+clock-show-date=true
+keyboard-layout-prefer-variant-names=true
 
 [org/cinnamon/desktop/keybindings/custom-keybindings/custom0]
 binding=['<Super>Return']
@@ -119,7 +126,10 @@ move-to-workspace-down=@as []
 switch-to-workspace-up=['<Alt>F1']
 
 [org/cinnamon/desktop/media-handling]
+autorun-x-content-start-app=['x-content/unix-software']
 autorun-never=false
+autorun-x-content-ignore=@as []
+autorun-x-content-open-folder=@as []
 
 [org/cinnamon/desktop/screensaver]
 screensaver-name=''
@@ -135,13 +145,24 @@ recent-files-max-age=-1
 
 [org/cinnamon/desktop/wm/preferences]
 mouse-button-modifier='<Super>'
-theme='Menta'
+theme='BlackMATE'
+
+[org/cinnamon/desktop/a11y/applications]
+screen-keyboard-enabled=false
+screen-reader-enabled=false
+
+[org/cinnamon/desktop/a11y/mouse]
+secondary-click-enabled=false
+secondary-click-time=1.2
+dwell-time=1.2
+dwell-threshold=10
+dwell-click-enabled=false
 
 [org/cinnamon/desktop/sound]
 event-sounds=false
 
 [org/cinnamon/desktop/background]
-picture-uri='file:///home/lfkeitel/Pictures/lock_screen.png'
+picture-uri='file:///tmp/wallpaper-2.png'
 picture-options='stretched'
 
 [org/cinnamon/desktop/background/slideshow]
@@ -149,8 +170,13 @@ image-source='directory:///home/lfkeitel/Pictures'
 delay=15
 
 [org/cinnamon/theme]
-theme-cache-updated=1536671858
+symbolic-size-22=22
+symbolic-size-24=22
+symbolic-size-48=42
+theme-cache-updated=1543506514
+symbolic-size-32=30
 name='cinnamon'
+symbolic-size-16=16
 
 [org/cinnamon/cinnamon-session]
 quit-time-delay=60
@@ -190,12 +216,22 @@ dwell-click-enabled=false
 [org/gnome/desktop/interface]
 toolkit-accessibility=false
 
+[org/gnome/libgnomekbd/preview]
+width=1284
+height=542
+x=210
+y=131
+
+[org/gnome/libgnomekbd/keyboard]
+layouts=['us\tintl', 'us\tcolemak']
+options=['lv3\tlv3:ralt_switch', 'grp\tgrp:lctrl_lwin_toggle', 'grp_led\tgrp_led:scroll']
+
 [org/gtk/settings/file-chooser]
 sort-column='name'
 sidebar-width=237
-window-position=(1750, 0)
+window-position=(1895, 92)
 show-size-column=true
-show-hidden=false
+show-hidden=true
 window-size=(1231, 879)
 sort-directories-first=false
 date-format='regular'
@@ -204,7 +240,7 @@ location-mode='path-bar'
 
 [org/nemo/window-state]
 start-with-sidebar=true
-geometry='800x550+430+224'
+geometry='800x550+430+226'
 maximized=false
 sidebar-bookmark-breakpoint=3
 
@@ -212,7 +248,10 @@ sidebar-bookmark-breakpoint=3
 document-directory=@ms 'file:///home/lfkeitel/Downloads'
 
 [org/mate/atril/default]
-window-ratio=(1.6944444444444444, 1.0972222222222223)
+window-ratio=(1.75, 0.86237373737373735)
+
+[com/deepin/wrap/gnome/desktop/background]
+picture-uri='/tmp/wallpaper-2.png'
 
 [ca/desrt/dconf-editor]
 saved-view='/org/cinnamon/desktop/wm/preferences/mouse-button-modifier'
