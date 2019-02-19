@@ -24,21 +24,28 @@ function Restore-EncryptedFile ([string] $Source, [string] $Dest) {
     }
 }
 
-function Add-FileLink ([string] $Source, [string] $Dest, [switch] $Sudo) {
+function Add-FileLink ([string] $Source, [string] $Dest, [switch] $Sudo, [switch] $NoLink) {
+    if ((Test-Path env:DOT_NO_LINK) -and ($env:DOT_NO_LINK -ne '')) {
+        $NoLink = $true
+    }
+
     if ((Test-FileExists $Dest) -or (Test-DirExists $Dest)) {
         if ($Sudo) {
             sudo rm -rf $Dest
-        } else {
+        }
+        else {
             Remove-Item $Dest -Force -Recurse | Out-Null
         }
     }
 
-    if ((Test-Path env:DOT_NO_LINK) -and ($env:DOT_NO_LINK -ne '')) {
+    if ($NoLink) {
         Copy-Item $Source $Dest -Force | Out-Null
-    } else {
+    }
+    else {
         if ($sudo) {
             sudo ln -sfn $Source $Dest
-        } else {
+        }
+        else {
             New-Item -ItemType SymbolicLink -Target $Source -Path $Dest -Force | Out-Null
         }
     }
@@ -48,7 +55,8 @@ function Remove-File ([string] $Path, [switch] $Sudo) {
     if ((Test-FileExists $Path) -or (Test-DirExists $Path)) {
         if ($Sudo) {
             sudo rm -rf $Path
-        } else {
+        }
+        else {
             Remove-Item $Path -Force -Recurse | Out-Null
         }
     }
@@ -65,7 +73,8 @@ function Test-DirExists ([string] $path) {
 function Copy-Config ([string] $src, [string] $dest, [switch] $sudo) {
     if ($sudo) {
         sudo cp $src $dest
-    } else {
+    }
+    else {
         Copy-Item $src $dest
     }
 }
@@ -73,12 +82,12 @@ function Copy-Config ([string] $src, [string] $dest, [switch] $sudo) {
 function Invoke-Command {
     param
     (
-        [parameter(Mandatory=$true)]
+        [parameter(Mandatory = $true)]
         [String]
         $Path,
 
-        [parameter(Mandatory=$true,
-        ValueFromRemainingArguments=$true)]
+        [parameter(Mandatory = $true,
+            ValueFromRemainingArguments = $true)]
         [String[]]
         $CmdArgs
     )
@@ -94,8 +103,8 @@ function Invoke-Command {
     $p.Start() | Out-Null
     $p.WaitForExit()
     [pscustomobject]@{
-        StdOut = $p.StandardOutput.ReadToEnd()
-        StdErr = $p.StandardError.ReadToEnd()
+        StdOut   = $p.StandardOutput.ReadToEnd()
+        StdErr   = $p.StandardError.ReadToEnd()
         ExitCode = $p.ExitCode
     }
 }
@@ -135,21 +144,24 @@ function Get-IniContent ([string] $File) {
     $ini = @{}
 
     switch -regex -file $File {
-        "^\[(.+)\]" { # Section
+        "^\[(.+)\]" {
+            # Section
             $section = $matches[1]
             $ini[$section] = @{}
             $CommentCount = 0
         }
 
-        "^(;.*)$" { # Comment
+        "^(;.*)$" {
+            # Comment
             $value = $matches[1]
             $CommentCount = $CommentCount + 1
             $name = "Comment" + $CommentCount
             $ini[$section][$name] = $value
         }
 
-        "(.+?)\s*=(.*)" { # Key
-            $name,$value = $matches[1..2]
+        "(.+?)\s*=(.*)" {
+            # Key
+            $name, $value = $matches[1..2]
             $ini[$section][$name] = $value
         }
     }
