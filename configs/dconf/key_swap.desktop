@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Remap quotes key
+Exec=xmodmap -e "keycode 48 = apostrophe quotedbl"
+Terminal=false
+Type=Application
