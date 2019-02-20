@@ -81,7 +81,7 @@ numlock-state='on'
 drag-threshold=8
 motion-threshold=1
 double-click=400
-left-handed=true
+left-handed=false
 
 [org/cinnamon/muffin]
 tile-hud-threshold=25
