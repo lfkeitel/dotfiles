@@ -51,7 +51,6 @@
     "dfmt.braceStyle": "otbs",
     "docker.showExplorer": false,
     "editor.copyWithSyntaxHighlighting": false,
-    "editor.cursorStyle": "block",
     "editor.fontFamily": "'Fira Code', Inconsolata, monospace",
     "editor.fontLigatures": true,
     "editor.fontSize": 17,
