@@ -37,25 +37,26 @@ height=619
 [org/cinnamon]
 desktop-effects-unmaximize-transition='easeNone'
 desktop-effects-maximize-transition='easeInExpo'
+applet-cache-updated=1550850995
 desktop-effects-map-effect='traditional'
 command-history=['st', 'mattermost-desktop', 'keepassxc', 'matter', 'virtualbox', 'virtualbox ', 'mattermost-desktop ', 'code', 'mousepad']
-desktop-effects-close-effect='traditional'
 hotcorner-layout=['expo:false:0', 'scale:false:0', 'scale:false:0', 'desktop:false:0']
+desktop-effects-close-effect='traditional'
+workspace-osd-duration=400
 enabled-desklets=@as []
 desktop-effects-unmaximize-time=100
 desktop-effects-map-time=100
 desktop-effects-minimize-effect='traditional'
-workspace-osd-duration=400
 desklet-snap-interval=25
 panels-height=['1:25']
-next-applet-id=14
+next-applet-id=16
 panel-launchers=['DEPRECATED']
 desktop-effects-map-transition='easeOutQuad'
 desktop-effects-unmaximize-effect='none'
 desktop-effects-maximize-time=100
 desktop-effects-tile-transition='easeInQuad'
 desktop-effects-maximize-effect='none'
-enabled-applets=['panel1:right:0:systray@cinnamon.org:0', 'panel1:left:0:menu@cinnamon.org:1', 'panel1:left:1:show-desktop@cinnamon.org:2', 'panel1:left:2:panel-launchers@cinnamon.org:3', 'panel1:left:3:window-list@cinnamon.org:4', 'panel1:right:1:keyboard@cinnamon.org:5', 'panel1:right:2:notifications@cinnamon.org:6', 'panel1:right:3:removable-drives@cinnamon.org:7', 'panel1:right:4:user@cinnamon.org:8', 'panel1:right:5:network@cinnamon.org:9', 'panel1:right:6:bluetooth@cinnamon.org:10', 'panel1:right:7:power@cinnamon.org:11', 'panel1:right:8:calendar@cinnamon.org:12', 'panel1:right:9:sound@cinnamon.org:13']
+enabled-applets=['panel1:right:2:systray@cinnamon.org:0', 'panel1:left:0:menu@cinnamon.org:1', 'panel1:left:1:show-desktop@cinnamon.org:2', 'panel1:left:2:panel-launchers@cinnamon.org:3', 'panel1:left:3:window-list@cinnamon.org:4', 'panel1:right:3:keyboard@cinnamon.org:5', 'panel1:right:4:notifications@cinnamon.org:6', 'panel1:right:5:removable-drives@cinnamon.org:7', 'panel1:right:6:user@cinnamon.org:8', 'panel1:right:7:network@cinnamon.org:9', 'panel1:right:8:bluetooth@cinnamon.org:10', 'panel1:right:9:power@cinnamon.org:11', 'panel1:right:10:calendar@cinnamon.org:12', 'panel1:right:11:sound@cinnamon.org:13', 'panel1:right:1:workspace-switcher@cinnamon.org:14']
 desktop-effects-minimize-time=160
 desktop-effects-minimize-transition='easeInQuad'
 desktop-effects-tile-effect='none'
@@ -97,20 +98,38 @@ gtk-theme='Adwaita-dark'
 clock-show-date=true
 keyboard-layout-prefer-variant-names=true
 
+[org/cinnamon/desktop/keybindings/custom-keybindings/custom2]
+binding=['AudioNext']
+command='mpc next'
+name='MPD next'
+
+[org/cinnamon/desktop/keybindings/custom-keybindings/custom1]
+binding=['AudioPlay']
+command='mpc toggle'
+name='Toggle MPD'
+
 [org/cinnamon/desktop/keybindings/custom-keybindings/custom0]
 binding=['<Super>Return']
 command='st -c st-terminal -e tmux -2 -u'
 name='Tmux'
 
+[org/cinnamon/desktop/keybindings/custom-keybindings/custom3]
+binding=['AudioPrev']
+command='mpc prev'
+name='MPD prev'
+
 [org/cinnamon/desktop/keybindings]
-custom-list=['custom0']
+custom-list=['custom0', 'custom1', 'custom2', 'custom3']
 
 [org/cinnamon/desktop/keybindings/media-keys]
-restart-cinnamon=['<Control><Alt>Escape', '<Shift><Super>BackSpace']
+next=@as []
+play=@as []
 email=['XF86Mail', '<Super>t']
-www=['XF86WWW', '<Super>b']
-screensaver=['<Control><Alt>l', 'XF86ScreenSaver', '<Super>x']
 shutdown=['<Control><Alt>End', 'XF86PowerOff', '<Shift><Super>x']
+www=['XF86WWW', '<Super>b']
+screensaver=['XF86ScreenSaver', '<Super>x']
+restart-cinnamon=['<Control><Alt>Escape', '<Shift><Super>BackSpace']
+previous=@as []
 
 [org/cinnamon/desktop/keybindings/wm]
 close=['<Alt>F4', '<Shift><Super>q']
@@ -133,9 +152,10 @@ autorun-x-content-open-folder=@as []
 
 [org/cinnamon/desktop/screensaver]
 screensaver-name=''
-use-custom-format=false
+layout-group=0
 lock-delay=uint32 15
 default-message='Ni ne kontenta ĝis vi ne kontenta.'
+use-custom-format=false
 
 [org/cinnamon/desktop/session]
 idle-delay=uint32 300
@@ -150,6 +170,13 @@ theme='BlackMATE'
 [org/cinnamon/desktop/a11y/applications]
 screen-keyboard-enabled=false
 screen-reader-enabled=false
+
+[org/cinnamon/desktop/a11y/keyboard]
+mousekeys-init-delay=300
+mousekeys-max-speed=10
+mousekeys-accel-time=300
+bouncekeys-delay=300
+slowkeys-delay=300
 
 [org/cinnamon/desktop/a11y/mouse]
 secondary-click-enabled=false
@@ -190,6 +217,9 @@ recent-connections='eNprYPJmiC1kaCtk1AMAEQ4Cwg=='
 [org/blueman/transfer]
 shared-path='/home/lfkeitel'
 
+[org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+backspace-binding='ascii-backspace'
+
 [org/gnome/nm-applet/eap/30c5ac96-9808-476f-bfd6-4307d8b7f8ac]
 ignore-phase2-ca-cert=false
 ignore-ca-cert=false
@@ -201,6 +231,16 @@ ignore-ca-cert=false
 [org/gnome/nm-applet/eap/de04c610-fa84-3647-b8c6-3f5539423ccb]
 ignore-phase2-ca-cert=false
 ignore-ca-cert=false
+
+[org/gnome/deja-dup]
+backend='goa'
+prompt-check='2019-02-25T14:15:26.394349Z'
+
+[org/gnome/deja-dup/goa]
+type='google'
+
+[org/gnome/deja-dup/file]
+migrated=true
 
 [org/gnome/desktop/a11y/applications]
 screen-keyboard-enabled=false
@@ -223,13 +263,13 @@ x=210
 y=131
 
 [org/gnome/libgnomekbd/keyboard]
-layouts=['us\tintl', 'us\tcolemak']
+layouts=['us', 'us\tintl', 'us\tcolemak']
 options=['lv3\tlv3:ralt_switch', 'grp\tgrp:lctrl_lwin_toggle', 'grp_led\tgrp_led:scroll']
 
 [org/gtk/settings/file-chooser]
 sort-column='name'
 sidebar-width=237
-window-position=(1895, 92)
+window-position=(224, 87)
 show-size-column=true
 show-hidden=true
 window-size=(1231, 879)
@@ -240,7 +280,7 @@ location-mode='path-bar'
 
 [org/nemo/window-state]
 start-with-sidebar=true
-geometry='800x550+430+226'
+geometry='800x550+1850+78'
 maximized=false
 sidebar-bookmark-breakpoint=3
 
@@ -248,7 +288,7 @@ sidebar-bookmark-breakpoint=3
 document-directory=@ms 'file:///home/lfkeitel/Downloads'
 
 [org/mate/atril/default]
-window-ratio=(1.75, 0.86237373737373735)
+window-ratio=(2.7418300653594772, 1.1805555555555556)
 
 [com/deepin/wrap/gnome/desktop/background]
 picture-uri='/tmp/wallpaper-2.png'
