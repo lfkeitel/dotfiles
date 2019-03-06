@@ -155,5 +155,5 @@
     "workbench.startupEditor": "newUntitledFile",
     "workbench.statusBar.feedback.visible": false,
     "workbench.tree.horizontalScrolling": true,
-    "workbench.tree.indent": 4
+    "workbench.tree.indent": 8
 }
