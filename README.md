@@ -22,9 +22,12 @@ Use the `install-powershell.sh` script to install PowerShell.
     - rofi
     - systemd user units
     - tmux
+- Firefox (user settings)
+- Fish (shell)
 - Fonts (Inconsolata, Fira Code, Font Awesome 5)
 - Golang
 - GPG Agent (Imports my personal keys and trusts ultimately)
+- Minicom (serial terminal)
 - Node JS (with nvm and Yarn)
 - Pacman (Arch only)
 - PowerShell (Doesn't work on Arch)
@@ -42,8 +45,7 @@ Use the `install-powershell.sh` script to install PowerShell.
 - Rust
 - Docker
 - Hexchat (Some config files encrypted)
-- Minicom (serial terminal)
-- home files (Automatically ran with configs, here as direct installer)
+- Home files (Automatically ran with configs, here as direct installer)
 
 ## Supported Systems
 

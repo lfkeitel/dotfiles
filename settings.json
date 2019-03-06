@@ -12,6 +12,9 @@
         "node": { "autorun": true },
         "vscode": { "autorun": true },
         "vim": { "autorun": true },
+        "minicom": { "autorun": true },
+        "firefox": { "autorun": true },
+        "fish": { "autorun": true },
 
         "nvm": { "alias": "node" },
         "yarn": { "alias": "node" },
@@ -21,10 +24,7 @@
         "macos": { "path": "other/macos.ps1" },
         "docker": { },
         "hexchat": { },
-        "minicom": { },
-        "home": { "path": "configs/home" },
-        "firefox": { },
-        "fish": { }
+        "home": { "path": "configs/home" }
     },
 
     "packages": {
