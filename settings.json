@@ -20,7 +20,7 @@
         "yarn": { "alias": "node" },
         "dconf": { "path": "configs/dconf"},
         "dartlang": { "path": "other/dartlang.ps1" },
-        "rustlang": { "path": "other/rustlang.ps1" },
+        "rust": { "path": "other/rustlang.ps1" },
         "macos": { "path": "other/macos.ps1" },
         "docker": { },
         "hexchat": { },
@@ -231,9 +231,12 @@
     },
 
     "rust": {
-        "versions": [
-            "stable",
-            "nightly"
+        "nightly": true,
+        "components": [
+            "clippy",
+            "rls",
+            "rust-analysis",
+            "rustfmt"
         ]
     },
 

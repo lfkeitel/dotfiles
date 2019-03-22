@@ -14,7 +14,7 @@ $CargoBin = "$HOME/.cargo/bin"
 Write-Header 'Install Rust'
 
 if (Test-CommandExists 'rustup') {
-    Write-ColoredLine "Rustup is already installed, try running 'rustup update'" DarkGreen
+    rustup update stable
 } else {
     $RustupInitURL = "https://static.rust-lang.org/rustup/dist/x86_64-unknown-linux-gnu/rustup-init"
     if ($IsMacOS) {
@@ -32,8 +32,10 @@ if (Test-CommandExists 'rustup') {
     Remove-Item $DownloadDir -Force -Recurse
 }
 
-$Settings.rust.versions | Foreach-Object {
-    & "$CargoBin/rustup" install $_
+if ($Settings.rust.nightly) {
+    & "$CargoBin/rustup" install nightly
 }
+
+& "$CargoBin/rustup" component add $Settings.rust.components
 
 Add-ToPath rust $CargoBin
