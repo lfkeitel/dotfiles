@@ -72,4 +72,8 @@ if status is-interactive
     stty -ixon
 end
 
+if test -f /usr/share/autojump/autojump.fish;
+	source /usr/share/autojump/autojump.fish;
+end
+
 run_custom_hooks post

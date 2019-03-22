@@ -90,7 +90,8 @@
             "unclutter-patched",
             "restic",
             "remmina",
-            "freerdp"
+            "freerdp",
+            "autojump"
         ]
     },
 
