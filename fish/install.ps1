@@ -22,9 +22,9 @@ New-Directory "$FishHooksDir/pre"
 New-Directory "$FishHooksDir/post"
 New-Directory "$FishHooksDir/paths"
 
-Add-ToPath 'zsh' "$HOME/bin"
-Add-ToPath 'zsh' "$HOME/.scripts"
-Add-ToPath 'zsh' "$HOME/.local/scripts"
+Add-ToPath 'local' "$HOME/bin"
+Add-ToPath 'local' "$HOME/.scripts"
+Add-ToPath 'local' "$HOME/.local/scripts"
 
 New-Directory "$HOME/code"
 

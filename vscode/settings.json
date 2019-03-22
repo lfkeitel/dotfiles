@@ -155,5 +155,7 @@
     "workbench.startupEditor": "newUntitledFile",
     "workbench.statusBar.feedback.visible": false,
     "workbench.tree.horizontalScrolling": true,
-    "workbench.tree.indent": 8
+    "workbench.tree.indent": 8,
+    "powershell.codeFormatting.newLineAfterCloseBrace": false,
+    "powershell.codeFormatting.preset": "OTBS"
 }
