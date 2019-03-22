@@ -171,3 +171,12 @@ function git_branch_sync -a branch
     git branch --set-upstream-to=origin/$branch $branch
 end
 alias gbs 'git_branch_sync'
+
+function d
+	while test $PWD != "/"
+		if test -d .git
+			break
+		end
+		cd ..
+	end
+end
