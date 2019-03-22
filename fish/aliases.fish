@@ -5,6 +5,7 @@ alias vim 'env TERM=screen nvim'
 alias vi 'env TERM=screen nvim'
 
 alias visshc 'vim ~/.ssh/config'
+alias todo 'vim ~/todo'
 
 # Project aliases
 alias pjls 'project ls'

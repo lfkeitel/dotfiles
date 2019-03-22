@@ -1,4 +1,20 @@
 function fish_greeting
+    list-todos 1
+    echo
+end
+
+function list-todos -a level
+    if test -z $level
+        set level 1
+    end
+
+    if test -f "$HOME/todo"
+        echo "P$level Todos:"
+        set_color red
+        grep --color=never -P "^P$level " "$HOME/todo" | sed -e "s/P$level //; s/^/  /"
+    end
+
+    set_color normal
 end
 
 function maclookup -a address
