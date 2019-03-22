@@ -7,8 +7,9 @@ $MozillaDir = "$HOME/.mozilla/firefox"
 
 $Profiles = Get-IniContent "$MozillaDir/profiles.ini"
 
-$DefaultProfileName = $Profiles.Keys | Where-Object{$Profiles[$_].Default -eq "1"}
+$DefaultProfileName = $Profiles.Keys | Where-Object {$Profiles[$_].Default -eq "1"}
 $DefaultProfile = $Profiles[$DefaultProfileName]
 $ProfileDir = "$MozillaDir/$($DefaultProfile.Path)"
 
 Add-FileLink $PSScriptRoot/user.js $ProfileDir/user.js
+Add-FileLink $PSScriptRoot/chrome $ProfileDir/chrome
