@@ -157,5 +157,6 @@
     "workbench.tree.horizontalScrolling": true,
     "workbench.tree.indent": 8,
     "powershell.codeFormatting.newLineAfterCloseBrace": false,
-    "powershell.codeFormatting.preset": "OTBS"
+    "powershell.codeFormatting.preset": "OTBS",
+    "bracket-pair-colorizer-2.showBracketsInGutter": true
 }
