@@ -196,3 +196,33 @@ function d
 		cd ..
 	end
 end
+
+function pdfmerge
+    set output $argv[1]
+    set files $argv[2..(count $argv)]
+
+    command gs -dBATCH \
+        -sDEVICE=pdfwrite \
+        -dCompatibilityLevel=1.4 \
+        -dPDFSETTINGS=/default \
+        -dNOPAUSE \
+        -dQUIET \
+        -dBATCH \
+        -dDetectDuplicateImages \
+        -dCompressFonts=true \
+        -r150 \
+        -sOutputFile=$output $files
+end
+
+function pdfmerge_nocompress
+    set output $argv[1]
+    set files $argv[2..(count $argv)]
+
+    command gs -dBATCH \
+        -sDEVICE=pdfwrite \
+        -dPDFSETTINGS=/prepress \
+        -dNOPAUSE \
+        -dQUIET \
+        -dBATCH \
+        -sOutputFile=$output $files
+end
