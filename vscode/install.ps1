@@ -22,7 +22,7 @@ Param(
 
 Import-Module (Join-Path $PSScriptRoot '..' Utils)
 
-Write-Header 'Setting up VS Code'
+Write-Header 'Setting up VSCodium'
 $Settings = Get-JSONFile $SettingsFile
 
 if (!$RunInstall -and !$RunLinks -and !$RunExtInstall) {
@@ -36,18 +36,17 @@ if ($IsMacOS) {
 }
 
 if ($RunInstall) {
-    if (!$ForceInstall -AND (Test-CommandExists code)) {
+    if (!$ForceInstall -AND (Test-CommandExists vscodium)) {
         Write-ColoredLine 'VSCode already installed, update through the package manager' Magenta
     } else {
         if ($IsMacOS) {
-            Write-Output 'Please install VS Code first'
+            Write-Output 'Please install VSCodium first'
             ExitWithCode 1
         } elseif (Test-IsArch) {
-            Install-SystemPackage visual-studio-code-bin
+            Install-SystemPackage vscodium
         } elseif ($IsLinux) {
-            Import-RepoKey 'https://packages.microsoft.com/keys/microsoft.asc'
-            Install-RepoList "$PSScriptRoot/vscode"
-            Install-SystemPackage -Update code
+            Write-Output 'Please install VSCodium first'
+            ExitWithCode 1
         } else {
             Write-Output 'Unsupported distribution'
             return
@@ -57,9 +56,9 @@ if ($RunInstall) {
 
 if ($RunLinks) {
     Write-ColoredLine 'Linking VSCode Settings' Magenta
-    $SettingsPath = "$HOME/.config/Code/User"
+    $SettingsPath = "$HOME/.config/VSCodium/User"
     if ($IsMacOS) {
-        $SettingsPath = "$HOME/Library/Application Support/Code/User"
+        $SettingsPath = "$HOME/Library/Application Support/VSCodium/User"
     }
 
     New-Item $SettingsPath -ItemType Directory -Force | Out-Null
@@ -73,9 +72,9 @@ if ($RunLinks) {
 }
 
 if ($RunExtInstall) {
-    Write-ColoredLine 'Installing VSCode Extensions' Magenta
+    Write-ColoredLine 'Installing VSCodium Extensions' Magenta
 
-    $InstalledExts = $(code --list-extensions) | ForEach-Object { $_.toLower() }
+    $InstalledExts = $(vscodium --list-extensions) | ForEach-Object { $_.toLower() }
 
     if ($InstalledExts.Length -Eq 0) {
         $InstalledExts = @()
@@ -86,6 +85,6 @@ if ($RunExtInstall) {
     }
 
     $NeededExts | ForEach-Object {
-        code --force --install-extension $_
+        vscodium --force --install-extension $_
     }
 }

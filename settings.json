@@ -16,6 +16,7 @@
         "firefox": { "autorun": true },
         "fish": { "autorun": true },
 
+        "vscodium": { "alias": "vscode" },
         "nvm": { "alias": "node" },
         "yarn": { "alias": "node" },
         "dconf": { "path": "configs/dconf"},
@@ -292,7 +293,6 @@
             "peterjausovec.vscode-docker",
             "rashwell.tcl",
             "redhat.java",
-            "robertohuertasm.vscode-icons",
             "rust-lang.rust",
             "sbrink.elm",
             "skyapps.fish-vscode",
@@ -301,6 +301,7 @@
             "sysoev.language-stylus",
             "techer.open-in-browser",
             "telerik.nativescript",
+            "vscode-icons-team.vscode-icons",
             "webfreak.code-d",
             "wesbos.theme-cobalt2",
             "wholroyd.jinja",
