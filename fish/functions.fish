@@ -197,6 +197,18 @@ function d
 	end
 end
 
+function c
+    set code_path (which code 2>/dev/null)
+    if test -n "$code_path"
+        $code_path .
+    end
+
+    set code_path (which vscodium 2>/dev/null)
+    if test -n "$code_path"
+        $code_path .
+    end
+end
+
 function pdfmerge
     set output $argv[1]
     set files $argv[2..(count $argv)]

@@ -25,7 +25,6 @@ alias fix-mounts 'sudo umount -a -t cifs -l -f'
 alias pwdu 'du --max-depth=1 -h .'
 alias kill-tmux-sessions 'tmux list-sessions | grep -v attached | cut -d: -f1 |  xargs -t -n1 tmux kill-session -t'
 alias sudp 'sudo'
-alias c 'code .'
 alias sfrc 'source $HOME/.config/fish/config.fish'
 
 alias gs 'git status'
