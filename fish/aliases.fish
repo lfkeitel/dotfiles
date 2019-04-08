@@ -53,6 +53,7 @@ alias G 'grep'
 alias L 'less'
 alias T 'tail'
 
-function keycode
-    xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
-end
+alias cb 'cargo build'
+alias cbr 'cargo build --release'
+alias cr 'cargo run'
+alias cu 'cargo update'
