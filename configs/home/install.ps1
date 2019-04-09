@@ -7,6 +7,9 @@ Add-FileLink "$PSScriptRoot/.profile" "$HOME/.profile"
 Write-Header 'Setting up tmux'
 Add-FileLink "$PSScriptRoot/.tmux.conf" "$HOME/.tmux.conf"
 
+Write-Header 'Setting up makepkg'
+Add-FileLink "$PSScriptRoot/.makepkg.conf" "$HOME/.makepkg.conf"
+
 Write-Header 'Setting up Git'
 Add-FileLink "$PSScriptRoot/.gitconfig" "$HOME/.gitconfig"
 Add-FileLink "$PSScriptRoot/.gitignore" "$HOME/.gitignore"
