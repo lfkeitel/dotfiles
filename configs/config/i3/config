@@ -218,6 +218,7 @@ for_window [class="Thunderbird"] move container to workspace $ws3
 for_window [class="Mattermost"] move container to workspace $ws4
 for_window [class="Hexchat"] move container to workspace $ws4
 for_window [class="Code"] move container to workspace $ws5
+for_window [class="VSCodium"] move container to workspace $ws5
 
 for_window [title="GIMP Startup"] move workspace $ws5
 for_window [class="Gimp"] move workspace $ws5
