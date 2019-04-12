@@ -99,7 +99,7 @@ bindsym $mod+b exec $browser
 # bindsym $mod+c
 bindsym $mod+Shift+c reload
 
-bindsym $mod+d exec rofi -show combi -combi-modi "run#drun#window#ssh" -modi combi
+bindsym $mod+d exec rofi -show combi -combi-modi "run#drun#window#ssh" -modi combi#window
 # bindsym $mod+Shift+d
 
 bindsym $mod+e layout toggle split
