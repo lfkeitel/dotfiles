@@ -11,7 +11,7 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-set $browser google-chrome-stable
+set $browser firefox
 set $terminal st -c st-terminal
 set $terminal_start st -c st-terminal -e tmux -2 -u
 set $i3lock lock_screen

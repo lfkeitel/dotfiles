@@ -46,6 +46,10 @@ interval=10
 label=⚡
 interval=5
 
+[keyboard]
+command=i3keyboard_layout
+interval=5
+
 [time]
 command=i3date
 interval=1
