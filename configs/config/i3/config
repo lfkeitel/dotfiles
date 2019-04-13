@@ -96,7 +96,7 @@ bindsym $mod+a focus parent
 bindsym $mod+b exec $browser
 # bindsym $mod+Shift+b
 
-# bindsym $mod+c
+bindsym $mod+c exec mattermost-desktop
 bindsym $mod+Shift+c reload
 
 bindsym $mod+d exec rofi -show combi -combi-modi "run#drun#window#ssh" -modi combi#window
@@ -215,7 +215,7 @@ for_window [class="Firefox"] move container to workspace $ws1
 for_window [class="Gnome-terminal"] move container to workspace $ws2
 for_window [class="st-terminal"] move container to workspace $ws2
 for_window [class="Thunderbird"] move container to workspace $ws3
-for_window [class="Mattermost"] move container to workspace $ws4
+for_window [class="Mattermost"] move container to workspace $ws3
 for_window [class="Hexchat"] move container to workspace $ws4
 for_window [class="Code"] move container to workspace $ws5
 

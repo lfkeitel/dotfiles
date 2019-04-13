@@ -3,7 +3,7 @@ separator_block_width=15
 markup=none
 
 [mpd]
-label=🎼
+label=M
 command=i3mpd
 interval=once
 signal=12
