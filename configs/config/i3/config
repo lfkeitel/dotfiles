@@ -47,7 +47,7 @@ exec --no-startup-id compton -f
 # Start Network Manager
 exec --no-startup-id nm-applet
 # Unclutter makes the mouse invisible after a brief period
-exec --no-startup-id unclutter -notclass 'Google-chrome' 'Code' 'Firefox'
+exec --no-startup-id unclutter -notclass 'Google-chrome' 'Code' 'VSCodium' 'Firefox'
 # Runs the key remapping scripts
 exec --no-startup-id ~/.scripts/remaps
 # Automounter
