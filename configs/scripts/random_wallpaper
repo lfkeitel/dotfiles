@@ -4,6 +4,7 @@
 PAPER1='/tmp/wallpaper-1.png'
 PAPER2='/tmp/wallpaper-2.png'
 FALLBACK="$HOME/Pictures/wallpaper.png"
+LOCK_SCREEN="$HOME/Pictures/lock_screen.png"
 
 CURRENT_PAPER=''
 
@@ -22,6 +23,12 @@ dconf write /com/deepin/wrap/gnome/desktop/background/picture-uri "'$CURRENT_PAP
 dconf write /org/cinnamon/desktop/background/picture-uri "'file://$CURRENT_PAPER'"
 dconf write /org/cinnamon/desktop/background/picture-options "'stretched'"
 feh --bg-scale $CURRENT_PAPER
+
+# Generate lock screen image
+convert $CURRENT_PAPER $CURRENT_PAPER \
+    +append \
+    -resize $(xdpyinfo | awk '/dimensions/{print $2}')\! \
+    $LOCK_SCREEN
 
 if [[ $CURRENT_PAPER == $FALLBACK ]]; then
     exit
