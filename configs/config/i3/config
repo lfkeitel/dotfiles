@@ -35,7 +35,7 @@ exec --no-startup-id mpd
 # Run the script to update the mpd i3block on change.
 exec --no-startup-id "pgrep -x i3mpdupdate || i3mpdupdate"
 # Autolock desktop after 5 minutes
-exec --no-startup-id xautolock -time 5 -locker $i3lock
+exec --no-startup-id xautolock -time 5 -locker $i3lock -corners ----
 # Turn off displays after 5 minutes
 exec --no-startup-id xset dpms 300 300 300
 # Set wallpaper
@@ -96,7 +96,7 @@ bindsym $mod+a focus parent
 bindsym $mod+b exec $browser
 # bindsym $mod+Shift+b
 
-bindsym $mod+c exec mattermost-desktop
+# bindsym $mod+c
 bindsym $mod+Shift+c reload
 
 bindsym $mod+d exec rofi -show combi -combi-modi "run#drun#window#ssh" -modi combi#window
@@ -106,7 +106,7 @@ bindsym $mod+e layout toggle split
 # bindsym $mod+Shift+e
 
 bindsym $mod+f fullscreen toggle
-bindsym $mod+Shift+f exec firefox
+bindsym $mod+Shift+f exec --no-startup-id xdotool mousemove 0 0
 
 bindsym $mod+g [instance="dropdown"] scratchpad show; [instance="dropdown"] move position center
 bindsym $mod+Shift+g exec --no-startup-id $terminal -n dropdown -e tmuxinit
@@ -126,7 +126,7 @@ bindsym $mod+Shift+k move down
 bindsym $mod+l focus up
 bindsym $mod+Shift+l move up
 
-# bindsym $mod+m
+bindsym $mod+m exec mattermost-desktop
 # bindsym $mod+Shift+m
 
 bindsym $mod+n exec --no-startup-id lmc next

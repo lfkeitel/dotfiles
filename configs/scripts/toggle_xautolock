@@ -8,7 +8,7 @@ if [ -n "$LOCKPID" ]; then
     xautolock -exit
     sleep 1
 else
-    xautolock -time $TIMEOUT -locker $LOCK_SCRIPT &>/dev/null &disown;
+    xautolock -time $TIMEOUT -locker $LOCK_SCRIPT -corners ---- &>/dev/null &disown;
 fi
 
 pkill -RTMIN+9 i3blocks
