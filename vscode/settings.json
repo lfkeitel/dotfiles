@@ -159,5 +159,6 @@
     "powershell.codeFormatting.newLineAfterCloseBrace": false,
     "powershell.codeFormatting.preset": "OTBS",
     "bracket-pair-colorizer-2.showBracketsInGutter": true,
-    "go.useLanguageServer": true
+    "go.useLanguageServer": true,
+    "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false
 }
