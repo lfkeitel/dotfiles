@@ -43,7 +43,7 @@ if ($RunInstall) {
             Write-Output 'Please install VSCodium first'
             ExitWithCode 1
         } elseif (Test-IsArch) {
-            Install-SystemPackage vscodium
+            Install-SystemPackage vscodium-bin
         } elseif ($IsLinux) {
             Write-Output 'Please install VSCodium first'
             ExitWithCode 1
