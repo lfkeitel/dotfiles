@@ -103,7 +103,7 @@ bindsym $mod+d exec rofi -show combi -combi-modi "run#drun#window#ssh" -modi com
 # bindsym $mod+Shift+d
 
 bindsym $mod+e layout toggle split
-# bindsym $mod+Shift+e
+bindsym $mod+Shift+e exec --no-startup-id thunar
 
 bindsym $mod+f fullscreen toggle
 bindsym $mod+Shift+f exec --no-startup-id xdotool mousemove 0 0
@@ -228,6 +228,8 @@ workspace $ws1 gaps inner 0
 workspace $ws1 gaps outer 0
 for_window [window_role="gimp-dock"] floating disable; move left; resize shrink width 50 px or 50ppt
 for_window [window_role="gimp-toolbox"] floating disable; move right; resize grow width 30 px or 30ppt
+
+for_window [class="Thunar"] floating enable
 
 # First I have a tmux window used for background scripts.
 for_window [instance="dropdown"] floating enable
