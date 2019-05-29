@@ -81,7 +81,8 @@
         "*.exp": "tcl",
         "*.tmpl": "gohtml",
         ".zsh_aliases": "shellscript",
-        ".zsh_functions": "shellscript"
+        ".zsh_functions": "shellscript",
+        "*.json": "json"
     },
     "files.enableTrash": false,
     "files.eol": "\n",
@@ -161,5 +162,7 @@
     "bracket-pair-colorizer-2.showBracketsInGutter": true,
     "go.useLanguageServer": true,
     "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
-    "vetur.experimental.templateInterpolationService": true
+    "vetur.experimental.templateInterpolationService": true,
+    "autofold.default": 2,
+    "autofold.unfold": true
 }
