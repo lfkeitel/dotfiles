@@ -164,5 +164,6 @@
     "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
     "vetur.experimental.templateInterpolationService": true,
     "autofold.default": 2,
-    "autofold.unfold": true
+    "autofold.unfold": true,
+    "autofold.delay": 100
 }
