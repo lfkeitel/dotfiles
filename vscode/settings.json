@@ -119,7 +119,6 @@
     "java.errors.incompleteClasspath.severity": "ignore",
     "javascript.updateImportsOnFileMove.enabled": "never",
     "latex-workshop.chktex.enabled": true,
-    "latex-workshop.latex.clean.enabled": true,
     "ledger.binary": "/usr/bin/ledger",
     "mocha.env": {
         "NODE_ENV": "test"
@@ -165,5 +164,7 @@
     "vetur.experimental.templateInterpolationService": true,
     "autofold.default": 2,
     "autofold.unfold": true,
-    "autofold.delay": 100
+    "autofold.delay": 100,
+    "latex-workshop.latex.autoClean.run": "onBuilt",
+    "latex-workshop.view.pdf.viewer": "tab"
 }
