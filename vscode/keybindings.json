@@ -58,5 +58,13 @@
         "key": "alt+right",
         "command": "-workbench.action.terminal.focusNextPane",
         "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+alt+t",
+        "command": "workbench.action.tasks.runTask"
+    },
+    {
+        "key": "ctrl+shift+t",
+        "command": "workbench.action.tasks.test"
     }
 ]
