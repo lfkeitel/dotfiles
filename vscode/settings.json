@@ -1,19 +1,21 @@
 {
     "[javascript]": {
-        "editor.insertSpaces": true,
         "editor.tabSize": 2
     },
     "[javascriptreact]": {
-        "editor.insertSpaces": true,
         "editor.tabSize": 2
-    },
-    "[razor]": {
-        "editor.insertSpaces": true,
-        "editor.tabSize": 4
     },
     "[yaml]": {
-        "editor.insertSpaces": true,
         "editor.tabSize": 2
+    },
+    "[markdown]": {
+        "editor.quickSuggestions": false
+    },
+    "[json]": {
+        "editor.formatOnSave": false
+    },
+    "[jsonc]": {
+        "editor.formatOnSave": false
     },
     "C_Cpp.default.cStandard": "c11",
     "auto-close-tag.SublimeText3Mode": true,
@@ -50,11 +52,13 @@
     "dart.reportAnalyzerErrors": false,
     "dfmt.braceStyle": "otbs",
     "docker.showExplorer": false,
+    "editor.cursorSmoothCaretAnimation": true,
     "editor.copyWithSyntaxHighlighting": false,
     "editor.fontFamily": "'Fira Code', Inconsolata, monospace",
     "editor.fontLigatures": true,
     "editor.fontSize": 17,
     "editor.formatOnSave": true,
+    "editor.insertSpaces": true,
     "editor.minimap.renderCharacters": false,
     "editor.renderControlCharacters": true,
     "editor.renderWhitespace": "all",
@@ -63,6 +67,7 @@
         120
     ],
     "editor.smoothScrolling": true,
+    "editor.tabSize": 4,
     "elm.analyseEnabled": true,
     "elm.includeUserFunctionDocumentation": true,
     "eslint.packageManager": "yarn",
@@ -82,7 +87,10 @@
         "*.tmpl": "gohtml",
         ".zsh_aliases": "shellscript",
         ".zsh_functions": "shellscript",
-        "*.json": "json"
+        "*.json": "json",
+        "Dockerfile_*": "dockerfile",
+        "dockerfile-*": "dockerfile",
+        "*.html": "html"
     },
     "files.enableTrash": false,
     "files.eol": "\n",
@@ -120,6 +128,8 @@
     "javascript.updateImportsOnFileMove.enabled": "never",
     "latex-workshop.chktex.enabled": true,
     "ledger.binary": "/usr/bin/ledger",
+    "npm.enableScriptExplorer": true,
+    "npm.packageManager": "yarn",
     "mocha.env": {
         "NODE_ENV": "test"
     },
@@ -152,8 +162,10 @@
     "workbench.colorTheme": "Cobalt2",
     "workbench.iconTheme": "vscode-icons",
     "workbench.settings.enableNaturalLanguageSearch": false,
+    "workbench.settings.editor": "json",
     "workbench.startupEditor": "newUntitledFile",
     "workbench.statusBar.feedback.visible": false,
+    "workbench.tips.enabled": false,
     "workbench.tree.horizontalScrolling": true,
     "workbench.tree.indent": 8,
     "powershell.codeFormatting.newLineAfterCloseBrace": false,
@@ -166,5 +178,7 @@
     "autofold.unfold": true,
     "autofold.delay": 100,
     "latex-workshop.latex.autoClean.run": "onBuilt",
-    "latex-workshop.view.pdf.viewer": "tab"
+    "latex-workshop.view.pdf.viewer": "tab",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
 }

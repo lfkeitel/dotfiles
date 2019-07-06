@@ -48,6 +48,8 @@ NEW_DIR="$CODE_DIR/$NEXT_CODE-$PROJECT_NAME"
 
 if [[ -n $GIT_URL ]]; then
     git clone "$GIT_URL" "$NEW_DIR"
+    cd "$NEW_DIR"
+    mkdir -p private
 else
     mkdir "$NEW_DIR"
     cd "$NEW_DIR"
