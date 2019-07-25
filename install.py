@@ -2,21 +2,31 @@
 import sys
 import platform
 import pathlib
+from importlib import import_module
 
 from utils.utils import settings
 from utils.chalk import print_banner, Color, print_error
 
 
-def exec_installer(path, name):
+def exec_installer(path, name, args=[]):
     path = pathlib.Path(path)
 
     if path.is_dir():
         path = path.joinpath("install.py")
 
-    if path.is_file():
-        exec(open(path.absolute()).read())
-    else:
+    if not path.is_file():
         print_error(f"Installer {name} is not found")
+        return 1
+
+    mod_path = str(path.parent)
+    mod_file = str(path.stem)
+
+    module = import_module("." + mod_file, mod_path)
+    try:
+        m = getattr(module, "Main")(args, settings)
+        m.run()
+    except AttributeError:
+        print_error(f"Installer {name} doesn't implement the installer interface")
         return 1
 
     return 0
@@ -25,20 +35,20 @@ def exec_installer(path, name):
 def run_installer(name, args=[]):
     try:
         installer = settings["installers"][name]
-    except:
+    except AttributeError:
         print_error(f"Installer {name} is not defined")
         return 1
 
     if "alias" in installer:
         alias_name = installer["alias"]
         installer = settings["installers"][alias_name]
-        if not "path" in installer:
+        if "path" not in installer:
             installer["path"] = alias_name
 
     if "path" in installer:
-        return exec_installer(installer["path"], name)
+        return exec_installer(installer["path"], name, args)
     else:
-        return exec_installer(name, name)
+        return exec_installer(name, name, args)
 
 
 def main(args):

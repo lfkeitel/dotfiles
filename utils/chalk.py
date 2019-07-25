@@ -59,6 +59,10 @@ def print_main_banner(message, color=Color.WHITE):
     print(f"{color}{banner_fril}{Color.default()}")
 
 
+def print_header(message):
+    print_banner(message, Color.GREEN)
+
+
 def calc_extra_padding(message):
     padding = ""
     if len(message) < minimum_length:
