@@ -8,10 +8,10 @@ from utils.utils import copyfile, link_file, file_exists, dir_exists
 
 _new_paths = {}
 
-_ZSH_HOOKS_DIR = Path.home().joinpath(".local.zsh.d")
-_ZSH_PATHS_DIR = _ZSH_HOOKS_DIR.joinpath("paths")
+ZSH_HOOKS_DIR = Path.home().joinpath(".local.zsh.d")
+ZSH_PATHS_DIR = ZSH_HOOKS_DIR.joinpath("paths")
 
-os.makedirs(_ZSH_HOOKS_DIR, exist_ok=True)
+os.makedirs(ZSH_HOOKS_DIR, exist_ok=True)
 
 
 def add_to_path(module, path):
@@ -32,71 +32,71 @@ def add_zsh_hook(hook: Hook, name: str, file: str, copy=False):
     print_line(f"Adding {name} to ZSH {hook.value} hooks")
 
     if copy:
-        copyfile(file, _ZSH_HOOKS_DIR.joinpath(hook.value, name + ".zsh"))
+        copyfile(file, ZSH_HOOKS_DIR.joinpath(hook.value, name + ".zsh"))
     else:
-        link_file(file, _ZSH_HOOKS_DIR.joinpath(hook.value, name + ".zsh"))
+        link_file(file, ZSH_HOOKS_DIR.joinpath(hook.value, name + ".zsh"))
 
 
 def remove_zsh_hook(hook: Hook, name: str):
     print_line(f"Removing {name} from ZSH {hook.value} hooks")
-    os.remove(_ZSH_HOOKS_DIR.joinpath(hook.value, name + ".zsh"))
+    os.remove(ZSH_HOOKS_DIR.joinpath(hook.value, name + ".zsh"))
 
 
 def zsh_hook_exists(hook: Hook, name: str):
-    return file_exists(_ZSH_HOOKS_DIR.joinpath(hook.value, name + ".zsh"))
+    return file_exists(ZSH_HOOKS_DIR.joinpath(hook.value, name + ".zsh"))
 
 
-_FISH_CFG_DIR = Path.home().joinpath(".config", "fish")
-_FISH_FUNCS_DIR = _FISH_CFG_DIR.joinpath("functions")
-_FISH_HOOKS_DIR = _FISH_CFG_DIR.joinpath("hooks")
-_FISH_PATHS_DIR = _FISH_HOOKS_DIR.joinpath("paths")
+FISH_CFG_DIR = Path.home().joinpath(".config", "fish")
+FISH_FUNCS_DIR = FISH_CFG_DIR.joinpath("functions")
+FISH_HOOKS_DIR = FISH_CFG_DIR.joinpath("hooks")
+FISH_PATHS_DIR = FISH_HOOKS_DIR.joinpath("paths")
 
-os.makedirs(_FISH_FUNCS_DIR, exist_ok=True)
-os.makedirs(_FISH_HOOKS_DIR, exist_ok=True)
+os.makedirs(FISH_FUNCS_DIR, exist_ok=True)
+os.makedirs(FISH_HOOKS_DIR, exist_ok=True)
 
 
 def add_fish_func(name: str, file: str, copy=False):
     print_line(f"Adding {name} to Fish functions")
 
     if copy:
-        copyfile(file, _FISH_FUNCS_DIR.joinpath(name + ".fish"))
+        copyfile(file, FISH_FUNCS_DIR.joinpath(name + ".fish"))
     else:
-        link_file(file, _FISH_FUNCS_DIR.joinpath(name + ".fish"))
+        link_file(file, FISH_FUNCS_DIR.joinpath(name + ".fish"))
 
 
 def remove_fish_func(name: str):
     print_line(f"Removing Fish function {name}")
-    os.remove(_FISH_FUNCS_DIR.joinpath(name + ".fish"))
+    os.remove(FISH_FUNCS_DIR.joinpath(name + ".fish"))
 
 
 def add_fish_hook(hook: Hook, name: str, file: str, copy=False):
     print_line(f"Adding {name} to Fish {hook.value} hooks")
 
     if copy:
-        copyfile(file, _FISH_HOOKS_DIR.joinpath(hook.value, name + ".fish"))
+        copyfile(file, FISH_HOOKS_DIR.joinpath(hook.value, name + ".fish"))
     else:
-        link_file(file, _FISH_HOOKS_DIR.joinpath(hook.value, name + ".fish"))
+        link_file(file, FISH_HOOKS_DIR.joinpath(hook.value, name + ".fish"))
 
 
 def remove_fish_hook(hook: Hook, name: str):
     print_line(f"Removing {name} from Fish {hook.value} hooks")
-    os.remove(_FISH_HOOKS_DIR.joinpath(hook.value, name + ".fish"))
+    os.remove(FISH_HOOKS_DIR.joinpath(hook.value, name + ".fish"))
 
 
 def fish_hook_exists(hook: Hook, name: str):
-    return file_exists(_FISH_HOOKS_DIR.joinpath(hook.value, name + ".fish"))
+    return file_exists(FISH_HOOKS_DIR.joinpath(hook.value, name + ".fish"))
 
 
 def _write_path_data():
     for module, paths in _new_paths.items():
         paths = "\n".join(paths)
 
-        if dir_exists(_ZSH_PATHS_DIR):
-            with open(_ZSH_PATHS_DIR.joinpath(module), "w") as f:
+        if dir_exists(ZSH_PATHS_DIR):
+            with open(ZSH_PATHS_DIR.joinpath(module), "w") as f:
                 f.write(paths)
 
-        if dir_exists(_FISH_PATHS_DIR):
-            with open(_FISH_PATHS_DIR.joinpath(module), "w") as f:
+        if dir_exists(FISH_PATHS_DIR):
+            with open(FISH_PATHS_DIR.joinpath(module), "w") as f:
                 f.write(paths)
 
 
