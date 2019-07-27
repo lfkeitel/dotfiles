@@ -31,12 +31,17 @@ if (!$RunInstall -and !$RunLinks -and !$RunExtInstall) {
     $RunExtInstall = $true
 }
 
+$ExeName = 'vscodium'
+
 if ($IsMacOS) {
     Add-ToPath vscode '/Applications/Visual Studio Code.app/Contents/Resources/app/bin'
+    Add-ToPath vscode '/Applications/VSCodium.app/Contents/Resources/app/bin'
+    # VSCodium's executable is still called code, every other platform is called vscodium
+    $ExeName = 'code'
 }
 
 if ($RunInstall) {
-    if (!$ForceInstall -AND (Test-CommandExists vscodium)) {
+    if (!$ForceInstall -AND (Test-CommandExists $ExeName)) {
         Write-ColoredLine 'VSCode already installed, update through the package manager' Magenta
     } else {
         if ($IsMacOS) {
@@ -74,7 +79,7 @@ if ($RunLinks) {
 if ($RunExtInstall) {
     Write-ColoredLine 'Installing VSCodium Extensions' Magenta
 
-    $InstalledExts = $(vscodium --list-extensions) | ForEach-Object { $_.toLower() }
+    $InstalledExts = $(& $ExeName --list-extensions) | ForEach-Object { $_.toLower() }
 
     if ($InstalledExts.Length -Eq 0) {
         $InstalledExts = @()
@@ -85,6 +90,6 @@ if ($RunExtInstall) {
     }
 
     $NeededExts | ForEach-Object {
-        vscodium --force --install-extension $_
+        & $ExeName --force --install-extension $_
     }
 }
