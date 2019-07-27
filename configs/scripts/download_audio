@@ -1,0 +1,44 @@
+#!/usr/bin/env zsh
+
+GREP='grep'
+[[ "$(uname)" == 'Darwin' ]] && GREP='ggrep'
+
+convert() {
+    ffmpeg -i "$1" -vn -y "$2"
+}
+
+check_audio_choice() {
+    youtube-dl -F "$1" | $GREP -P '^251'
+}
+
+download_audio() {
+    youtube-dl -f 251 "$1" \
+        | tee /dev/tty \
+        | ggrep -P '\[download\] Destination' \
+        | cut -d' ' -f3-
+}
+
+download_and_convert() {
+    echo "Checking source"
+    if [[ -z "$(check_audio_choice $1)" ]]; then
+        echo "$1 doesn't have audio option 251"
+        return 1
+    fi
+
+    echo "Downloading audio"
+    WEBM_NAME="$(download_audio $1)"
+    if [[ -z "$WEBM_NAME" ]]; then
+        echo "$1 Failed downloading audio"
+        return 1
+    fi
+
+    OGG_NAME="${WEBM_NAME%.webm}.ogg"
+    echo "Converting webm to ogg"
+    echo "Destination: $OGG_NAME"
+    convert "$WEBM_NAME" "$OGG_NAME"
+    echo "Converted"
+}
+
+for url in "$@"; do
+    download_and_convert "$url"
+done
