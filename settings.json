@@ -6,7 +6,6 @@
         "configs": { "autorun": true },
         "fonts": { "autorun": true, "path": "other/fonts.py" },
         "gpg": { "autorun": true },
-        "powershell": { "autorun": true },
         "golang": { "autorun": true },
         "python": { "autorun": true },
         "node": { "autorun": true },

@@ -31,16 +31,17 @@ def main(args):
         print("These dotfiles are written for Linux and macOS only")
         return 1
 
-    if len(args) == 0:
-        print("No args not supported yet")
-        return 1
-
     print_banner("LEE'S DOTFILES", Color.BLUE)
 
-    name = args[0]
-    args = args[1:]
-
-    return run_installer(name, args)
+    if len(args) == 0:
+        for name, i in settings["installers"].items():
+            if "autorun" in i and i["autorun"]:
+                run_installer(name)
+        return 0
+    else:
+        name = args[0]
+        args = args[1:]
+        return run_installer(name, args)
 
 
 if __name__ == "__main__":
