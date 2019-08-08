@@ -218,11 +218,6 @@
         ]
     },
 
-    "dart": {
-        "version": "2.1.0",
-        "dartroot": "/usr/local/dart"
-    },
-
     "rust": {
         "nightly": true,
         "components": [
