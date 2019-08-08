@@ -16,6 +16,10 @@ if platform.is_mac:
         "Library", "Application Support", "VSCodium", "User"
     )
 
+EXE_NAME = "vscodium"
+if platform.is_mac:
+    EXE_NAME = "code"
+
 
 class InstallException(Exception):
     pass
@@ -30,6 +34,9 @@ class Main(Installer):
                 "vscode",
                 "/Applications/Visual Studio Code.app/Contents/Resources/app/bin",
             )
+            add_to_path(
+                "vscode", "/Applications/VSCodium.app/Contents/Resources/app/bin"
+            )
 
         try:
             self.install_code()
@@ -40,7 +47,7 @@ class Main(Installer):
         self.install_extensions()
 
     def install_code(self):
-        if command_exists("vscodium"):
+        if command_exists(EXE_NAME):
             print_line(
                 "VSCode already installed, update through the package manager",
                 color=Color.MAGENTA,
@@ -77,7 +84,7 @@ class Main(Installer):
     def install_extensions(self):
         print_line("Installing VSCodium Extensions", color=Color.MAGENTA)
 
-        curr_exts = run_command_no_out("vscodium --list-extensions")
+        curr_exts = run_command_no_out(f"{EXE_NAME} --list-extensions")
         curr_exts = [s.lower() for s in curr_exts.stdout.split("\n") if s != ""]
 
         needed_exts = [
@@ -85,4 +92,4 @@ class Main(Installer):
         ]
 
         for e in needed_exts:
-            run_command(f"vscodium --force --install-extension {e}")
+            run_command(f"{EXE_NAME} --force --install-extension {e}")
