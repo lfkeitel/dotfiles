@@ -158,7 +158,6 @@
     "vsicons.dontShowNewVersionMessage": true,
     "window.restoreWindows": "none",
     "window.titleBarStyle": "custom",
-    "window.zoomLevel": 1,
     "workbench.colorTheme": "Cobalt2",
     "workbench.iconTheme": "vscode-icons",
     "workbench.settings.enableNaturalLanguageSearch": false,
