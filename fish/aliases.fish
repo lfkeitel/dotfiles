@@ -57,3 +57,5 @@ alias cb 'cargo build'
 alias cbr 'cargo build --release'
 alias cr 'cargo run'
 alias cu 'cargo update'
+
+alias hbal 'hledger bal --cleared --real'

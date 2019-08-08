@@ -1,12 +1,11 @@
 {
     "installers": {
         "pacman": { "autorun": true },
-        "packages": { "autorun": true, "path": "other/packages.ps1" },
+        "packages": { "autorun": true, "path": "other/packages.py" },
         "zsh": { "autorun": true },
         "configs": { "autorun": true },
-        "fonts": { "autorun": true, "path": "other/fonts.ps1" },
+        "fonts": { "autorun": true, "path": "other/fonts.py" },
         "gpg": { "autorun": true },
-        "powershell": { "autorun": true },
         "golang": { "autorun": true },
         "python": { "autorun": true },
         "node": { "autorun": true },
@@ -20,9 +19,9 @@
         "nvm": { "alias": "node" },
         "yarn": { "alias": "node" },
         "dconf": { "path": "configs/dconf"},
-        "dartlang": { "path": "other/dartlang.ps1" },
-        "rust": { "path": "other/rustlang.ps1" },
-        "macos": { "path": "other/macos.ps1" },
+        "dartlang": { "path": "other/dartlang.py" },
+        "rust": { "path": "other/rustlang.py" },
+        "macos": { "path": "other/macos.py" },
         "docker": { },
         "hexchat": { },
         "home": { "path": "configs/home" }
@@ -218,19 +217,6 @@
         ]
     },
 
-    "dart": {
-        "version": "2.1.0",
-        "dartroot": "/usr/local/dart"
-    },
-
-    "python": {
-        "pip": {
-            "packages": [
-                "virtualenv"
-            ]
-        }
-    },
-
     "rust": {
         "nightly": true,
         "components": [
@@ -290,7 +276,6 @@
             "nmsmith89.incrementor",
             "octref.vetur",
             "oderwat.indent-rainbow",
-            "peterjausovec.vscode-docker",
             "rashwell.tcl",
             "redhat.java",
             "rust-lang.rust",
