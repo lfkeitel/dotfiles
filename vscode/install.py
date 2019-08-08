@@ -4,14 +4,8 @@ import os
 
 from utils.installer import Installer
 from utils.chalk import print_header, print_line, Color
-from utils.system import (
-    command_exists,
-    install_pkg,
-    install_apt_ppa,
-    run_command,
-    run_command_no_out,
-)
-from utils.utils import link_file, download_file, settings, dir_exists
+from utils.system import command_exists, install_pkg, run_command, run_command_no_out
+from utils.utils import link_file, settings, dir_exists
 import utils.platform as platform
 from utils.shell import add_to_path
 
