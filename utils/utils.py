@@ -46,6 +46,13 @@ def link_file(src: Path, dest: Path, sudo=False, copy=False):
         run_command(cmd)
 
 
+def remove(path: Path, sudo=False):
+    cmd = f"rm -rf '{shlex.quote(str(path))}'"
+    if sudo:
+        cmd = "sudo " + cmd
+    run_command(cmd)
+
+
 def copyfile(src, dest, sudo=False):
     if sudo:
         run_command(f"sudo cp '{shlex.quote(src)}' '{shlex.quote(dest)}'")
