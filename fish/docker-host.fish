@@ -75,9 +75,10 @@ function connect_host -a host_name
         return 1
     end
 
-    set -x DOCKER_HOST "(head -n 1 "$DOCKER_HOSTS_DIR/$host_name")"
-    set -x DOCKER_TLS_VERIFY 1
-    set -x DOCKER_HOST_NAME "(tail -n 1 "$DOCKER_HOSTS_DIR/$host_name")"
+    set -gx DOCKER_HOST (head -n 1 "$DOCKER_HOSTS_DIR/$host_name")
+    set -gx DOCKER_TLS_VERIFY 1
+    set -gx DOCKER_HOST_NAME (tail -n 1 "$DOCKER_HOSTS_DIR/$host_name")
+    echo "Connected to Docker host $host_name"
 end
 
 function active_host
@@ -136,17 +137,17 @@ end
 
 switch $argv[1]
     case add
-        shift; add_host $argv
+        add_host $argv[2..-1]
     case update
-        shift; update_host $argv
+        update_host $argv[2..-1]
     case rm
-        shift; rm_host $argv
+        rm_host $argv[2..-1]
     case ls
         ls_hosts
     case connect
-        shift; connect_host $argv
+        connect_host $argv[2..-1]
     case active
-        shift; active_host $argv
+        active_host $argv[2..-1]
     case disconnect
         disconnect_host
     case set_aliases
