@@ -17,19 +17,25 @@ def command_exists(cmd):
     return proc.returncode == 0
 
 
-def run_command(cmd, shell=False, cwd=None):
+def run_command(cmd, shell=False, cwd=None, text=None):
     if not shell:
         cmd = shlex.split(cmd)
     return subprocess.run(
-        cmd, stderr=sys.stderr, stdout=sys.stdout, stdin=sys.stdin, shell=shell, cwd=cwd
+        cmd,
+        stderr=sys.stderr,
+        stdout=sys.stdout,
+        stdin=sys.stdin,
+        shell=shell,
+        cwd=cwd,
+        text=text,
     )
 
 
-def run_command_no_out(cmd, shell=False, cwd=None):
+def run_command_no_out(cmd, shell=False, cwd=None, text=None):
     if not shell:
         cmd = shlex.split(cmd)
     return subprocess.run(
-        cmd, capture_output=True, encoding="utf_8", shell=shell, cwd=cwd
+        cmd, capture_output=True, encoding="utf_8", shell=shell, cwd=cwd, text=text
     )
 
 

@@ -13,7 +13,8 @@ def file_exists(filename):
 
 
 def dir_exists(dirname):
-    return Path(dirname).is_dir()
+    p = Path(dirname)
+    return p.is_dir() and not p.is_symlink()
 
 
 def _load_settings(filename="settings.json"):
