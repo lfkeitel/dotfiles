@@ -35,6 +35,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'Quramy/tsuquyomi'
     Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
     Plug 'vim-syntastic/syntastic'
+    Plug 'ledger/vim-ledger'
 
 " {{{ Rust
     Plug 'racer-rust/vim-racer', { 'for': 'rust' }
