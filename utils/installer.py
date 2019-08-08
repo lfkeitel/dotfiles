@@ -29,10 +29,11 @@ def exec_installer(path, name, args=[], settings=None):
 
     try:
         m = getattr(module, "Main")(args, settings)
-        m.run()
     except AttributeError:
         print_error(f"Installer {name} doesn't implement the installer interface")
         return 1
+
+    m.run()
 
     return 0
 
