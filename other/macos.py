@@ -11,5 +11,7 @@ class Main(Installer):
 
         print_header("Setting up macOS Finder")
         # Setup Finder to show all files
-        run_command("defaults write com.apple.finder AppleShowAllFiles YES")
-        run_command("killall Finder /System/Library/CoreServices/Finder.app")
+        run_command("defaults write com.apple.finder AppleShowAllFiles YES", shell=True)
+        run_command(
+            "killall Finder /System/Library/CoreServices/Finder.app", shell=True
+        )
