@@ -27,9 +27,6 @@ alias kill-tmux-sessions 'tmux list-sessions | grep -v attached | cut -d: -f1 | 
 alias sudp 'sudo'
 alias sfrc 'source $HOME/.config/fish/config.fish'
 
-alias gs 'git status'
-alias gds 'git diff --staged'
-
 alias socksproxy 'ssh -C -N -D'
 alias socksproxyf 'ssh -f -C -N -D'
 
