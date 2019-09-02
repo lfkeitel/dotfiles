@@ -90,7 +90,8 @@
         "*.json": "json",
         "Dockerfile_*": "dockerfile",
         "dockerfile-*": "dockerfile",
-        "*.html": "html"
+        "*.html": "html",
+        "*.dat": "ledger"
     },
     "files.enableTrash": false,
     "files.eol": "\n",
@@ -180,5 +181,7 @@
     "latex-workshop.view.pdf.viewer": "tab",
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "extensions.showRecommendationsOnlyOnDemand": true
+    "extensions.showRecommendationsOnlyOnDemand": true,
+    "python.jediEnabled": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false
 }
