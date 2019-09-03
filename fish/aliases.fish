@@ -56,3 +56,4 @@ alias cr 'cargo run'
 alias cu 'cargo update'
 
 alias hbal 'hledger bal --cleared --real'
+alias ledger 'ledger --strict'
