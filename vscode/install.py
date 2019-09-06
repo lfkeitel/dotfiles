@@ -9,16 +9,28 @@ from utils.utils import link_file, settings, dir_exists
 import utils.platform as platform
 from utils.shell import add_to_path
 
-SCRIPT_DIR = Path(__file__).parent
-SETTINGS_PATH = Path.home().joinpath(".config", "VSCodium", "User")
-if platform.is_mac:
-    SETTINGS_PATH = Path.home().joinpath(
-        "Library", "Application Support", "VSCodium", "User"
-    )
 
-EXE_NAME = "vscodium"
-if platform.is_mac:
-    EXE_NAME = "code"
+def get_settings_path():
+    if platform.is_mac:
+        return Path.home().joinpath(
+            "Library", "Application Support", "VSCodium", "User"
+        )
+
+    if os.environ.get("VSCODE_OFFICIAL"):
+        return Path.home().joinpath(".config", "Code", "User")
+
+    return Path.home().joinpath(".config", "VSCodium", "User")
+
+
+def get_exe_name():
+    if os.environ.get("VSCODE_OFFICIAL") or platform.is_mac:
+        return "code"
+    return "vscodium"
+
+
+SCRIPT_DIR = Path(__file__).parent
+SETTINGS_PATH = get_settings_path()
+EXE_NAME = get_exe_name()
 
 
 class InstallException(Exception):
@@ -55,7 +67,10 @@ class Main(Installer):
             return
 
         if platform.is_arch:
-            install_pkg("vscodium-bin")
+            if EXE_NAME == "code":
+                install_pkg("visual-studio-code-bin")
+            else:
+                install_pkg("vscodium-bin")
         elif platform.is_mac or platform.is_linux:
             print_line("Please install VSCodium first")
             raise InstallException()
@@ -82,7 +97,7 @@ class Main(Installer):
         link_file(SCRIPT_DIR.joinpath("snippets"), SETTINGS_PATH.joinpath("snippets"))
 
     def install_extensions(self):
-        print_line("Installing VSCodium Extensions", color=Color.MAGENTA)
+        print_line("Installing VSCode Extensions", color=Color.MAGENTA)
 
         curr_exts = run_command_no_out(f"{EXE_NAME} --list-extensions")
         curr_exts = [s.lower() for s in curr_exts.stdout.split("\n") if s != ""]
