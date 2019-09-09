@@ -1,0 +1,12 @@
+["1: web"]
+threshold = 1
+commands = [
+    "layout tabbed"
+]
+
+
+["5: editor"]
+threshold = 1
+commands = [
+    "layout tabbed"
+]

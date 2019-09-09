@@ -52,6 +52,8 @@ exec --no-startup-id unclutter -notclass 'Google-chrome' 'Code' 'Firefox' 'VSCod
 exec --no-startup-id ~/.scripts/remaps
 # Automounter
 exec --no-startup-id udiskie --tray
+# Workspace commands
+exec --no-startup-id ~/bin/i3-workspaces -c ~/.config/i3/workspaces.toml
 
 hide_edge_borders both
 for_window [class="^.*"] border pixel 2
@@ -96,7 +98,7 @@ bindsym $mod+a focus parent
 bindsym $mod+b exec $browser
 # bindsym $mod+Shift+b
 
-# bindsym $mod+c
+bindsym $mod+c workspace $ws3
 bindsym $mod+Shift+c reload
 
 bindsym $mod+d exec rofi -show combi -combi-modi "run#drun#window#ssh" -modi combi#window
@@ -112,19 +114,19 @@ bindsym $mod+g [instance="dropdown"] scratchpad show; [instance="dropdown"] move
 bindsym $mod+Shift+g exec --no-startup-id $terminal -n dropdown -e tmuxinit
 
 bindsym $mod+h split h
-# bindsym $mod+Shift+h
+bindsym $mod+Shift+h move workspace to output left
 
 # bindsym $mod+i
 # bindsym $mod+Shift+i
 
-bindsym $mod+j focus left
-bindsym $mod+Shift+j move workspace to output left
+# bindsym $mod+j
+# bindsym $mod+Shift+j
 
-bindsym $mod+k focus down
-bindsym $mod+Shift+k move down
+# bindsym $mod+k
+# bindsym $mod+Shift+k
 
-bindsym $mod+l focus up
-bindsym $mod+Shift+l move up
+# bindsym $mod+l
+bindsym $mod+Shift+l move workspace to output right
 
 bindsym $mod+m exec mattermost-desktop
 # bindsym $mod+Shift+m
@@ -209,9 +211,15 @@ bindsym XF86AudioPlay exec --no-startup-id lmc toggle
 bindsym XF86AudioPrev exec --no-startup-id lmc prev
 bindsym XF86AudioStop exec --no-startup-id lmc toggle
 
+# Workspace settings
+workspace $ws1 gaps inner 0
+workspace $ws1 gaps outer 0
+workspace $ws5 gaps inner 0
+workspace $ws5 gaps outer 0
+
 # Application specific settings
 for_window [class="Google-chrome"] move container to workspace $ws1
-for_window [class="Firefox"] move container to workspace $ws1
+for_window [class="firefox"] move container to workspace $ws1
 for_window [class="Gnome-terminal"] move container to workspace $ws2
 for_window [class="st-terminal"] move container to workspace $ws2
 for_window [class="Thunderbird"] move container to workspace $ws3
@@ -219,17 +227,13 @@ for_window [class="Mattermost"] move container to workspace $ws3
 for_window [class="Hexchat"] move container to workspace $ws4
 for_window [class="Code"] move container to workspace $ws5
 for_window [class="VSCodium"] move container to workspace $ws5
+for_window [class="Thunar"] floating enable
 
+# GIMP
 for_window [title="GIMP Startup"] move workspace $ws5
 for_window [class="Gimp"] move workspace $ws5
-workspace $ws5 gaps inner 0
-workspace $ws5 gaps outer 0
-workspace $ws1 gaps inner 0
-workspace $ws1 gaps outer 0
 for_window [window_role="gimp-dock"] floating disable; move left; resize shrink width 50 px or 50ppt
 for_window [window_role="gimp-toolbox"] floating disable; move right; resize grow width 30 px or 30ppt
-
-for_window [class="Thunar"] floating enable
 
 # First I have a tmux window used for background scripts.
 for_window [instance="dropdown"] floating enable
@@ -240,11 +244,17 @@ for_window [instance="dropdown"] border pixel 5
 # otherwise starts a new one (to prevent multiple dropdown sessions).
 exec --no-startup-id $terminal -n dropdown -e tmuxinit
 
-# Calendar popup
-for_window [instance="calendar"] floating enable
-for_window [instance="calendar"] resize set 825 500
-for_window [instance="calendar"] border pixel 5
-for_window [instance="calendar"] move position center
+# Any popup type terminal windows
+for_window [instance="popup_window"] floating enable
+for_window [instance="popup_window"] resize set 825 500
+for_window [instance="popup_window"] border pixel 5
+for_window [instance="popup_window"] move position center
+
+# Any popup type terminal windows large
+for_window [instance="popup_window_large"] floating enable
+for_window [instance="popup_window_large"] resize set 1500 750
+for_window [instance="popup_window_large"] border pixel 5
+for_window [instance="popup_window_large"] move position center
 
 mode "resize" {
     bindsym j resize shrink width 10 px or 10 ppt

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+    1) $TERMINAL -n popup_window_large -e htop & disown ;;
+esac
+
+echo -n " "
+
+~/.config/i3blocks/scripts/cpu_usage

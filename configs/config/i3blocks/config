@@ -1,55 +1,48 @@
-command=/usr/lib/i3blocks/$BLOCK_NAME
+command=/home/lfkeitel/.config/i3blocks/scripts/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
 [mpd]
 label=M
-command=i3mpd
 interval=once
 signal=12
 markup=pango
 
 [volume]
-command=i3volume
 interval=once
 signal=10
 
-[calcurse]
-command=i3calcurse
-interval=300
+#[calcurse]
+#interval=300
 
 [xautolock]
-command=i3xautolock
 interval=once
 signal=9
 
 [pacman]
 label=📦
-command=i3pacman
 interval=once
 signal=8
 
-[rss]
-command=i3newsboat
-interval=once
-signal=11
+#[rss]
+#interval=once
+#signal=11
 
-[memory]
+[memory2]
 label=
 interval=30
 
-[cpu_usage]
+[cpu_usage2]
 label=
 interval=10
 
 [battery]
 label=⚡
+markup=pango
 interval=5
 
-[keyboard]
-command=i3keyboard_layout
+[keyboard_layout]
 interval=5
 
-[time]
-command=i3date
+[date]
 interval=1
