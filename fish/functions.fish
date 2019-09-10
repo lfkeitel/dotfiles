@@ -242,3 +242,22 @@ end
 function keycode
     xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
 end
+
+function good-morning
+    set fullname (grep $USER /etc/passwd | cut -d':' -f5 | cut -d',' -f1)
+    echo "Good morning $fullname!"
+
+    set local_morning_script "$HOME/.local/scripts/good-morning.sh"
+    if test -f "$local_morning_script"
+        $local_morning_script
+    end
+
+    echo -n 'Want to open a project?'
+    read -P 'y/n' response
+    if [ "$response" = "y" ]
+        code_jump
+    end
+
+    echo -n "Today is: "
+    date '+%A %Y-%m-%d %H:%M'
+end
