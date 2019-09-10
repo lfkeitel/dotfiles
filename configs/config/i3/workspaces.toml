@@ -12,6 +12,7 @@ commands = [
 ]
 
 ["6: virtualbox"]
+threshold = 1
 commands = [
     "layout tabbed"
 ]
