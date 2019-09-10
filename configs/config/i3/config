@@ -150,7 +150,7 @@ bindsym $mod+s exec --no-startup-id lmc stop
 # bindsym $mod+Shift+s
 
 bindsym $mod+t exec thunderbird
-# bindsym $mod+Shift+t
+bindsym $mod+Shift+t [class="Thunderbird"] focus
 
 bindsym $mod+u gaps inner current plus 5
 bindsym $mod+Shift+u gaps inner current minus 5
