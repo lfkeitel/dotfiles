@@ -3,6 +3,8 @@ export MPD_HOST=${MPD_HOST:-$HOME/.mpd/socket}
 
 TMUX_CMD="$TERMINAL -e tmux new -A -s Music -n Music ncmpcpp"
 
+echo -n ' '
+
 filter() {
     sed 2q | tac | sed -e "s/\&/&amp;/g;/volume:/d;s/\[paused\].*/<span color=\"gray\" font_style=\"italic\">/g;s/\[playing\].*/<span                                     >/g" | tr -d '\n' | cut -c-80 | sed -e "s/$/<\/span>/g"
 }
