@@ -66,5 +66,9 @@
     {
         "key": "ctrl+shift+t",
         "command": "workbench.action.tasks.test"
+    },
+    {
+        "key": "ctrl+q",
+        "command": "workbench.action.closeWindow"
     }
 ]
