@@ -147,7 +147,7 @@ bindsym $mod+Shift+h move workspace to output left
 # bindsym $mod+k
 # bindsym $mod+Shift+k
 
-# bindsym $mod+l
+bindsym $mod+l exec --no-startup-id toggle_xautolock
 bindsym $mod+Shift+l move workspace to output right
 
 bindsym $mod+m exec mattermost-desktop
