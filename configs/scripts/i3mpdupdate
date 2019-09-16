@@ -2,7 +2,7 @@
 export MPD_HOST=${MPD_HOST:-$HOME/.mpd/socket}
 
 while : ; do
-    mpc idle > /dev/null
+    mpc idle player > /dev/null
     [ $? -ne 0 ] && sleep 10
     pkill -RTMIN+12 i3blocks
 done
