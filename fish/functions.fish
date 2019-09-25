@@ -245,6 +245,9 @@ end
 
 function good-morning
     set fullname (grep $USER /etc/passwd | cut -d':' -f5 | cut -d',' -f1)
+    if [ -z "$fullname" ]
+        set fullname $USER
+    end
     echo "Good morning $fullname!"
 
     set local_morning_script "$HOME/.local/scripts/good-morning.sh"
@@ -253,7 +256,7 @@ function good-morning
     end
 
     echo -n 'Want to open a project?'
-    read -P 'y/n' response
+    read -P 'y/n ' response
     if [ "$response" = "y" ]
         code_jump
     end
