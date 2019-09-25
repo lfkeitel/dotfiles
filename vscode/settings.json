@@ -153,6 +153,8 @@
     "rust.all_features": true,
     "rust.build_on_save": true,
     "rust.clippy_preference": "on",
+    "rust.unstable_features": true, // Conditionally enable range formatting, not enabled by default
+    "rust.all_targets": false, // Don't pass `-all` to `cargo check`, it often takes too much time
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
     "terminal.integrated.fontSize": 16,
