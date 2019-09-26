@@ -73,7 +73,7 @@ function code_jump -a project
     end
 
     # If arg is a number, cd to project
-    if string match --quiet --regex '\d+' $project
+    if string match --quiet --regex '^\d+' $project
         set project (format_project_code $project)
         cd $CODE_DIR/$project*
         return
