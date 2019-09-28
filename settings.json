@@ -180,7 +180,7 @@
     ],
 
     "go": {
-        "version": "1.11.5",
+        "version": "1.13.1",
         "goroot": "/usr/local/go",
         "packages": [
             "github.com/golang/dep/cmd/dep",
@@ -200,11 +200,10 @@
         "nvm": {
             "version": "v0.34.0",
             "engines": [
-                "8",
                 "10",
-                "11"
+                "12"
             ],
-            "default": "10"
+            "default": "12"
         },
         "global_packages": [
             "typescript",
@@ -251,6 +250,7 @@
             "eamodio.gitlens",
             "editorconfig.editorconfig",
             "eg2.tslint",
+            "esbenp.prettier-vscode",
             "fallenwood.viml",
             "felixfbecker.php-intellisense",
             "formulahendry.auto-close-tag",
@@ -261,22 +261,26 @@
             "kdarkhan.mips",
             "lextudio.restructuredtext",
             "lfkeitel.language-nitrogen",
+            "lostintangent.vsls-pomodoro",
+            "lostintangent.vsls-whiteboard",
             "mariosangiorgio.ledger",
             "mattiaspernhult.vscode-todo",
             "mattn.lisp",
             "maty.vscode-mocha-sidebar",
-            "ms-vscode-remote.vscode-remote-extensionpack",
             "ms-python.python",
+            "ms-vscode-remote.vscode-remote-extensionpack",
             "ms-vscode.azure-account",
             "ms-vscode.cpptools",
             "ms-vscode.csharp",
             "ms-vscode.go",
             "ms-vscode.powershell",
+            "ms-vsliveshare.vsliveshare-pack",
             "msjsdiag.debugger-for-chrome",
             "naumovs.color-highlight",
             "nmsmith89.incrementor",
             "octref.vetur",
             "oderwat.indent-rainbow",
+            "prisma.vscode-graphql",
             "rashwell.tcl",
             "redhat.java",
             "rust-lang.rust",
