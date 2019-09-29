@@ -12,6 +12,10 @@ from utils.shell import add_to_path
 
 def get_settings_path():
     if platform.is_mac:
+        if os.environ.get("VSCODE_OFFICIAL"):
+            return Path.home().joinpath(
+                "Library", "Application Support", "Code", "User"
+            )
         return Path.home().joinpath(
             "Library", "Application Support", "VSCodium", "User"
         )

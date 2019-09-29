@@ -11,6 +11,9 @@ distro_name = ""
 
 
 def _read_distro_info():
+    if is_mac:
+        return
+
     global distro_name
     global is_arch
     global is_ubuntu
