@@ -233,5 +233,9 @@
             "value": "#42b883"
         }
     ],
-    "peacock.vslsShareColor": "#1857a4"
+    "peacock.vslsShareColor": "#1857a4",
+    "prettier.disableLanguages": [
+        "vue",
+        "graphql"
+    ]
 }
