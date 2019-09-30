@@ -73,24 +73,29 @@ function code_jump -a project
     end
 
     # If arg is a number, cd to project
-    if string match --quiet --regex '^\d+' $project
+    if string match --quiet --regex '^\d{1,3}$' $project
         set project (format_project_code $project)
         cd $CODE_DIR/$project*
         return
     end
 
-    set list ($FINDCMD $CODE_DIR -maxdepth 1 -printf "%f\n" | $GREPCMD -P '\d{3}\-' | sort)
-    [ -n "$project" ] && set list (echo_list $list | $GREPCMD $project)
+    set list ($FINDCMD $CODE_DIR -maxdepth 1 -printf "%f\n" | $GREPCMD -P '^\d{3}\-' | sort)
+
+    if [ -n "$project" ]
+        set project_lower (echo "$project" | tr '[[:upper:]]' '[[:lower:]]')
+
+        # Compare project names as lowercase to wanted project name
+        set list (echo_list $list | \
+            awk "{ if (tolower(\$0) ~ /$project_lower/) print \$0 }")
+    end
 
     set list_rows (count $list)
     set term_rows (stty size | cut -d' ' -f1)
 
-    if [ -z (echo "$list" | tr -d "\n") ]
+    if [ $list_rows -eq 0 ]
         echo "No matching projects found"
         return
-    end
-
-    if [ $list_rows -eq 1 ]
+    else if [ $list_rows -eq 1 ]
         cd $CODE_DIR/$list*
         return
     end
@@ -102,7 +107,7 @@ function code_jump -a project
 
     echo
     read -P "Select a project or press enter: " project
-    if string match --quiet --regex '\d+' $project
+    if string match --quiet --regex '^\d{1,3}$' $project
         set project (format_project_code $project)
         cd $CODE_DIR/$project*
     end
