@@ -234,6 +234,7 @@
         }
     ],
     "peacock.vslsShareColor": "#1857a4",
+    "peacock.vslsJoinColor": "#b52e31",
     "prettier.disableLanguages": [
         "vue",
         "graphql"
