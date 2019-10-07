@@ -3,7 +3,6 @@ set -x LANG en_US.UTF-8
 set -x EDITOR 'nvim'
 set -x CODE_DIR "$HOME/code"
 set -x SCRIPTS_DIR "$HOME/.scripts"
-set -x I3SOCK (command ls /run/user/1000/i3/ipc-socket.*)
 set CUSTOM_HOOKS_PATH "$HOME/.config/fish/hooks"
 set CUSTOM_PATH_DIR "$CUSTOM_HOOKS_PATH/paths"
 set CUSTOM_PLUGINS_DIR "$CUSTOM_HOOKS_PATH/plugins"
@@ -75,6 +74,10 @@ end
 
 if test -f /usr/share/autojump/autojump.fish;
 	source /usr/share/autojump/autojump.fish;
+end
+
+if [ -n (pidof i3 2> /dev/null) ]
+    set -x I3SOCK (command ls /run/user/1000/i3/ipc-socket.*)
 end
 
 run_custom_hooks post
