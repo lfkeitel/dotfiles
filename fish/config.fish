@@ -72,11 +72,11 @@ if status is-interactive
     stty -ixon
 end
 
-if test -f /usr/share/autojump/autojump.fish;
+if [ -f /usr/share/autojump/autojump.fish ]
 	source /usr/share/autojump/autojump.fish;
 end
 
-if pidof i3 2> /dev/null
+if [ -d /run/user/1000/i3 ]
     set -x I3SOCK (command ls /run/user/1000/i3/ipc-socket.*)
 end
 
