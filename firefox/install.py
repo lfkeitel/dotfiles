@@ -4,6 +4,7 @@ from configparser import ConfigParser
 from utils.installer import Installer
 from utils.chalk import print_header
 from utils.utils import link_file
+import utils.platform as platform
 
 MOZILLA_DIR = Path.home().joinpath(".mozilla", "firefox")
 SCRIPT_DIR = Path(__file__).parent
@@ -11,6 +12,9 @@ SCRIPT_DIR = Path(__file__).parent
 
 class Main(Installer):
     def run(self):
+        if platform.is_mac:
+            return
+
         print_header("Setting up Firefox profile")
 
         profiles = ConfigParser()

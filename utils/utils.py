@@ -40,14 +40,14 @@ def link_file(src: Path, dest: Path, sudo=False, copy=False):
     if copy:
         copyfile(src, dest, sudo=sudo)
     else:
-        cmd = f"ln -sfn '{shlex.quote(src)}' '{shlex.quote(dest)}'"
+        cmd = f"ln -sfn {shlex.quote(src)} {shlex.quote(dest)}"
         if sudo:
             cmd = "sudo " + cmd
         run_command(cmd)
 
 
 def remove(path: Path, sudo=False):
-    cmd = f"rm -rf '{shlex.quote(str(path))}'"
+    cmd = f"rm -rf {shlex.quote(str(path))}"
     if sudo:
         cmd = "sudo " + cmd
     run_command(cmd)
@@ -55,7 +55,7 @@ def remove(path: Path, sudo=False):
 
 def copyfile(src, dest, sudo=False):
     if sudo:
-        run_command(f"sudo cp '{shlex.quote(src)}' '{shlex.quote(dest)}'")
+        run_command(f"sudo cp {shlex.quote(src)} {shlex.quote(dest)}")
     else:
         copy(src, dest)
 

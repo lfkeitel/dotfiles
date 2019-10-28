@@ -54,7 +54,7 @@ class Main(Installer):
         # oh-my-zsh
         if not dir_exists(omz_dir):
             print_line("Installing oh-my-zsh")
-            run_command("bash " + script_dir.joinpath("install-oh-my-zsh.sh"))
+            run_command("bash " + str(script_dir.joinpath("install-oh-my-zsh.sh")))
 
             if platform.is_mac:
                 run_command(
@@ -108,7 +108,7 @@ class Main(Installer):
     def setup_project_list(self):
         project_list = home_dir.joinpath(".project.list")
         if not file_exists(project_list):
-            with open(project_list) as f:
+            with open(project_list, "w") as f:
                 f.write("")
 
         link_file(project_list, home_dir.joinpath(".warprc"))

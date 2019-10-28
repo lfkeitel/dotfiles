@@ -39,7 +39,9 @@
             "wget",
             "zsh-completions",
             "zsh",
-            "calcurse"
+            "calcurse",
+            "fish",
+            "findutils"
         ],
 
         "linux": [

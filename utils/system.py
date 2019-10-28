@@ -58,7 +58,7 @@ def install_pkg(*pkgs, update_lists=False):
     elif platform.is_arch:
         run_command("yay -S --noconfirm --needed " + pkgs)
     elif platform.is_mac:
-        run_command("brew install -y" + pkgs)
+        run_command("brew install " + pkgs)
 
 
 def install_apt_ppa(repo, update_lists=False):

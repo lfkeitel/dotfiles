@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from pathlib import Path
+import os
 
 from utils.installer import Installer
 from utils.chalk import print_header
@@ -50,4 +51,5 @@ class Main(Installer):
 
     def download_vim_plugged(self):
         local = Path.home().joinpath(".local", "share", "nvim", "site", "autoload")
+        os.makedirs(local)
         download_file(_VIM_PLUGGED_SRC, str(local.joinpath("plug.vim")))
