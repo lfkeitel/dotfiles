@@ -34,7 +34,7 @@ def install_aur_helper():
         )
 
     run_command("makepkg -Acs", cwd=yay_path)
-    run_command("sudo pacman -U *.pkg.tar.xz", cwd=yay_path)
+    run_command("sudo pacman -U *.pkg.tar", cwd=yay_path)
 
 
 class Main(Installer):
