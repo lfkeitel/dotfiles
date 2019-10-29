@@ -19,6 +19,9 @@
     "[jsonc]": {
         "editor.formatOnSave": false
     },
+    "[typescript]": {
+        "editor.tabSize": 2
+    },
     "C_Cpp.default.cStandard": "c11",
     "auto-close-tag.SublimeText3Mode": true,
     "auto-close-tag.activationOnLanguage": [
@@ -31,7 +34,6 @@
         "typescriptreact",
         "plaintext",
         "markdown",
-        "vue",
         "liquid",
         "erb",
         "lang-cfml",
