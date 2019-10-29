@@ -18,6 +18,11 @@ def command_exists(cmd):
 
 
 def run_command(cmd, shell=False, cwd=None, text=None):
+    if os.environ.get("DOTFILE_DEBUG", None):
+        print(
+            f"run_command() -> cmd={cmd} :: cwd={cwd} :: shell={shell} :: text={text}"
+        )
+
     if not shell:
         cmd = shlex.split(cmd)
     return subprocess.run(
@@ -32,6 +37,11 @@ def run_command(cmd, shell=False, cwd=None, text=None):
 
 
 def run_command_no_out(cmd, shell=False, cwd=None, text=None):
+    if os.environ.get("DOTFILE_DEBUG", None):
+        print(
+            f"run_command_no_out() -> cmd={cmd} :: cwd={cwd} :: shell={shell} :: text={text}"
+        )
+
     if not shell:
         cmd = shlex.split(cmd)
     return subprocess.run(

@@ -1,6 +1,7 @@
 from typing import List
 from pathlib import Path
 import sys
+import os
 from importlib import import_module
 
 from utils.chalk import print_error
@@ -8,6 +9,11 @@ from utils.utils import settings as default_settings
 
 
 def exec_installer(path, name, args=[], settings=None):
+    if os.environ.get("DOTFILE_DEBUG", None):
+        print(
+            f"exec_installer() -> path={path} :: name={name} :: args={args} :: settings={settings}"
+        )
+
     path = Path(path)
     if not settings:
         settings = default_settings
