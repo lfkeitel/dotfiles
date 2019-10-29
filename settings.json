@@ -21,6 +21,7 @@
         "dconf": { "path": "configs/dconf"},
         "dartlang": { "path": "other/dartlang.py" },
         "rust": { "path": "other/rustlang.py" },
+        "packmgr": { "path": "other/packmgr.py" },
         "macos": { "path": "other/macos.py" },
         "docker": { },
         "hexchat": { },
