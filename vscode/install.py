@@ -10,9 +10,9 @@ import utils.platform as platform
 from utils.shell import add_to_path
 
 
-def get_settings_path():
+def get_settings_path(official=True):
     if platform.is_mac:
-        if os.environ.get("VSCODE_OFFICIAL"):
+        if official:
             return Path.home().joinpath(
                 "Library", "Application Support", "Code", "User"
             )
@@ -20,21 +20,21 @@ def get_settings_path():
             "Library", "Application Support", "VSCodium", "User"
         )
 
-    if os.environ.get("VSCODE_OFFICIAL"):
+    if official:
         return Path.home().joinpath(".config", "Code", "User")
 
     return Path.home().joinpath(".config", "VSCodium", "User")
 
 
-def get_exe_name():
-    if os.environ.get("VSCODE_OFFICIAL") or platform.is_mac:
+def get_exe_name(official=True):
+    if official or platform.is_mac:
         return "code"
     return "vscodium"
 
 
 SCRIPT_DIR = Path(__file__).parent
-SETTINGS_PATH = get_settings_path()
-EXE_NAME = get_exe_name()
+SETTINGS_PATH = None
+EXE_NAME = None
 
 
 class InstallException(Exception):
@@ -43,7 +43,12 @@ class InstallException(Exception):
 
 class Main(Installer):
     def run(self):
+        global SETTINGS_PATH, EXE_NAME
+        vscodium = "vscodium" in self.args
         print_header("Setting up VSCodium")
+
+        SETTINGS_PATH = get_settings_path(not vscodium)
+        EXE_NAME = get_exe_name(not vscodium)
 
         if platform.is_mac:
             add_to_path(
