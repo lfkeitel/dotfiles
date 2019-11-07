@@ -3,7 +3,7 @@ from pathlib import Path
 
 from utils.installer import Installer
 from utils.chalk import print_header
-from utils.system import install_pkg
+from utils.system import install_pkg, run_command
 from utils.shell import link_file
 from utils.utils import remove
 import utils.platform as platform
@@ -27,8 +27,14 @@ class Main(Installer):
             sudo=True,
         )
 
-        install_pkg("reflector", "arch-audit")
+        install_pkg("reflector", "arch-audit", "kernel-modules-hook")
 
+        # Enable kernel module cleanup job
+        run_command("sudo systemctl daemon-reload")
+        run_command("sudo systemctl enable linux-modules-cleanup")
+
+        # Hooks are symlinked individually to allow local hooks that are
+        # not managed by this installer.
         with os.scandir(SCRIPT_DIR.joinpath("hooks")) as hooks:
             hook_dir = "/etc/pacman.d/hooks/"
             for item in hooks:
