@@ -14,7 +14,7 @@ check_audio_choice() {
 download_audio() {
     youtube-dl -f 251 "$1" \
         | tee /dev/tty \
-        | ggrep -P '\[download\] Destination' \
+        | $GREP -P '\[download\] Destination' \
         | cut -d' ' -f3-
 }
 
