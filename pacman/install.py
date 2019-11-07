@@ -27,7 +27,7 @@ class Main(Installer):
             sudo=True,
         )
 
-        install_pkg("reflector")
+        install_pkg("reflector", "arch-audit")
 
         with os.scandir(SCRIPT_DIR.joinpath("hooks")) as hooks:
             hook_dir = "/etc/pacman.d/hooks/"
