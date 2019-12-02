@@ -5,7 +5,6 @@
 " {{{ Plugins
 " Uses https://github.com/junegunn/vim-plug for plugin management
 call plug#begin('~/.vim/plugged')
-    Plug 'lfkeitel/neovim-mpc', { 'do': 'bash install.sh' }
     Plug 'benmills/vimux'
     Plug 'wikitopian/hardmode'
     Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
@@ -17,11 +16,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'elzr/vim-json', { 'for': 'json' }
     Plug 'dbakker/vim-projectroot'
     Plug 'gregsexton/MatchTag'
-    Plug 'mhinz/vim-startify', { 'on': 'Startify' }
     Plug 'tpope/vim-surround'
-    Plug 'nathanalderson/yang.vim', { 'for': 'yang' }
     Plug 'tpope/vim-repeat'
-    Plug 'sukima/xmledit', { 'for': 'xml' }
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-sensible'
     Plug 'tpope/vim-commentary'
@@ -30,44 +26,15 @@ call plug#begin('~/.vim/plugged')
     Plug 'kana/vim-textobj-entire'
     Plug 'kana/vim-textobj-indent'
     Plug 'kana/vim-textobj-line'
-    Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
     Plug 'leafgarland/typescript-vim'
     Plug 'Quramy/tsuquyomi'
-    Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
     Plug 'vim-syntastic/syntastic'
-    Plug 'ledger/vim-ledger'
-
-" {{{ Rust
-    Plug 'racer-rust/vim-racer', { 'for': 'rust' }
-    Plug 'rust-lang/rust.vim'
-
-    au FileType rust nmap gd <Plug>(rust-def)
-    au FileType rust nmap gs <Plug>(rust-def-split)
-    au FileType rust nmap gx <Plug>(rust-def-vertical)
-    au FileType rust nmap <leader>gd <Plug>(rust-doc)
-" }}}
 
 " {{{ Sexy scroller
     Plug 'joeytwiddle/sexy_scroller.vim'
 
     let g:SexyScroller_MaxTime = 400
     let g:SexyScroller_EasingStyle = 3
-" }}}
-
-" {{{ NerdTree
-    Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-
-    let g:NERDTreeMapMenu = '<F3>'
-    let g:NERDTreeChristmasTree = 1
-    let g:NERDTreeCaseSensitiveSort = 0
-    let g:NERDTreeQuitOnOpen = 1
-    let g:NERDTreeWinPos = 'left'
-    let g:NERDTreeShowBookmarks = 1
-    let g:NERDTreeDirArrows = 0
-    let g:NERDTreeMinimalUI = 0
-    let g:NERDTreeIgnore = ['\.pyc$']
-    let g:NERDTreeShowHidden = 1
-    autocmd Filetype nerdtree setlocal nohlsearch
 " }}}
 
 " {{{ Git gutter
@@ -100,11 +67,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'christoomey/vim-titlecase'
 
     let g:titlecase_map_keys = 0
-" }}}
-
-" {{{ Golang
-    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
-    Plug 'zchee/deoplete-go', { 'for': 'go' }
 " }}}
 
 " {{{ Deoplete
@@ -387,38 +349,6 @@ vnoremap <leader>gt <Plug>Titlecase
 nnoremap <leader>gT <Plug>TitlecaseLine
 " }}}
 
-" {{{ NERDTree
-nnoremap <silent> <F2> :NERDTreeToggle<CR>
-" }}}
-
-" }}}
-
-" {{{ Determine correct project root directory
-function! <SID>AutoProjectRootCD()
-    try
-        if &ft != 'help'
-            ProjectRootCD
-        endif
-    catch
-    " Silently ignore invalid buffers
-    endtry
-endfunction
-autocmd BufEnter * call <SID>AutoProjectRootCD()
-" }}}
-
-" {{{ Open NERDTree and Startify if no file was opened
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | call RunOnEnter() | endif
-
-function! RunOnEnter()
-    Startify
-    NERDTreeToggle
-endfunction
-" }}}
-
-" {{{ Go settings
-autocmd BufWritePost *.go silent !goreturns -w %
-autocmd Filetype go setlocal noexpandtab
 " }}}
 
 " {{{ Transparent editing of gpg encrypted files.
