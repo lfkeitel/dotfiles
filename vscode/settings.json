@@ -20,7 +20,8 @@
         "editor.formatOnSave": false
     },
     "[typescript]": {
-        "editor.tabSize": 2
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "C_Cpp.default.cStandard": "c11",
     "auto-close-tag.SublimeText3Mode": true,
@@ -240,5 +241,6 @@
     "prettier.disableLanguages": [
         "vue",
         "graphql"
-    ]
+    ],
+    "git.autofetch": true
 }
