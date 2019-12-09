@@ -1,0 +1,76 @@
+#! /bin/bash
+
+sxhkd &
+
+# Startup applications
+# Enable NumLock
+numlockx &
+# Start dunst for notifications:
+dunst &
+# Music player daemon:
+mpd &
+# Run the script to update the mpd i3block on change.
+pgrep -x i3mpdupdate || i3mpdupdate &
+# Autolock desktop after 5 minutes
+xautolock -time 5 -locker $i3lock -corners ---- &
+# Turn off displays after 5 minutes
+xset dpms 300 300 300 &
+# Set wallpaper
+feh --bg-scale $HOME/Pictures/wallpaper.jpg &
+# Set screen layout
+$HOME/.screenlayout/default.sh &
+# Start compositor
+compton -f &
+# Start Network Manager
+nm-applet &
+# Unclutter makes the mouse invisible after a brief period
+unclutter -notclass 'Google-chrome' 'Code' 'Firefox' 'VSCodium' &
+# Runs the key remapping scripts
+$HOME/.scripts/remaps &
+# Automounter
+udiskie --tray &
+
+$HOME/.config/polybar/launch.sh
+
+# Clear existing rules
+bspc rule -r "*"
+
+# Start workspaces on the main monitor.
+bspc monitor $mainmonitor -d 1 2 3 4 5 6 7 8 9 10
+bspc desktop -f 1
+
+bspc config border_width         3
+bspc config window_gap          15
+bspc config top_padding 24
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config focus_follows_pointer true
+
+bspc rule -a Code desktop='^5'
+bspc rule -a firefox desktop='^1'
+bspc rule -a Gimp desktop='^5' state=floating follow=on
+bspc rule -a Gnome-terminal desktop='^2'
+bspc rule -a Google-chrome desktop='^1'
+bspc rule -a Hexchat desktop='^4'
+bspc rule -a Mattermost desktop='^3'
+bspc rule -a st-terminal desktop='^2'
+bspc rule -a Thunar state=floating
+bspc rule -a Thunderbird desktop='^3'
+bspc rule -a VSCodium desktop='^5'
+bspc rule -a "VirtualBox Manager" desktop='^6'
+
+# Terminal scratchpad
+TERMINAL='st -c st-terminal'
+dropdownname="dropdown"
+bspc query -N -n .hidden >/dev/null || setsid $TERMINAL -n $dropdownname -e tmuxinit >/dev/null 2>&1 &
+bspc rule -a st-terminal:$dropdownname hidden=on
+bspc rule -a st-terminal:$dropdownname sticky=on
+bspc rule -a st-terminal:$dropdownname state=floating
+
+# Any popup type terminal windows
+bspc rule -a "*:popup_window" state=floating rectangle=825x500 center
+
+# Any popup type terminal windows large
+bspc rule -a "*:popup_window_large" state=floating rectangle=1500x750 center
