@@ -80,8 +80,8 @@ label-empty-padding = 2
 
 [module/mpd]
 type = internal/mpd
-format-online = %{A1:st -c st-terminal -e tmux new -A -s Music -n Music ncmpcpp:}<label-song>%{A} <icon-prev> <toggle> <icon-next>
-label-song = 𝄞 %artist% - %title%
+format-online = %{A1:st -c st-terminal -e ncmpcpp:}<label-song>%{A} <icon-prev> <toggle> <icon-next>
+label-song = 𝄞 %title%
 label-offline = 🎜 mpd is offline
 
 icon-play = ⏵
