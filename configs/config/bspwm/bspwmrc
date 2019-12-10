@@ -1,6 +1,6 @@
 #! /bin/bash
 
-sxhkd &
+SXHKD_SHELL=bash sxhkd &
 
 # Startup applications
 # Enable NumLock
@@ -8,11 +8,11 @@ numlockx &
 # Start dunst for notifications:
 dunst &
 # Music player daemon:
-mpd &
+pgrep -x mpd || mpd &
 # Run the script to update the mpd i3block on change.
 pgrep -x i3mpdupdate || i3mpdupdate &
 # Autolock desktop after 5 minutes
-xautolock -time 5 -locker $i3lock -corners ---- &
+xautolock -time 5 -locker lock_screen -corners ---- &
 # Turn off displays after 5 minutes
 xset dpms 300 300 300 &
 # Set wallpaper
@@ -28,46 +28,65 @@ unclutter -notclass 'Google-chrome' 'Code' 'Firefox' 'VSCodium' &
 # Runs the key remapping scripts
 $HOME/.scripts/remaps &
 # Automounter
-udiskie --tray &
+pgrep -x udiskie || udiskie --tray &
 
 $HOME/.config/polybar/launch.sh
 
 # Clear existing rules
 bspc rule -r "*"
 
-# Start workspaces on the main monitor.
-bspc monitor $mainmonitor -d 1 2 3 4 5 6 7 8 9 10
-bspc desktop -f 1
+monitors=( $(bspc query --monitors --names) )
+
+if [ ${#monitors[*]} -eq 1 ]; then
+    bspc monitor -d $BSPWM_WINDOW_1 \
+        $BSPWM_WINDOW_2 \
+        $BSPWM_WINDOW_3 \
+        $BSPWM_WINDOW_4 \
+        $BSPWM_WINDOW_5 \
+        $BSPWM_WINDOW_6 \
+        $BSPWM_WINDOW_7 \
+        $BSPWM_WINDOW_8 \
+        $BSPWM_WINDOW_9 \
+        $BSPWM_WINDOW_10
+elif [ ${#monitors[*]} -eq 2 ]; then
+    bspc monitor ${monitors[0]} -d $BSPWM_WINDOW_1 $BSPWM_WINDOW_2 \
+        $BSPWM_WINDOW_5 $BSPWM_WINDOW_6 $BSPWM_WINDOW_7
+    bspc monitor ${monitors[1]} -d $BSPWM_WINDOW_3 $BSPWM_WINDOW_4 \
+        $BSPWM_WINDOW_8 $BSPWM_WINDOW_9 $BSPWM_WINDOW_10
+else
+    bspc monitor ${monitors[0]} -d $BSPWM_WINDOW_1 $BSPWM_WINDOW_5 $BSPWM_WINDOW_6
+    bspc monitor ${monitors[1]} -d $BSPWM_WINDOW_2 $BSPWM_WINDOW_4 $BSPWM_WINDOW_7 $BSPWM_WINDOW_8
+    bspc monitor ${monitors[2]} -d $BSPWM_WINDOW_3 $BSPWM_WINDOW_9 $BSPWM_WINDOW_10
+fi
+
+bspc desktop -f $BSPWM_WINDOW_1
 
 bspc config border_width         3
-bspc config window_gap          15
-bspc config top_padding 24
+bspc config window_gap          10
+bspc config top_padding         24
 
-bspc config split_ratio          0.52
-bspc config borderless_monocle   true
-bspc config gapless_monocle      true
+bspc config split_ratio           0.52
+bspc config borderless_monocle    true
+bspc config gapless_monocle       true
 bspc config focus_follows_pointer true
+bspc config pointer_follows_focus true
 
-bspc rule -a Code desktop='^5'
-bspc rule -a firefox desktop='^1'
-bspc rule -a Gimp desktop='^5' state=floating follow=on
-bspc rule -a Gnome-terminal desktop='^2'
-bspc rule -a Google-chrome desktop='^1'
-bspc rule -a Hexchat desktop='^4'
-bspc rule -a Mattermost desktop='^3'
-bspc rule -a st-terminal desktop='^2'
+bspc rule -a Code desktop=$BSPWM_WINDOW_4
+bspc rule -a firefox desktop=$BSPWM_WINDOW_1
+bspc rule -a Gimp desktop=$BSPWM_WINDOW_5 state=floating follow=on
+bspc rule -a Gnome-terminal desktop=$BSPWM_WINDOW_2
+bspc rule -a Google-chrome desktop=$BSPWM_WINDOW_1
+bspc rule -a Hexchat desktop=$BSPWM_WINDOW_4
+bspc rule -a Mattermost desktop=$BSPWM_WINDOW_3
+bspc rule -a st-terminal desktop=$BSPWM_WINDOW_2
 bspc rule -a Thunar state=floating
-bspc rule -a Thunderbird desktop='^3'
-bspc rule -a VSCodium desktop='^5'
-bspc rule -a "VirtualBox Manager" desktop='^6'
+bspc rule -a Thunderbird desktop=$BSPWM_WINDOW_3
+bspc rule -a VSCodium desktop=$BSPWM_WINDOW_4
+bspc rule -a "VirtualBox Manager" desktop=$BSPWM_WINDOW_6
 
 # Terminal scratchpad
-TERMINAL='st -c st-terminal'
-dropdownname="dropdown"
-bspc query -N -n .hidden >/dev/null || setsid $TERMINAL -n $dropdownname -e tmuxinit >/dev/null 2>&1 &
-bspc rule -a st-terminal:$dropdownname hidden=on
-bspc rule -a st-terminal:$dropdownname sticky=on
-bspc rule -a st-terminal:$dropdownname state=floating
+bspc rule -a scratchpad hidden=on sticky=on state=floating
+[ ! -f /tmp/scratchid ] && st -c scratchpad -e bspwm-scratchpad &
 
 # Any popup type terminal windows
 bspc rule -a "*:popup_window" state=floating rectangle=825x500 center

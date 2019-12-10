@@ -1,0 +1,12 @@
+#!/bin/bash
+case $1 in
+    toggle) toggle_xautolock ;;
+esac
+
+LOCKPID=$(pidof xautolock)
+
+if [ -n "$LOCKPID" ]; then
+    echo "🔒 AL EN"
+else
+    echo "🔓 AL DIS"
+fi

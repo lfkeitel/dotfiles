@@ -1,0 +1,8 @@
+#!/bin/bash
+PACUPGRADE=$HOME/.local/.pacupgrade
+
+case $1 in
+    open) $TERMINAL -e zsh -c 'pacman_update_popup' ;;
+esac
+
+cat $PACUPGRADE | sed -e "/^$/d"
