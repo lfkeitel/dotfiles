@@ -113,8 +113,8 @@ super + KP_{1-9,0}
 	bspc desktop -f "$BSPWM_WINDOW_{1-9,10}"
 
 # focus or swap nodes on same desktop
-super + {_, shift + }{Left,Right}
-	bspc node -{f,s} {prev,next}.local
+super + {_, shift + }{Left,Right,Up,Down}
+	bspc node -{f,s} {prev,next,north,south}.local
 
 # move node to monitor
 super + shift + alt + {Left,Right}
