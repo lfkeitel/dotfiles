@@ -22,6 +22,9 @@ class Main(Installer):
         if not command_exists("docker"):
             install_pkg("docker-bin")
 
+        if platform.is_arch and not command_exists("docker-compose"):
+            install_pkg("docker-compose")
+
     def setup_cred_store(self):
         # Get current config
         docker_config = Path.home().joinpath(".docker", "config.json")
