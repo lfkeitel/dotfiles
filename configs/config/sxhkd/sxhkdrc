@@ -3,11 +3,12 @@
 #
 
 # terminal emulator
-super + {_,alt +} + Return
-	$TERMINAL -c {st-terminal,st} -e tmux -2 -u
+super + alt + {_,shift +} + Return
+	$TERMINAL -c st {-e tmux -2 -u,_}
 
-super + shift + {_,alt +} + Return
-	$TERMINAL -c {st-terminal,st}
+super + {_,shift +} + Return
+	bspc desktop -f "$BSPWM_WINDOW_2";\
+	$TERMINAL -c st-terminal {-e tmux -2 -u,_}
 
 # make sxhkd reload its configuration files:
 super + Escape
