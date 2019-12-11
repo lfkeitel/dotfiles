@@ -35,13 +35,19 @@ $HOME/.config/polybar/launch.sh
 # Clear existing rules
 bspc rule -r "*"
 
+# aliases for common desktops
+BSPWM_WINDOW_WEB=$BSPWM_WINDOW_1
+BSPWM_WINDOW_TERMINAL=$BSPWM_WINDOW_2
+BSPWM_WINDOW_EMAIL=$BSPWM_WINDOW_3
+BSPWM_WINDOW_EDITOR=$BSPWM_WINDOW_4
+
 monitors=( $(bspc query --monitors --names) )
 
 if [ ${#monitors[*]} -eq 1 ]; then
-    bspc monitor -d $BSPWM_WINDOW_1 \
-        $BSPWM_WINDOW_2 \
-        $BSPWM_WINDOW_3 \
-        $BSPWM_WINDOW_4 \
+    bspc monitor -d $BSPWM_WINDOW_WEB \
+        $BSPWM_WINDOW_TERMINAL \
+        $BSPWM_WINDOW_EMAIL \
+        $BSPWM_WINDOW_EDITOR \
         $BSPWM_WINDOW_5 \
         $BSPWM_WINDOW_6 \
         $BSPWM_WINDOW_7 \
@@ -49,17 +55,17 @@ if [ ${#monitors[*]} -eq 1 ]; then
         $BSPWM_WINDOW_9 \
         $BSPWM_WINDOW_10
 elif [ ${#monitors[*]} -eq 2 ]; then
-    bspc monitor ${monitors[0]} -d $BSPWM_WINDOW_1 $BSPWM_WINDOW_2 \
+    bspc monitor ${monitors[0]} -d $BSPWM_WINDOW_WEB $BSPWM_WINDOW_TERMINAL \
         $BSPWM_WINDOW_5 $BSPWM_WINDOW_6 $BSPWM_WINDOW_7
-    bspc monitor ${monitors[1]} -d $BSPWM_WINDOW_3 $BSPWM_WINDOW_4 \
+    bspc monitor ${monitors[1]} -d $BSPWM_WINDOW_EMAIL $BSPWM_WINDOW_EDITOR \
         $BSPWM_WINDOW_8 $BSPWM_WINDOW_9 $BSPWM_WINDOW_10
 else
-    bspc monitor ${monitors[0]} -d $BSPWM_WINDOW_1 $BSPWM_WINDOW_5 $BSPWM_WINDOW_6
-    bspc monitor ${monitors[1]} -d $BSPWM_WINDOW_2 $BSPWM_WINDOW_4 $BSPWM_WINDOW_7 $BSPWM_WINDOW_8
-    bspc monitor ${monitors[2]} -d $BSPWM_WINDOW_3 $BSPWM_WINDOW_9 $BSPWM_WINDOW_10
+    bspc monitor ${monitors[0]} -d $BSPWM_WINDOW_WEB $BSPWM_WINDOW_5 $BSPWM_WINDOW_6
+    bspc monitor ${monitors[1]} -d $BSPWM_WINDOW_TERMINAL $BSPWM_WINDOW_EDITOR $BSPWM_WINDOW_7 $BSPWM_WINDOW_8
+    bspc monitor ${monitors[2]} -d $BSPWM_WINDOW_EMAIL $BSPWM_WINDOW_9 $BSPWM_WINDOW_10
 fi
 
-bspc desktop -f $BSPWM_WINDOW_1
+bspc desktop -f $BSPWM_WINDOW_WEB
 
 bspc config border_width         3
 bspc config window_gap          10
@@ -71,17 +77,23 @@ bspc config gapless_monocle       true
 bspc config focus_follows_pointer true
 bspc config pointer_follows_focus true
 
-bspc rule -a Code desktop=$BSPWM_WINDOW_4
-bspc rule -a firefox desktop=$BSPWM_WINDOW_1
+# desktop specific settings
+bspc desktop $BSPWM_WINDOW_WEB --layout monocle
+bspc config -d $BSPWM_WINDOW_WEB border_width 0
+bspc config -d $BSPWM_WINDOW_WEB window_gap 0
+bspc config -d $BSPWM_WINDOW_WEB top_padding 0
+
+bspc rule -a Code desktop=$BSPWM_WINDOW_EDITOR
+bspc rule -a firefox desktop=$BSPWM_WINDOW_WEB
 bspc rule -a Gimp desktop=$BSPWM_WINDOW_5 state=floating follow=on
-bspc rule -a Gnome-terminal desktop=$BSPWM_WINDOW_2
-bspc rule -a Google-chrome desktop=$BSPWM_WINDOW_1
-bspc rule -a Hexchat desktop=$BSPWM_WINDOW_4
-bspc rule -a Mattermost desktop=$BSPWM_WINDOW_3
-bspc rule -a st-terminal desktop=$BSPWM_WINDOW_2
+bspc rule -a Gnome-terminal desktop=$BSPWM_WINDOW_TERMINAL
+bspc rule -a Google-chrome desktop=$BSPWM_WINDOW_WEB
+bspc rule -a Hexchat desktop=$BSPWM_WINDOW_EDITOR
+bspc rule -a Mattermost desktop=$BSPWM_WINDOW_EMAIL
+bspc rule -a st-terminal desktop=$BSPWM_WINDOW_TERMINAL
 bspc rule -a Thunar state=floating
-bspc rule -a Thunderbird desktop=$BSPWM_WINDOW_3
-bspc rule -a VSCodium desktop=$BSPWM_WINDOW_4
+bspc rule -a Thunderbird desktop=$BSPWM_WINDOW_EMAIL
+bspc rule -a VSCodium desktop=$BSPWM_WINDOW_EDITOR
 bspc rule -a "VirtualBox Manager" desktop=$BSPWM_WINDOW_6
 
 # Terminal scratchpad
