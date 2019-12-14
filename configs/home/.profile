@@ -13,3 +13,9 @@ export BSPWM_WINDOW_7="7"
 export BSPWM_WINDOW_8="8"
 export BSPWM_WINDOW_9="9"
 export BSPWM_WINDOW_10="10"
+
+google_drive_dir="$HOME/google-drive"
+
+if [ -d $google_drive_dir ]; then
+    mount | grep "$google_drive_dir" >/dev/null || /usr/sbin/google-drive-ocamlfuse "$google_drive_dir" &
+fi
