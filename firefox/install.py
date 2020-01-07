@@ -28,4 +28,3 @@ class Main(Installer):
 
         profile_dir = MOZILLA_DIR.joinpath(default_profile.get("Path"))
         link_file(SCRIPT_DIR.joinpath("user.js"), profile_dir.joinpath("user.js"))
-        link_file(SCRIPT_DIR.joinpath("chrome"), profile_dir.joinpath("chrome"))
