@@ -29,6 +29,8 @@ unclutter -notclass 'Google-chrome' 'Code' 'Firefox' 'VSCodium' &
 $HOME/.scripts/remaps &
 # Automounter
 pgrep -x udiskie || udiskie --tray &
+# Fix scroll issue in VSCode
+imwheel --kill --buttons "45"
 
 $HOME/.config/polybar/launch.sh
 
@@ -55,9 +57,9 @@ if [ ${#monitors[*]} -eq 1 ]; then
         $BSPWM_WINDOW_9 \
         $BSPWM_WINDOW_10
 elif [ ${#monitors[*]} -eq 2 ]; then
-    bspc monitor ${monitors[0]} -d $BSPWM_WINDOW_WEB $BSPWM_WINDOW_TERMINAL \
+    bspc monitor ${monitors[0]} -d $BSPWM_WINDOW_WEB $BSPWM_WINDOW_EDITOR \
         $BSPWM_WINDOW_5 $BSPWM_WINDOW_6 $BSPWM_WINDOW_7
-    bspc monitor ${monitors[1]} -d $BSPWM_WINDOW_EMAIL $BSPWM_WINDOW_EDITOR \
+    bspc monitor ${monitors[1]} -d $BSPWM_WINDOW_EMAIL $BSPWM_WINDOW_TERMINAL \
         $BSPWM_WINDOW_8 $BSPWM_WINDOW_9 $BSPWM_WINDOW_10
 else
     bspc monitor ${monitors[0]} -d $BSPWM_WINDOW_WEB $BSPWM_WINDOW_5 $BSPWM_WINDOW_6
