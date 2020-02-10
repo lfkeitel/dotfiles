@@ -181,6 +181,7 @@
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "extensions.showRecommendationsOnlyOnDemand": true,
     "python.jediEnabled": false,
+    "python.formatting.provider": "black",
     "editor.suggest.snippetsPreventQuickSuggestions": false,
     "peacock.favoriteColors": [
         {
