@@ -241,7 +241,8 @@
     "peacock.vslsJoinColor": "#b52e31",
     "prettier.disableLanguages": [
         "vue",
-        "graphql"
+        "graphql",
+        "html"
     ],
     "git.autofetch": true
 }
