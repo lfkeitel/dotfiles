@@ -276,3 +276,31 @@ if [ -n "(mv --help | grep 'progress bar')" ]
         command mv -g $argv
     end
 end
+
+function countdown
+    set start (date +%s)
+    set date1 (expr $start + $argv[1])
+    while [ "$date1" -ge (date +%s) ]
+        set timeleft (date -u --date @(expr $date1 - (date +%s)) +%H:%M:%S)
+        echo -ne "$timeleft\r"
+        sleep 0.1
+    end
+    echo
+
+    set message 'Your countdown timer is complete.'
+    if [ (count $argv) -ge 2 ]
+        set message $argv[2..(count $argv)]
+    end
+
+    notify-send 'Timer is done!' "$message"
+end
+
+function stopwatch
+    set start (date +%s)
+    while true
+        set newtime (date -u --date @(expr (date +%s) - $start) +%H:%M:%S)
+        echo -ne "$newtime\r"
+        sleep 0.1
+    end
+    echo
+end
