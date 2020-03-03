@@ -220,6 +220,7 @@ function pdfmerge
         -dNOPAUSE \
         -dQUIET \
         -dBATCH \
+        -dAutoRotatePages=/None \
         -dDetectDuplicateImages \
         -dCompressFonts=true \
         -r150 \
