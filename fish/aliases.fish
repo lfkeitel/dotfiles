@@ -1,8 +1,6 @@
 # Application aliases
 alias gpg 'gpg2'
-alias nvim 'env TERM=screen nvim'
-alias vim 'env TERM=screen nvim'
-alias vi 'env TERM=screen nvim'
+alias vim 'nvim'
 
 alias visshc 'vim ~/.ssh/config'
 alias todo 'vim ~/todo'

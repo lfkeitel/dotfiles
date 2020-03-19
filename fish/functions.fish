@@ -150,21 +150,10 @@ function activate -a VENV_NAME
         return
     end
 
+    set -x VIRTUAL_ENV_DISABLE_PROMPT 't'
     source $VIRENV_ROOT/$VENV_NAME/bin/activate.fish
 end
 alias act 'activate'
-
-function _ssh_alias
-    command ssh $argv
-    tmux_color
-end
-alias ssh '_ssh_alias'
-
-function _scp_alias
-    command scp $argv
-    tmux_color
-end
-alias scp '_scp_alias'
 
 function autoenv_dis
     set AUTOENV_DISABLED 1
@@ -173,13 +162,6 @@ end
 function autoenv_en
     set AUTOENV_DISABLED 0
 end
-
-function _docker_wrapper
-    # Ensure tmux coloring is reset when using docker over SSH
-    command docker $argv
-    tmux_color
-end
-alias docker '_docker_wrapper'
 
 function _please
     set last_cmd $history[1]

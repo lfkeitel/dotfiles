@@ -26,6 +26,7 @@ function fish_prompt
     set -l cwd $blue(pwd | sed "s:^$HOME:~:")
     set -l username $green$USER
     set -l prompt_date (date +"%Y-%m-%d %H:%M:%S")
+    set -l hostname1 $cyan(hostname)
 
     # Output the prompt, left to right
 
@@ -34,7 +35,7 @@ function fish_prompt
         echo -n -s (set_color -b cyan black) '[' (basename "$VIRTUAL_ENV") ']' $normal ' '
     end
 
-    echo -n -s $username $normal ' '
+    echo -n -s $username $normal ' ' $hostname1 $normal ' '
     # Print pwd or full path
     echo -n -s $cwd $normal
 
