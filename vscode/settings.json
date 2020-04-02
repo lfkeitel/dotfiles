@@ -244,5 +244,8 @@
         "graphql",
         "html"
     ],
-    "git.autofetch": true
+    "git.autofetch": true,
+    "[html]": {
+        "editor.formatOnSave": false
+    }
 }

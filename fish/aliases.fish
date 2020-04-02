@@ -57,3 +57,4 @@ alias hbal 'hledger bal --cleared --real'
 alias ledger 'ledger --strict'
 
 alias rm-orphans 'sudo /usr/bin/pacman -Rns (/usr/bin/pacman -Qtdq)'
+alias ips 'ip -br -color addr'
