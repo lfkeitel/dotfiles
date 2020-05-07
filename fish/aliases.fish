@@ -26,7 +26,7 @@ alias sudp 'sudo'
 alias sfrc 'source $HOME/.config/fish/config.fish'
 
 alias socksproxy 'ssh -C -N -D'
-alias socksproxyf 'ssh -f -C -N -D'
+alias socksproxyb 'ssh -f -C -N -D'
 
 alias psg 'ps aux | grep'
 alias noproxy 'ssh -o ProxyCommand=none'

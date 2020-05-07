@@ -23,6 +23,8 @@
         "editor.tabSize": 2,
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "remote.SSH.showLoginTerminal": true,
+    "remote.SSH.useLocalServer": false,
     "C_Cpp.default.cStandard": "c11",
     "auto-close-tag.SublimeText3Mode": true,
     "auto-close-tag.activationOnLanguage": [
