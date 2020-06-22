@@ -287,3 +287,61 @@ function stopwatch
     end
     echo
 end
+
+function git_commit_file_message -a use_previous
+    set commit_template "$HOME/.gitmessage"
+
+    # Define message file if not already
+    if [ -z "$GIT_MESSAGE_FILE" ]
+        set GIT_MESSAGE_FILE "$HOME/.gitcommitmessage"
+    end
+
+    # If not using previous message, overwrite with template or nothing
+    if [ -z "$use_previous" ]
+        if [ -f "$commit_template" ]
+            cat "$commit_template" > "$GIT_MESSAGE_FILE"
+        else
+            cat /dev/null > "$GIT_MESSAGE_FILE"
+        end
+    end
+
+    # Write message removing all comment lines
+    vim $GIT_MESSAGE_FILE
+    sed -i '/^#/d' $GIT_MESSAGE_FILE
+
+    # If commit file is not empty, make a commit
+    if [ -s "$GIT_MESSAGE_FILE" ]
+        git commit -v -F $GIT_MESSAGE_FILE
+    else
+        echo "Empty commit message, commit aborted."
+    end
+end
+
+function git_commit_all_file_message -a use_previous
+    set commit_template "$HOME/.gitmessage"
+
+    # Define message file if not already
+    if [ -z "$GIT_MESSAGE_FILE" ]
+        set GIT_MESSAGE_FILE "$HOME/.gitcommitmessage"
+    end
+
+    # If not using previous message, overwrite with template or nothing
+    if [ -z "$use_previous" ]
+        if [ -f "$commit_template" ]
+            cat "$commit_template" > "$GIT_MESSAGE_FILE"
+        else
+            cat /dev/null > "$GIT_MESSAGE_FILE"
+        end
+    end
+
+    # Write message removing all comment lines
+    vim $GIT_MESSAGE_FILE
+    sed -i '/^#/d' $GIT_MESSAGE_FILE
+
+    # If commit file is not empty, make a commit
+    if [ -s "$GIT_MESSAGE_FILE" ]
+        git commit -a -v -F $GIT_MESSAGE_FILE
+    else
+        echo "Empty commit message, commit aborted."
+    end
+end
