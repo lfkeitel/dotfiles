@@ -249,5 +249,6 @@
     "git.autofetch": true,
     "[html]": {
         "editor.formatOnSave": false
-    }
+    },
+    "sortLines.sortEntireFile": true
 }
