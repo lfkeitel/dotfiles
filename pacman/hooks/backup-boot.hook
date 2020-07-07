@@ -9,4 +9,4 @@ Target = systemd
 [Action]
 Description = Backing up /boot...
 When = PreTransaction
-Exec = /usr/bin/rsync -avzq --delete /boot /.bootbackup
+Exec = /usr/bin/rsync -avq -zz --delete /boot /.bootbackup

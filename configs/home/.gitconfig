@@ -28,7 +28,7 @@
   match = bold red
   linenumber = bold blue
 [commit]
-  gpgsign = true
+  gpgsign = false
   template = ~/.gitmessage
 [core]
   excludesfile = ~/.gitignore
