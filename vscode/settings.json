@@ -250,5 +250,6 @@
     "[html]": {
         "editor.formatOnSave": false
     },
-    "sortLines.sortEntireFile": true
+    "sortLines.sortEntireFile": true,
+    "python.languageServer": "Microsoft"
 }
