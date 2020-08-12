@@ -51,5 +51,5 @@ class Main(Installer):
 
     def download_vim_plugged(self):
         local = Path.home().joinpath(".local", "share", "nvim", "site", "autoload")
-        os.makedirs(local)
+        os.makedirs(local, exist_ok=True)
         download_file(_VIM_PLUGGED_SRC, str(local.joinpath("plug.vim")))
