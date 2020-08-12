@@ -62,9 +62,9 @@ def install_pkg(*pkgs, update_lists=False):
 
     pkgs = " ".join(map(str, pkgs))
     if platform.is_ubuntu:
-        run_command("sudo apt install -y" + pkgs)
+        run_command("sudo apt install -y " + pkgs)
     elif platform.is_fedora:
-        run_command("sudo dnf install -y" + pkgs)
+        run_command("sudo dnf install -y " + pkgs)
     elif platform.is_arch:
         run_command("yay -S --noconfirm --needed " + pkgs)
     elif platform.is_mac:
