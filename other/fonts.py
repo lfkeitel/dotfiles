@@ -14,7 +14,7 @@ if platform.is_mac:
 
 def install_font(url, dest):
     if not file_exists(dest):
-        run_command(f"wget -q --show-progress -O {dest} {url}")
+        run_command(f"wget -q --show-progress -O '{dest}' '{url}'")
         return platform.is_linux
     return False
 
