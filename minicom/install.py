@@ -18,4 +18,4 @@ class Main(Installer):
         install_pkg("minicom")
 
         if platform.is_linux:
-            run_command("sudo usermod -a -G dialout lfkeitel $(whoami)", shell=True)
+            run_command("sudo usermod -a -G dialout $(whoami)", shell=True)
