@@ -3,19 +3,11 @@ from pathlib import Path
 import os
 
 from utils.installer import Installer
-from utils.chalk import print_header, print_line, Color
-from utils.system import command_exists, install_pkg, run_command, run_command_no_out
-from utils.utils import link_file, settings, dir_exists, file_exists, remove
+from utils.chalk import print_header, print_line
+from utils.system import install_pkg, run_command, run_command_no_out
+from utils.utils import link_file, settings, file_exists, remove
 import utils.platform as platform
-from utils.shell import (
-    add_to_path,
-    add_fish_func,
-    Hook,
-    FISH_CFG_DIR,
-    FISH_HOOKS_DIR,
-    add_fish_hook,
-    add_zsh_hook,
-)
+from utils.shell import Hook, add_fish_hook, add_zsh_hook
 
 
 SCRIPT_DIR = Path(__file__).parent
