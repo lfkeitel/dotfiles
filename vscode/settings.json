@@ -1,32 +1,31 @@
 {
+    "[html]": {
+        "editor.formatOnSave": false
+    },
     "[javascript]": {
-        "editor.tabSize": 2,
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 2
     },
     "[javascriptreact]": {
+        "editor.tabSize": 2
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features",
+        "editor.formatOnSave": false
+    },
+    "[jsonc]": {
+        "editor.formatOnSave": false
+    },
+    "[markdown]": {
+        "editor.quickSuggestions": false
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.tabSize": 2
     },
     "[yaml]": {
         "editor.tabSize": 2
     },
-    "[markdown]": {
-        "editor.quickSuggestions": false
-    },
-    "[json]": {
-        "editor.formatOnSave": false,
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    "[jsonc]": {
-        "editor.formatOnSave": false
-    },
-    "[typescript]": {
-        "editor.tabSize": 2,
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "remote.SSH.showLoginTerminal": true,
-    "remote.SSH.useLocalServer": false,
-    "C_Cpp.default.cStandard": "c11",
-    "auto-close-tag.SublimeText3Mode": true,
     "auto-close-tag.activationOnLanguage": [
         "xml",
         "php",
@@ -43,13 +42,16 @@
         "cfml"
     ],
     "auto-close-tag.fullMode": true,
+    "auto-close-tag.SublimeText3Mode": true,
     "auto-rename-tag.activationOnLanguage": [
         "html",
         "xml",
         "javascript",
         "javascriptreact"
     ],
+    "bracket-pair-colorizer-2.showBracketsInGutter": true,
     "breadcrumbs.enabled": true,
+    "C_Cpp.default.cStandard": "c11",
     "d.dcdClientPath": "/home/lfkeitel/.local/share/code-d/bin/DCD/bin/dcd-client",
     "d.dcdServerPath": "/home/lfkeitel/.local/share/code-d/bin/DCD/bin/dcd-server",
     "d.dubPath": "/home/lfkeitel/.local/share/code-d/bin/dub",
@@ -59,8 +61,8 @@
     "dart.reportAnalyzerErrors": false,
     "dfmt.braceStyle": "otbs",
     "docker.showExplorer": false,
-    "editor.cursorSmoothCaretAnimation": true,
     "editor.copyWithSyntaxHighlighting": false,
+    "editor.cursorSmoothCaretAnimation": true,
     "editor.fontFamily": "'Fira Code', Inconsolata, monospace",
     "editor.fontLigatures": true,
     "editor.fontSize": 17,
@@ -74,6 +76,8 @@
         120
     ],
     "editor.smoothScrolling": true,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
     "editor.tabSize": 4,
     "elm.analyseEnabled": true,
     "elm.includeUserFunctionDocumentation": true,
@@ -87,18 +91,19 @@
     "explorer.confirmDragAndDrop": false,
     "explorer.openEditors.visible": 0,
     "extensions.ignoreRecommendations": true,
+    "extensions.showRecommendationsOnlyOnDemand": true,
     "files.associations": {
-        "*.asm": "asm",
-        "*.el": "lisp",
-        "*.exp": "tcl",
-        "*.tmpl": "gohtml",
         ".zsh_aliases": "shellscript",
         ".zsh_functions": "shellscript",
-        "*.json": "json",
-        "Dockerfile_*": "dockerfile",
-        "dockerfile-*": "dockerfile",
+        "*.asm": "asm",
+        "*.dat": "ledger",
+        "*.el": "lisp",
+        "*.exp": "tcl",
         "*.html": "html",
-        "*.dat": "ledger"
+        "*.json": "json",
+        "*.tmpl": "gohtml",
+        "Dockerfile_*": "dockerfile",
+        "dockerfile-*": "dockerfile"
     },
     "files.enableTrash": false,
     "files.eol": "\n",
@@ -112,6 +117,7 @@
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
+    "git.autofetch": true,
     "gitlens.advanced.messages": {
         "suppressCommitHasNoPreviousCommitWarning": false,
         "suppressCommitNotFoundWarning": false,
@@ -129,62 +135,19 @@
     "gitlens.views.lineHistory.enabled": true,
     "go.autocompleteUnimportedPackages": true,
     "go.docsTool": "gogetdoc",
+    "go.useLanguageServer": true,
     "html.autoClosingTags": true,
     "html.format.endWithNewline": true,
     "insertDateString.format": "YYYY-MM-DDThh:mm:ssZZZ",
     "java.errors.incompleteClasspath.severity": "ignore",
+    "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
     "javascript.updateImportsOnFileMove.enabled": "never",
     "latex-workshop.chktex.enabled": true,
+    "latex-workshop.latex.autoClean.run": "onBuilt",
+    "latex-workshop.view.pdf.viewer": "tab",
     "ledger.binary": "/usr/bin/ledger",
     "npm.enableScriptExplorer": true,
     "npm.packageManager": "yarn",
-    "powershell.integratedConsole.showOnStartup": false,
-    "python.pythonPath": "python3",
-    "python.venvFolders": [
-        "envs",
-        ".pyenv",
-        ".direnv",
-        "code/venv"
-    ],
-    "restructuredtext.linter.extraArgs": [
-        "--ignore D001"
-    ],
-    "rust.all_features": true,
-    "rust.build_on_save": true,
-    "rust.clippy_preference": "on",
-    "rust.unstable_features": true, // Conditionally enable range formatting, not enabled by default
-    "rust.all_targets": false, // Don't pass `-all` to `cargo check`, it often takes too much time
-    "telemetry.enableCrashReporter": false,
-    "telemetry.enableTelemetry": false,
-    "terminal.integrated.fontSize": 16,
-    "terminal.integrated.rendererType": "dom",
-    "tslint.packageManager": "yarn",
-    "vsicons.dontShowNewVersionMessage": true,
-    "window.restoreWindows": "none",
-    "window.titleBarStyle": "custom",
-    "workbench.colorTheme": "Cobalt2",
-    "workbench.iconTheme": "vscode-icons",
-    "workbench.settings.enableNaturalLanguageSearch": false,
-    "workbench.settings.editor": "json",
-    "workbench.startupEditor": "newUntitledFile",
-    "workbench.statusBar.feedback.visible": false,
-    "workbench.tips.enabled": false,
-    "workbench.list.horizontalScrolling": true,
-    "workbench.tree.indent": 8,
-    "powershell.codeFormatting.newLineAfterCloseBrace": false,
-    "powershell.codeFormatting.preset": "OTBS",
-    "bracket-pair-colorizer-2.showBracketsInGutter": true,
-    "go.useLanguageServer": true,
-    "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
-    "vetur.experimental.templateInterpolationService": true,
-    "latex-workshop.latex.autoClean.run": "onBuilt",
-    "latex-workshop.view.pdf.viewer": "tab",
-    "editor.suggestSelection": "first",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "extensions.showRecommendationsOnlyOnDemand": true,
-    "python.jediEnabled": false,
-    "python.formatting.provider": "black",
-    "editor.suggest.snippetsPreventQuickSuggestions": false,
     "peacock.favoriteColors": [
         {
             "name": "Angular Red",
@@ -239,17 +202,57 @@
             "value": "#42b883"
         }
     ],
-    "peacock.vslsShareColor": "#1857a4",
     "peacock.vslsJoinColor": "#b52e31",
+    "peacock.vslsShareColor": "#1857a4",
+    "powershell.codeFormatting.newLineAfterCloseBrace": false,
+    "powershell.codeFormatting.preset": "OTBS",
+    "powershell.integratedConsole.showOnStartup": false,
     "prettier.disableLanguages": [
-        "vue",
         "graphql",
         "html"
     ],
-    "git.autofetch": true,
-    "[html]": {
-        "editor.formatOnSave": false
-    },
+    "prettier.packageManager": "yarn",
+    "python.formatting.provider": "black",
+    "python.jediEnabled": false,
+    "python.languageServer": "Microsoft",
+    "python.pythonPath": "python3",
+    "python.venvFolders": [
+        "envs",
+        ".pyenv",
+        ".direnv",
+        "code/venv"
+    ],
+    "remote.SSH.showLoginTerminal": true,
+    "remote.SSH.useLocalServer": false,
+    "restructuredtext.linter.extraArgs": [
+        "--ignore D001"
+    ],
+    "rust.all_features": true,
+    "rust.all_targets": false,
+    "rust.build_on_save": true,
+    "rust.clippy_preference": "on",
+    "rust.unstable_features": true,
     "sortLines.sortEntireFile": true,
-    "python.languageServer": "Microsoft"
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "terminal.integrated.fontSize": 16,
+    "terminal.integrated.rendererType": "dom",
+    "tslint.packageManager": "yarn",
+    "vetur.experimental.templateInterpolationService": true,
+    "vsicons.dontShowNewVersionMessage": true,
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "window.restoreWindows": "none",
+    "window.titleBarStyle": "custom",
+    "workbench.colorTheme": "Cobalt2",
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.list.horizontalScrolling": true,
+    "workbench.settings.editor": "json",
+    "workbench.settings.enableNaturalLanguageSearch": false,
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.statusBar.feedback.visible": false,
+    "workbench.tips.enabled": false,
+    "workbench.tree.indent": 8,
+    "[vue]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }
