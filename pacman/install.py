@@ -20,12 +20,6 @@ class Main(Installer):
         link_file(
             SCRIPT_DIR.joinpath("pacman.conf"), Path("/etc/pacman.conf"), sudo=True
         )
-        remove("/opt/reflector_sync.sh")
-        link_file(
-            SCRIPT_DIR.joinpath("reflector_sync.sh"),
-            Path("/usr/local/bin/reflector_sync"),
-            sudo=True,
-        )
 
         install_pkg("reflector", "arch-audit", "kernel-modules-hook")
 
@@ -39,3 +33,12 @@ class Main(Installer):
             hook_dir = "/etc/pacman.d/hooks/"
             for item in hooks:
                 link_file(item.path, Path(hook_dir + item.name), sudo=True)
+
+        link_file(
+            SCRIPT_DIR.joinpath("reflector.conf"),
+            Path("/etc/xdg/reflector/reflector.conf"),
+            sudo=True,
+        )
+
+        run_command("sudo systemctl enable reflector.timer")
+        run_command("sudo systemctl start reflector.timer")
