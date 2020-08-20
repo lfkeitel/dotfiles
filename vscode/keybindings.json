@@ -70,5 +70,13 @@
     {
         "key": "ctrl+q",
         "command": "workbench.action.closeWindow"
+    },
+    {
+        "key": "ctrl+shift+alt+up",
+        "command": "-incrementor.incrementByTenth"
+    },
+    {
+        "key": "ctrl+shift+alt+down",
+        "command": "-incrementor.decrementByTenth"
     }
 ]
