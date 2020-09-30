@@ -17,7 +17,7 @@ class Main(Installer):
 
         print_header("Setting up VNC")
 
-        install_pkg("tigervnc", "lxde")
+        install_pkg("tigervnc", "lxde-gtk3")
 
         if file_exists("/etc/pam.d/tigervnc.pacnew"):
             move("/etc/pam.d/tigervnc.pacnew", "/etc/pam.d/tigervnc")
