@@ -20,7 +20,8 @@
         "macos": { "path": "other/macos.py" },
         "docker": { },
         "hexchat": { },
-        "home": { "path": "configs/home" }
+        "home": { "path": "configs/home" },
+        "vnc": { }
     },
 
     "packages": {

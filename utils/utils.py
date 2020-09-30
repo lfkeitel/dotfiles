@@ -46,8 +46,23 @@ def link_file(src: Path, dest: Path, sudo=False, copy=False):
         run_command(cmd)
 
 
+def link_files(filesets):
+    for fileset in filesets:
+        sudo = False
+        if len(fileset) == 3:
+            sudo = fileset[2]
+        link_file(fileset[0], fileset[1], sudo=sudo)
+
+
 def remove(path: Path, sudo=False):
     cmd = f"rm -rf {shlex.quote(str(path))}"
+    if sudo:
+        cmd = "sudo " + cmd
+    run_command(cmd)
+
+
+def move(src: Path, dest: Path, sudo=False):
+    cmd = f"mv {shlex.quote(str(src))} {shlex.quote(str(dest))}"
     if sudo:
         cmd = "sudo " + cmd
     run_command(cmd)

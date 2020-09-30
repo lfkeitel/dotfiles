@@ -4,8 +4,7 @@ from pathlib import Path
 from utils.installer import Installer
 from utils.chalk import print_header
 from utils.system import install_pkg, run_command
-from utils.shell import link_file
-from utils.utils import remove
+from utils.utils import remove, link_file
 import utils.platform as platform
 
 SCRIPT_DIR = Path(__file__).parent
