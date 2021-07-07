@@ -345,3 +345,8 @@ function git_commit_all_file_message -a use_previous
         echo "Empty commit message, commit aborted."
     end
 end
+
+function qdig -a hostname
+    env
+    dig $hostname +noall +answer
+end
