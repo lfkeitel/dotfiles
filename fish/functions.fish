@@ -346,7 +346,6 @@ function git_commit_all_file_message -a use_previous
     end
 end
 
-function qdig -a hostname
-    env
-    dig $hostname +noall +answer
+function qdig -a host
+    dig $host +noall +answer
 end
