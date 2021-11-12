@@ -59,7 +59,8 @@
             "ncmpcpp",
             "rsync",
             "nnn",
-            "moreutils"
+            "moreutils",
+            "ffmpeg"
         ],
 
         "fedora": [
@@ -90,7 +91,8 @@
             "restic",
             "remmina",
             "freerdp",
-            "autojump"
+            "autojump",
+            "svox-pico-bin"
         ]
     },
 
