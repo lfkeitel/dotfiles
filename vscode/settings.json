@@ -61,6 +61,7 @@
     "dart.reportAnalyzerErrors": false,
     "dfmt.braceStyle": "otbs",
     "docker.showExplorer": false,
+    "editor.bracketPairColorization.enabled": true,
     "editor.copyWithSyntaxHighlighting": false,
     "editor.cursorSmoothCaretAnimation": true,
     "editor.fontFamily": "'Fira Code', Inconsolata, monospace",
@@ -214,7 +215,7 @@
     "prettier.packageManager": "yarn",
     "python.formatting.provider": "black",
     "python.jediEnabled": false,
-    "python.languageServer": "Microsoft",
+    "python.languageServer": "Default",
     "python.pythonPath": "python3",
     "python.venvFolders": [
         "envs",
@@ -244,6 +245,15 @@
     "window.restoreWindows": "none",
     "window.titleBarStyle": "custom",
     "workbench.colorTheme": "Cobalt2",
+    "workbench.colorCustomizations": {
+        "editorBracketHighlight.foreground1": "#FFD700",
+        "editorBracketHighlight.foreground2": "#DA70D6",
+        "editorBracketHighlight.foreground3": "#87CEFA",
+        "editorBracketHighlight.foreground4": "#90EE90",
+        "editorBracketHighlight.foreground5": "#4B0082",
+        "editorBracketHighlight.foreground6": "#556B2F",
+        "editorBracketHighlight.unexpectedBracket.foreground": "#ff0000"
+    },
     "workbench.iconTheme": "vscode-icons",
     "workbench.list.horizontalScrolling": true,
     "workbench.settings.editor": "json",
