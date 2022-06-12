@@ -3,11 +3,18 @@
         "editor.formatOnSave": false
     },
     "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "editor.tabSize": 2
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "vscode.typescript-language-features"
     },
     "[javascriptreact]": {
         "editor.tabSize": 2
+    },
+    "[markdown]": {
+        "editor.quickSuggestions": {
+            "comments": "off",
+            "strings": "off",
+            "other": "off"
+        }
     },
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features",
@@ -15,9 +22,6 @@
     },
     "[jsonc]": {
         "editor.formatOnSave": false
-    },
-    "[markdown]": {
-        "editor.quickSuggestions": false
     },
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode",

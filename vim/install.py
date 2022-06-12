@@ -14,8 +14,9 @@ _VIM_PLUGGED_SRC = "https://raw.githubusercontent.com/junegunn/vim-plug/master/p
 class Main(Installer):
     def run(self):
         print_header("Setting up Vim")
-        self.check_nvim_installed()
-        self.link_config()
+        if not "plugged" in self.args:
+            self.check_nvim_installed()
+            self.link_config()
         self.download_vim_plugged()
         run_command("nvim +PlugInstall +qall")
 
