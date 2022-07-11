@@ -4,6 +4,7 @@
 PAPER1='/tmp/wallpaper-1.png'
 PAPER2='/tmp/wallpaper-2.png'
 FALLBACK="$HOME/Pictures/wallpaper.png"
+OVERLAY_IMG="$HOME/Pictures/wallpaper_overlay.png"
 LOCK_SCREEN="$HOME/Pictures/lock_screen.png"
 
 CURRENT_PAPER=''
@@ -25,6 +26,10 @@ getFileSize() {
 
 if [[ $(getFileSize "$CURRENT_PAPER") -eq 0 ]]; then
     CURRENT_PAPER=$FALLBACK
+fi
+
+if [[ -f "$OVERLAY_IMG" ]]; then
+    composite -gravity NorthEast "$OVERLAY_IMG" "$CURRENT_PAPER" "$CURRENT_PAPER"
 fi
 
 dconf write /com/deepin/wrap/gnome/desktop/background/picture-uri "'$CURRENT_PAPER'"
