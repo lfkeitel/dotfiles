@@ -28,7 +28,7 @@
   match = bold red
   linenumber = bold blue
 [commit]
-  gpgsign = true
+  gpgsign = false
   template = ~/.gitmessage
 [core]
   excludesfile = ~/.gitignore
@@ -56,3 +56,5 @@
   smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
   required = true
+[init]
+  defaultBranch = master
