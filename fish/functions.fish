@@ -349,3 +349,18 @@ end
 function qdig -a host
     dig $host +noall +answer
 end
+
+function vidmerge
+    set input $argv[1]
+    set output $argv[2]
+
+    ffmpeg -i "$input.m4a" -i "$input.mp4" -c:v copy -c:a copy "$output.mp4"
+end
+
+function vidmergewebm
+    set input1 $argv[1]
+    set input2 $argv[2]
+    set output $argv[3]
+
+    ffmpeg -i "$input1" -i "$input2" -c:v libx264 -c:a aac "$output.mp4"
+end

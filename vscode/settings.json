@@ -17,7 +17,11 @@
         "editor.formatOnSave": false
     },
     "[markdown]": {
-        "editor.quickSuggestions": false
+        "editor.quickSuggestions": {
+            "comments": "off",
+            "strings": "off",
+            "other": "off"
+        }
     },
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -68,6 +72,7 @@
     "editor.fontLigatures": true,
     "editor.fontSize": 17,
     "editor.formatOnSave": true,
+    "editor.guides.bracketPairs":"active",
     "editor.insertSpaces": true,
     "editor.minimap.renderCharacters": false,
     "editor.renderControlCharacters": true,
@@ -264,5 +269,7 @@
     "workbench.tree.indent": 8,
     "[vue]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+    },
+    "go.toolsManagement.autoUpdate": true,
+    "python.defaultInterpreterPath": "/home/lfkeitel/code/venv/py3/bin/python3"
 }
