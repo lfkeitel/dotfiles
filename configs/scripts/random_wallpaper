@@ -7,6 +7,10 @@ FALLBACK="$HOME/Pictures/wallpaper.png"
 OVERLAY_IMG="$HOME/Pictures/wallpaper_overlay.png"
 LOCK_SCREEN="$HOME/Pictures/lock_screen.png"
 
+getFileSize() {
+    stat --printf="%s" "$1"
+}
+
 CURRENT_PAPER=''
 
 if [[ -f $PAPER1 ]]; then
@@ -15,14 +19,20 @@ else
     CURRENT_PAPER=$PAPER1
 fi
 
-curl -sSL "https://picsum.photos/3840/2160/?random" > "$CURRENT_PAPER"
-if [[ $? -ne 0 ]]; then
+TRIES=0
+while [ $TRIES -lt 5 ]; do
+    curl -sSL "https://picsum.photos/3840/2160/?random" > "$CURRENT_PAPER"
+    if [[ $? -eq 0 ]]; then
+        break
+    fi
+
+    TRIES=$((TRIES+1))
+    sleep 5
+done
+
+if [[ $TRIES -eq 5 ]]; then
     CURRENT_PAPER=$FALLBACK
 fi
-
-getFileSize() {
-    stat --printf="%s" "$1"
-}
 
 if [[ $(getFileSize "$CURRENT_PAPER") -eq 0 ]]; then
     CURRENT_PAPER=$FALLBACK

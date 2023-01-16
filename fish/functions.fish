@@ -364,3 +364,16 @@ function vidmergewebm
 
     ffmpeg -i "$input1" -i "$input2" -c:v libx264 -c:a aac "$output.mp4"
 end
+
+function quaycopy
+    set image $argv[1]
+    set category $argv[2]
+
+    if test -n "$category"
+        set category = "$category/"
+    end
+
+    docker pull "$image"
+    docker tag "$image" "quay.usi.edu/$category$image"
+    docker push "quay.usi.edu/$category$image"
+end

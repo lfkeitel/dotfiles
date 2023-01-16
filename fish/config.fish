@@ -2,6 +2,7 @@ fish_vi_key_bindings
 set -x LANG en_US.UTF-8
 set -x EDITOR 'nvim'
 set -x CODE_DIR "$HOME/code"
+set -x USERID (id -u)
 set -x SCRIPTS_DIR "$HOME/.scripts"
 set CUSTOM_HOOKS_PATH "$HOME/.config/fish/hooks"
 set CUSTOM_PATH_DIR "$CUSTOM_HOOKS_PATH/paths"
@@ -76,8 +77,8 @@ if [ -f /usr/share/autojump/autojump.fish ]
 	source /usr/share/autojump/autojump.fish;
 end
 
-if [ -d /run/user/1000/i3 ]
-    set -x I3SOCK (command ls /run/user/1000/i3/ipc-socket.*)
+if [ -d /run/user/$USERID/i3 ]
+    set -x I3SOCK (command ls /run/user/$USERID/i3/ipc-socket.*)
 end
 
 run_custom_hooks post
