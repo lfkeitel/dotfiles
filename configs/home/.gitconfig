@@ -58,3 +58,6 @@
   required = true
 [init]
   defaultBranch = master
+[safe]
+	directory = /usr/lib/vlang/thirdparty/tcc
+	directory = /usr/lib/vlang

@@ -13,6 +13,7 @@
         "minicom": { "autorun": true },
         "firefox": { "autorun": true },
         "fish": { "autorun": true },
+        "systemd": { "autorun": true },
 
         "vscodium": { "alias": "vscode" },
         "dconf": { "path": "configs/dconf"},

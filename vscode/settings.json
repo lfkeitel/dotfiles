@@ -32,7 +32,6 @@
     },
     "auto-close-tag.activationOnLanguage": [
         "xml",
-        "php",
         "blade",
         "ejs",
         "jinja",
@@ -67,7 +66,7 @@
     "docker.showExplorer": false,
     "editor.bracketPairColorization.enabled": true,
     "editor.copyWithSyntaxHighlighting": false,
-    "editor.cursorSmoothCaretAnimation": true,
+    "editor.cursorSmoothCaretAnimation": "on",
     "editor.fontFamily": "'Fira Code', Inconsolata, monospace",
     "editor.fontLigatures": true,
     "editor.fontSize": 17,
@@ -271,5 +270,13 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "go.toolsManagement.autoUpdate": true,
-    "python.defaultInterpreterPath": "/home/lfkeitel/code/venv/py3/bin/python3"
+    "python.defaultInterpreterPath": "/home/lfkeitel/code/venv/py3/bin/python3",
+    "remote.SSH.remotePlatform": {
+        "logstash-r16-15": "linux",
+        "stuff.keitel.dev": "linux",
+        "garden.keitel.dev": "linux"
+    },
+    "v.vls.enable": true,
+    "v.vls.connectionMode": "tcp",
+    "powershell.promptToUpdatePowerShell": false
 }

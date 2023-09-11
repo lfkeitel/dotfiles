@@ -1,0 +1,7 @@
+[Unit]
+Description=Update file locate index
+
+[Service]
+Type=oneshot
+ExecStart=updatedb
+StandardOutput=journal

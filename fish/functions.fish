@@ -370,10 +370,15 @@ function quaycopy
     set category $argv[2]
 
     if test -n "$category"
-        set category = "$category/"
+        set category "$category/"
     end
 
     docker pull "$image"
     docker tag "$image" "quay.usi.edu/$category$image"
     docker push "quay.usi.edu/$category$image"
+end
+
+function dkh
+    set line $argv[1]
+    sed -i {$line}d ~/.ssh/known_hosts
 end
