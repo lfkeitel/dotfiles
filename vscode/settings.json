@@ -70,7 +70,6 @@
     "editor.fontFamily": "'Fira Code', Inconsolata, monospace",
     "editor.fontLigatures": true,
     "editor.fontSize": 17,
-    "editor.formatOnSave": true,
     "editor.guides.bracketPairs":"active",
     "editor.insertSpaces": true,
     "editor.minimap.renderCharacters": false,
@@ -274,9 +273,11 @@
     "remote.SSH.remotePlatform": {
         "logstash-r16-15": "linux",
         "stuff.keitel.dev": "linux",
-        "garden.keitel.dev": "linux"
+        "garden.keitel.dev": "linux",
+        "stargate": "linux"
     },
     "v.vls.enable": true,
     "v.vls.connectionMode": "tcp",
-    "powershell.promptToUpdatePowerShell": false
+    "powershell.promptToUpdatePowerShell": false,
+    "editor.formatOnSave": true
 }

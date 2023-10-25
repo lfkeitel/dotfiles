@@ -1,0 +1,6 @@
+#!/bin/bash
+
+gdrive=$HOME/google-drive
+
+umount $gdrive
+google-drive-ocamlfuse $gdrive

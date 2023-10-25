@@ -21,7 +21,7 @@ function maclookup -a address
     # I don't call curl by itself because a normal response will not return a newline
     # but a failed response will. This removes any trailing whitespace and ensures
     # there's always a new line.
-    echo (curl -s "https://api.macvendors.com/$address")
+    echo (curl -s -G "https://api.macvendors.com/$address" -H "Accept: text/plain" -H "Authorization: Bearer $MAC_VENDORS_TOKEN")
 end
 
 function sudossh -a host
