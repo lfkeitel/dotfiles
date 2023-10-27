@@ -29,7 +29,7 @@ class Main(Installer):
 
         # Use macOS binary location for consistancy
         if not file_exists("/usr/local/bin/gpg2"):
-            link_file("/usr/bin/gpg2", "/usr/local/bin/gpg2", sudo=True)
+            link_file("/usr/bin/gpg2", Path("/usr/local/bin/gpg2"), sudo=True)
 
         self.install_pkgs()
 
