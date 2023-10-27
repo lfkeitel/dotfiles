@@ -52,18 +52,8 @@
         "javascript",
         "javascriptreact"
     ],
-    "bracket-pair-colorizer-2.showBracketsInGutter": true,
     "breadcrumbs.enabled": true,
-    "C_Cpp.default.cStandard": "c11",
-    "d.dcdClientPath": "/home/lfkeitel/.local/share/code-d/bin/DCD/bin/dcd-client",
-    "d.dcdServerPath": "/home/lfkeitel/.local/share/code-d/bin/DCD/bin/dcd-server",
-    "d.dubPath": "/home/lfkeitel/.local/share/code-d/bin/dub",
-    "d.servedPath": "/home/lfkeitel/.local/share/code-d/bin/serve-d",
-    "dart.allowAnalytics": false,
-    "dart.lineLength": 120,
-    "dart.reportAnalyzerErrors": false,
     "dfmt.braceStyle": "otbs",
-    "docker.showExplorer": false,
     "editor.bracketPairColorization.enabled": true,
     "editor.copyWithSyntaxHighlighting": false,
     "editor.cursorSmoothCaretAnimation": "on",
@@ -83,19 +73,10 @@
     "editor.suggest.snippetsPreventQuickSuggestions": false,
     "editor.suggestSelection": "first",
     "editor.tabSize": 4,
-    "elm.analyseEnabled": true,
-    "elm.includeUserFunctionDocumentation": true,
-    "eslint.packageManager": "yarn",
-    "eslint.validate": [
-        "javascript",
-        "javascriptreact",
-        "typescript"
-    ],
     "explorer.confirmDelete": true,
     "explorer.confirmDragAndDrop": false,
     "explorer.openEditors.visible": 0,
     "extensions.ignoreRecommendations": true,
-    "extensions.showRecommendationsOnlyOnDemand": true,
     "files.associations": {
         ".zsh_aliases": "shellscript",
         ".zsh_functions": "shellscript",
@@ -122,104 +103,18 @@
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
     "git.autofetch": true,
-    "gitlens.advanced.messages": {
-        "suppressCommitHasNoPreviousCommitWarning": false,
-        "suppressCommitNotFoundWarning": false,
-        "suppressFileNotUnderSourceControlWarning": true,
-        "suppressGitVersionWarning": false,
-        "suppressLineUncommittedWarning": false,
-        "suppressNoRepositoryWarning": false,
-        "suppressResultsExplorerNotice": false,
-        "suppressShowKeyBindingsNotice": true,
-        "suppressUpdateNotice": true,
-        "suppressWelcomeNotice": true
-    },
-    "gitlens.keymap": "none",
-    "gitlens.views.fileHistory.enabled": true,
-    "gitlens.views.lineHistory.enabled": true,
-    "go.autocompleteUnimportedPackages": true,
-    "go.docsTool": "gogetdoc",
     "go.useLanguageServer": true,
     "html.autoClosingTags": true,
-    "html.format.endWithNewline": true,
     "insertDateString.format": "YYYY-MM-DDThh:mm:ssZZZ",
     "java.errors.incompleteClasspath.severity": "ignore",
     "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
     "javascript.updateImportsOnFileMove.enabled": "never",
-    "latex-workshop.chktex.enabled": true,
-    "latex-workshop.latex.autoClean.run": "onBuilt",
-    "latex-workshop.view.pdf.viewer": "tab",
     "ledger.binary": "/usr/bin/ledger",
-    "npm.enableScriptExplorer": true,
     "npm.packageManager": "yarn",
-    "peacock.favoriteColors": [
-        {
-            "name": "Angular Red",
-            "value": "#b52e31"
-        },
-        {
-            "name": "Auth0 Orange",
-            "value": "#eb5424"
-        },
-        {
-            "name": "Azure Blue",
-            "value": "#007fff"
-        },
-        {
-            "name": "C# Purple",
-            "value": "#68217A"
-        },
-        {
-            "name": "Gatsby Purple",
-            "value": "#639"
-        },
-        {
-            "name": "Go Cyan",
-            "value": "#5dc9e2"
-        },
-        {
-            "name": "Java Blue-Gray",
-            "value": "#557c9b"
-        },
-        {
-            "name": "JavaScript Yellow",
-            "value": "#f9e64f"
-        },
-        {
-            "name": "Mandalorian Blue",
-            "value": "#1857a4"
-        },
-        {
-            "name": "Node Green",
-            "value": "#215732"
-        },
-        {
-            "name": "React Blue",
-            "value": "#00b3e6"
-        },
-        {
-            "name": "Something Different",
-            "value": "#832561"
-        },
-        {
-            "name": "Vue Green",
-            "value": "#42b883"
-        }
-    ],
-    "peacock.vslsJoinColor": "#b52e31",
-    "peacock.vslsShareColor": "#1857a4",
     "powershell.codeFormatting.newLineAfterCloseBrace": false,
     "powershell.codeFormatting.preset": "OTBS",
     "powershell.integratedConsole.showOnStartup": false,
-    "prettier.disableLanguages": [
-        "graphql",
-        "html"
-    ],
-    "prettier.packageManager": "yarn",
-    "python.formatting.provider": "black",
-    "python.jediEnabled": false,
     "python.languageServer": "Default",
-    "python.pythonPath": "python3",
     "python.venvFolders": [
         "envs",
         ".pyenv",
@@ -228,19 +123,13 @@
     ],
     "remote.SSH.showLoginTerminal": true,
     "remote.SSH.useLocalServer": false,
-    "restructuredtext.linter.extraArgs": [
-        "--ignore D001"
-    ],
     "rust.all_features": true,
     "rust.all_targets": false,
     "rust.build_on_save": true,
     "rust.clippy_preference": "on",
     "rust.unstable_features": true,
-    "sortLines.sortEntireFile": true,
-    "telemetry.enableCrashReporter": false,
-    "telemetry.enableTelemetry": false,
+    "telemetry.telemetryLevel": "off",
     "terminal.integrated.fontSize": 16,
-    "terminal.integrated.rendererType": "dom",
     "tslint.packageManager": "yarn",
     "vetur.experimental.templateInterpolationService": true,
     "vsicons.dontShowNewVersionMessage": true,
@@ -262,7 +151,6 @@
     "workbench.settings.editor": "json",
     "workbench.settings.enableNaturalLanguageSearch": false,
     "workbench.startupEditor": "newUntitledFile",
-    "workbench.statusBar.feedback.visible": false,
     "workbench.tips.enabled": false,
     "workbench.tree.indent": 8,
     "[vue]": {
@@ -276,8 +164,6 @@
         "garden.keitel.dev": "linux",
         "stargate": "linux"
     },
-    "v.vls.enable": true,
-    "v.vls.connectionMode": "tcp",
     "powershell.promptToUpdatePowerShell": false,
     "editor.formatOnSave": true
 }

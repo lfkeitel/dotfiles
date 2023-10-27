@@ -1,12 +1,13 @@
+# i3 config file (v4)
 # Variables
 set $mod Mod4
-set $ws1 "1: web"
-set $ws2 "2: terminal"
-set $ws3 "3: email"
-set $ws4 "4: chat"
-set $ws5 "5: editor"
-set $ws6 "6: virtualbox"
-set $ws7 "7"
+set $ws1 "1: main"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7: RDP"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
@@ -171,8 +172,8 @@ bindsym $mod+Shift+r restart
 bindsym $mod+s exec --no-startup-id lmc stop
 # bindsym $mod+Shift+s
 
-bindsym $mod+t exec thunderbird
-bindsym $mod+Shift+t [class="Thunderbird"] focus
+bindsym $mod+t exec remmina
+bindsym $mod+Shift+t [class="Remmina"] focus
 
 bindsym $mod+u gaps inner current plus 5
 bindsym $mod+Shift+u gaps inner current minus 5
@@ -234,10 +235,8 @@ bindsym XF86AudioPrev exec --no-startup-id lmc prev
 bindsym XF86AudioStop exec --no-startup-id lmc toggle
 
 # Workspace settings
-workspace $ws1 gaps inner 0
-workspace $ws1 gaps outer 0
-workspace $ws5 gaps inner 0
-workspace $ws5 gaps outer 0
+workspace $ws7 gaps inner 0
+workspace $ws7 gaps outer 0
 
 # Application specific settings
 for_window [class="Google-chrome"] move container to workspace $ws1
@@ -251,6 +250,7 @@ for_window [class="Code"] move container to workspace $ws5
 for_window [class="VSCodium"] move container to workspace $ws5
 for_window [class="VirtualBox Manager"] move container to workspace $ws6
 for_window [class="Thunar"] floating enable
+for_window [class="Remmina"] move container to workspace $ws7
 
 # GIMP
 for_window [title="GIMP Startup"] move workspace $ws5

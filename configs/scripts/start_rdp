@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+REMMINA_DIR="$HOME/.local/share/remmina"
+FILE="$(command ls -1 $REMMINA_DIR | dmenu -l 10)"
+
+if [ -z "$FILE" ]; then
+    exit 1
+fi
+i3-msg 'workspace "7: RDP"'
+
+remmina -c "$REMMINA_DIR/$FILE"

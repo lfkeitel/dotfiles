@@ -1,17 +1,11 @@
-["1: web"]
+["1: main"]
 threshold = 1
 commands = [
     "layout tabbed"
 ]
 
 
-["5: editor"]
-threshold = 1
-commands = [
-    "layout tabbed"
-]
-
-["6: virtualbox"]
+["7: RDP"]
 threshold = 1
 commands = [
     "layout tabbed"
