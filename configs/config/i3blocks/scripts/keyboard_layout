@@ -1,4 +1,7 @@
 #!/bin/bash
+case $BLOCK_BUTTON in
+    1) toggle_kdb_layout;;
+esac
 
 LG=$(setxkbmap -query | awk '/layout/{print $2}')
 echo "LG: $LG"

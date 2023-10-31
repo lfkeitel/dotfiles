@@ -5,7 +5,7 @@ set $ws1 "1: main"
 set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
-set $ws5 "5"
+set $ws5 "5: vscode"
 set $ws6 "6"
 set $ws7 "7: RDP"
 set $ws8 "8"
@@ -44,7 +44,7 @@ exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper.jpg
 # Set screen layout
 exec --no-startup-id ~/.screenlayout/default.sh
 # Start compositor
-exec --no-startup-id compton -f
+exec --no-startup-id compton -f -m 1.0
 # Start Network Manager
 exec --no-startup-id nm-applet
 # Unclutter makes the mouse invisible after a brief period
@@ -60,9 +60,10 @@ hide_edge_borders both
 for_window [class="^.*"] border pixel 2
 floating_modifier $mod
 
-set $default_gaps 15
+set $default_gaps 10
 gaps inner $default_gaps
 gaps outer $default_gaps
+workspace $ws2 gaps inner 0
 
 # Keybinds
 bindsym $mod+1 workspace $ws1
@@ -118,8 +119,8 @@ bindsym $mod+Shift+BackSpace exec prompt "Are you sure you want to reboot?" "$re
 bindsym $mod+a focus parent
 # bindsym $mod+Shift+a
 
-bindsym $mod+b exec $browser
-# bindsym $mod+Shift+b
+bindsym $mod+b workspace $ws1; exec $browser
+bindsym $mod+Shift+b exec $browser
 
 bindsym $mod+c workspace $ws3
 bindsym $mod+Shift+c reload
@@ -198,6 +199,7 @@ bindsym $mod+Shift+Return exec $terminal; workspace $ws2
 
 bindsym $mod+space focus mode_toggle
 bindsym $mod+Shift+space floating toggle
+bindsym Ctrl+space exec toggle_kdb_layout
 
 bindsym $mod+semicolon focus right
 bindsym $mod+Shift+semicolon move workspace to output right
@@ -240,7 +242,7 @@ workspace $ws7 gaps outer 0
 
 # Application specific settings
 for_window [class="Google-chrome"] move container to workspace $ws1
-for_window [class="firefox"] move container to workspace $ws1
+#for_window [class="firefox"] move container to workspace $ws1
 for_window [class="Gnome-terminal"] move container to workspace $ws2
 for_window [class="st-terminal"] move container to workspace $ws2
 for_window [class="Thunderbird"] move container to workspace $ws3

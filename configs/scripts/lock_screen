@@ -4,7 +4,7 @@
 [ pgrep i3lock ] && exit
 
 if [ -f "$HOME/Pictures/lock_screen.png" ]; then
-    i3lock -i $HOME/Pictures/lock_screen.png
+    i3lock -e -i $HOME/Pictures/lock_screen.png
     exit
 fi
 
@@ -18,4 +18,4 @@ convert /tmp/screen_locked.png -scale 5% -scale 2000% /tmp/screen_locked2.png
 rm /tmp/screen_locked.png
 
 # Lock the screen
-i3lock -i /tmp/screen_locked2.png
+i3lock -e -i /tmp/screen_locked2.png

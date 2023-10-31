@@ -4,6 +4,11 @@ commands = [
     "layout tabbed"
 ]
 
+["5: vscode"]
+threshold = 1
+commands = [
+    "layout tabbed"
+]
 
 ["7: RDP"]
 threshold = 1

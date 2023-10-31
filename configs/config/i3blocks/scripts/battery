@@ -13,7 +13,7 @@ from subprocess import check_output
 if Path.home().joinpath(".local", ".no-battery").is_file():
     exit(0)
 
-status = check_output(['acpi'], universal_newlines=True)
+status = check_output(["acpi"], universal_newlines=True)
 
 if not status:
     # stands for no battery found
@@ -24,12 +24,12 @@ else:
     # available for each battery separately, although state and remaining
     # time for overall block is shown in the status of the first battery
     batteries = status.split("\n")
-    state_batteries=[]
-    commasplitstatus_batteries=[]
-    percentleft_batteries=[]
+    state_batteries = []
+    commasplitstatus_batteries = []
+    percentleft_batteries = []
     time = ""
     for battery in batteries:
-        if battery!='':
+        if battery != "":
             state_batteries.append(battery.split(": ")[1].split(", ")[0])
             commasplitstatus = battery.split(", ")
             if not time:
@@ -43,13 +43,13 @@ else:
                     timeleft = ""
 
             p = int(commasplitstatus[1].rstrip("%\n"))
-            if p>0:
+            if p > 0:
                 percentleft_batteries.append(p)
             commasplitstatus_batteries.append(commasplitstatus)
     state = state_batteries[0]
     commasplitstatus = commasplitstatus_batteries[0]
     if percentleft_batteries:
-        percentleft = int(sum(percentleft_batteries)/len(percentleft_batteries))
+        percentleft = int(sum(percentleft_batteries) / len(percentleft_batteries))
     else:
         percentleft = 0
 
@@ -64,7 +64,6 @@ else:
 
     # stands for unknown status of battery
     FA_QUESTION = "<span font='FontAwesome'>\uf128</span>"
-
 
     if state == "Discharging":
         fulltext = FA_BATTERY + " "
@@ -97,11 +96,15 @@ else:
             return "#FFFF66"
         return "#FFFFFF"
 
-    form =  '<span color="{}">{}%</span>'
+    form = '<span color="{}">{}%</span>'
     fulltext += form.format(color(percentleft), percentleft)
     fulltext += timeleft
 
+if percentleft == 0:
+    exit(0)
+
 print(fulltext)
 print(fulltext)
+
 if percentleft < 10:
     exit(33)

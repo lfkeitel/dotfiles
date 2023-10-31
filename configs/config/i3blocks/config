@@ -29,11 +29,11 @@ signal=8
 #signal=11
 
 [memory2]
-label=
+label=💭
 interval=30
 
 [cpu_usage2]
-label=
+label=🛠️
 interval=10
 
 [battery]
