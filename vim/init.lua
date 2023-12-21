@@ -24,6 +24,12 @@ require("lazy").setup({
     'hrsh7th/cmp-nvim-lsp',
     'saadparwaiz1/cmp_luasnip',
     'L3MON4D3/LuaSnip',
+    {
+        'nvim-telescope/telescope.nvim',
+        tag = '0.1.5',
+        dependencies = { 'nvim-lua/plenary.nvim' }
+    },
+    {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"}
 })
 
 vim.cmd("colorscheme catppuccin")
@@ -73,12 +79,18 @@ end
 
 nmap("<leader>b", ":buffers<CR>:buffer<Space>")
 nmap("<leader>i", ":setlocal list!<cr>")
-nmap("<leader>l", ":source ~/.config/nvim/init.vim<cr>")
+nmap("<leader>l", ":source ~/.config/nvim/init.lua<cr>")
 
 nmap("<leader>n", ":NERDTreeFocus<CR>")
 nmap("<C-n>", ":NERDTree<CR>")
 nmap("<C-t>", ":NERDTreeToggle<CR>")
 nmap("<C-f>", ":NERDTreeFind<CR>")
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
 local nvim_lsp = require'lspconfig'
 
