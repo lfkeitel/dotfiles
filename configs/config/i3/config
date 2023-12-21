@@ -9,7 +9,7 @@ set $ws5 "5: vscode"
 set $ws6 "6"
 set $ws7 "7: RDP"
 set $ws8 "8"
-set $ws9 "9"
+set $ws9 "9: Obsidian"
 set $ws10 "10"
 
 set $browser firefox
@@ -48,7 +48,7 @@ exec --no-startup-id compton -f -m 1.0
 # Start Network Manager
 exec --no-startup-id nm-applet
 # Unclutter makes the mouse invisible after a brief period
-exec --no-startup-id unclutter -notclass 'Google-chrome' 'Code' 'Firefox' 'VSCodium'
+exec --no-startup-id unclutter -notclass 'Google-chrome' 'Code' 'Firefox' 'VSCodium' 'Obsidian'
 # Runs the key remapping scripts
 exec --no-startup-id ~/.scripts/remaps
 # Automounter
@@ -128,8 +128,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+d exec rofi -show combi -combi-modi "run#drun#window#ssh" -modi combi#window
 # bindsym $mod+Shift+d
 
-bindsym $mod+e layout toggle split
-bindsym $mod+Shift+e exec --no-startup-id thunar
+bindsym $mod+e exec --no-startup-id thunar
+bindsym $mod+Shift+e layout toggle split
 
 bindsym $mod+f fullscreen toggle
 bindsym $mod+Shift+f exec --no-startup-id xdotool mousemove 0 0
@@ -253,6 +253,7 @@ for_window [class="VSCodium"] move container to workspace $ws5
 for_window [class="VirtualBox Manager"] move container to workspace $ws6
 for_window [class="Thunar"] floating enable
 for_window [class="Remmina"] move container to workspace $ws7
+for_window [class="obsidian"] move container to workspace $ws9
 
 # GIMP
 for_window [title="GIMP Startup"] move workspace $ws5

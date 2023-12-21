@@ -15,3 +15,9 @@ threshold = 1
 commands = [
     "layout tabbed"
 ]
+
+["9: Obsidian"]
+threshold = 1
+commands = [
+    "layout tabbed"
+]

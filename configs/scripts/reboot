@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+sudo umount -a -t cifs -l -f
+systemctl reboot

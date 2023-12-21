@@ -57,7 +57,7 @@
     "editor.bracketPairColorization.enabled": true,
     "editor.copyWithSyntaxHighlighting": false,
     "editor.cursorSmoothCaretAnimation": "on",
-    "editor.fontFamily": "'Fira Code', Inconsolata, monospace",
+    "editor.fontFamily": "'JetBrains Mono', 'Fira Code', Inconsolata, monospace",
     "editor.fontLigatures": true,
     "editor.fontSize": 17,
     "editor.guides.bracketPairs":"active",
@@ -165,5 +165,11 @@
         "stargate": "linux"
     },
     "powershell.promptToUpdatePowerShell": false,
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "prettier.documentSelectors": [
+        "*.ts",
+        "*.js"
+    ],
+    "rust-analyzer.check.command": "clippy",
+    "d.servedPath": "/home/lfkeitel/.local/share/code-d/bin/serve-d"
 }

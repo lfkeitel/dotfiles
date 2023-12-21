@@ -1,6 +1,7 @@
 import json
 import shlex
 import os
+import tempfile
 from pathlib import Path
 from shutil import copyfile as copy, copyfileobj
 import urllib.request
@@ -78,3 +79,11 @@ def copyfile(src, dest, sudo=False):
 def download_file(url, dest):
     with urllib.request.urlopen(url) as response, open(dest, "wb") as out_file:
         copyfileobj(response, out_file)
+
+
+def download_tmp_file(url):
+    temp_file = tempfile.NamedTemporaryFile(delete=False)
+    with urllib.request.urlopen(url) as response:
+        copyfileobj(response, temp_file)
+    temp_file.close()
+    return temp_file.name

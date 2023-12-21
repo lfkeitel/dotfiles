@@ -2,7 +2,7 @@
 
 LG=$(setxkbmap -query | awk '/layout/{print $2}')
 if [ "$LG" == "us" ]; then
-    setxkbmap 'gr' -variant polytonic
+    setxkbmap -option '' 'gr' -variant polytonic
 else
-    setxkbmap 'us'
+    setxkbmap -option '' 'us'
 fi
