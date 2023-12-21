@@ -46,8 +46,8 @@ class Main(Installer):
 
     def link_config(self):
         link_file(
-            Path(__file__).parent.joinpath(".vimrc"),
-            Path.home().joinpath(".config", "nvim", "init.vim"),
+            Path(__file__).parent.joinpath("init.lua"),
+            Path.home().joinpath(".config", "nvim", "init.lua"),
         )
 
     def download_vim_plugged(self):
