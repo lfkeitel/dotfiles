@@ -1,4 +1,3 @@
-fish_vi_key_bindings
 set -x LANG en_US.UTF-8
 set -x EDITOR 'nvim'
 set -x CODE_DIR "$HOME/code"
