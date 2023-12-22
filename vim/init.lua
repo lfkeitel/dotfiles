@@ -34,6 +34,7 @@ require("lazy").setup({
 
 vim.cmd("colorscheme catppuccin")
 
+vim.opt.wrap = false
 vim.opt.number = true
 vim.opt.ruler = true
 vim.opt.laststatus = 2
