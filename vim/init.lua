@@ -108,9 +108,13 @@ nmap("<leader>b", ":buffers<CR>:buffer<Space>")
 nmap("<leader>i", ":setlocal list!<cr>")
 nmap("<leader>l", ":source ~/.config/nvim/init.lua<cr>")
 
-nmap("<leader>n", ":NERDTreeFocus<CR>")
-nmap("<C-n>", ":NERDTree<CR>")
-nmap("<C-t>", ":NERDTreeToggle<CR>")
+nmap("[e", ":m -2<CR>")
+nmap("]e", ":m +1<CR>")
+
+nmap("<leader>n", ":NERDTreeToggle<CR>")
+--nmap("<leader>n", ":NERDTreeFocus<CR>")
+--nmap("<C-n>", ":NERDTree<CR>")
+--nmap("<C-t>", ":NERDTreeToggle<CR>")
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
