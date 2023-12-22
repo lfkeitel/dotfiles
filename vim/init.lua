@@ -34,6 +34,20 @@ require("lazy").setup({
         tag = '0.1.5',
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
+    {
+      "hedyhli/outline.nvim",
+      lazy = true,
+      cmd = { "Outline", "OutlineOpen" },
+      keys = { -- Example mapping to toggle outline
+        { "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
+      },
+      opts = {},
+    },
+    {
+      "m4xshen/hardtime.nvim",
+      dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+      opts = {}
+    },
     {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"}
 })
 
@@ -41,6 +55,7 @@ vim.cmd("colorscheme catppuccin")
 
 vim.opt.wrap = false
 vim.opt.number = true
+vim.opt.relativenumber = true
 vim.opt.ruler = true
 vim.opt.laststatus = 2
 vim.opt.showmatch = true
@@ -88,6 +103,7 @@ function imap(shortcut, command)
     map('i', shortcut, command)
 end
 
+nmap("<leader>H", ":Hardtime toggle<cr>")
 nmap("<leader>b", ":buffers<CR>:buffer<Space>")
 nmap("<leader>i", ":setlocal list!<cr>")
 nmap("<leader>l", ":source ~/.config/nvim/init.lua<cr>")
