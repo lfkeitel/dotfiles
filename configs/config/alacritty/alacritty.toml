@@ -1,0 +1,5 @@
+[window]
+padding = { x = 20, y = 20 }
+[font]
+normal = { family = "Inconsolata Nerd Font Mono", style = "Regular" }
+size = 13

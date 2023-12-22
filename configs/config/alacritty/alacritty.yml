@@ -1,0 +1,9 @@
+shell:
+  program: /usr/local/bin/fish
+  args:
+    - -c
+    - tmux attach\; choose-tree -Zs || tmux new -t default && exit
+font:
+  normal:
+    family: Inconsolata Nerd Font Mono
+  size: 18
