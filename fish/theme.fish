@@ -35,7 +35,7 @@ function fish_prompt
         echo -n -s (set_color -b cyan black) '[' (basename "$VIRTUAL_ENV") ']' $normal ' '
     end
 
-    echo -n -s $username $normal ' ' $hostname1 $normal ' '
+    #echo -n -s $username $normal ' ' $hostname1 $normal ' '
     # Print pwd or full path
     echo -n -s $cwd $normal
 
