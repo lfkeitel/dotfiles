@@ -25,6 +25,11 @@ require("lazy").setup({
     'saadparwaiz1/cmp_luasnip',
     'L3MON4D3/LuaSnip',
     {
+        'windwp/nvim-autopairs',
+        event = "InsertEnter",
+        opts = {}
+    },
+    {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.5',
         dependencies = { 'nvim-lua/plenary.nvim' }
