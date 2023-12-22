@@ -2,7 +2,8 @@ from pathlib import Path
 
 from utils.chalk import print_header
 from utils.installer import Installer
-from utils.utils import link_file
+from utils.utils import link_file, dir_exists
+from utils.system import run_command
 
 SCRIPT_DIR = Path(__file__).parent
 HOME_DIR = Path.home()
@@ -19,6 +20,10 @@ class Main(Installer):
 
         print_header("Setting up tmux")
         link_config(".tmux.conf")
+        if dir_exists("~/.tmux/plugins/tpm"):
+            run_command("cd ~/.tmux/plugins/tpm && git pull", shell=True)
+        else:
+            run_command("git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm")
 
         print_header("Setting up makepkg")
         link_config(".makepkg.conf")
