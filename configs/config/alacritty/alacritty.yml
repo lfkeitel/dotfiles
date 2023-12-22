@@ -3,7 +3,11 @@ shell:
   args:
     - -c
     - tmux attach\; choose-tree -Zs || tmux new -t default && exit
+window:
+  padding:
+    x: 5
+    y: 5
 font:
   normal:
     family: Inconsolata Nerd Font Mono
-  size: 18
+  size: 21
