@@ -64,6 +64,11 @@ vim.opt.smartindent = true        -- Adds automatic indentation on new line.
 vim.opt.autoindent = true         -- Adds automatic indentation on copy paste as well.
 
 vim.opt.listchars = "eol:$,tab:>-,trail:~,extends:>,precedes:<"
+vim.cmd([[
+    command! Wq wq
+    command! W w
+    command! Q q
+]])
 
 function map(mode, shortcut, command)
     vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
