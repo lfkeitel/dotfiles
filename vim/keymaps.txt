@@ -1,0 +1,41 @@
+'<leader>ff', telescope_builtin.find_files
+'<leader>fg', telescope_builtin.live_grep
+'<leader>fh', telescope_builtin.help_tags
+'<leader>s/', telescope_live_grep_open_files
+'<leader>ss', telescope_builtin.builtin
+'<leader>gf', telescope_builtin.git_files
+'<leader>sf', telescope_builtin.find_files
+'<leader>sh', telescope_builtin.help_tags
+'<leader>sw', telescope_builtin.grep_string
+'<leader>sg', telescope_builtin.live_grep
+'<leader>sG', ':LiveGrepGitRoot<cr>'
+'<leader>sd', telescope_builtin.diagnostics
+'<leader>sr', telescope_builtin.resume
+'<leader>?', telescope_builtin.oldfiles
+'<leader><space>', telescope_builtin.buffers
+'<leader>/', telescop_fuzzy_find_in_buffer
+'<leader>o', '<cmd>Outline<CR>'
+'<leader>a', function() harpoon:list():append() end
+'<leader>r', function() harpoon:list():remove() end
+'<leader>H', ':Hardtime toggle<cr>'
+'<leader>b', ':buffers<CR>:buffer<Space>'
+'<leader>i', ':setlocal list!<cr>'
+'<leader>l', ':source ~/.config/nvim/init.lua<cr>'
+'<leader>H', ':Hardtime toggle<cr>'
+'<leader>b', ':buffers<CR>:buffer<Space>'
+'<leader>i', ':setlocal list!<cr>'
+'<leader>l', ':source ~/.config/nvim/init.lua<cr>'
+'<leader>n', ':NERDTreeToggle<CR>'
+
+'<space>e', vim.diagnostic.open_float
+'[d', vim.diagnostic.goto_prev
+']d', vim.diagnostic.goto_next
+'<space>q', vim.diagnostic.setloclist
+'[e', ':m -2<CR>'
+']e', ':m +1<CR>'
+
+'<C-r>', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end
+'<C-h>', function() harpoon:list():select(1) end
+'<C-t>', function() harpoon:list():select(2) end
+'<C-n>', function() harpoon:list():select(3) end
+'<C-s>', function() harpoon:list():select(4) end
