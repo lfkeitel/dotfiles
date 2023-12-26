@@ -2,3 +2,4 @@ private/
 hexchat/servlist.conf
 *.wants
 __pycache__/
+lazy-lock.json

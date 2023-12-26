@@ -1,24 +1,18 @@
 #!/usr/bin/env python3
 from pathlib import Path
-import os
 
 from utils.installer import Installer
 from utils.chalk import print_header
 from utils.system import command_exists, install_pkg, install_apt_ppa, run_command
-from utils.utils import link_file, download_file
+from utils.utils import link_file
 import utils.platform as platform
-
-_VIM_PLUGGED_SRC = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 
 
 class Main(Installer):
     def run(self):
         print_header("Setting up Vim")
-        if not "plugged" in self.args:
-            self.check_nvim_installed()
-            self.link_config()
-        self.download_vim_plugged()
-        run_command("nvim +PlugInstall +qall")
+        self.check_nvim_installed()
+        self.link_config()
 
     def check_nvim_installed(self):
         if command_exists("nvim"):
@@ -46,11 +40,6 @@ class Main(Installer):
 
     def link_config(self):
         link_file(
-            Path(__file__).parent.joinpath("init.lua"),
-            Path.home().joinpath(".config", "nvim", "init.lua"),
+            Path(__file__).parent.joinpath("nvim"),
+            Path.home().joinpath(".config", "nvim"),
         )
-
-    def download_vim_plugged(self):
-        local = Path.home().joinpath(".local", "share", "nvim", "site", "autoload")
-        os.makedirs(local, exist_ok=True)
-        download_file(_VIM_PLUGGED_SRC, str(local.joinpath("plug.vim")))
