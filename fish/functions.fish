@@ -248,13 +248,13 @@ function good-morning
     date '+%A %Y-%m-%d %H:%M'
 end
 
-if [ -n "(cp --help | grep 'progress bar')" ]
+if [ "$(uname -s)" != "Darwin" -a -n "(cp --help | grep 'progress bar')" ]
     function cp
         command cp -g $argv
     end
 end
 
-if [ -n "(mv --help | grep 'progress bar')" ]
+if [ "$(uname -s)" != "Darwin" -a -n "(mv --help | grep 'progress bar')" ]
     function mv
         command mv -g $argv
     end

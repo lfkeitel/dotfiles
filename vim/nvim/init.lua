@@ -331,6 +331,7 @@ local servers = {
         }
     },
     pyright = {},
+    phpactor = {},
     gopls = {},
     lua_ls = {
         Lua = {
