@@ -1,4 +1,5 @@
 [window]
+opacity = 0.9
 padding = { x = 20, y = 20 }
 [font]
 normal = { family = "Inconsolata Nerd Font Mono", style = "Regular" }

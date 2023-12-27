@@ -4,6 +4,7 @@ shell:
     - -c
     - tmux attach\; choose-tree -Zs || tmux new -t default && exit
 window:
+  opacity: 0.9
   padding:
     x: 5
     y: 5

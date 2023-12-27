@@ -8,7 +8,7 @@
 '<leader>sh', telescope_builtin.help_tags
 '<leader>sw', telescope_builtin.grep_string
 '<leader>sg', telescope_builtin.live_grep
-'<leader>sG', ':LiveGrepGitRoot<cr>'
+'<leader>sG', live_grep_git_root
 '<leader>sd', telescope_builtin.diagnostics
 '<leader>sr', telescope_builtin.resume
 '<leader>?', telescope_builtin.oldfiles

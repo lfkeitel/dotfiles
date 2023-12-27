@@ -1,0 +1,6 @@
+require("lfk.lsp")
+require("lfk.set")
+require("lfk.keys")
+require("lfk.telescope")
+require("lfk.treesitter")
+require("lfk.autocomplete")

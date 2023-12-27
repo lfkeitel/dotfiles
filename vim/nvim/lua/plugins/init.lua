@@ -1,5 +1,4 @@
 return {
-    'catppuccin/nvim',
     'tpope/vim-sensible',
     'airblade/vim-gitgutter',
     'preservim/nerdtree',

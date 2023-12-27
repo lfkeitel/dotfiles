@@ -94,7 +94,8 @@
             "remmina",
             "freerdp",
             "autojump",
-            "svox-pico-bin"
+            "svox-pico-bin",
+            "picom"
         ]
     },
 
