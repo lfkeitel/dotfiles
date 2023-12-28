@@ -13,8 +13,8 @@ set $ws9 "9: Obsidian"
 set $ws10 "10"
 
 set $browser firefox
-set $terminal st -c st-terminal
-set $terminal_start st -c st-terminal -e tmux -2 -u
+set $terminal alacritty
+set $terminal_start alacritty -e tmux -2 -u
 set $i3lock lock_screen
 
 # Power commands
@@ -244,7 +244,7 @@ workspace $ws7 gaps outer 0
 for_window [class="Google-chrome"] move container to workspace $ws1
 #for_window [class="firefox"] move container to workspace $ws1
 for_window [class="Gnome-terminal"] move container to workspace $ws2
-for_window [class="st-terminal"] move container to workspace $ws2
+for_window [class="Alacritty"] move container to workspace $ws2
 for_window [class="Thunderbird"] move container to workspace $ws3
 for_window [class="Mattermost"] move container to workspace $ws3
 for_window [class="Hexchat"] move container to workspace $ws4
