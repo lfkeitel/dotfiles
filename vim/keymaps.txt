@@ -39,3 +39,22 @@
 '<C-t>', function() harpoon:list():select(2) end
 '<C-n>', function() harpoon:list():select(3) end
 '<C-s>', function() harpoon:list():select(4) end
+
+']m', 'goto_next_start @function.outer',
+']]', 'goto_next_start @class.outer',
+']M', 'goto_next_end @function.outer',
+'][', 'goto_next_end @class.outer',
+'[m', 'goto_previous_start @function.outer',
+'[[', 'goto_previous_start @class.outer',
+'[M', 'goto_previous_end @function.outer',
+'[]', 'goto_previous_end @class.outer',
+
+'<C-n>' 'visual-multi find under cursor'
+'<C-up>' 'visual-multi add cursor up'
+'<C-down>' 'visual-multi add cursor down'
+'<Shift-arrow>' 'visual-multi select on character as a time'
+'n/N' 'visual-multi next/previous occurance'
+'[/]' 'visual-multi next/previous cursor'
+'q' 'visual-multi skip current and get next occurance'
+'Q' 'visual-multi remove current cursor/selection'
+'Tab' 'visual-multi switch between <cursor> and <extend> mode'
