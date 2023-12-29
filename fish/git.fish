@@ -1,3 +1,14 @@
+function cd_git_root
+    set old_dir "$(pwd)"
+    while [ ! -d '.git' -a "$(pwd)" != "/" ]
+        cd ..
+    end
+
+    if [ "$(pwd)" = "/" ]
+        cd "$old_dir"
+    end
+end
+
 function git_current_branch
   set -l ref (command git symbolic-ref --quiet HEAD 2> /dev/null)
   set -l ret $status
@@ -121,7 +132,7 @@ alias gpoat 'git push origin --all && git push origin --tags'
 alias gpu 'git push upstream'
 alias gpv 'git push -v'
 
-alias gr 'git remote'
+alias gr 'cd_git_root'
 alias gra 'git remote add'
 alias grb 'git rebase'
 alias grba 'git rebase --abort'
