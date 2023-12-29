@@ -14,6 +14,8 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set("n", "<leader>o", "o<ESC>")
+vim.keymap.set("n", "<leader>O", "O<ESC>")
 
 -- document existing key chains
 require('which-key').register {
