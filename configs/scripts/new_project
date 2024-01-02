@@ -47,13 +47,17 @@ NEXT_CODE=$(find_next_code)
 NEW_DIR="$CODE_DIR/$NEXT_CODE-$PROJECT_NAME"
 
 if [[ -n $GIT_URL ]]; then
-    git clone "$GIT_URL" "$NEW_DIR"
+    git clone --bare "$GIT_URL" "$NEW_DIR"
     cd "$NEW_DIR"
-    mkdir -p private
+    MASTER_BR="$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')"
+    git worktree add $MASTER_BR
+    cd $MASTER_BR
 else
     mkdir "$NEW_DIR"
     cd "$NEW_DIR"
-    git init
+    git init --bare
+    MASTER_BR="$(git config --get init.defaultbranch)"
+    git worktree add $MASTER_BR
     echo 'private/' > .gitignore
     echo 'bin/' >> .gitignore
     echo '.vscode/' >> .gitignore
@@ -65,5 +69,4 @@ fi
 
 echo
 echo "Project Code: $NEXT_CODE"
-echo "Generating new aliases"
-gen_project_aliases
+echo "Make sure to run gen_project_aliases to get new aliases"
