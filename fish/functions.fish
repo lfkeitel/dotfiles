@@ -67,6 +67,10 @@ function format_project_code -a num
     end
 end
 
+function git_head_branch
+    git remote show origin | sed -n '/HEAD branch/s/.*: //p'
+end
+
 function code_jump -a project
     function echo_list
         echo -e (string join '\n' $argv)
@@ -76,6 +80,9 @@ function code_jump -a project
     if string match --quiet --regex '^\d{1,3}$' $project
         set project (format_project_code $project)
         cd $CODE_DIR/$project*
+        if test -f HEAD
+            cd (git_head_branch)
+        end
         return
     end
 
@@ -110,6 +117,9 @@ function code_jump -a project
     if string match --quiet --regex '^\d{1,3}$' $project
         set project (format_project_code $project)
         cd $CODE_DIR/$project*
+        if test -f HEAD
+            cd (git_head_branch)
+        end
     end
 end
 
@@ -246,18 +256,6 @@ function good-morning
 
     echo -n "Today is: "
     date '+%A %Y-%m-%d %H:%M'
-end
-
-if [ "$(uname -s)" != "Darwin" -a -n "(cp --help | grep 'progress bar')" ]
-    function cp
-        command cp -g $argv
-    end
-end
-
-if [ "$(uname -s)" != "Darwin" -a -n "(mv --help | grep 'progress bar')" ]
-    function mv
-        command mv -g $argv
-    end
 end
 
 function countdown
