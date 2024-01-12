@@ -59,9 +59,6 @@ local servers = {
             },
         }
     },
-    pyright = {},
-    phpactor = {},
-    gopls = {},
     lua_ls = {
         Lua = {
             workspace = { checkThirdParty = false },
@@ -70,6 +67,12 @@ local servers = {
             diagnostics = { globals = { 'vim' } },
         },
     },
+    pyright = {},
+    phpactor = {},
+    gopls = {},
+    clangd = {},
+    bashls = {},
+    tsserver = {},
 }
 
 -- Setup neovim lua configuration

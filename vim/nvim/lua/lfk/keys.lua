@@ -23,6 +23,13 @@ vim.keymap.set('n', '<C-b>', '<C-b>zz')
 vim.keymap.set('n', '<leader><leader>', ',')
 vim.keymap.set('v', '<leader>p', [["_dP]])
 
+vim.keymap.set('n', "<C-Right>", "<C-w>l")
+vim.keymap.set('n', "<C-Left>", "<C-w>h")
+vim.keymap.set('n', "<C-Down>", "<C-w>j")
+vim.keymap.set('n', "<C-Up>", "<C-w>k")
+
+vim.opt.mouse = ""
+
 -- document existing key chains
 require('which-key').register {
     ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
