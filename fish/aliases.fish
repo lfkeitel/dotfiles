@@ -61,5 +61,6 @@ alias ips 'ip -br -color addr'
 
 alias youtube-dl 'youtube-dl -4'
 alias headset 'pactl set-sink-port 0 analog-output-speaker && pactl set-sink-port 0 analog-output-headphones'
+alias home 'cd && clear'
 
 bind \cf "tmux-sessionizer"
