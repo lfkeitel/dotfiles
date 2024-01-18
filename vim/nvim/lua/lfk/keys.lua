@@ -22,6 +22,7 @@ vim.keymap.set('n', '<C-f>', '<C-f>zz')
 vim.keymap.set('n', '<C-b>', '<C-b>zz')
 vim.keymap.set('n', '<leader><leader>', ',')
 vim.keymap.set('v', '<leader>p', [["_dP]])
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 vim.keymap.set('n', "<C-Right>", "<C-w>l")
 vim.keymap.set('n', "<C-Left>", "<C-w>h")
