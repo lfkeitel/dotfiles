@@ -1,6 +1,7 @@
 '<leader>ff', telescope_builtin.find_files
 '<leader>fg', telescope_builtin.live_grep
 '<leader>fh', telescope_builtin.help_tags
+'<leader>fr', vim.lsp.buf.format
 '<leader>s/', telescope_live_grep_open_files
 '<leader>ss', telescope_builtin.builtin
 '<leader>gf', telescope_builtin.git_files

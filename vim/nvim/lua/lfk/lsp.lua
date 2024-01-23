@@ -32,6 +32,7 @@ local on_attach = function(_, bufnr)
     end, '[W]orkspace [L]ist Folders')
 
     -- Create a command `:Format` local to the LSP buffer
+    nmap('<leader>fr', vim.lsp.buf.format, '[F]o[r]mat current buffer')
     vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
         vim.lsp.buf.format()
     end, { desc = 'Format current buffer with LSP' })

@@ -15,6 +15,7 @@ vim.opt.ttyfast = true
 vim.opt.startofline = false
 vim.opt.autoread = true
 vim.opt.hidden = true
+vim.opt.mouse = ""
 
 vim.opt.wrapscan = true
 vim.opt.incsearch = true
