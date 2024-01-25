@@ -69,4 +69,3 @@ fi
 
 echo
 echo "Project Code: $NEXT_CODE"
-echo "Make sure to run gen_project_aliases to get new aliases"

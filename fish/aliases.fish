@@ -37,7 +37,10 @@ alias yr 'yarn run'
 
 alias p 'code_jump'
 alias cat 'better_cat'
-alias np 'new_project'
+function np
+    new_project $argv
+    gen_project_aliases
+end
 
 alias mpp 'mpc toggle'
 alias mpn 'mpc next'
