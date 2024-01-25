@@ -28,7 +28,7 @@ class Hook(Enum):
     POST_OH_MY_ZSH = "post-oh-my-zsh"
 
 
-def add_zsh_hook(hook: Hook, name: str, file: str, copy=False):
+def add_zsh_hook(hook: Hook, name: str, file: Path, copy=False):
     print_line(f"Adding {name} to ZSH {hook.value} hooks")
 
     if copy:
@@ -55,7 +55,7 @@ os.makedirs(FISH_FUNCS_DIR, exist_ok=True)
 os.makedirs(FISH_HOOKS_DIR, exist_ok=True)
 
 
-def add_fish_func(name: str, file: str, copy=False):
+def add_fish_func(name: str, file: Path, copy=False):
     print_line(f"Adding {name} to Fish functions")
 
     if copy:
@@ -69,7 +69,7 @@ def remove_fish_func(name: str):
     os.remove(FISH_FUNCS_DIR.joinpath(name + ".fish"))
 
 
-def add_fish_hook(hook: Hook, name: str, file: str, copy=False):
+def add_fish_hook(hook: Hook, name: str, file: Path, copy=False):
     print_line(f"Adding {name} to Fish {hook.value} hooks")
 
     if copy:

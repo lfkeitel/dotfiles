@@ -93,9 +93,9 @@ class Main(Installer):
                 shell=True,
             )
 
-        add_to_path("zsh", home_dir.joinpath("bin"))
-        add_to_path("zsh", home_dir.joinpath(".scripts"))
-        add_to_path("zsh", home_dir.joinpath(".local/scripts"))
+        add_to_path("local", home_dir.joinpath("bin"))
+        add_to_path("local", home_dir.joinpath(".scripts"))
+        add_to_path("local", home_dir.joinpath(".local/scripts"))
 
         add_zsh_hook(Hook.POST, "10-vars", script_dir.joinpath("vars.zsh"))
         add_zsh_hook(Hook.POST, "10-nnn-setup", script_dir.joinpath("nnn-setup.zsh"))
