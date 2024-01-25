@@ -74,6 +74,7 @@ local servers = {
     clangd = {},
     bashls = {},
     tsserver = {},
+    ocamllsp = {},
 }
 
 -- Setup neovim lua configuration
