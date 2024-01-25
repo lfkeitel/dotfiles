@@ -51,13 +51,13 @@ if [[ -n $GIT_URL ]]; then
     cd "$NEW_DIR"
     MASTER_BR="$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')"
     git worktree add $MASTER_BR
-    cd $MASTER_BR
 else
     mkdir "$NEW_DIR"
     cd "$NEW_DIR"
     git init --bare
     MASTER_BR="$(git config --get init.defaultbranch)"
     git worktree add $MASTER_BR
+    cd $MASTER_BR
     echo 'private/' > .gitignore
     echo 'bin/' >> .gitignore
     echo '.vscode/' >> .gitignore
