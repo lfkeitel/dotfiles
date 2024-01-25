@@ -22,7 +22,8 @@
         "docker": { },
         "hexchat": { },
         "home": { "path": "configs/home" },
-        "vnc": { }
+        "vnc": { },
+        "opam": { }
     },
 
     "packages": {
