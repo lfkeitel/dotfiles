@@ -19,4 +19,4 @@ class Main(Installer):
             run_command("opam init -n")
 
         add_fish_hook(Hook.POST, "10-opam", SCRIPT_DIR.joinpath("setuphook.fish"))
-        run_command("opam install -y dune utop ocaml-lsp-server merlin")
+        run_command("opam install -y dune utop ocaml-lsp-server merlin odoc ocamlformat dune-release")
