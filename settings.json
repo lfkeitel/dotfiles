@@ -7,6 +7,7 @@
         "fonts": { "autorun": true, "path": "other/fonts.py" },
         "gpg": { "autorun": true },
         "golang": { "autorun": true },
+        "go": { "alias": "golang" },
         "python": { "autorun": true },
         "vscode": { "autorun": true },
         "vim": { "autorun": true },

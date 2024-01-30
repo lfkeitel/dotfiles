@@ -33,6 +33,6 @@ class Main(Installer):
         print_line("Installing/updating Go packages", color=Color.MAGENTA)
 
         for pkg in self.settings["go"]["packages"]:
-            proc = run_command(f"go get -u '{pkg}'")
+            proc = run_command(f"go install '{pkg}@latest'")
             if proc.returncode == 0:
                 print_line(f"Successfully downloaded {pkg}")
