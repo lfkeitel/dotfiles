@@ -45,8 +45,8 @@ def exec_installer(path, name, args=[], settings=None):
 
 
 class Installer:
-    args: List[str] = None
-    settings = None
+    args: List[str] = []
+    settings = {}
 
     def __init__(self, args: List[str], settings):
         self.args = args

@@ -89,7 +89,7 @@ def fish_hook_exists(hook: Hook, name: str):
 
 def _write_path_data():
     for module, paths in _new_paths.items():
-        paths = "\n".join(paths)
+        paths = "\n".join(paths) + "\n"
 
         if dir_exists(ZSH_PATHS_DIR):
             with open(ZSH_PATHS_DIR.joinpath(module), "w") as f:
