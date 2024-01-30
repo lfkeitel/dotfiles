@@ -34,15 +34,15 @@ function addtopath -a path_item pos
     end
 end
 
-set PATH '/usr/local/sbin' \
-    '/usr/local/bin' \
-    '/usr/sbin' \
-    '/usr/bin' \
-    '/sbin' \
-    '/bin' \
-    '/usr/games' \
-    '/usr/local/games' \
-    '/snap/bin'
+addtopath '/usr/local/sbin'
+addtopath '/usr/local/bin'
+addtopath '/usr/sbin'
+addtopath '/usr/bin'
+addtopath '/sbin'
+addtopath '/bin'
+addtopath '/usr/games'
+addtopath '/usr/local/games'
+addtopath '/snap/bin'
 
 if [ -d "$CUSTOM_PATH_DIR" ]
     for s in $CUSTOM_PATH_DIR/*
