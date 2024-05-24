@@ -3,6 +3,7 @@ set -x EDITOR 'nvim'
 set -x CODE_DIR "$HOME/code"
 set -x USERID (id -u)
 set -x SCRIPTS_DIR "$HOME/.scripts"
+set -x AWS_DEFAULT_PROFILE main
 set CUSTOM_HOOKS_PATH "$HOME/.config/fish/hooks"
 set CUSTOM_PATH_DIR "$CUSTOM_HOOKS_PATH/paths"
 set CUSTOM_PLUGINS_DIR "$CUSTOM_HOOKS_PATH/plugins"

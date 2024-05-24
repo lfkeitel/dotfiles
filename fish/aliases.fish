@@ -21,7 +21,7 @@ alias docker-rm-dangle 'docker image rm (docker image ls -f dangling=true -q)'
 alias + 'sudo'
 alias fix-mounts 'sudo umount -a -t cifs -l -f'
 alias pwdu 'du --max-depth=1 -h .'
-alias kill-tmux-sessions 'tmux list-sessions | grep -v attached | cut -d: -f1 | grep -P \'^\\d+$\' |  xargs -t -n1 tmux kill-session -t'
+alias kill-tmux-sessions 'tmux list-sessions | grep -v attached | cut -d: -f1 | grep -P \'^\\d+$\' |  xargs -t -n1 -r tmux kill-session -t'
 alias sudp 'sudo'
 alias sfrc 'source $HOME/.config/fish/config.fish'
 

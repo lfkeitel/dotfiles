@@ -68,7 +68,11 @@ function format_project_code -a num
 end
 
 function git_head_branch
-    git remote show origin | sed -n '/HEAD branch/s/.*: //p'
+    if test -z "$(git remote)"
+        git config --get init.defaultbranch
+    else
+        git remote show origin | sed -n '/HEAD branch/s/.*: //p'
+    end
 end
 
 function code_jump -a project
