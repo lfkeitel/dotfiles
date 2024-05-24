@@ -61,3 +61,4 @@
 [safe]
 	directory = /usr/lib/vlang/thirdparty/tcc
 	directory = /usr/lib/vlang
+	directory = /home/lfkeitel/code/misc/garden

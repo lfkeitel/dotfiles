@@ -120,7 +120,7 @@ bindsym $mod+a focus parent
 # bindsym $mod+Shift+a
 
 bindsym $mod+b workspace $ws1; exec $browser
-bindsym $mod+Shift+b exec $browser
+bindsym $mod+Shift+b workspace $ws4; exec $browser
 
 bindsym $mod+c workspace $ws3
 bindsym $mod+Shift+c reload
@@ -128,7 +128,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+d exec rofi -show combi -combi-modi "run#drun#window#ssh" -modi combi#window
 # bindsym $mod+Shift+d
 
-bindsym $mod+e exec --no-startup-id thunar
+bindsym $mod+e exec --no-startup-id nautilus
 bindsym $mod+Shift+e layout toggle split
 
 bindsym $mod+f fullscreen toggle
@@ -152,7 +152,7 @@ bindsym $mod+Shift+h move workspace to output left
 bindsym $mod+l exec --no-startup-id toggle_xautolock
 bindsym $mod+Shift+l move workspace to output right
 
-bindsym $mod+m exec mattermost-desktop
+bindsym $mod+m mode "move" focus floating
 # bindsym $mod+Shift+m
 
 bindsym $mod+n exec --no-startup-id lmc next
@@ -200,6 +200,9 @@ bindsym $mod+Shift+Return exec $terminal; workspace $ws2
 bindsym $mod+space focus mode_toggle
 bindsym $mod+Shift+space floating toggle
 bindsym Ctrl+space exec toggle_kdb_layout
+
+# Float and pin application across workspaces
+bindsym $mod+Ctrl+Return exec --no-startup-id "i3-msg 'floating toggle; sticky toggle'"
 
 bindsym $mod+semicolon focus right
 bindsym $mod+Shift+semicolon move workspace to output right
@@ -252,6 +255,7 @@ for_window [class="Code"] move container to workspace $ws5
 for_window [class="VSCodium"] move container to workspace $ws5
 for_window [class="VirtualBox Manager"] move container to workspace $ws6
 for_window [class="Thunar"] floating enable
+for_window [class="org.gnome.Nautilus"] floating enable
 for_window [class="Remmina"] move container to workspace $ws7
 for_window [class="obsidian"] move container to workspace $ws9
 
@@ -282,20 +286,36 @@ for_window [instance="popup_window_large"] resize set 1500 750
 for_window [instance="popup_window_large"] border pixel 5
 for_window [instance="popup_window_large"] move position center
 
-mode "resize" {
-    bindsym j resize shrink width 10 px or 10 ppt
-    bindsym k resize grow height 10 px or 10 ppt
-    bindsym l resize shrink height 10 px or 10 ppt
-    bindsym semicolon resize grow width 10 px or 10 ppt
+# Zoom
+for_window [class="(.*join\?action\=join.*|.*zoom.*)"] floating enable
+for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom - Licensed Account"] floating disable
+for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom - Free Account"] floating disable
+for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom Meeting"] floating disable
+for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom Webinar"] floating disable
 
-    bindsym Left resize shrink width 10 px or 10 ppt
-    bindsym Down resize grow height 10 px or 10 ppt
-    bindsym Up resize shrink height 10 px or 10 ppt
-    bindsym Right resize grow width 10 px or 10 ppt
+for_window [floating] border full
+
+mode "resize" {
+    bindsym Left resize shrink width 20 px or 20 ppt
+    bindsym Down resize grow height 20 px or 20 ppt
+    bindsym Up resize shrink height 20 px or 20 ppt
+    bindsym Right resize grow width 20 px or 20 ppt
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
-    bindsym $mod+r mode "default"
+}
+
+mode "move" {
+    bindsym $mod+Tab focus right
+
+    bindsym Left move left
+    bindsym Down move down
+    bindsym Up move up
+    bindsym Right move right
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 
 bar {
