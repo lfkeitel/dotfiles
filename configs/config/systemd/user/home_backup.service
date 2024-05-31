@@ -1,0 +1,13 @@
+[Unit]
+Description=Backup home directory to OneDrive folder
+
+[Service]
+Type=oneshot
+ExecStart=restic \
+    -r rclone:onedrive:desktop_backup \
+    --password-command "gpg --decrypt %h/thing.txt.gpg" \
+    backup \
+    --exclude-file %h/backup_ignore.txt \
+    -x \
+    %h
+StandardOutput=journal
