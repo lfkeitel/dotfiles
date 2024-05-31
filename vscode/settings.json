@@ -1,6 +1,7 @@
 {
     "[html]": {
-        "editor.formatOnSave": false
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": "vscode.html-language-features"
     },
     "[javascript]": {
         "editor.tabSize": 2,
@@ -172,5 +173,11 @@
         "*.js"
     ],
     "rust-analyzer.check.command": "clippy",
-    "d.servedPath": "/home/lfkeitel/.local/share/code-d/bin/serve-d"
+    "d.servedPath": "/home/lfkeitel/.local/share/code-d/bin/serve-d",
+    "editor.stickyScroll.enabled": true,
+    "html.format.indentInnerHtml": true,
+    "html.format.templating": true,
+    "php-cs-fixer.executablePath": "${workspaceFolder}/vendor/bin/php-cs-fixer",
+    "php-cs-fixer.formatHtml": true,
+    "php-cs-fixer.onsave": false
 }
