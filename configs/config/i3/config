@@ -14,6 +14,7 @@ set $ws10 "10"
 
 set $browser firefox
 set $terminal alacritty
+set $terminal_alt alacritty --class Alacrity2 -e tmux -2 -u
 set $terminal_start alacritty -e tmux -2 -u
 set $i3lock lock_screen
 
@@ -196,6 +197,7 @@ bindsym $mod+Shift+z gaps inner current set $default_gaps; gaps outer current se
 
 bindsym $mod+Return exec $terminal_start; workspace $ws2
 bindsym $mod+Shift+Return exec $terminal; workspace $ws2
+bindsym $mod+Mod1+Return exec $terminal_alt
 
 bindsym $mod+space focus mode_toggle
 bindsym $mod+Shift+space floating toggle
@@ -300,6 +302,10 @@ mode "resize" {
     bindsym Down resize grow height 20 px or 20 ppt
     bindsym Up resize shrink height 20 px or 20 ppt
     bindsym Right resize grow width 20 px or 20 ppt
+    bindsym Ctrl+Left resize shrink width 10 px or 10 ppt
+    bindsym Ctrl+Down resize grow height 10 px or 10 ppt
+    bindsym Ctrl+Up resize shrink height 10 px or 10 ppt
+    bindsym Ctrl+Right resize grow width 10 px or 10 ppt
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
