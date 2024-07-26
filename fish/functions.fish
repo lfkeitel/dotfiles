@@ -28,6 +28,10 @@ function sudossh -a host
     ssh -t $host sudo su
 end
 
+function sshshark -a host
+    ssh -T $host "sudo /usr/bin/tcpdump -w - 'not ((host fe80::2028:8714:aaf9:be35 or host 2602:fc25:4:0:e1db:1c27:eebf:e7e2 or host fe80::1 or host fd00::1 or host fe80::79ee:c2dc:4bbe:49dd or host 2602:fc25:10::92 or host 10.188.188.40 or host 172.17.0.1 or host 172.19.0.1 or host 172.18.0.1 or host 10.112.68.92) and port 22)'" | wireshark -S -k -i -
+end
+
 function sys-upgrade
     set linux_distro (gawk -F= '/^NAME/{print $2}' /etc/os-release 2>/dev/null | tr -d '"')
     if test $linux_distro = "Ubuntu"

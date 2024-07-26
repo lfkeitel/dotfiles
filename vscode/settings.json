@@ -28,6 +28,10 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.tabSize": 2
     },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true
+    },
     "[yaml]": {
         "editor.tabSize": 2
     },
@@ -159,7 +163,6 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "go.toolsManagement.autoUpdate": true,
-    "python.defaultInterpreterPath": "/home/lfkeitel/code/venv/py3/bin/python3",
     "remote.SSH.remotePlatform": {
         "logstash-r16-15": "linux",
         "stuff.keitel.dev": "linux",
@@ -167,7 +170,6 @@
         "stargate": "linux"
     },
     "powershell.promptToUpdatePowerShell": false,
-    "editor.formatOnSave": true,
     "prettier.documentSelectors": [
         "*.ts",
         "*.js"
