@@ -3,6 +3,8 @@
 LG=$(setxkbmap -query | awk '/layout/{print $2}')
 if [ "$LG" == "us" ]; then
     setxkbmap -option '' 'gr' -variant polytonic
+elif [ "$LG" == "gr" ]; then
+    setxkbmap -option '' 'il' -variant biblical
 else
     setxkbmap -option '' 'us'
 fi
