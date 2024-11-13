@@ -4,7 +4,7 @@ from pathlib import Path
 from utils.installer import Installer
 from utils.chalk import print_header
 from utils.system import install_pkg, run_command
-from utils.utils import remove, link_file
+from utils.utils import remove, link_file, template_file
 import utils.platform as platform
 
 SCRIPT_DIR = Path(__file__).parent
@@ -16,8 +16,12 @@ class Main(Installer):
             return
 
         print_header("Setting up Pacman")
-        link_file(
-            SCRIPT_DIR.joinpath("pacman.conf"), Path("/etc/pacman.conf"), sudo=True
+        template_file(
+            SCRIPT_DIR.joinpath("pacman.conf"),
+            Path("/etc/pacman.conf"),
+            {"mirror_file": "/etc/pacman.d/mirror-local"},
+            sudo=True,
+            mode=0o644,
         )
 
         install_pkg("reflector", "arch-audit", "kernel-modules-hook")

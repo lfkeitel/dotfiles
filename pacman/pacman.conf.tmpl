@@ -8,7 +8,7 @@
 #GPGDir      = /etc/pacman.d/gnupg/
 #HookDir     = /etc/pacman.d/hooks/
 #HoldPkg     =
-IgnorePkg   = libva
+#IgnorePkg   = libva
 Architecture = auto
 ParallelDownloads = 10
 
@@ -31,13 +31,13 @@ Server   = http://arch-repo.keitel.xyz
 SigLevel = Required
 
 [core]
-Include = /etc/pacman.d/mirrorlist
+Include = $mirror_file
 
 [extra]
-Include = /etc/pacman.d/mirrorlist
+Include = $mirror_file
 
 [community]
-Include = /etc/pacman.d/mirrorlist
+Include = $mirror_file
 
 [multilib]
-Include = /etc/pacman.d/mirrorlist
+Include = $mirror_file
