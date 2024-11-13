@@ -5,6 +5,7 @@ import tempfile
 from pathlib import Path
 from shutil import copyfile as copy, copyfileobj
 import urllib.request
+from string import Template
 
 from utils.system import run_command
 
@@ -69,11 +70,17 @@ def move(src: Path, dest: Path, sudo=False):
     run_command(cmd)
 
 
-def copyfile(src, dest, sudo=False):
+def copyfile(src, dest, sudo=False, mode=0):
     if sudo:
-        run_command(f"sudo cp {shlex.quote(src)} {shlex.quote(dest)}")
+        run_command(f"sudo cp {shlex.quote(str(src))} {shlex.quote(str(dest))}")
     else:
         copy(src, dest)
+
+    if mode > 0:
+        if sudo:
+            run_command(f"sudo chmod {mode:04o} {shlex.quote(str(dest))}")
+        else:
+            os.chmod(dest, mode)
 
 
 def download_file(url, dest):
@@ -87,3 +94,15 @@ def download_tmp_file(url):
         copyfileobj(response, temp_file)
     temp_file.close()
     return temp_file.name
+
+
+def template_file(src, dest, data=None, sudo=False, mode=0):
+    with open(src, "r") as f:
+        src = Template(f.read())
+        result = src.substitute(data)
+        print(result)
+
+        with tempfile.NamedTemporaryFile(delete_on_close=False, mode="w") as tfp:
+            tfp.write(result)
+            tfp.close()
+            copyfile(tfp.name, dest, sudo=sudo, mode=mode)
