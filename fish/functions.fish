@@ -388,3 +388,7 @@ function dkh
     set line $argv[1]
     sed -i {$line}d ~/.ssh/known_hosts
 end
+
+function wireshark_remote
+    ssh -T $1 "sudo /usr/bin/tcpdump -w - 'not (port 22 and (host fe80::1 or host fd00::1 or host 10.188.188.40 or host 10.112.68.92))'" | wireshark -S -k -i -
+end
