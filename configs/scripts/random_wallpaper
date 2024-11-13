@@ -5,7 +5,15 @@ PAPER1='/tmp/wallpaper-1.png'
 PAPER2='/tmp/wallpaper-2.png'
 FALLBACK="$HOME/Pictures/wallpaper.png"
 OVERLAY_IMG="$HOME/Pictures/wallpaper_overlay.png"
+OVERLAY_IMG_NE="$HOME/Pictures/wallpaper_overlay_ne.png"
+OVERLAY_IMG_NW="$HOME/Pictures/wallpaper_overlay_nw.png"
+OVERLAY_IMG_SE="$HOME/Pictures/wallpaper_overlay_se.png"
+OVERLAY_IMG_SW="$HOME/Pictures/wallpaper_overlay_sw.png"
 LOCK_SCREEN="$HOME/Pictures/lock_screen.png"
+
+if [[ -f $OVERLAY_IMG ]]; then
+    OVERLAY_IMG_NE="$OVERLAY_IMG"
+fi
 
 getFileSize() {
     stat --printf="%s" "$1"
@@ -38,8 +46,20 @@ if [[ $(getFileSize "$CURRENT_PAPER") -eq 0 ]]; then
     CURRENT_PAPER=$FALLBACK
 fi
 
-if [[ -f "$OVERLAY_IMG" ]]; then
-    composite -gravity NorthEast "$OVERLAY_IMG" "$CURRENT_PAPER" "$CURRENT_PAPER"
+if [[ -f "$OVERLAY_IMG_NE" ]]; then
+    composite -gravity NorthEast "$OVERLAY_IMG_NE" "$CURRENT_PAPER" "$CURRENT_PAPER"
+fi
+
+if [[ -f "$OVERLAY_IMG_NW" ]]; then
+    composite -gravity NorthWest "$OVERLAY_IMG_NW" "$CURRENT_PAPER" "$CURRENT_PAPER"
+fi
+
+if [[ -f "$OVERLAY_IMG_SE" ]]; then
+    composite -gravity SouthEast "$OVERLAY_IMG_SE" "$CURRENT_PAPER" "$CURRENT_PAPER"
+fi
+
+if [[ -f "$OVERLAY_IMG_SW" ]]; then
+    composite -gravity SouthWest "$OVERLAY_IMG_SW" "$CURRENT_PAPER" "$CURRENT_PAPER"
 fi
 
 dconf write /com/deepin/wrap/gnome/desktop/background/picture-uri "'$CURRENT_PAPER'"
@@ -48,7 +68,7 @@ dconf write /org/cinnamon/desktop/background/picture-options "'stretched'"
 feh --bg-scale $CURRENT_PAPER
 
 # Generate lock screen image
-convert $CURRENT_PAPER $CURRENT_PAPER \
+magick $CURRENT_PAPER $CURRENT_PAPER \
     +append \
     -resize $(xdpyinfo | awk '/dimensions/{print $2}')\! \
     $LOCK_SCREEN
