@@ -112,6 +112,9 @@ function code_jump -a project
         return
     else if [ $list_rows -eq 1 ]
         cd $CODE_DIR/$list*
+        if test -f HEAD
+            cd (git_head_branch)
+        end
         return
     end
 
@@ -384,11 +387,32 @@ function quaycopy
     docker push "quay.usi.edu/$category$image"
 end
 
+function quaymigrate
+    set src $argv[1]
+    set dst $argv[2]
+
+    docker pull "quay.usi.edu/$src"
+    docker tag "quay.usi.edu/$src" "git.usi.edu/$dst"
+    docker push "git.usi.edu/$dst"
+end
+
 function dkh
     set line $argv[1]
     sed -i {$line}d ~/.ssh/known_hosts
 end
 
 function wireshark_remote
-    ssh -T $1 "sudo /usr/bin/tcpdump -w - 'not (port 22 and (host fe80::1 or host fd00::1 or host 10.188.188.40 or host 10.112.68.92))'" | wireshark -S -k -i -
+    set host "$argv[1]"
+    ssh -T $host "sudo /usr/bin/tcpdump -w - 'not (port 22 and (host fe80::1 or host fd00::1 or host 10.188.188.40 or host 10.112.68.92))'" | wireshark -S -k -i -
+end
+
+function wireshark_remote_rhel
+    set host "$argv[1]"
+    ssh -T $host "sudo /sbin/tcpdump -w - 'not (port 22 and (host 10.188.188.40 or host 10.112.68.92))'" | wireshark -S -k -i -
+end
+
+function mdcd
+    set p "$argv[1]"
+    mkdir -p $p
+    cd $p
 end

@@ -78,5 +78,9 @@
     {
         "key": "ctrl+shift+alt+down",
         "command": "-incrementor.decrementByTenth"
+    },
+    {
+        "key": "ctrl+m",
+        "command": "-editor.action.toggleTabFocusMode"
     }
 ]

@@ -103,6 +103,7 @@
         "**/.git": true,
         "**/.hg": true,
         "**/.svn": true,
+        "**/*.o": true,
         "**/CVS": true
     },
     "files.insertFinalNewline": true,
@@ -181,5 +182,16 @@
     "html.format.templating": true,
     "php-cs-fixer.executablePath": "${workspaceFolder}/vendor/bin/php-cs-fixer",
     "php-cs-fixer.formatHtml": true,
-    "php-cs-fixer.onsave": false
+    "php-cs-fixer.onsave": false,
+    "print.folder.fileNames": true,
+    "print.folder.include": [],
+    "print.folder.exclude": [
+        "{bin,obj,out}",
+        "node_modules",
+        "data",
+        "**/*.{bin,exe,dll,hex,pdb,pdf,pfx,png,jpg,gif,bmp,suo,design}"
+    ],
+    "print.folder.maxLines": 1200,
+    "print.folder.maxFiles": 30,
+    "print.folder.includeFileList": false
 }
