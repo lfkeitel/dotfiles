@@ -7,4 +7,5 @@ return {
     'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
     'mg979/vim-visual-multi',
     'ThePrimeagen/vim-be-good',
+    'jasonccox/vim-wayland-clipboard',
 }

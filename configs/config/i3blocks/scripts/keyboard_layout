@@ -1,7 +1,6 @@
 #!/bin/bash
 case $BLOCK_BUTTON in
-    1) toggle_kdb_layout;;
+    1) swaymsg input "type:keyboard" xkb_switch_layout next;;
 esac
 
-LG=$(setxkbmap -query | awk '/layout/{print $2}')
-echo "LG: $LG"
+swaymsg -t get_inputs | jq -r '.[0].xkb_active_layout_name'

@@ -2,31 +2,14 @@ command=/home/lfkeitel/.config/i3blocks/scripts/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
-[mpd]
-label=M
-interval=once
-signal=12
-markup=pango
-
 [volume]
 interval=once
 signal=10
-
-#[calcurse]
-#interval=300
-
-[xautolock]
-interval=once
-signal=9
 
 [pacman]
 label=📦
 interval=once
 signal=8
-
-#[rss]
-#interval=once
-#signal=11
 
 [memory2]
 label=💭
@@ -42,6 +25,7 @@ markup=pango
 interval=5
 
 [keyboard_layout]
+label=⌨️ 
 interval=5
 
 [date]

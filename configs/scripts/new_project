@@ -47,14 +47,16 @@ NEXT_CODE=$(find_next_code)
 NEW_DIR="$CODE_DIR/$NEXT_CODE-$PROJECT_NAME"
 
 if [[ -n $GIT_URL ]]; then
-    git clone --bare "$GIT_URL" "$NEW_DIR"
+    git clone --bare "$GIT_URL" "$NEW_DIR/.bare"
     cd "$NEW_DIR"
+    echo "gitdir: ./.bare" > .git
     MASTER_BR="$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')"
     git worktree add $MASTER_BR
 else
     mkdir "$NEW_DIR"
     cd "$NEW_DIR"
-    git init --bare
+    git init --bare .bare
+    echo "gitdir: ./.bare" > .git
     MASTER_BR="$(git config --get init.defaultbranch)"
     git worktree add $MASTER_BR
     cd $MASTER_BR

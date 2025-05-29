@@ -72,17 +72,10 @@ overlayImg NorthWest "$OVERLAY_IMG_NW"
 overlayImg SouthEast "$OVERLAY_IMG_SE"
 overlayImg SouthWest "$OVERLAY_IMG_SW"
 
-dconf write /com/deepin/wrap/gnome/desktop/background/picture-uri "'$CURRENT_PAPER'"
-dconf write /org/cinnamon/desktop/background/picture-uri "'file://$CURRENT_PAPER'"
-dconf write /org/cinnamon/desktop/background/picture-options "'stretched'"
-feh --bg-scale $CURRENT_PAPER
+feh --bg-scale $CURRENT_PAPER || true
+swaymsg output '*' bg $CURRENT_PAPER stretch || true
 
-# Generate lock screen image
-magick $CURRENT_PAPER $CURRENT_PAPER \
-    +append \
-    -resize $(xdpyinfo | awk '/dimensions/{print $2}')\! \
-    $LOCK_SCREEN
-
+ln -sf $CURRENT_PAPER $LOCK_SCREEN
 if [[ $CURRENT_PAPER == $FALLBACK ]]; then
     exit
 fi

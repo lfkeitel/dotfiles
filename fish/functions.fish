@@ -79,6 +79,16 @@ function git_head_branch
     end
 end
 
+function _print_list
+    set list_rows (count $argv)
+    set term_rows (stty size | cut -d' ' -f1)
+
+    if [ (expr $list_rows + 2) -gt $term_rows ]
+        echo_list $argv | less -e
+    end
+    echo_list $argv
+end
+
 function code_jump -a project
     function echo_list
         echo -e (string join '\n' $argv)
@@ -86,11 +96,7 @@ function code_jump -a project
 
     # If arg is a number, cd to project
     if string match --quiet --regex '^\d{1,3}$' $project
-        set project (format_project_code $project)
-        cd $CODE_DIR/$project*
-        if test -f HEAD
-            cd (git_head_branch)
-        end
+        _code_jump_project_code $project
         return
     end
 
@@ -105,40 +111,48 @@ function code_jump -a project
     end
 
     set list_rows (count $list)
-    set term_rows (stty size | cut -d' ' -f1)
 
     if [ $list_rows -eq 0 ]
         echo "No matching projects found"
         return
     else if [ $list_rows -eq 1 ]
-        cd $CODE_DIR/$list*
-        if test -f HEAD
-            cd (git_head_branch)
-        end
+        _code_jump_project_name $list
         return
     end
 
-    if [ (expr $list_rows + 2) -gt $term_rows ]
-        echo_list $list | less -e
-    end
-    echo_list $list
+    _print_list $list
 
     echo
     read -P "Select a project or press enter: " project
     if string match --quiet --regex '^\d{1,3}$' $project
-        set project (format_project_code $project)
-        cd $CODE_DIR/$project*
-        if test -f HEAD
-            cd (git_head_branch)
-        end
+        _code_jump_project_code $project
     end
 end
 
-function project_jump
-    cd "$argv[1]"
-    if [ (count $argv) -gt 1 ]
-        shift
-        $argv
+function _code_jump_project_code -a project
+    _code_jump_project_name (format_project_code $project)
+end
+
+function _code_jump_project_name -a project
+    cd $CODE_DIR/$project*
+    _code_jump_git_worktree
+end
+
+function _code_jump_git_worktree
+    if test -f HEAD -o -d .bare
+        set branches ($FINDCMD . -maxdepth 1 -not -name '.*' -not -name 'private' -printf "%f\n" | sort)
+        if [ (count $branches) -eq 1 ]
+            cd $branches
+            return
+        end
+
+        _print_list $branches
+        echo
+        read -P "Select a branch or press enter: " branch
+        if [ -z "$branch" ]
+            set branch (git_head_branch)
+        end
+        cd {$branch}*
     end
 end
 
@@ -146,21 +160,10 @@ function gen_project_aliases
     set alias_list ($FINDCMD $CODE_DIR -maxdepth 1 -type d -printf "%f\n" | $GREPCMD -P '\d{3}\-')
     for dir in $alias_list
         set code (echo "$dir" | cut -d- -f1)
-        alias $code "project_jump $CODE_DIR/$dir"
+        alias $code "code_jump $code"
     end
 end
 gen_project_aliases
-
-function go_mod
-    switch $argv[1]
-        case on
-            set -x GO111MODULE on
-        case off
-            set -x GO111MODULE off
-        case '*'
-            set -x GO111MODULE auto
-    end
-end
 
 function activate -a VENV_NAME
     set VIRENV_ROOT "$HOME/code/venv"
@@ -396,23 +399,19 @@ function quaymigrate
     docker push "git.usi.edu/$dst"
 end
 
-function dkh
-    set line $argv[1]
+function dkh -a line
     sed -i {$line}d ~/.ssh/known_hosts
 end
 
-function wireshark_remote
-    set host "$argv[1]"
+function wireshark_remote -a host
     ssh -T $host "sudo /usr/bin/tcpdump -w - 'not (port 22 and (host fe80::1 or host fd00::1 or host 10.188.188.40 or host 10.112.68.92))'" | wireshark -S -k -i -
 end
 
-function wireshark_remote_rhel
-    set host "$argv[1]"
+function wireshark_remote_rhel -a host
     ssh -T $host "sudo /sbin/tcpdump -w - 'not (port 22 and (host 10.188.188.40 or host 10.112.68.92))'" | wireshark -S -k -i -
 end
 
-function mdcd
-    set p "$argv[1]"
+function mdcd -a p
     mkdir -p $p
     cd $p
 end

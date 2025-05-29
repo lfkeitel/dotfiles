@@ -82,3 +82,13 @@ if [ -d /run/user/$USERID/i3 ]
 end
 
 run_custom_hooks post
+
+# Start Sway
+systemctl --user import-environment DISPLAY WAYLAND_DISPLAY
+dbus-update-activation-environment DISPLAY WAYLAND_DISPLAY
+[ "$(tty)" = "/dev/tty1" ] && exec dbus-run-session sway
+
+if pgrep -x sway >/dev/null
+    set -x SWAYSOCK "/run/user/$(id -u)/sway-ipc.$(id -u).$(pgrep -x sway).sock"
+    set -x I3SOCK "$SWAYSOCK"
+end
