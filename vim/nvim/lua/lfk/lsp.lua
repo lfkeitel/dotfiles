@@ -70,7 +70,6 @@ local servers = {
     gopls = {},
     clangd = {},
     bashls = {},
-    tsserver = {},
     ocamllsp = {},
 }
 

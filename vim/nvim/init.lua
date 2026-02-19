@@ -16,7 +16,6 @@ vim.g.mapleader = ","
 require("lazy").setup({
     spec = {
         { import = "plugins" },
-    },
-    checker = { enabled = true },
+    }
 })
 require("lfk")
