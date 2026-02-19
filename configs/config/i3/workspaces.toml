@@ -4,7 +4,7 @@ commands = [
     "layout tabbed"
 ]
 
-["5: vscode"]
+["5: editor"]
 threshold = 1
 commands = [
     "layout tabbed"
