@@ -1,11 +1,11 @@
-from pathlib import Path
 import os
+from pathlib import Path
 
-from utils.installer import Installer, exec_installer
+from utils import platform
 from utils.chalk import print_header
+from utils.installer import Installer
 from utils.system import run_command
 from utils.utils import link_file
-from utils import platform
 
 SCRIPT_DIR = Path(__file__).parent
 HOME_DIR = Path.home()
@@ -21,7 +21,7 @@ class Main(Installer):
             config_dir = HOME_DIR.joinpath(".config")
             for item in configs:
                 if item.is_dir():
-                    link_file(item.path, config_dir.joinpath(item.name))
+                    link_file(Path(item.path), config_dir.joinpath(item.name))
 
         if not platform.is_mac:
             run_command("systemctl --user daemon-reload")
