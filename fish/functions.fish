@@ -215,6 +215,13 @@ function c
     end
 end
 
+function z
+    set code_path (which zeditor 2>/dev/null)
+    if test -n "$code_path"
+        $code_path .
+    end
+end
+
 function pdfmerge
     set output $argv[1]
     set files $argv[2..(count $argv)]
@@ -414,4 +421,8 @@ end
 function mdcd -a p
     mkdir -p $p
     cd $p
+end
+
+function mann -a page
+    man $page | bat -l man --style=-numbers
 end

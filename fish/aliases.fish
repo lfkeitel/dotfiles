@@ -1,6 +1,7 @@
 # Application aliases
 alias gpg 'gpg2'
 alias vim 'nvim'
+alias hx 'helix'
 
 alias visshc 'vim ~/.ssh/config'
 alias todo 'vim ~/todo'
